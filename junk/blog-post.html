@@ -1,0 +1,13 @@
+{% extends "blog-base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block blog_inner_body %}
+
+<h2>{{ title }}</h2>
+
+{% block blog_post_content %}{% endblock %}
+
+<p><i>{{ date }}</i></p>
+
+{% endblock %}

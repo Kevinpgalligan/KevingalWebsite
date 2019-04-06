@@ -1,0 +1,236 @@
+{% extends "blog-post.html" %}
+
+{% block blog_post_content %}
+
+<h4>Introduction</h4>
+<p>Database partitioning is used to make databases more robust and more easily
+scalable. This article covers the definition of partitioning and works through
+an implementation in the Kotlin programming language. The example code can be
+found on <a href="https://github.com/Kevinpgalligan/DatabasePartitioningExamples">GitHub</a>.
+</p>
+
+<h4>What is partitioning?</h4>
+<p>To partition a database means to divide it into smaller parts that are independent
+of each other, with each part storing a subset of the data in the database. These parts
+are referred to as partitions, or shards. Partitions can be servers, or they can be
+isolated processes on a single server, to name two possibilities.
+</p>
+
+<p>Here's a monolithic database, one without partitions. We can model it as a
+simple box that we put data to and get data from.</p>
+
+<img src="/static/img/partitioning/monolithic-database.png"
+    alt="monolithic database"
+    class="centered"/>
+
+<p>Here's a partitioned database. It has a "frontend" that contains logic ("partitioning
+logic") to determine which partition should serve a given PUT or GET request. </p>
+
+<img src="/static/img/partitioning/partitioned-database.png"
+    alt="partitioned database"
+    class="centered"/>
+
+<p>The partitioning logic must be consistent - if data is sent to partition P, then GET
+requests for that data should also go to partition P.
+</p>
+
+<h4>Why bother?</h4>
+<p>One benefit of partitioned databases is that if a partition breaks, you lose only
+<code>1/n</code> of your data, where <code>n</code> is the number of partitions. The
+partitions can be spread across multiple servers and network availability zones to further
+improve availability.
+</p>
+
+<p>Another benefit is that partitioned databases can scale more
+flexibly. A monolithic database runs on one server, so the only way
+to scale is to buy a bigger server. With multiple partitions, you can upgrade your server
+type OR add more servers, since the database can be backed by multiple servers.
+(see:
+<a href="https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling">
+vertical and horizontal scaling</a>).
+</p>
+
+<p>Partitioning also improves performance of the database,
+as partitions receive fewer requests and have less data to search through than a monolithic
+database would.
+</p>
+
+<p>The downside of partitioning is that it introduces complexity and new failure modes.
+TODO mention that we will go into more detail on this point later in the article.
+
+TODO somewhere, mention that: serious databases should be distributed, which means they
+should be partitioned. Otherwise, you'd better hope that the size of the database
+doesn't catch up with Moore's Law.
+</p>
+
+<h4>How does the partitioning logic work?</h4>
+<p>In simple implementations, the database frontend keeps a list
+of partitions in the database. When it receives a request, the frontend
+applies a hash function to some identifier associated with the data, such
+as an ID or a name. The hash function outputs an integer. The frontend then
+mods this integer value by the number of partitions in the list to get the index
+of the partition that should store the data. We will look at a more concrete
+example of this in the next section.
+</p>
+
+<h4>Worked example</h4>
+
+<p>Let's say we are designing a database that can store the personal details of prisoners.
+We plan for our software to be used in American prisons, so it must be highly scalable. One
+way we can do this is by partitioning. TODO make this better.
+</p>
+
+<p>Every prisoner has a unique integer ID. Their personal details are encoded in the form
+of a string. Here's a data class to represent the personal details.
+</p>
+
+{% highlight 'kotlin' %}
+data class Prisoner(val id: Int, val details: String)
+{% endhighlight %}
+
+<p>TODO: have I explained the partition hash thing elsewhere?
+</p>
+
+<p>We want our database to be partitioned, so we need a function to calculate the partition
+of prisoner details. For simplicity, we can use the ID of the prisoner as their partition hash.
+In general, this is not a good idea, because the identifier might not necessarily result in a good
+distribution of prisoner details across the partitions. If the beaurocrat in charge of
+assigning prisoner IDs has a fetish for multiples of 4, and we have 4 partitions in the
+database, then all prisoner details will go to the partition at index 4k % 4 = 0.
+</p>
+
+{% highlight 'kotlin' %}
+fun partitionHash(prisoner: Prisoner): Int = partitionHash(prisoner.id)
+fun partitionHash(id: Int): Int = id
+{% endhighlight %}
+
+<p>Let's try out our <code>partitionHash()</code> function on a prisoner named
+Jeffrey.</p>
+
+{% highlight 'kotlin' %}
+fun main(args: Array<String>) {
+    val jeffrey = Prisoner(7, "Name=Jeffrey,Age=5")
+    val numPartitions = 4
+    println(partitionHash(jeffrey))
+    println(partitionHash(jeffrey) % numPartitions)
+}
+{% endhighlight %}
+
+<p>Here's the output:</p>
+
+<pre>
+7
+3
+</pre>
+
+<p>Jeffrey's prisoner details have a partition hash of 7, the same as his ID. If we
+send his details to a database with 4 partitions, the details will be stored in the partition
+at index 7 % 4 = 3.</p>
+
+<p>Now for the database. First, we define the interface of a partition. We can put
+prisoner data into a partition, and, using the prisoner ID, get that data back out.</p>
+
+{% highlight 'kotlin' %}
+interface Partition {
+
+    fun put(prisoner: Prisoner)
+    fun get(id: Int): Prisoner
+}
+{% endhighlight %}
+
+<p>At the lowest level of the database, we need partitions that are not subdivided
+any further and that actually store the data.
+</p>
+
+{% highlight 'kotlin' %}
+class IndivisiblePartition: Partition {
+
+    private val prisoners: MutableMap<Int, Prisoner> = mutableMapOf()
+
+    override fun put(prisoner: Prisoner) {
+        prisoners[prisoner.id] = prisoner
+    }
+
+    override fun get(id: Int): Prisoner {
+        return prisoners[id] ?: throw RuntimeException()
+    }
+}
+{% endhighlight %}
+
+<p>We can define the database itself as an implementation of the partition interface,
+because we can also put and get prisoner details from the database. It consists of several
+smaller partitions. We use the partition hash of prisoner details, modulo the number of
+partitions in the database, to figure out which partition we should assign
+prisoner details to.</p>
+
+{% highlight 'kotlin' %}
+class Database(private val numPartitions: Int): Partition {
+
+    private val partitions: List<Partition> = List(numPartitions) {
+        IndivisiblePartition()
+    }
+
+    override fun put(prisoner: Prisoner) {
+        getPartition(partitionHash(prisoner)).put(prisoner)
+    }
+
+    override fun get(id: Int): Prisoner {
+        return getPartition(partitionHash(id)).get(id)
+    }
+
+    private fun getPartition(partitionHash: Int): Partition {
+        return partitions[partitionHash % numPartitions]
+    }
+}
+{% endhighlight %}
+
+<p>To assess the quality of our partitioning algorithm, we should
+consider whether prisoner data is distributed evenly
+across the partitions of the database. We don't want any partitions to store
+significantly more data than any other partitions, because they might fill up.
+For testing, we can generate 1,000,000 prisoners, put their details in the database
+and see what the distribution looks like.</p>
+
+{% highlight 'kotlin' %}
+fun main(args: Array<String>) {
+    val numPartitions = 7
+    val database = Database(numPartitions)
+
+    val prisoners = 1000000
+    for (id in 1..prisoners) {
+        database.put(Prisoner(id, "Name=Foo,Age=30"))
+    }
+
+    // min & max methods omitted.
+    println("Min partition size: ${database.minPartitionSize()}")
+    println("Max partition size: ${database.maxPartitionSize()}")
+}
+{% endhighlight %}
+
+<p>Here's the output:</p>
+
+<pre>
+Min partition size: 142857
+Max partition size: 142858
+</pre>
+
+<p>Prisoner details are perfectly distributed across the partitions of
+the database. Using prisoner ID as the partition hash has worked well
+in this case.</p>
+
+<h4>Conclusion</h4>
+<p>This is too Wall of Texty, break it up.
+</p>
+
+<p>Partitioning has benefits for the availability and scalability of a database, and
+our example has shown that it is easy to implement. There are a few subtleties that
+have not been considered, however. Changing the number of partitions in  a database
+("repartitioning") is tricky, to say the least. The implementation of multi-layer
+partitioning, where partitions have partitions (the first "layer" of partitions might
+consist of database servers, the second layer might consist of processes on those servers),
+has a surprising gotcha. And of course, it's unwise to use an identifier as a partition hash,
+as it in no way guarantees that data will be well-distributed. These subtleties will be
+considered in a follow-up article.
+</p>
+
+{% endblock %}

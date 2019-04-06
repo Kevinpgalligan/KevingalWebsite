@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set active_page = "about" %}
+{% block title %}About @ TtM{% endblock %}
+
+{% block body %}
+
+<h3>Who're you?</h3>
+<p>An Irish software developer.</p>
+
+<h3>What's this?</h3>
+<p>A place where I share my writing and projects.</p>
+
+<h3>Licensing</h3>
+<p>You can use any of the code hosted on this
+website under the MIT license, including the
+code for the website itself. Please ask me for
+permission before using anything other than code
+(articles, images, etc).</p>
+
+<h3>Contact</h3>
+<p>If you need to contact me for any reason, I can be reached
+by email at "galligankevinp At Google Email Service That Might
+Not Be Gmail But Almost Certainly Is... dot com".</p>
+
+<h3>Technical Stuff</h3>
+<p>The site is built using the Flask framework and runs behind an Apache HTTP server
+(<a href="https://github.com/Kevinpgalligan/TamingTheMachine">source code</a>).
+It's hosted on an EC2 instance - until my AWS trial
+period runs out.
+</p>
+
+{% endblock %}

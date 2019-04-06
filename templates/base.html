@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}kevingal{% endblock title %}</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+</head>
+
+<body>
+    <h1><a href="{{ url_for("index") }}">My site</a></h1>
+
+{% block content %}
+    <p>Default content to be displayed</p>
+{% endblock content %}
+
+</body>
+</html>

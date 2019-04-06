@@ -1,0 +1,131 @@
+{% extends "blog-post" %}
+
+{% block blog_post_content %}
+
+<h4>Adding an extra layer of partitions</h4>
+<p>We've now seen how to partition data in a single layer of partitions.
+What happens if we add another layer? By that, I mean that the partitions
+themselves have partitions. This is illustrated in the diagram below.</p>
+
+<img src="/static/img/partitioning/multilayer.png"
+    alt="multi-layer partitioned database"
+    class="centered"/>
+
+<p>In this case, we have 2 partitions in the first layer of the database,
+identified as p0 and p1. p0 consists of 2 sub-partitions, p00 and p01, which
+store any data that is sent to p0. Similarly, p1 consists of sub-partitions p10
+and p11. We consider partitions p0 and p1 to be part of the first "layer" of partitions,
+while p00, p01, p10 and p11 are part of the second layer. All data is stored in the second
+(and final) layer.</p>
+
+<p>Here's the path that data might take through this database.</p>
+
+<img src="/static/img/partitioning/multilayer-path.png"
+    alt="multi-layer partitioned database with path highlighted"
+    class="centered"/>
+
+<p> We PUT data to the frontend. The frontend computes the partition hash of the data to
+be 6. It then computes 6 % 2 to figure out which partition the data should
+be sent to in the first layer, which gives an index of 0, i.e. the data should be
+sent to p0. Partition p0 receives the data and computes a separate partition hash of 3,
+so the data finally ends up in partition p01 (3 % 2 = 1). The data is retrieved by sending
+a GET request to the frontend with the identifier of the data. The GET request is propagated
+to p01 in the same fashion and the data is passed back to p0 and then to the frontend.</p>
+
+<p>Why would we want to have multiple layers of partitions? Well, perhaps the partitions in the
+first layer are servers, and the partitions in the second layer are
+database processes on those servers. That's probably how we would scale as the amount
+of prisoner data became too large to store on a single server. And if our software is
+to be used in American prisons, then it had better be able to scale.</p>
+
+<!-- todo: this explanation. -->
+<p>How do we implement this? We need derp. The first idea that might come to mind is to
+reuse the partition hash from the first layer. This appears to be a good idea, as our original
+partition hash gave good results and we won't have to write any extra code. We define a
+<code>DivisiblePartition</code> class to the make up the first layer of partitions, and use
+<code>IndivisiblePartition</code> in the second layer.</p>
+
+<p>Since our <code>Database</code> class will look almost exactly the same as the class representing
+partitions in the first layer, we can extract the common code to an abstract class called
+<code>DivisiblePartition</code>. It's the exact same as the <code>Database</code> class from 
+before, except that it accepts a function for creating sub-partitions.</p>
+
+{% highlight 'kotlin' %}
+abstract class DivisiblePartition(
+        private val numPartitions: Int,
+        private val createSubPartition: () -> Partition)
+            : Partition {
+
+    private val partitions: List<Partition> = List(numPartitions) {
+        createSubPartition()
+    }
+
+    // ...more code here, same as Database class from earlier...
+}
+{% endhighlight %}
+
+<p>The <code>FirstLayerPartition</code> class passes a function to 
+the constructor of <code>DivisiblePartition</code> for the creation of its sub-partitions,
+which are of type <code>IndivisiblePartition</code>. Similarly, the <code>Database</code>
+class passes a function for creating its sub-partitions, which are of type
+<code>FirstLayerPartition</code>.</p>
+
+{% highlight 'kotlin' %}
+class FirstLayerPartition(numPartitions: Int)
+        : DivisiblePartition(
+            numPartitions,
+            { IndivisiblePartition() })
+
+class Database(
+        firstLayerNumPartitions: Int,
+        secondLayerNumPartitions: Int)
+            : DivisiblePartition(
+                firstLayerNumPartitions,
+                { FirstLayerPartition(secondLayerNumPartitions) })
+{% endhighlight %}
+
+<p>Finally, let's re-run the test to see whether we still have a good distribution.</p>
+
+{% highlight 'kotlin' %}
+fun main(args: Array<String>) {
+    val firstLayerNumPartitions = 4
+    val secondLayerNumPartitions = 4
+    val database = Database(firstLayerNumPartitions, secondLayerNumPartitions)
+    // ...same code as before...
+}
+{% endhighlight %}
+
+<p>The output:</p>
+
+<pre>
+Min partition size: 0
+Max partition size: 500000
+</pre>
+
+<p>Uh oh, what happened? Some of the partitions in the second layer aren't
+receiving any data.</p>
+
+<!-- this explanation could be more crisp. -->
+<p>The problem is that when data is sent to the <code>ith</code> partition
+in the first layer, it means that <code>partitionHash % firstLayerNumPartitions = i</code>.
+Given that <code>firstLayerNumPartitions = secondLayerNumPartitions</code>, this also
+means that <code>partitionHash % secondLayerNumPartitions = i</code>. In other words,
+all of the data in the <code>ith</code> partition in the first layer will be sent
+to the <code>ith</code> partition in the second layer!</p>
+
+<p>A diagram explains it best:</p>
+
+<!-- insert diagram here -->
+
+<p>It seems that we will have to use different partition hashes
+in each of the partition layers, as otherwise we will get a terrible distribution
+of data. The next section will suggest a simple method for generating an
+arbitrary number of partition hashes.</p>
+
+<h4>Adding an extra layer of partitions (the right way)</h4>
+<p>TODO</p>
+
+<h4>Wrap-up</h4>
+<p>TODO</p>
+
+{% endblock %}

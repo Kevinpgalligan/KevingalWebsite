@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% set active_page = "blog" %}
+{% block title %}Blog @ TtM{% endblock %}
+
+{% block body %}
+
+<h3>{{ posts|length }} post{% if posts|length > 1 %}s{% endif %}:</h3>
+<ul>
+    {% for id, date, title in posts: %}
+    <li>
+        {{ date }} <a href="/blog/{{ id }}">{{ title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
