@@ -11,8 +11,14 @@ pages = FlatPages(app)
 freezer = Freezer(app)
 
 @app.route('/')
+@app.route('/index.html')
+@app.route('/home.html')
 def index():
-    return render_template('index.html', pages=pages)
+    return render_template('index.html')
+
+@app.route('/blog.html')
+def blog():
+    return render_template('blog.html', pages=pages)
 
 @app.route('/<path:path>.html')
 def page(path):

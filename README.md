@@ -7,7 +7,7 @@ Execute `./run.sh` to start Flask webserver.
 
 Execute `./build.sh` to build static copy of site in `build` folder.
 
-Execute `./deploy.sh` to push static copy of site to `master` branch.
+Execute `./deploy.sh` to push static copy of site to the appropriate repository.
 
 Requires Python3.
 

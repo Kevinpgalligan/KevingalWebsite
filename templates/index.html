@@ -1,14 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %} home@kevingal {% endblock title %}
+
 {% block content %}
-    <h2>List of stuff</h2>
-    <ul>
-    {% for page in pages %}
-        <li>
-            <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a>
-        </li>
-    {% else %}
-        <li>No stuff.</li>
-    {% endfor %}
-    </ul>
+    <p>Filling empty space here.</p>
 {% endblock content %}

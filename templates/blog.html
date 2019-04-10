@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} blog@kevingal {% endblock title %}
+
+{% block content %}
+    <ul>
+        {% for page in pages %}
+        <li>
+            <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a>
+        </li>
+        {% else %}
+        <li>No stuff.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 
+{% set active_page = "none" %}
+
 <head>
     <title>{% block title %}kevingal{% endblock title %}</title>
     <meta charset="utf-8"/>
@@ -9,8 +11,22 @@
 </head>
 
 <body>
-    <h1><a href="{{ url_for("index") }}">My site</a></h1>
-
+    <header>
+        <div class="banner"><h1>kevingal</h1></div>
+        {% set top_level_pages = [
+            "home",
+            "blog"
+        ] %}
+        <nav>
+            {% for pg in top_level_pages: %}
+                <a href="/{{ pg }}.html"
+                   class="navlink"
+                   {% if pg == active_page %} class="active-page-link" {% endif %}>
+                    {{ pg }}
+                </a>
+            {% endfor %}
+        </nav>
+    </header>
 {% block content %}
     <p>Default content to be displayed</p>
 {% endblock content %}

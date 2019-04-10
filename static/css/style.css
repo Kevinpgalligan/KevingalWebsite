@@ -1,3 +1,12 @@
 body {
-    background-color: blue;
+    background-color: white;
+    font-family: 'Silkscreen', monospace;
+    max-width: 800px;
+}
+
+header {
+    text-align: center;
+}
+
+nav {
 }
