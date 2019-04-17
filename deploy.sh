@@ -24,7 +24,7 @@ function pushWithConfirmation {
 
 function deleteOldWebsiteFilesWithConfirmation {
     cd "$1"
-    echo "Deleting old static files."
+    echo "Deleting old website files."
     echo "Here is the rm command, executed from directory $(pwd):"
     echo rm -r $(ls .)
     read -p "Happy with the command? (y/n) " shouldDelete

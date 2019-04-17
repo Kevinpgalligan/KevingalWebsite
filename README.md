@@ -12,7 +12,6 @@ Execute `./deploy.sh` to push static copy of site to the appropriate repository.
 Requires Python3.
 
 ## Todo List
-* Modify deploy script to wipe everything in the other repository, this will prevent ghost files from hanging around.
 * Style / structural changes.
     * Favicon should have white background so that it remains visible.
     * Different font for headings / header / text (the current one isn't available anywhere). Also, have backups.
