@@ -10,7 +10,10 @@ app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
 
-date_sorted_pages = sorted(pages, key=lambda pg: pg.meta['date'], reverse=True)
+date_sorted_blog_posts = sorted(
+    [pg for pg in pages if "blog/" in pg.path],
+    key=lambda pg: pg.meta['date'],
+    reverse=True)
 
 @app.route('/')
 @app.route('/index.html')
@@ -19,16 +22,16 @@ def index():
 
 @app.route('/blog.html')
 def blog():
-    return render_template('blog.html', pages=pages, date_sorted_pages=date_sorted_pages)
+    return render_template('blog.html', date_sorted_blog_posts=date_sorted_blog_posts)
 
 @app.route('/apps.html')
 def apps():
     return render_template('apps.html')
 
 @app.route('/<path:path>.html')
-def page(path):
+def blog_post(path):
     page = pages.get_or_404(path)
-    return render_template('page.html', page=page)
+    return render_template('blog-post.html', page=page)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":

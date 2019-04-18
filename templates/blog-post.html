@@ -3,6 +3,7 @@
 {% block title %} {{ page.title }} {% endblock title %}
 
 {% block content %}
-    <h2>{{ page.title }}</h2>
-    {{ page.html|safe }}
+<h2>{{ page.title }}</h2>
+<p><i>Date: {{ page.date }}</i></p>
+{{ page.html|safe }}
 {% endblock content %}
