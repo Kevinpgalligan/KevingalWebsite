@@ -18,13 +18,9 @@
             "blog"
         ] %}
         <nav>
-            {% for pg in top_level_pages: %}
-                <a href="/{{ pg }}.html"
-                   class="navlink"
-                   {% if pg == active_page %} class="active-page-link" {% endif %}>
-                    {{ pg }}
-                </a>
-            {% endfor %}
+        {% for pg in top_level_pages: %}
+            <a href="/{% if pg == "home" %}index{% else %}{{ pg }}{% endif %}.html" class="navlink {% if pg == active_page %}active-page-link{% endif %}">{{ pg }}</a>
+        {% endfor %}
         </nav>
     </header>
 {% block content %}

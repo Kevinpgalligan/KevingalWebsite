@@ -10,13 +10,10 @@ app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
 
+@app.route('/')
 @app.route('/index.html')
 def index():
     return render_template('index.html')
-
-@app.route('/home.html')
-def index_home():
-    return index()
 
 @app.route('/blog.html')
 def blog():
