@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
 </head>
-
+{% set active_page = active_page|default("home") %}
 <body>
     <header>
         <div class="banner"><h1>kevingal.com</h1></div>
@@ -19,7 +19,7 @@
         ] %}
         <nav>
         {% for pg in top_level_pages: %}
-            <a href="/{% if pg == "home" %}index{% else %}{{ pg }}{% endif %}.html" class="navlink">{{ pg }}</a>
+            <a href="/{% if pg == "home" %}index{% else %}{{ pg }}{% endif %}.html" class="navlink"{% if pg == active_page %} id="active-page-navlink"{% endif %}>{{ pg }}</a>
         {% endfor %}
         </nav>
     </header>
