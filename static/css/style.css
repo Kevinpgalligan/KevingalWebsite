@@ -1,6 +1,6 @@
 body {
     background-color: white;
-    font-family: 'Silkscreen', monospace;
+    font-family: 'Courier New', monospace;
     max-width: 800px;
 }
 
@@ -8,5 +8,6 @@ header {
     text-align: center;
 }
 
-nav {
+nav, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica', sans-serif;
 }

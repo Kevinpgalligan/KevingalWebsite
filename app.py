@@ -10,6 +10,8 @@ app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
 
+date_sorted_pages = sorted(pages, key=lambda pg: pg.meta['date'], reverse=True)
+
 @app.route('/')
 @app.route('/index.html')
 def index():
@@ -17,7 +19,11 @@ def index():
 
 @app.route('/blog.html')
 def blog():
-    return render_template('blog.html', pages=pages)
+    return render_template('blog.html', pages=pages, date_sorted_pages=date_sorted_pages)
+
+@app.route('/apps.html')
+def apps():
+    return render_template('apps.html')
 
 @app.route('/<path:path>.html')
 def page(path):

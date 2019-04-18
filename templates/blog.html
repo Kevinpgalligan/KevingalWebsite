@@ -3,13 +3,14 @@
 {% block title %} blog@kevingal {% endblock title %}
 
 {% block content %}
+    <h3>Blog Posts</h3>
     <ul>
-        {% for page in pages %}
+        {% for page in date_sorted_pages %}
         <li>
-            <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a>
+            {{ page.date }} <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a>
         </li>
         {% else %}
-        <li>No stuff.</li>
+        <li>...</li>
         {% endfor %}
     </ul>
 {% endblock content %}
