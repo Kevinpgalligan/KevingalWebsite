@@ -12,8 +12,9 @@ Execute `./deploy.sh` to push copy of site to the appropriate repository.
 Requires Python3.
 
 ## Todo List
-* Style / structural changes.
-    * Favicon should have white background so that it remains visible.
-    * Ensure proper formatting on mobile.
+* Favicon should have white background so that it remains visible.
+* Ensure proper formatting on mobile.
+* Add to blog posts: date (at the bottom), link back to blog.
+* Indication of which part of the site the user is on (highlights in nav bar).
 * Custom 404 page(s).
 * Domain name, point to site.
