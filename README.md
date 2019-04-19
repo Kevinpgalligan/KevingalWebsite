@@ -10,7 +10,3 @@ Execute `./build.sh` to build static copy of site in `build` folder.
 Execute `./deploy.sh` to push copy of site to the appropriate repository.
 
 Requires Python3.
-
-## Todo List
-* Custom 404 page(s).
-* Domain name, point to site.

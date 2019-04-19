@@ -28,10 +28,18 @@ def blog():
 def apps():
     return render_template('apps.html')
 
+@app.route('/404.html')
+def not_found():
+    return render_template('404.html')
+
 @app.route('/<path:path>.html')
 def blog_post(path):
     page = pages.get_or_404(path)
     return render_template('blog-post.html', page=page)
+
+@freezer.register_generator
+def error_handlers():
+    yield "/404.html"
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
