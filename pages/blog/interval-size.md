@@ -1,5 +1,6 @@
 title: Calculate Interval Size With This 1 Weird Trick! Mathematicians HATE It!
 date: 2019-04-22
+draft: true
 
 If you're weirdly obsessed with tracking the number of days until your birthday, or you're a programmer and want to avoid off-by-1 errors when calculating the number of elements in an array between two indices, then this article will be useful for you.
 

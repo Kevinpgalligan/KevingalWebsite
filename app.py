@@ -11,7 +11,7 @@ pages = FlatPages(app)
 freezer = Freezer(app)
 
 date_sorted_blog_posts = sorted(
-    [pg for pg in pages if "blog/" in pg.path],
+    [pg for pg in pages if "blog/" in pg.path and "draft" not in pg.meta],
     key=lambda pg: pg.meta['date'],
     reverse=True)
 
