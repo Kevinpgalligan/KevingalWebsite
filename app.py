@@ -1,12 +1,18 @@
 import sys
-from flask import Flask, render_template
-from flask_flatpages import FlatPages
+from flask import Flask, render_template, render_template_string, Markup
+from flask_flatpages import FlatPages, pygmented_markdown
 from flask_frozen import Freezer
 
 FLATPAGES_EXTENSION = '.md'
 
+# Used to help render images.
+def prerender_jinja(text):
+    prerendered_body = render_template_string(Markup(text))
+    return pygmented_markdown(prerendered_body)
+
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.config['FLATPAGES_HTML_RENDERER'] = prerender_jinja
 pages = FlatPages(app)
 freezer = Freezer(app)
 
