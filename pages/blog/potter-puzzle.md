@@ -1,16 +1,7 @@
 title: Solving All Possible Versions of Harry Potter's Potions Puzzle
 date: 2019-08-06
 
-Near the climax of *Harry Potter and the Philosopher's Stone*, Hermione and Harry
-have just survived what was possibly the most dangerous game of chess in history. They are battling
-through a series of challenges that will bring them to the Philosopher's Stone, a
-powerful artifact that provides the user with immortality. As they leave the chamber with the giant
-chess board and enter the next, the exits of the new chamber are suddenly blocked by magical flames.
-Before them is a table with 7 potions and a puzzle written on a piece of paper.
-
-![pic-of-the-scene]({{ url_for('static', filename='img/harrypotterpotions.png') }})
-
-Here is the text of the puzzle, quoted verbatim from the book.
+Imagine protecting your most valuable possession with the following riddle:
 
       Danger lies before you, while safety lies behind,
       Two of us will help you, whichever you would find,
@@ -28,14 +19,33 @@ Here is the text of the puzzle, quoted verbatim from the book.
       Neither dwarf nor giant holds death in their insides;
       Fourth, the second left and the second on the right
       Are twins once you taste them, though different at first sight.
+      
+That's pretty much part of the plot of *Harry Potter and the Philosopher's Stone*, the
+first book in the Harry Potter series.  The scene is captured in the pixel art below,
+officially sanctioned by JK Rowling as canon. TODO canon makes sense?
 
-(Source: <https://pottermore.fandom.com/wiki/The_Potion_Puzzle>).
+![pic-of-the-scene]({{ url_for('static', filename='img/harrypotterpotions.png') }})
 
-We're going to take a shot at solving this puzzle ourselves, even though we can't be
-sure of its exact parameters. By that, I mean we don't know where the biggest and smallest
-bottles are located, which means we can't even begin to solve it. What we can do is generate
-all possible layouts of the potions, each of which gives a different version of the puzzle. Then
-we can solve all of those versions.
+Of course, the riddle is promptly solved by
+a pair of 10-year-olds, the joke being that adult wizards lack an education in basic logic and
+problem-solving. TODO not clear wat the joke is
+
+If you want to solve this puzzle for yourself, however, you'll notice that there's an
+important detail missing: the layout of the bottles. The placement of the smallest bottle
+and biggest bottle is crucial for solving the puzzle.
+
+That's why I've generated here all possible valid layouts and solutions of the potions puzzle,
+presented here for your titillation. I first had to generate the layouts, then take
+them 1-by-1 and see how many solutions they had, if any.
+
+A valid layout is one that has exactly 1 possible solution, otherwise we
+wouldn't be able to solve it. There are a total of 42 layouts: 7 positions for the biggest
+potion, and in each of these positions there are 6 slots remaining for the smallest potion,
+which gives our total of `7 * 6 = 42` layouts. And here they all are:
+
+...TODO...
+
+Next, we have to attempt to solve each of the versions of the puzzle.
 
 Here are the constraints rephrased in a more straight-forward manner:
 
@@ -48,5 +58,7 @@ Here are the constraints rephrased in a more straight-forward manner:
 * The potions at the extreme ends are different, neither lets us move forward.
 * Neither the biggest nor the smallest potion is poisonous.
 * The second potion on the left and the second on the right have the same contents.
+
+Note: ambiguity in "poison left of nettle wine" clue.
 
 TO BE DONE.
