@@ -1,7 +1,7 @@
 title: Solving All Possible Versions of Harry Potter's Potions Puzzle
 date: 2019-08-06
 
-Imagine protecting your most valuable possession with the following riddle:
+Imagine protecting your life savings with the following riddle:
 
       Danger lies before you, while safety lies behind,
       Two of us will help you, whichever you would find,
@@ -19,33 +19,51 @@ Imagine protecting your most valuable possession with the following riddle:
       Neither dwarf nor giant holds death in their insides;
       Fourth, the second left and the second on the right
       Are twins once you taste them, though different at first sight.
-      
-That's pretty much part of the plot of *Harry Potter and the Philosopher's Stone*, the
-first book in the Harry Potter series.  The scene is captured in the pixel art below,
-officially sanctioned by JK Rowling as canon. TODO canon makes sense?
+
+That's a key element of the plot of *Harry Potter and the Philosopher's Stone*, the
+first book in the Harry Potter fantasy book series. The riddle is promptly solved
+by a pair of 10-year-olds, naturally. This scene isn't found in the movies, just the books.
+(TODO: more coherent).
 
 ![pic-of-the-scene]({{ url_for('static', filename='img/harrypotterpotions.png') }})
 
-Of course, the riddle is promptly solved by
-a pair of 10-year-olds, the joke being that adult wizards lack an education in basic logic and
-problem-solving. TODO not clear wat the joke is
+If you want to solve this puzzle for yourself, you'll notice that there's an
+important detail missing: the layout of the potions. The placements of the smallest potion
+and biggest potion are crucial in solving the puzzle. (TODO: grammar). Here we're going to
+generate all possible layouts and solutions of the potions puzzle, then take them 1-by-1 and
+solve them.
 
-If you want to solve this puzzle for yourself, however, you'll notice that there's an
-important detail missing: the layout of the bottles. The placement of the smallest bottle
-and biggest bottle is crucial for solving the puzzle.
+### All the Solutions
 
-That's why I've generated here all possible valid layouts and solutions of the potions puzzle,
-presented here for your titillation. I first had to generate the layouts, then take
-them 1-by-1 and see how many solutions they had, if any.
-
-A valid layout is one that has exactly 1 possible solution, otherwise we
-wouldn't be able to solve it. There are a total of 42 layouts: 7 positions for the biggest
-potion, and in each of these positions there are 6 slots remaining for the smallest potion,
-which gives our total of `7 * 6 = 42` layouts. And here they all are:
+There are a total of 42 layouts: 7 positions for the biggest potion, and in each of these
+positions there are 6 slots remaining for the smallest potion, which gives the total
+of `7 * 6 = 42` layouts. And here they all are:
 
 ...TODO...
 
-Next, we have to attempt to solve each of the versions of the puzzle.
+And here are the solutions of each:
+
+...TODO...
+
+Notice that some of the potions have no solutions, and some have multiple possible solutions.
+A layout with multiple possible solutions is in fact impossible to solve, because you can't
+figure out which is the correct one (TODO: clarify).
+
+And so here we have the final N (TODO: number) possible layouts and their solutions:
+
+...TODO...
+
+If we look at the similarities between the valid layouts, we see that all of them have a big
+potion or small potion in the second-from-left or second-from-right position. This allows us
+to immediately identify the second-from-left and second-from-right potions as being harmless:
+<explanation here>. This also gives us 2 poison potions, both to the immediate left of the
+harmless potions. The rest is pretty easy to figure out. (TODO refine).
+
+...TODO some other comment to wrap it up, whatever puzzle was in Harry Potter was
+one of these, can we figure it out based on Hermione's rambling?...
+
+### Technical Details
+Here's the program: TODO
 
 Here are the constraints rephrased in a more straight-forward manner:
 
@@ -58,7 +76,3 @@ Here are the constraints rephrased in a more straight-forward manner:
 * The potions at the extreme ends are different, neither lets us move forward.
 * Neither the biggest nor the smallest potion is poisonous.
 * The second potion on the left and the second on the right have the same contents.
-
-Note: ambiguity in "poison left of nettle wine" clue.
-
-TO BE DONE.
