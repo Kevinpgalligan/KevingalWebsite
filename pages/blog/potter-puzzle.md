@@ -2,7 +2,7 @@ title: Solving all possible versions of Harry Potter's potions puzzle
 date: 2019-08-06
 draft: yes
 
-There's a neat little puzzle near the end of *Harry Potter and the Philosopher's Stone*. Harry and Hermione enter a chamber, the entrances are suddenly blocked by magic fire, and they have to figure out which 2 of 7 magic potions will take them to safety, through the following riddle:
+There's a neat little puzzle near the end of *Harry Potter and the Philosopher's Stone*. Harry and Hermione enter a chamber, the entrances are suddenly blocked by magic fire, and they have to figure out which 2 of 7 magic potions will take them to safety, using the following riddle:
 
       Danger lies before you, while safety lies behind,
       Two of us will help you, whichever you would find,
@@ -28,7 +28,9 @@ Why are there 42 layouts? 7 positions for the big potion, and in each of those 7
 
 ...TODO...
 
-Now let's generate all possible solutions for each layout. A "solution" specifies the contents of all the potions while satisfying the following constraints (reworded from the riddle in plain language): 
+Now let's solve them! Not that all of them will have solutions.
+
+A "solution" specifies the contents of all the potions while satisfying the following constraints (reworded from the riddle in plain language): 
 
 * There are 2 harmless potions, 3 poison ones, 1 that lets you move forward and 1 that lets you move backward (Harry and Hermione were trying to identify the latter 2).
 * There is a poison potion directly to the left of both of the harmless potions.
@@ -36,21 +38,17 @@ Now let's generate all possible solutions for each layout. A "solution" specifie
 * Neither the biggest nor the smallest potion is poisonous.
 * The second potion on the left and the second on the right have the same contents.
 
-And here are the solutions of each:
+Using programming magic (described in the next section), here we have all possible solutions for all possible versions of the puzzle:
 
 ...TODO...
 
-Notice that some of the potions have no solutions, and some have multiple possible solutions. A layout with multiple possible solutions is in fact impossible to solve, because you can't figure out which is the correct one (TODO: clarify).
+We have N puzzles with no solution, N puzzles with multiple possible solutiosn (which effectively means that they can't be solved, for our purposes), and N puzzles with exactly 1 solution.
 
-And so here we have the final N (TODO: number) possible layouts and their solutions:
-
-...TODO...
-
-If we look at the similarities between the valid layouts, we see that all of them have a big
-potion or small potion in the second-from-left or second-from-right position. This allows us
-to immediately identify the second-from-left and second-from-right potions as being harmless:
-<explanation here>. This also gives us 2 poison potions, both to the immediate left of the
-harmless potions. The rest is pretty easy to figure out. (TODO refine).
+## A closer look at the solutions
+If we look at the similarities between the valid layouts, we see that all of them have a big potion or small potion in the second-from-left or second-from-right position. This allows us to immediately identify the second-from-left and second-from-right potions as being harmless: <explanation here>. This also gives us 2 poison potions, both to the immediate left of the harmless potions. The rest is pretty easy to figure out. (TODO refine).
 
 ...TODO some other comment to wrap it up, whatever puzzle was in Harry Potter was
 one of these, can we figure it out based on Hermione's rambling?...
+
+## Details of the program
+TODO code here
