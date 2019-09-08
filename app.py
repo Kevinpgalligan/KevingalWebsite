@@ -1,6 +1,6 @@
 import sys
 from flask import Flask, render_template, render_template_string, Markup
-from flask_flatpages import FlatPages, pygmented_markdown
+from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
 
 FLATPAGES_EXTENSION = '.md'
@@ -46,6 +46,10 @@ def blog_post(path):
 @freezer.register_generator
 def error_handlers():
     yield "/404.html"
+
+@app.route('/pygments.css')
+def pygments_css():
+    return pygments_style_defs('tango'), 200, {'Content-Type': 'text/css'}
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":

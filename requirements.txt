@@ -1,3 +1,4 @@
 Flask
 Frozen-Flask
 Flask-FlatPages
+Pygments
