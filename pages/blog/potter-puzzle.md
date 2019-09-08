@@ -2,7 +2,7 @@ title: Solving all possible versions of Harry Potter's potions puzzle
 date: 2019-08-06
 draft: yes
 
-There's a neat little puzzle near the end of *Harry Potter and the Philosopher's Stone*. Harry and Hermione enter a chamber, the entrances are suddenly blocked by magic fire, and they have to figure out which 2 of 7 magic potions will take them to safety, using the following riddle:
+There's a neat little puzzle near the end of *Harry Potter and the Philosopher's Stone*. Harry and Hermione enter a chamber, the entrances are suddenly blocked by magic fire, and they have to figure out which 2 of 7 magic potions will take them to safety, by decoding the following riddle:
 
       Danger lies before you, while safety lies behind,
       Two of us will help you, whichever you would find,
