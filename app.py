@@ -1,4 +1,5 @@
 import sys
+import collections
 from flask import Flask, render_template, render_template_string, Markup
 from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
@@ -20,6 +21,13 @@ date_sorted_blog_posts = sorted(
     [pg for pg in pages if "blog/" in pg.path and "draft" not in pg.meta],
     key=lambda pg: pg.meta['date'],
     reverse=True)
+previous_page = collections.defaultdict(lambda: None)
+next_page = collections.defaultdict(lambda: None)
+for idx, pg in enumerate(date_sorted_blog_posts):
+    if idx > 0:
+        previous_page[pg] = date_sorted_blog_posts[idx - 1]
+    if idx < len(date_sorted_blog_posts) - 1:
+        next_page[pg] = date_sorted_blog_posts[idx + 1]
 
 @app.route('/')
 @app.route('/index.html')
@@ -41,7 +49,11 @@ def not_found():
 @app.route('/<path:path>.html')
 def blog_post(path):
     page = pages.get_or_404(path)
-    return render_template('blog-post.html', page=page)
+    return render_template(
+        'blog-post.html',
+        page=page,
+        previous_page=previous_page[page],
+        next_page=next_page[page])
 
 @freezer.register_generator
 def error_handlers():

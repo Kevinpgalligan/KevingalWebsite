@@ -34,3 +34,18 @@ nav, h1, h2, h3, h4, h5, h6 {
     width: device-width;
     zoom: 1.0;
 }
+
+div.codehilite {
+    max-width: 800px;
+    overflow-x: scroll;
+}
+
+.previous-page-link {
+    float: left;
+    max-width: 200px;
+}
+
+.next-page-link {
+    float: right;
+    max-width: 200px;
+}

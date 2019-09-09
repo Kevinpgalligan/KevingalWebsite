@@ -5,4 +5,15 @@
 <h2>{{ page.title }}</h2>
 <p><i>Date: {{ page.date }}</i></p>
 {{ page.html|safe }}
+<hr>
+<div class="previous-page-link">
+{% if previous_page %} Previous: <a href="{{ url_for("blog_post", path=previous_page.path) }}">{{ previous_page.title }}</a>
+{% else %} <p>No previous article.</p>
+{% endif %}
+</div>
+<div class="next-page-link">
+{% if next_page %} Next: <a href="{{ url_for("blog_post", path=next_page.path) }}">{{ next_page.title }}</a>
+{% else %} <p>No next article.</p>
+{% endif %}
+</div>
 {% endblock content %}
