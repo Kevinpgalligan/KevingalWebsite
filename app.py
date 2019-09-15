@@ -42,6 +42,10 @@ def blog():
 def apps():
     return render_template('apps.html')
 
+@app.route('/apps/<path:path>.html')
+def specific_app(path):
+    return render_template('apps/' + path + '.html')
+
 @app.route('/404.html')
 def not_found():
     return render_template('404.html')

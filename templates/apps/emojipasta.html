@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% set active_page = "apps" %}
+{% block title %} Emojipasta Generator {% endblock title %}
+{% block content %}
+<script src="/static/js/apps/emojipasta/emojipasta.js"></script>
+<script>
+    function writeEmojipasta() {
+        var text = document.getElementById("emojipastainput").value;
+        document.getElementById("emojipastaoutput").value = generateEmojipasta(text);
+    }
+</script>
+<h3>Emojipasta Generator</h3>
+<p>Now with more emojis.</p>
+<input id="emojipastainput" type="text">
+<button onclick="writeEmojipasta();">Generate Emojipasta</button>
+<form>
+    <input id="emojipastaoutput" type="text">
+</form>
+{% endblock content %}
