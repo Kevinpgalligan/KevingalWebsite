@@ -49,3 +49,19 @@ div.codehilite {
     float: right;
     max-width: 200px;
 }
+
+/* Stuff relating to Emojipasta Generator. */
+#emojipastainput {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+#emojipastageneratebutton {
+    display: block;
+}
+
+#emojipastaoutput {
+    margin-top: 10px;
+}

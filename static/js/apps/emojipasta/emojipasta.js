@@ -1,5 +1,4 @@
 var MAX_EMOJIS_PER_BLOCK = 2;
-var EMOJI_MAPPINGS = {"hello": "🤩"};
 
 function generateEmojipasta(text) {
     var blocks = splitIntoBlocks(text);
@@ -23,7 +22,7 @@ function generateEmojisFrom(block) {
     var matchingEmojis = getMatchingEmojis(trimmedBlock);
     var emojis = [];
     if (matchingEmojis) {
-        var numEmojis = Math.floor(Math.random() * MAX_EMOJIS_PER_BLOCK);
+        var numEmojis = Math.floor(Math.random() * (MAX_EMOJIS_PER_BLOCK + 1));
         for (var i = 0; i < numEmojis; i++) {
             emojis.push(matchingEmojis[Math.floor(Math.random() * matchingEmojis.length)]);
         }

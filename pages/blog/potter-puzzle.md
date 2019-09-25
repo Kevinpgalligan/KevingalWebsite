@@ -42,7 +42,7 @@ Using programming magic (described in the next section), here we have all possib
 
 ...TODO...
 
-We have N puzzles with no solution, N puzzles with multiple possible solutiosn (which effectively means that they can't be solved, for our purposes), and N puzzles with exactly 1 solution.
+We have N puzzles with no solution, N puzzles with multiple possible solutions (which effectively means that they can't be solved, for our purposes), and N puzzles with exactly 1 solution.
 
 ## A closer look at the solutions
 If we look at the similarities between the valid layouts, we see that all of them have a big potion or small potion in the second-from-left or second-from-right position. This allows us to immediately identify the second-from-left and second-from-right potions as being harmless: <explanation here>. This also gives us 2 poison potions, both to the immediate left of the harmless potions. The rest is pretty easy to figure out. (TODO refine).
