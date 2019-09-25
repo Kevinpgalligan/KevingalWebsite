@@ -35,7 +35,7 @@ function trimNonAlphanumericalChars(text) {
 }
 
 function getMatchingEmojis(word) {
-    var key = getAlphanumericPrefix(word);
+    var key = getAlphanumericPrefix(word.toLowerCase());
     if (key in EMOJI_MAPPINGS) {
         return EMOJI_MAPPINGS[key];
     }
