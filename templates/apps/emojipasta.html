@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% set active_page = "apps" %}
-{% block title %} 🤖❤{% endblock title %}
+{% block title %} Emojipasta Generator 😍{% endblock title %}
 {% block content %}
 <script src="/static/js/apps/emojipasta/emoji-mappings.js"></script>
 <script src="/static/js/apps/emojipasta/emojipasta.js"></script>
@@ -11,8 +11,9 @@
     }
 </script>
 <h3>Emojipasta ❤ Generator 🤖</h3>
-<p>Adds word-relevant emojis 😍 to text ✨ with sometimes hilarious 😂 results 😏</p>
+<p>Adds word-relevant emojis ❤ to text ✨ with sometimes hilarious 😂 results 😏. Read more about its history 📚 and how it works <a href="{{ url_for("blog_post", path="blog/emojipasta") }}">here</a>.</p>
 <textarea id="emojipastainput" rows="5"></textarea>
 <button id="emojipastageneratebutton" onclick="writeEmojipasta();">Generate Emojipasta</button>
 <div id="emojipastaoutput"></div>
+
 {% endblock content %}

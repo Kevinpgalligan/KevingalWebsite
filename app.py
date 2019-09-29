@@ -19,8 +19,7 @@ freezer = Freezer(app)
 
 date_sorted_blog_posts = sorted(
     [pg for pg in pages if "blog/" in pg.path and "draft" not in pg.meta],
-    key=lambda pg: pg.meta['date'],
-    reverse=True)
+    key=lambda pg: pg.meta['date'])
 previous_page = collections.defaultdict(lambda: None)
 next_page = collections.defaultdict(lambda: None)
 for idx, pg in enumerate(date_sorted_blog_posts):
@@ -36,7 +35,7 @@ def index():
 
 @app.route('/blog.html')
 def blog():
-    return render_template('blog.html', date_sorted_blog_posts=date_sorted_blog_posts)
+    return render_template('blog.html', date_sorted_blog_posts=reversed(date_sorted_blog_posts))
 
 @app.route('/apps.html')
 def apps():
