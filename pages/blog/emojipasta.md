@@ -3,7 +3,7 @@ date: 2019-09-29
 
 It 🤔 was a ❤ dark 🕶🔫 and 🌰 stormy night... 🌜
 
-u/AnEmojipastaBot was a Reddit bot inspired by the very memey subreddit <a href="https://www.reddit.com/r/emojipasta">r/emojipasta</a>. The idea was simple: UserA posts a comment, UserB "tags" the bot by saying "u/AnEmojipastaBot" in a reply to UserA, and finally, the bot replies to UserB with an emoji-filled version of UserA's comment. An example:
+u/AnEmojipastaBot was a Reddit bot inspired by the very memey subreddit <a href="https://www.reddit.com/r/emojipasta">r/emojipasta</a>. The idea was simple: turn the comments of other users into emojipasta, on request. An example:
 
 ![An example of u/AnEmojipastaBot in action]({{ url_for('static', filename='img/emojipasta/firstexample.png') }})
 
