@@ -3,8 +3,6 @@ date: 2019-09-29
 
 It 🤔 was a ❤ dark 🕶🔫 and 🌰 stormy night... 🌜
 
-Hold on, let's try that again.
-
 u/AnEmojipastaBot was a Reddit bot inspired by the very memey subreddit <a href="https://www.reddit.com/r/emojipasta">r/emojipasta</a>. The idea was simple: UserA posts a comment, UserB "tags" the bot by saying "u/AnEmojipastaBot" in a reply to UserA, and finally, the bot replies to UserB with an emoji-filled version of UserA's comment. An example:
 
 ![An example of u/AnEmojipastaBot in action]({{ url_for('static', filename='img/emojipasta/firstexample.png') }})
@@ -23,10 +21,10 @@ That's about it. The code was pretty simple. The original source code of the bot
 ### Hall of Fame
 The bot's top comments during its brief lifespan.
 
-* **Oh. This was a bit dark.**
+* **Oh. This was a bit dark. It was in a post about a news website inappropriately using emojis in its report of a school shooting.**
 ![An example of u/AnEmojipastaBot in action]({{ url_for('static', filename='img/emojipasta/secondexample.png') }})
 
-* **So was this one.**
+* **Also a tad dark.**
 ![An example of u/AnEmojipastaBot in action]({{ url_for('static', filename='img/emojipasta/thirdexample.png') }})
 
 * **More innocent.**
