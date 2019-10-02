@@ -8,6 +8,7 @@ header {
     text-align: center;
 }
 
+/*
 a.navlink:visited, a.navlink:link {
     color: grey;
     font-weight: bold;
@@ -25,6 +26,7 @@ a#active-page-navlink {
     font-weight: bold;
     text-decoration: underline;
 }
+*/
 
 nav, h1, h2, h3, h4, h5, h6 {
     font-family: 'Helvetica', sans-serif;
@@ -43,11 +45,13 @@ div.codehilite {
 .previous-page-link {
     float: left;
     max-width: 200px;
+    padding-bottom: 20px;
 }
 
 .next-page-link {
     float: right;
     max-width: 200px;
+    padding-bottom: 20px;
 }
 
 /* Stuff relating to Emojipasta Generator. */
