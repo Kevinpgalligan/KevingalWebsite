@@ -2,13 +2,19 @@ import itertools
 
 import cairo
 
-WIDTH, HEIGHT = 1080, 2160
-POTION_WIDTH = 5
+# Dark potion colour: 902bb5
+# Light potion colour: bf2ff4
+
+POTION_WIDTH = 25
 INITIAL_X_POTION_OFFSET = 10
-INITIAL_Y_POTION_OFFSET = 60
-LAYOUT_SOLUTION_X_PADDING = 10
-POTION_X_PADDING = 10
+INITIAL_Y_POTION_OFFSET = 10
+LAYOUT_SOLUTION_X_PADDING = 30
+POTION_X_PADDING = 12
 POTION_Y_PADDING = 10
+SEVEN_POTIONS_WIDTH = 7 * (POTION_WIDTH + POTION_X_PADDING)
+
+WIDTH = 2 * INITIAL_X_POTION_OFFSET + 2 * SEVEN_POTIONS_WIDTH + LAYOUT_SOLUTION_X_PADDING
+HEIGHT = 5230
 
 def poisonous_to_left_of_harmless(potions):
     for index, potion in enumerate(potions):
@@ -88,13 +94,32 @@ COLOURS = [
 POTION_CONTENTS_TO_COLOUR = dict(zip(POSSIBLE_POTION_CONTENTS, COLOURS))
 
 class PotionSize:
-    NORMAL = "N"
     SMALLEST = "S"
+    NORMAL = "N"
     BIGGEST = "B"
 
-POSSIBLE_POTION_SIZES = (PotionSize.NORMAL, PotionSize.SMALLEST, PotionSize.BIGGEST)
-POTION_SIZE_TO_HEIGHT = dict(zip(POSSIBLE_POTION_SIZES, [6, 4, 8]))
+POSSIBLE_POTION_SIZES = (PotionSize.SMALLEST, PotionSize.NORMAL, PotionSize.BIGGEST)
+POTION_SIZE_TO_HEIGHT = dict(zip(POSSIBLE_POTION_SIZES, [20, 30, 40]))
 MAX_POTION_HEIGHT = max(POTION_SIZE_TO_HEIGHT.values())
+
+def draw_small_potion(cr, x, y, p):
+    cr.set_source_rgb(0, 0, 0)
+    cr.rectangle(x, y, POTION_WIDTH, MAX_POTION_HEIGHT)
+    cr.fill()
+
+def draw_normal_potion(cr, x, y, p):
+    cr.set_source_rgb(0, 0, 0)
+    cr.rectangle(x, y, POTION_WIDTH, MAX_POTION_HEIGHT)
+    cr.fill()
+
+def draw_big_potion(cr, x, y, p):
+    cr.set_source_rgb(0, 0, 0)
+    cr.rectangle(x, y, POTION_WIDTH, MAX_POTION_HEIGHT)
+    cr.fill()
+
+POTION_SIZE_TO_DRAW_FN = dict(zip(POSSIBLE_POTION_SIZES, [
+    draw_small_potion, draw_normal_potion, draw_big_potion
+]))
 
 class Potion:
     def __init__(self, size, contents=PotionContents.UNKNOWN):
@@ -168,9 +193,11 @@ def find_solutions_by_layout():
     return result
 
 def draw_potions(cr, x, y, ps):
-    cr.set_source_rgb(0, 0, 0)
-    cr.rectangle(x, y, 7 * (POTION_WIDTH + POTION_X_PADDING), MAX_POTION_HEIGHT)
-    cr.fill()
+    for i, p in enumerate(ps):
+        draw_potion(cr, x + i * (POTION_WIDTH + POTION_X_PADDING), y, p)
+
+def draw_potion(cr, x, y, p):
+    POTION_SIZE_TO_DRAW_FN[p.size](cr, x, y, p)
 
 def main():
     solutions_by_layout = find_solutions_by_layout()
@@ -183,32 +210,25 @@ def main():
     cr.rectangle(0, 0, WIDTH, HEIGHT)
     cr.fill()
 
-    cr.set_source_rgb(0, 0, 0)
-    cr.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
-    cr.set_font_size(40)
-    cr.move_to(60, 50)
-    cr.show_text("Layouts")
-    cr.move_to(WIDTH // 2 + 60, 50)
-    cr.show_text("Solutions")
-
     x, y = INITIAL_X_POTION_OFFSET, INITIAL_Y_POTION_OFFSET
     for (l, ss) in solutions_by_layout:
         draw_potions(cr, x, y, l)
         x += 7 * (POTION_WIDTH + POTION_X_PADDING) + LAYOUT_SOLUTION_X_PADDING
         if ss:
-            for s in ss:
-                draw_potions(cr, x, y, s)
+            draw_potions(cr, x, y, ss[0])
+            for s in ss[1:]:
                 y += MAX_POTION_HEIGHT + POTION_Y_PADDING
+                draw_potions(cr, x, y, s)
         else:
             cr.set_source_rgb(0, 0, 0)
-            cr.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
-            cr.set_font_size(20)
-            cr.move_to(x, y)
-            cr.show_text("None!")
+            cr.select_font_face("Liberation Mono", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+            cr.set_font_size(MAX_POTION_HEIGHT - 10)
+            cr.move_to(x + WIDTH // 8, y + MAX_POTION_HEIGHT - 5)
+            cr.show_text("None.")
         x = INITIAL_X_POTION_OFFSET
-        y += POTION_Y_PADDING
+        y += MAX_POTION_HEIGHT + POTION_Y_PADDING
 
-    surface.write_to_png("example.png")
+    surface.write_to_png("/home/kevingal/Desktop/example.png")
 
 if __name__ == "__main__":
     main()

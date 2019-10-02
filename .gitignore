@@ -3,4 +3,4 @@
 venv/*
 env/*
 build/*
-
+*.swp
