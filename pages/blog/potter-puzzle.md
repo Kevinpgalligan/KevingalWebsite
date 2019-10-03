@@ -90,7 +90,7 @@ I leave you with a nice quote from the book.
 
 > Hermione pointed at a rounded bottle at the right end of the line.
 
-Drats. Unfortunately, this still leaves multiple candidates. Get retconning, J.K.
+Drats. This still leaves multiple candidates. Get retconning, J.K.
 
 ### The code
 If you're curious about the code for solving the puzzles / drawing the diagram of solutions, see <a href="https://github.com/Kevinpgalligan/KevingalWebsite/blob/master/experiments/hp.py">HERE</a>.
