@@ -1,8 +1,7 @@
-title: Solving all possible versions of Harry Potter's potions puzzle
-date: 2019-08-06
-draft: yes
+title: Solving all 42 versions of the Harry Potter potions puzzle
+date: 2019-10-03
 
-There's a neat little puzzle near the end of *Harry Potter and the Philosopher's Stone*. Harry and Hermione enter a chamber, the entrances are suddenly blocked by magic fire, and they have to figure out which 2 of 7 magic potions will take them to safety, by decoding the following riddle:
+There's a neat little puzzle near the end of *Harry Potter and the Philosopher's Stone*. Harry and Hermione enter a chamber, the entrances are blocked by magic fire, and only by decoding the following riddle will they be able to escape:
 
       Danger lies before you, while safety lies behind,
       Two of us will help you, whichever you would find,
@@ -21,34 +20,77 @@ There's a neat little puzzle near the end of *Harry Potter and the Philosopher's
       Fourth, the second left and the second on the right
       Are twins once you taste them, though different at first sight.
 
-(TODO phrase it as "missing information") Since there are 42 possible "versions" of the puzzle, 1 for each possible positioning of the "giant" and "dwarf" potions, it makes sense to solve it programmatically instead of painfully trying to solve all of the versions by hand.
+![Some potions]({{ url_for('static', filename='img/potter-puzzle/some-potions.png') }})
 
-### ALL the solutions
-Why are there 42 layouts? 7 positions for the big potion, and in each of those 7 positions, there are 6 remaining positions for the small potion, which gives us `7 * 6 = 42`. And here they are, rendered in their immaculate pixelated glory:
+Put simply, they have to figure out which potions are in which bottles.
 
-...TODO...
+In this post, we're going to solve all 42 possible versions of the puzzle via programming and create a nice little diagram of the results (like the picture above, but much bigger).
 
-Now let's solve them! Not that all of them will have solutions.
+### Wait, why are there 42 versions?
+It's because the positions of the "giant" and "dwarf" potions are not specified. There are 7 possible positions for the giant, and for each of those, there are 6 remaining positions for the dwarf, which gives `7 * 6 = 42`. There's no way to know which one J.K. Rowling had in mind when she wrote the puzzle, unless she retcons it through Twitter. Until that inevitable day, we could pick a random version and have a crack at it. But, there's no guarantee that it would be solvable, hence why we're performing the public service of solving all 42 versions (or proving them unsolvable).
 
-A "solution" specifies the contents of all the potions while satisfying the following constraints (reworded from the riddle in plain language): 
+### JUST SOLVE IT
+First, here are the constraints of the puzzle, reworded in plainer terms:
 
-* There are 2 harmless potions, 3 poison ones, 1 that lets you move forward and 1 that lets you move backward (Harry and Hermione were trying to identify the latter 2).
-* There is a poison potion directly to the left of both of the harmless potions.
-* The potions at the extreme ends are different, neither lets us move forward.
-* Neither the biggest nor the smallest potion is poisonous.
-* The second potion on the left and the second on the right have the same contents.
+1. There are 2 harmless potions, 3 poison ones, 1 that lets you move forward and 1 that lets you move backward.
+2. There is a poison potion directly to the left of both of the harmless potions.
+3. The potions at the extreme ends are different, neither lets us move forward.
+4. Neither the biggest nor the smallest potion is poisonous.
+5. The second potion on the left and the second on the right have the same contents.
 
-Using programming magic (described in the next section), here we have all possible solutions for all possible versions of the puzzle:
+How do we tackle it? Consider this version. Note that, as stated in the puzzle, there's 1 potion smaller than all the others (the dwarf) and 1 potion bigger than all the others (the giant).
 
-...TODO...
+![Example version]({{ url_for('static', filename='img/potter-puzzle/solve-1.png') }})
 
-We have N puzzles with no solution, N puzzles with multiple possible solutions (which effectively means that they can't be solved, for our purposes), and N puzzles with exactly 1 solution.
+Let's try using a dumb brute force search, i.e. taking the bottles one at a time and trying all of their possible contents.
 
-## A closer look at the solutions
-If we look at the similarities between the valid layouts, we see that all of them have a big potion or small potion in the second-from-left or second-from-right position. This allows us to immediately identify the second-from-left and second-from-right potions as being harmless: <explanation here>. This also gives us 2 poison potions, both to the immediate left of the harmless potions. The rest is pretty easy to figure out. (TODO refine).
+The first bottle, for example, can't contain the move-forward potion because of constraint #3 (see above). Neither can it contain a harmless potion, due to constraint #2 -- it would be impossible for there to be a poison potion to its left. That leaves us with a poison potion and the move-backward potion as possible contents. We try both of these.
 
-...TODO some other comment to wrap it up, whatever puzzle was in Harry Potter was
-one of these, can we figure it out based on Hermione's rambling?...
+(Note: in the pictures that follow, green potions = poison, orange = harmless, blue = move-backward, purple = move-forward).
 
-## Details of the program
-TODO code here
+![Example with first potion filled in]({{ url_for('static', filename='img/potter-puzzle/solve-2.png') }})
+
+![Example with first potion filled in]({{ url_for('static', filename='img/potter-puzzle/solve-3.png') }})
+
+We repeat this process for both of the WIP (work in progress) solutions above, taking the second bottle and trying all valid contents. This gives us:
+
+![Example with second potion filled in]({{ url_for('static', filename='img/potter-puzzle/solve-4a.png') }})
+
+![Example with second potion filled in]({{ url_for('static', filename='img/potter-puzzle/solve-4b.png') }})
+
+![Example with second potion filled in]({{ url_for('static', filename='img/potter-puzzle/solve-4c.png') }})
+
+![Example with second potion filled in]({{ url_for('static', filename='img/potter-puzzle/solve-4d.png') }})
+
+And eventually, by continuing like this and discarding WIP solutions if they reach a state where one of the bottles can't be filled without breaking a constraint, we end up with a single valid solution:
+
+![Solution of example]({{ url_for('static', filename='img/potter-puzzle/some-potions.png') }})
+
+Of course, we weren't guaranteed to find a solution. There might have been no solution, or multiple solutions (and having multiple solutions is equivalent to the puzzle being unsolvable because you can't tell which is the correct one).
+
+Applying our algorithm to all puzzle versions gives us the following solutions. 8 versions of the puzzle are solvable, 8 have no solutions and 26 have multiple solutions.
+
+![All solutions]({{ url_for('static', filename='img/potter-puzzle/potions-puzzle-solutions.png') }})
+
+### A closer look at the solutions
+Is there something that all of the solvable variations of the puzzle have in common? Yes! Notice that either the small bottle or the big bottle have to be in 2nd or 6th position. This allows us to deduce that the 2nd and 6th bottles contain harmless potion, due to constraints #4 and #5. Without this deductive step, we can't eliminate the possibility that those bottles contain poison and we end up with multiple possible solutions. The solvable variations also require that the other "special" bottle (small or big) is in 3rd or 4th position. Otherwise, we can't pin down the exact location of the move-forward potion.
+
+### Closing comments
+I leave you with a nice quote from the book.
+
+> Hermione let out a great sigh and Harry, amazed, saw that she was smiling, the very last thing he felt like doing. ‘Brilliant,’ said Hermione. ‘This isn’t magic – it’s logic – a puzzle. A lot of the greatest wizards haven’t got an ounce of logic, they’d be stuck in here for ever.’
+
+...but wait! Maybe we can identify the canon version of the puzzle based on dialogue from the book.
+
+> ‘Got  it,’  she  said.  ‘The  smallest  bottle  will  get  us  through  the  black fire – towards the Stone.’ 
+
+> ...
+
+> ‘Which one will get you back through the purple flames?’
+
+> Hermione pointed at a rounded bottle at the right end of the line.
+
+Drats. Unfortunately, this still leaves multiple candidates. Get retconning, J.K.
+
+### The code
+If you're curious about the code for solving the puzzles / drawing the diagram of solutions, see HERE.

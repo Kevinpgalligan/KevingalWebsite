@@ -1,11 +1,10 @@
 import itertools
 
+from PIL import Image
 import cairo
 
-# Dark potion colour: 902bb5
-# Light potion colour: bf2ff4
-
 POTION_WIDTH = 25
+MAX_POTION_HEIGHT = 40
 INITIAL_X_POTION_OFFSET = 10
 INITIAL_Y_POTION_OFFSET = 10
 LAYOUT_SOLUTION_X_PADDING = 30
@@ -15,6 +14,10 @@ SEVEN_POTIONS_WIDTH = 7 * (POTION_WIDTH + POTION_X_PADDING)
 
 WIDTH = 2 * INITIAL_X_POTION_OFFSET + 2 * SEVEN_POTIONS_WIDTH + LAYOUT_SOLUTION_X_PADDING
 HEIGHT = 5230
+
+SMALL_POTION = Image.open("small-potion.png")
+NORMAL_POTION = Image.open("normal-potion.png")
+BIG_POTION = Image.open("big-potion.png")
 
 def poisonous_to_left_of_harmless(potions):
     for index, potion in enumerate(potions):
@@ -85,41 +88,13 @@ POSSIBLE_POTION_CONTENTS = (
     PotionContents.HARMLESS
 )
 
-COLOURS = [
-    (100,   0, 180), # purple
-    (  0,  90, 180), # blue
-    (255,   0,   0), # red
-    (200, 255,   0)  # vomit
-]
-POTION_CONTENTS_TO_COLOUR = dict(zip(POSSIBLE_POTION_CONTENTS, COLOURS))
-
 class PotionSize:
     SMALLEST = "S"
     NORMAL = "N"
     BIGGEST = "B"
 
 POSSIBLE_POTION_SIZES = (PotionSize.SMALLEST, PotionSize.NORMAL, PotionSize.BIGGEST)
-POTION_SIZE_TO_HEIGHT = dict(zip(POSSIBLE_POTION_SIZES, [20, 30, 40]))
-MAX_POTION_HEIGHT = max(POTION_SIZE_TO_HEIGHT.values())
-
-def draw_small_potion(cr, x, y, p):
-    cr.set_source_rgb(0, 0, 0)
-    cr.rectangle(x, y, POTION_WIDTH, MAX_POTION_HEIGHT)
-    cr.fill()
-
-def draw_normal_potion(cr, x, y, p):
-    cr.set_source_rgb(0, 0, 0)
-    cr.rectangle(x, y, POTION_WIDTH, MAX_POTION_HEIGHT)
-    cr.fill()
-
-def draw_big_potion(cr, x, y, p):
-    cr.set_source_rgb(0, 0, 0)
-    cr.rectangle(x, y, POTION_WIDTH, MAX_POTION_HEIGHT)
-    cr.fill()
-
-POTION_SIZE_TO_DRAW_FN = dict(zip(POSSIBLE_POTION_SIZES, [
-    draw_small_potion, draw_normal_potion, draw_big_potion
-]))
+POTION_SIZE_TO_IMAGE = dict(zip(POSSIBLE_POTION_SIZES, (SMALL_POTION, NORMAL_POTION, BIG_POTION)))
 
 class Potion:
     def __init__(self, size, contents=PotionContents.UNKNOWN):
@@ -197,7 +172,41 @@ def draw_potions(cr, x, y, ps):
         draw_potion(cr, x + i * (POTION_WIDTH + POTION_X_PADDING), y, p)
 
 def draw_potion(cr, x, y, p):
-    POTION_SIZE_TO_DRAW_FN[p.size](cr, x, y, p)
+    img = POTION_SIZE_TO_IMAGE[p.size]
+    y += MAX_POTION_HEIGHT - img.size[1]
+    for row_idx in range(img.size[1]):
+        for col_idx in range(img.size[0]):
+            r, g, b, _ = img.getpixel((col_idx, row_idx))
+            cr.set_source_rgb(*map_to_correct_colour(r, g, b, p.contents))
+            cr.rectangle(x + col_idx, y + row_idx, 1, 1)
+            cr.fill()
+
+LIGHT_COLOUR = (191, 47, 244)
+DARK_COLOUR = (144, 43, 181)
+
+LIGHT_COLOUR_SUBSTITUTE = {
+    PotionContents.MOVE_FORWARD: (158, 89, 255),
+    PotionContents.MOVE_BACKWARD: (89, 172, 255), 
+    PotionContents.POISON: (62, 222, 65),
+    PotionContents.HARMLESS: (250, 156, 62),
+    PotionContents.UNKNOWN: (255, 255, 255)
+}
+
+DARK_COLOUR_SUBSTITUTE = {
+    PotionContents.MOVE_FORWARD: (106, 0, 255),
+    PotionContents.MOVE_BACKWARD: (31, 143, 255), 
+    PotionContents.POISON: (2, 186, 5),
+    PotionContents.HARMLESS: (207, 118, 29),
+    PotionContents.UNKNOWN: (255, 255, 255)
+}
+
+def map_to_correct_colour(r, g, b, potion_contents):
+    rgb = (r, g, b)
+    if rgb == LIGHT_COLOUR:
+        rgb = LIGHT_COLOUR_SUBSTITUTE[potion_contents]
+    elif rgb == DARK_COLOUR:
+        rgb = DARK_COLOUR_SUBSTITUTE[potion_contents]
+    return tuple(n / 255. for n in rgb)
 
 def main():
     solutions_by_layout = find_solutions_by_layout()
@@ -228,7 +237,7 @@ def main():
         x = INITIAL_X_POTION_OFFSET
         y += MAX_POTION_HEIGHT + POTION_Y_PADDING
 
-    surface.write_to_png("/home/kevingal/Desktop/example.png")
+    surface.write_to_png("potions-puzzle-solutions.png")
 
 if __name__ == "__main__":
     main()
