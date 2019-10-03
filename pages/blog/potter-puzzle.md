@@ -1,7 +1,7 @@
 title: Solving all 42 versions of the Harry Potter potions puzzle
 date: 2019-10-03
 
-There's a neat little puzzle near the end of *Harry Potter and the Philosopher's Stone*. Harry and Hermione enter a chamber, the entrances are blocked by magic fire, and only by decoding the following riddle will they be able to escape:
+There's a neat puzzle near the end of *Harry Potter and the Philosopher's Stone* (aka *Sorcerer's Stone*). Harry and Hermione enter a chamber, the entrances are blocked by magic fire, and only by decoding the following riddle will they be able to escape:
 
       Danger lies before you, while safety lies behind,
       Two of us will help you, whichever you would find,
@@ -24,10 +24,10 @@ There's a neat little puzzle near the end of *Harry Potter and the Philosopher's
 
 Put simply, they have to figure out which potions are in which bottles.
 
-In this post, we're going to solve all 42 possible versions of the puzzle via programming and create a nice little diagram of the results (like the picture above, but much bigger).
+In this post, we're going to solve all 42 possible versions of the puzzle via programming and create a diagram of the results (like the picture above, but much bigger).
 
 ### Wait, why are there 42 versions?
-It's because the positions of the "giant" and "dwarf" potions are not specified. There are 7 possible positions for the giant, and for each of those, there are 6 remaining positions for the dwarf, which gives `7 * 6 = 42`. There's no way to know which one J.K. Rowling had in mind when she wrote the puzzle, unless she retcons it through Twitter. Until that inevitable day, we could pick a random version and have a crack at it. But, there's no guarantee that it would be solvable, hence why we're performing the public service of solving all 42 versions (or proving them unsolvable).
+It's because the positions of the "giant" and "dwarf" potion bottles are not specified. There are 7 possible positions for the giant, and for each of those, there are 6 remaining positions for the dwarf, which gives `7 * 6 = 42`. There's no way to know which one J.K. Rowling had in mind when she wrote the puzzle, unless she retcons it through Twitter. Until that inevitable day, we could pick a random version and have a crack at it. But, there's no guarantee that it would be solvable, hence why we're performing the public service of solving all 42 versions (or proving them unsolvable).
 
 ### JUST SOLVE IT
 First, here are the constraints of the puzzle, reworded in plainer terms:
@@ -35,10 +35,10 @@ First, here are the constraints of the puzzle, reworded in plainer terms:
 1. There are 2 harmless potions, 3 poison ones, 1 that lets you move forward and 1 that lets you move backward.
 2. There is a poison potion directly to the left of both of the harmless potions.
 3. The potions at the extreme ends are different, neither lets us move forward.
-4. Neither the biggest nor the smallest potion is poisonous.
-5. The second potion on the left and the second on the right have the same contents.
+4. Neither the biggest nor the smallest bottle contains poison potion.
+5. The second bottle on the left and the second on the right have the same contents.
 
-How do we tackle it? Consider this version. Note that, as stated in the puzzle, there's 1 potion smaller than all the others (the dwarf) and 1 potion bigger than all the others (the giant).
+How do we tackle it? Consider this version. Note that, as stated in the puzzle, there's 1 bottle smaller than all the others (the dwarf) and 1 bottle bigger than all the others (the giant).
 
 ![Example version]({{ url_for('static', filename='img/potter-puzzle/solve-1.png') }})
 
@@ -76,7 +76,7 @@ Applying our algorithm to all puzzle versions gives us the following solutions. 
 Is there something that all of the solvable variations of the puzzle have in common? Yes! Notice that either the small bottle or the big bottle have to be in 2nd or 6th position. This allows us to deduce that the 2nd and 6th bottles contain harmless potion, due to constraints #4 and #5. Without this deductive step, we can't eliminate the possibility that those bottles contain poison and we end up with multiple possible solutions. The solvable variations also require that the other "special" bottle (small or big) is in 3rd or 4th position. Otherwise, we can't pin down the exact location of the move-forward potion.
 
 ### Closing comments
-I leave you with a nice quote from the book.
+I leave you with a quote I like from the book.
 
 > Hermione let out a great sigh and Harry, amazed, saw that she was smiling, the very last thing he felt like doing. ‘Brilliant,’ said Hermione. ‘This isn’t magic – it’s logic – a puzzle. A lot of the greatest wizards haven’t got an ounce of logic, they’d be stuck in here for ever.’
 
