@@ -5,6 +5,12 @@ from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
 
 FLATPAGES_EXTENSION = '.md'
+FLATPAGES_EXTENSION_CONFIGS = {
+    'codehilite': {
+        'linenums': 'True',
+        'guess_lang': 'False'
+    }
+}
 
 # Used to help render images.
 def prerender_jinja(text):
