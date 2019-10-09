@@ -5,21 +5,21 @@ from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
 
 FLATPAGES_EXTENSION = '.md'
-FLATPAGES_EXTENSION_CONFIGS = {
-    'codehilite': {
-        'linenums': 'True',
-        'guess_lang': 'False'
-    }
-}
 
 # Used to help render images.
-def prerender_jinja(text):
+def prerender_jinja(text, flatpages):
     prerendered_body = render_template_string(Markup(text))
-    return pygmented_markdown(prerendered_body)
+    return pygmented_markdown(prerendered_body, flatpages)
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = prerender_jinja
+app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
+    'codehilite': {
+        'guess_lang': 'False',
+
+    }
+}
 pages = FlatPages(app)
 freezer = Freezer(app)
 
