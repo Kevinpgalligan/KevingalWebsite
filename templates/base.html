@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="{{ url_for('pygments_css') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    {% if not config['DEBUG'] %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147419708-1"></script>
     <script>
@@ -16,21 +17,24 @@
       gtag('js', new Date());
       gtag('config', 'UA-147419708-1');
     </script>
+    {% endif %}
 </head>
 {% set active_page = active_page|default("home") %}
 <body>
     <header>
+        <div data-nosnippet>
         <div class="banner"><h1>kevingal.com</h1></div>
         {% set top_level_pages = [
             "home",
             "blog",
-            "apps"
+            "projects"
         ] %}
         <nav>
         {% for pg in top_level_pages: %}
             <a href="/{% if pg == "home" %}index{% else %}{{ pg }}{% endif %}.html" class="navlink"{% if pg == active_page %} id="active-page-navlink"{% endif %}>{{ pg }}</a>
         {% endfor %}
         </nav>
+        </div>
     </header>
 {% block content %}
     <p>Default content to be displayed</p>

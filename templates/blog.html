@@ -3,12 +3,10 @@
 {% block title %} blog@kevingal {% endblock title %}
 {% block content %}
 <h2>Blog Posts</h2>
-<p>Date format is <i>YYYY-MM-DD</i>.</p>
+<p>{{ num_posts }} post{{ "s" if num_posts != 1 else "" }}.</p>
 <ul>
     {% for page in date_sorted_blog_posts %}
-    <li>
-        {{ page.date }} <a href="{{ url_for("blog_post", path=page.path) }}">{{ page.title }}</a>
-    </li>
+    <li class="blog-post-list">{{ page.date }} <a href="{{ url_for("blog_post", path=page.path) }}">{{ page.title }}</a></li>
     {% else %}
     <li>...</li>
     {% endfor %}

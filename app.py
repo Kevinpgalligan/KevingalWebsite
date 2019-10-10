@@ -41,11 +41,14 @@ def index():
 
 @app.route('/blog.html')
 def blog():
-    return render_template('blog.html', date_sorted_blog_posts=reversed(date_sorted_blog_posts))
+    return render_template(
+        'blog.html',
+        date_sorted_blog_posts=reversed(date_sorted_blog_posts),
+        num_posts=len(date_sorted_blog_posts))
 
-@app.route('/apps.html')
-def apps():
-    return render_template('apps.html')
+@app.route('/projects.html')
+def projects():
+    return render_template('projects.html')
 
 @app.route('/apps/<name>.html')
 def specific_app(name):
@@ -76,4 +79,4 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
         freezer.freeze()
     else:
-        app.run(port=8000)
+        app.run(port=8000, debug=True)

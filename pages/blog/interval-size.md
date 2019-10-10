@@ -1,5 +1,6 @@
 title: "Programming trick: interval size formula"
 date: 2019-10-08
+draft: yes
 
 Alternative title: Calculate Interval Size With This 1 Weird Trick! Mathematicians HATE It!
 
