@@ -20,6 +20,8 @@ This brings several **incredibly important** questions to mind. How many Beatles
 ### How many Beatles songs refer to "you" in the first line?
 Describe what data was scraped, how it was scraped, percentage with "you" in first line. Verisimilitude of his claim.
 
+Total songs: 428, total 'you' songs: 118.
+
 The Beatles were active from 1962, with the release of the single *Love Me Do*, until 1970, with the release of the album *Let It Be*.
 
 ### The percentage
