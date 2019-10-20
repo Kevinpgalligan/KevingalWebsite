@@ -50,4 +50,4 @@ I had to fix quite a few bugs in the bot's code as it picked up momentum on Redd
 * Didn't handle random network-related exceptions when calling Reddit API.
 
 ### The end
-On that note, EmojipastaBot can finally be put to rest. Goodnight, sweet prince ⚰️
+EmojipastaBot can now be laid to rest. Goodnight, sweet prince ⚰️
