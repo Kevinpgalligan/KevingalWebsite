@@ -1,8 +1,7 @@
 title: Did The Beatles really love "you"?
 date: 2019-10-14
-draft: yes
 
-Browsing the [Wikipedia page of Lennon-McCartney](https://en.wikipedia.org/wiki/Lennon–McCartney), the virtuoso song-writing duo of The Beatles, a fun fact caught my interest.
+Browsing the [Wikipedia page of Lennon-McCartney](https://en.wikipedia.org/wiki/Lennon–McCartney), the virtuoso song-writing duo of Beatles fame, a fun fact caught my interest.
 
 > Author David Rowley points out that at least half of all Lennon–McCartney lyrics have the words "you" and/or "your" in the first line.
 
@@ -14,7 +13,7 @@ This refers to page 3 of the book *Help! 50 Songwriting, Recording and Career Ti
 
 > The opening words of the following songs are all addressed directly to the listener. 'I Want to Hold Your Hand', 'We can Work It Out', 'Taxman', [...]. Indeed, on some of these songs it sounds as if the Beatles wrote the lyrics as though they were having a conversation with their listener.
 
-This brings several **incredibly important** questions to mind.
+This brings several **incredibly important** questions to mind. TODO make joke about unquantified statement
 
 * How many Beatles songs refer to "you" in the first line, exactly?
 * How does this compare to the you-rate of other musicians?
@@ -25,18 +24,13 @@ This post will answer these questions.
 ![Photo of Lennon & McCartney]({{ url_for('static', filename='img/lennon-mccartney-and-you/beatles-eyeshot.png') }})
 
 ### How many Lennon-McCartney songs are addressed to "you"?
-* Studio albums from core catalogue (as per wiki) were scraped (refer to scraping script).
-* Instrumental songs removed, leaving 183.
-* Non-Lennon-McCartney songs removed, leaving N.
-* Analysis done to show X% have "you" in first line, Y% have "you" somewhere in the lyrics (refer to script).
-* Style note: put the percentages (and possibly other numbers) in bold.
-* HENCE, whatsisface is full of shit.
+To address this question, I wrote a script (TODO include link to script) to download the lyrics of all of the songs from the Beatles' "core catalogue" studio albums, [as described on Wikipedia](https://en.wikipedia.org/wiki/The_Beatles_discography#Studio_albums). Instrumental songs, cover songs and songs with exclusive writing credit assigned to Ringo Starr / George Harrison were removed manually. This left a total of 140 songs. While not covering the full ~180 songs published by Lennon-McCartney, it's a representative sample.
 
-What percentage of songs have "you" or "your" in the first line.
+After doing some quick analysis (TODO include link to the script), it was found that **30%** of the songs had "you" (or "your") in the first line. This is quite a bit short of "around half", which was claimed by David Rowley. However, since **83%** of the songs contained "you" *somewhere* in the lyrics, I'm willing to give him a pass, and it shouldn't be controversial to say that Lennon-McCartney did, in fact, love "you".
 
-Other thing to consider: proportion of you's and your's vs his, her, he, she, they, theirs, it, its. This might be a more accurate measure of whether they're directly addressing the reader.
+It's still a stretch to go from that to including the use of the word "you" in a list of 50 song-writing commandments. To justify such a dictum (TODO bible-sounding stuff here, also replace the word "list"), you'd have to show that the use of "you" tends to correlate with more chart success. Even then, it would be difficult to prove that "you" is the *cause* of the success, but it's the least we can try.
 
-Also, careful of you're, yours.
+TODO this section seems verbose and non-visual
 
 ### Comparing to other musicians
 Contemporary, before, after.
