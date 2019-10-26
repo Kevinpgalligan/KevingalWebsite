@@ -62,8 +62,6 @@ def main():
 
     os.makedirs("/tmp/beatles/", exist_ok=True)
 
-    # Smarter would be to save progress, just in case the
-    # program is interrupted mid-execution.
     for song_link in progressbar.progressbar(song_links):
         song_id_match = SONG_ID_REGEX.search(song_link)
         if song_id_match is None:
