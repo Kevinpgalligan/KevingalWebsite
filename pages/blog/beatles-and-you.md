@@ -1,6 +1,5 @@
 title: Did The Beatles really love "you"?
 date: 2019-10-14
-draft: yes
 
 Browsing the [Wikipedia page of Lennon-McCartney](https://en.wikipedia.org/wiki/Lennon–McCartney), the virtuoso songwriting duo of Beatles fame, a fun fact caught my interest.
 
@@ -31,10 +30,15 @@ After [RUNNING THE NUMBERS](https://github.com/Kevinpgalligan/KevingalWebsite/bl
 However, it would be a stretch to then issue a commandment like *goOd SoNgWriTeRs SAy yOu* in our bible of songwriting tips. Before that, the least we could do would be to establish a correlation between the use of the word "you" and success in music charts.
 
 ### Chart success and you
-* Decide on the years + lyrics website (should be easy to go from artist's name on the chart, to a link for the lyrics website).
-* Write script to scrape them.
-* Manually nab the ones that fail.
-* Once again do analysis.
+We're going to try to find a correlation between success on music charts and "you". In this case, success on music charts means a higher ranking, so a song that reaches a top position of #1 is more successful than one that reaches #5. The chart we'll be looking at is Billboard Top 100, which has been running since 1956.
+
+> The Billboard Hot 100 is the music industry standard record chart in the United States for songs, published weekly by Billboard magazine. Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. [source](https://en.wikipedia.org/wiki/Billboard_Hot_100)
+
+Remaining stuff to do:
+
+* Scrape charts during time when Beatles were active.
+* Scrape lyrics for those songs, as much as possible.
+* Find correlation coefficient between presence of "you" and chart position.
 
 ### Conclusion
 * Is it a valid tip?
