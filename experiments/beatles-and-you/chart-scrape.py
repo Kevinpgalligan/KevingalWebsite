@@ -14,8 +14,9 @@ def get_top100_chart(d):
     soup = BeautifulSoup(pg.content, "html.parser")
     names = [e.text for e in soup.find_all("span", class_="chart-element__information__song text--truncate color--primary")]
     artists = [e.text for e in soup.find_all("span", class_="chart-element__information__artist text--truncate color--secondary")]
-    assert len(names) == 100
-    assert len(artists) == 100
+    if len(names) != 100 or len(artists) != 100:
+        print(f"Uh oh, chart took unexpected format. Only found {len(names)} songs and {len(artists)} artists.")
+        return None
     return [(str(i+1), name, artist) for i, (name, artist) in enumerate(zip(names, artists))]
 
 def main():

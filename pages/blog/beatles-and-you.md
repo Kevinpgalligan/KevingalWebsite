@@ -27,16 +27,17 @@ I wrote a [script](https://github.com/Kevinpgalligan/KevingalWebsite/blob/master
 
 After [RUNNING THE NUMBERS](https://github.com/Kevinpgalligan/KevingalWebsite/blob/master/experiments/beatles-and-you/beatles-analysis.py), it was found that **30%** of the songs had "you" (or "your") in the first line. This is quite a bit short of "around half", but since **83%** of the songs contained "you" *somewhere* in the lyrics, I'm willing to give David Rowley a pass. It shouldn't be controversial to state that Lennon-McCartney did, in fact, love "you".
 
-However, it would be a stretch to then issue a commandment like *goOd SoNgWriTeRs SAy yOu* in our bible of songwriting tips. Before that, the least we could do would be to establish a correlation between the use of the word "you" and success in music charts.
+However, it would be a stretch to then issue a commandment like *goOd SoNgWriTeRs SAy yOu* in a bible of songwriting tips. Before that, the least we could do would be to establish a correlation between the use of the word "you" and success in music charts.
 
 ### Chart success and you
-We're going to try to find a correlation between success on music charts and "you". In this case, success on music charts means a higher ranking, so a song that reaches a top position of #1 is more successful than one that reaches #5. The chart we'll be looking at is Billboard Top 100, which has been running since 1956.
+We're going to try to find a correlation between success in music charts and "you". In this case, success on music charts means a higher ranking, so a song that reaches a top position of #1 is more successful than one that reaches #5. The chart we'll be looking at is Billboard Top 100, which has been running since 1956.
 
 > The Billboard Hot 100 is the music industry standard record chart in the United States for songs, published weekly by Billboard magazine. Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. [source](https://en.wikipedia.org/wiki/Billboard_Hot_100)
 
+The Billboard Hot 100 charts were scraped (TODO should "scraped" be used?) (TODO link to script) from the start of 1962 until the start of 1970. That's 417 weeks; a total of 5681 unique songs reached the charts during that time. Interestingly, this means that ~86% of songs listed on the charts were actually duplicates (TODO wording?) from previous weeks.
+
 Remaining stuff to do:
 
-* Scrape charts during time when Beatles were active.
 * Scrape lyrics for those songs, as much as possible.
 * Find correlation coefficient between presence of "you" and chart position.
 

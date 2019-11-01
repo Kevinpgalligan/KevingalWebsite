@@ -2,3 +2,4 @@ beautifulsoup4
 requests
 ratelimit
 progressbar2
+retry

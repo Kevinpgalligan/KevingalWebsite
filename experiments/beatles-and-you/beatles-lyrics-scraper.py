@@ -3,7 +3,7 @@ import progressbar
 import re
 import os
 import sys
-from utils import get_page
+from utils import get_page, get_lyrics
 
 ALBUMS = [
     "Please Please Me",
@@ -22,17 +22,6 @@ ALBUMS = [
 ]
 
 SONG_ID_REGEX = re.compile(r"/([a-zA-Z0-9-]+)\.html")
-
-def get_lyrics(song_link):
-    lyrics_page = get_page(song_link)
-    if lyrics_page is None:
-        return None
-    soup = BeautifulSoup(lyrics_page.content, 'html.parser')
-    lyrics_div = soup.find("div", class_="ringtone").find_next_sibling("div")
-    return lyrics_div.text.strip()
-
-def you_in_lyrics(lyrics):
-    return "you" in lyrics.split("\n")[0].lower()
 
 def main():
     beatles_songs_page = get_page("https://www.azlyrics.com/b/beatles.html")
