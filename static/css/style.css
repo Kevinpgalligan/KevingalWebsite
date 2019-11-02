@@ -43,7 +43,7 @@ nav, h1, h2, h3, h4, h5, h6 {
 
 div.codehilite {
     max-width: 800px;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .previous-page-link {
