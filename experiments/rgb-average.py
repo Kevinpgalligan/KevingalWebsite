@@ -1,22 +1,63 @@
-from random import randint, shuffle
+import random
 import matplotlib.pyplot as plt
 import collections
-
-def generate_rgb(N):
-    remaining = 3 * N
-    R = randint(max(remaining - 2 * 255, 0), min(remaining, 255))
-    remaining -= R
-    G = randint(max(remaining - 1 * 255, 0), min(remaining, 255))
-    remaining -= G
-    B = remaining
-    result = [R, G, B]
-    shuffle(result)
-    return tuple(result)
+from scipy.special import comb
 
 def main():
-    N = 1
-    rgbs = [generate_rgb(N) for _ in range(10000)]
-    print("PASS" if all(sum(rgb) // 3 == N for rgb in rgbs) else "FAIL")
+    A = 245 # 496 possible RGB tuples for A=245
+    rgbs = [generate_rgb(A) for _ in range(1000000)]
+    print("PASS" if all(sum(rgb) // 3 == A for rgb in rgbs) else "FAIL")
+    # plot_value_frequencies(rgbs)
+    plot_rgb_frequencies(rgbs)
+
+def generate_rgb(A):
+    # The goal is to generate RGB so that R+G+B=3A, so that the average (R+G+B)/3 = A.
+    remaining = 3 * A
+    # R can't be smaller than 3A - 2*255. Otherwise, even with G = B = 255, we will have:
+    #   R + G + B = (3A - 2*255 - k) + 255 + 255 = 3A - k < 3A. R+G+B=3A.
+    # Likewise, R can't be bigger than 3A.
+    # We also need to ensure that R is in the range [0, 255].
+    R_possible_values = list(range(max(remaining - 2 * 255, 0), min(remaining, 255) + 1))
+    rgbs = num_rgbs_that_sum_to(remaining) 
+    # Probability distribution of all of the possible R values. To calculate the probability
+    # of a given value of R, we consider the number of pairs of G & B that sum up to 3A - R,
+    # which varies by the value of R.
+    R_probabilities = [num_gbs_that_sum_to(remaining - r) / possible_rgbs for r in R_possible_values]
+    R, = random.choices(population=R_possible_values, weights=R_probabilities)
+    remaining -= R
+    # As we did above for R, need to set bounds on possible values for G so that it's in the range [0, 255].
+    G = random.randint(max(remaining - 255, 0), min(remaining, 255))
+    remaining -= G
+    B = remaining
+    return (R, G, B)
+
+def num_rgbs_that_sum_to(S):
+    """Outputs number of RGB tuples that sum to 'S'."""
+    K = 3 # R, G, B
+    return (comb(remaining + K - 1, K - 1)
+        # Remove cases where R, G or B are >255, since
+        # these are not allowed.
+        - 3 * comb(remaining + K - 1 - 256, K - 1)
+        # Re-add the case where >1 of R, G and B are >255, since
+        # they were subtracted twice in the previous bit.
+        + 3 * comb(remaining + K - 1 - 2 * 256, K - 1))
+
+def num_gbs_that_sum_to(S):
+    return min(S, 255) - max(S - 255, 0) + 1
+
+def possibilities(n, k, tuple_so_far=None):
+    if k <= 1:
+        return [(*tuple_so_far, n)]
+    ps = []
+    for v in range(max(n - (k - 1) * 255, 0), min(n, 255) + 1):
+        ps.extend(
+            possibilities(
+                n - v,
+                k - 1,
+                tuple_so_far=(v,) if tuple_so_far is None else (*tuple_so_far, v)))
+    return ps
+
+def plot_value_frequencies(rgbs):
     ax = plt.figure().gca()
     for colour, values in zip(["r", "g", "b"], zip(*rgbs)):
         value_counts = collections.defaultdict(int)
@@ -27,7 +68,20 @@ def main():
     plt.title("Value frequency for R, G, B")
     plt.ylabel('Frequency')
     plt.xlabel('Value')
-    plt.xticks(list(range(4)))
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    plt.show()
+
+def plot_rgb_frequencies(rgbs):
+    ax = plt.figure().gca()
+    rgb_counts = collections.defaultdict(int)
+    for rgb in rgbs:
+        rgb_counts[rgb] += 1
+    plt.scatter(list(range(len(rgb_counts))), list(rgb_counts.values()))
+    plt.title("RGB tuple counts")
+    plt.ylabel('RGB tuple')
+    plt.xlabel('Count')
+    plt.ylim(bottom=0)
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
     plt.show()
