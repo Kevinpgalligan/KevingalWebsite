@@ -7,7 +7,6 @@ from flask_frozen import Freezer
 
 FLATPAGES_EXTENSION = '.md'
 
-# Used to help render images.
 def prerender_jinja(text, flatpages):
     prerendered_body = render_template_string(Markup(text))
     return pygmented_markdown(prerendered_body, flatpages)
