@@ -40,7 +40,7 @@ This approach seems reasonable, and if we run a test that checks whether the res
 
 However, this doesn't give us the full picture. Besides ensuring that R + G + B = 3A, we also need to validate that R, G and B have the same distribution of values as each other. R should be equally as likely as G and B, for example, to have a value of 2. Graphing the distribution of values shows that R actually tends to have different values to G and B. TODO rewrite last sentence, it's confusing
 
-![distribution of values for R, G, B]({{ url_for('static', filename='img/rgb-average/value-frequency-attempt1.png') }})
+![distribution of values for R, G, B]({{ url_for('static', filename='img/rgb-average/value-distribution-broken.png') }})
 
 This is because, for A=1, R has a 1/4 chance of taking on any of its possible values (which are: 0, 1, 2, 3). However, P(G=3) -- the probability that G=3 -- is P(R=0) \* P(G=3|R=0) = 1/4 * 1/4 = 1/16. We require that R=0 so that 3 remains one of the possible values for G, and that 3 is then pulled out of the hat of possible values of G with a probability of 1/4.
 
@@ -66,11 +66,11 @@ Now we need to calculate the denominator, #{RGB values that average to A}, in ou
 
 The first part, **in black**, is the number of ways to divide 3A between R, G and B.
 
-To understand this, let's consider an example where A=2 and 3A=6. Imagine that we have the numbers 1-6 lined up with boxes between them. We have to put "partitions" in 2 of the boxes in order to divide 3A between R, G and B, as seen below. (By the way, this approach to explaining combinatorics is called [stars and bars](https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics))).
+To understand this, let's consider an example where A=2, 3A=6. Imagine that we have the numbers 1-6 lined up with slots between them. We have to put "partitions" in 2 of the slots in order to divide 3A between R, G and B, as seen below. (By the way, this approach to explaining combinatorics is called [stars and bars](https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics))).
 
 ![visualisation of partitioning of 3A]({{ url_for('static', filename='img/rgb-average/comb-explained-1.png') }})
 
-We have 3A-1 = 5 boxes, and we have to insert partitions into 2 of them, which gives 5C2 possible combinations. HOWEVER, we also have to account for the case where R, G or B are 0. For that reason, we need 3 extra boxes that let us set each of R, G and B to 0.
+We have 3A-1 = 5 slots, and we have to insert partitions into 2 of them, which gives 5C2 possible combinations. HOWEVER, we also have to account for the case where R, G or B are 0. For that reason, we need 3 extra slots that let us set each of R, G and B to 0.
 
 Here we see the case where G=0.
 
@@ -80,17 +80,17 @@ And here, R=0 and B=0.
 
 ![visualisation of partitioning of 3A, part 3]({{ url_for('static', filename='img/rgb-average/comb-explained-3.png') }})
 
-To allow for the zero case, we need 3A-1+3 boxes to pick from, of which we pick 2. This completes our explanation of the **first part** of the equation.
+To allow for the zero case, we need 3A-1+3 slots to pick from, of which we pick 2. This completes our explanation of the **first part** of the equation.
 
-TODO remove unnecessary flag boxes from first equation image, they create confusion; relate what I'm saying to the equation, so write {3A-1+3}C{2}.
+TODO relate what I'm saying to the equation, so write {3A-1+3}C{2}.
 
-We need the <font color="blue">second part</font> of the equation because in the **first part** we have unwittingly counted the partitionings where R>255, G>255 and B>255. So we have to subtract these. It's the same as the **first part**, except we remove 256 boxes that are given to one of R, G or B. The remaining 3A-1+3-256 boxes are divided among R, G and B like before, by choosing 2 boxes, so we get {3A-1+3-256}C{2}. And we multiply this by 3 because we repeat for each of R, G and B.
+We need the <font color="blue">second part</font> of the equation because in the **first part** we have unwittingly counted the partitionings where R>255, G>255 and B>255. So we have to subtract these. It's the same as the **first part**, except we remove 256 slots that are given to one of R, G or B. The remaining 3A-1+3-256 slots are divided among R, G and B like before, by choosing 2 slots, so we get {3A-1+3-256}C{2}. And we multiply this by 3 because we repeat for each of R, G and B.
 
-TODO stars & bars
+![partitioning of 3A when R>255]({{ url_for('static', filename='img/rgb-average/comb-explained-4-r-gt-255.png') }})
 
 The <font color="red">final part</font> of the equation is needed because we double-subtracted the case where more than one value is greater than 255 in the <font color="blue">second part</font>. TODO explain this
 
-TODO stars & bars
+![partitioning of 3A when R>255 and G>255]({{ url_for('static', filename='img/rgb-average/comb-explained-5-rg-gt-255.png') }})
 
 Aaaaand that explains the equation for calculating #{RGB values that average to A}. With that, we can also calculate the probability of R taking on any given value and use a weighted random choice to pick our random R. G and B can be determined from a simple random choice after that.
 
@@ -134,13 +134,13 @@ TODO review code and possibly refactor it
     def num_gbs_that_sum_to(S):
         return min(S, 255) - max(S - 255, 0) + 1
 
-This code passes the test that checks whether the RGB values it generates have an average of A. Furthermore, we see that R, G and B have the same distribution of values.
+This code passes the test that checks whether the RGB values it generates have an average of A. Furthermore, we see that R, G and B have the same distribution of values for A=1.
 
-TODO graph
+![distribution of values for R, G, B (fixed)]({{ url_for('static', filename='img/rgb-average/value-distribution-fixed.png') }})
 
 And, more reassuringly, all of the possible RGB tuples for A=245 seem to have an equal probability of being generated (although you can never say for certain with probability-based algorithms).
 
-TODO graph
+![distribution of RGB values]({{ url_for('static', filename='img/rgb-average/rgb-value-distribution.png') }})
 
 ### Conclusion
 We've battled through some tricky combinatorics and come out the other side with an algorithm that solves the problem. We've also encountered the perils of testing algorithms that have an element of randomness. TODO reword this paragraph
