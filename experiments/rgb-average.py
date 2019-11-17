@@ -5,12 +5,12 @@ from scipy.special import comb
 import numpy as np
 
 def main():
-    A = 1
+    A = 245
+    print(f"Possible RGB values: {num_rgbs_that_sum_to(3*A)}")
     generator = RGBGenerator(A)
-    rgbs = [generator.generate() for _ in range(10000)]
-    print("PASS" if all(sum(rgb) // 3 == A for rgb in rgbs) else "FAIL")
-    plot_value_frequencies(rgbs)
-    # plot_rgb_frequencies(rgbs)
+    rgbs = [generator.generate() for _ in range(100000)]
+    print("PASS" if all(sum(rgb) == 3*A for rgb in rgbs) else "FAIL")
+    plot_rgb_frequencies(rgbs)
 
 class RGBGenerator:
     def __init__(self, A):
@@ -52,28 +52,13 @@ def num_rgbs_that_sum_to(S):
 def num_gbs_that_sum_to(S):
     return min(S, 255) - max(S - 255, 0) + 1
 
-def plot_value_frequencies(rgbs):
-    ax = plt.figure().gca()
-    for colour, values in zip(["r", "g", "b"], zip(*rgbs)):
-        value_counts = collections.defaultdict(int)
-        for value in values:
-            value_counts[value] += 1
-        xs, ys = zip(*sorted(value_counts.items(), key=lambda vc: vc[0]))
-        ax.plot(xs, ys, color=colour)
-    plt.title("Value distribution for R, G, B")
-    plt.ylabel('Count')
-    plt.xlabel('Value')
-    plt.ylim(bottom=0)
-    plt.xticks([0, 1, 2, 3]) # assumes that we only plot this for A=1.
-    ax.spines['right'].set_visible(False)
-    ax.spines['top'].set_visible(False)
-    plt.show()
-
 def plot_rgb_frequencies(rgbs):
     ax = plt.figure().gca()
     rgb_counts = collections.defaultdict(int)
     for rgb in rgbs:
         rgb_counts[rgb] += 1
+    print(f"{len(rgb_counts)} unique RGB values generated.")
+    print(f"Most frequent RGB value: {max(rgb_counts.items(), key=lambda vc: vc[1])}")
     plt.scatter(
         list(range(len(rgb_counts))),
         list(rgb_counts.values()))
