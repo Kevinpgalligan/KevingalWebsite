@@ -1,6 +1,5 @@
 title: "Random RGB values that average to N; or, fun with probability and combinatorics"
-date: 2019-11-17
-draft: yes
+date: 2019-11-18
 
 On this episode of Problems That Don't Need to Be Solved, we have a doozy from r/computerscience.
 
