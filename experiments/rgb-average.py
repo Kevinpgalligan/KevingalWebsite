@@ -2,41 +2,25 @@ import random as rd
 import matplotlib.pyplot as plt
 import collections
 from scipy.special import comb
-import numpy as np
 
 def main():
     A = 245
     print(f"Possible RGB values: {num_rgbs_that_sum_to(3*A)}")
-    generator = RGBGenerator(A)
-    rgbs = [generator.generate() for _ in range(100000)]
+    rgbs = generate_rgbs(A, n=100000)
     print("PASS" if all(sum(rgb) == 3*A for rgb in rgbs) else "FAIL")
     plot_rgb_frequencies(rgbs)
 
-class RGBGenerator:
-    def __init__(self, A):
-        self.A = A
-        remaining = 3*A
-        rgbs = num_rgbs_that_sum_to(remaining) 
-        # R can't be smaller than 3A - 2*255. Otherwise, even with G = B = 255, we will have:
-        #   R + G + B = (3A - 2*255 - k) + 255 + 255 = 3A - k < 3A. R+G+B=3A.
-        # Likewise, R can't be bigger than 3A.
-        # We also need to ensure that R is in the range [0, 255].
-        self.R_possible_values = list(range(max(remaining - 2 * 255, 0), min(remaining, 255) + 1))
-        # Probability distribution of all of the possible R values. To calculate the probability
-        # of a given value of R, we consider the number of pairs of G & B that sum up to 3A - R,
-        # which varies by the value of R.
-        self.R_probabilities = [num_gbs_that_sum_to(remaining - r) / rgbs for r in self.R_possible_values]
-        
-    def generate(self):
-        # The goal is to generate RGB so that R+G+B=3A, so that the average (R+G+B)/3 = A.
-        remaining = 3 * self.A
-        R, = rd.choices(population=self.R_possible_values, weights=self.R_probabilities)
-        remaining -= R
-        # As we did above for R, need to set bounds on possible values for G so that it's in the range [0, 255].
-        G = rd.randint(max(remaining - 255, 0), min(remaining, 255))
-        remaining -= G
-        B = remaining
-        return (R, G, B)
+def generate_rgbs(A, n=1):
+    S = 3*A
+    num_rgbs = num_rgbs_that_sum_to(S)
+    # R can't be smaller than 3A - 2*255. Otherwise, even with G = B = 255, we will have:
+    #   R + G + B = (3A - 2*255 - blah) + 255 + 255 = 3A - blah < 3A.
+    # Similarly, R can't be bigger than 3A.
+    # We also need to ensure that R is in the range [0, 255].
+    R_possible_values = list(range(max(S - 2 * 255, 0), min(S, 255) + 1))
+    R_probabilities = [num_gbs_that_sum_to(S - r) / num_rgbs for r in R_possible_values]
+    return [generate_rgb(S, R_possible_values, R_probabilities)
+            for _ in range(n)]
 
 def num_rgbs_that_sum_to(S):
     """Outputs number of RGB tuples that sum to 'S'."""
@@ -51,6 +35,16 @@ def num_rgbs_that_sum_to(S):
 
 def num_gbs_that_sum_to(S):
     return min(S, 255) - max(S - 255, 0) + 1
+
+def generate_rgb(S, R_possible_values, R_probabilities):
+    """Generates R,G,B that sum to S given pre-computed probabilities
+    for possible R values."""
+    R, = rd.choices(population=R_possible_values, weights=R_probabilities)
+    S -= R
+    G = rd.randint(max(S - 255, 0), min(S, 255))
+    S -= G
+    B = S
+    return (R, G, B)
 
 def plot_rgb_frequencies(rgbs):
     ax = plt.figure().gca()
