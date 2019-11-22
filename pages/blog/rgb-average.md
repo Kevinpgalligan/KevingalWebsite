@@ -177,3 +177,4 @@ That's all for now. Tune in for the next episode of Problems That Don't Need to 
 
 ### Discussion
 * [reddit](https://www.reddit.com/r/programming/comments/e03k3p/random_rgb_values_that_average_to_n_or/)
+* [Hacker News](https://news.ycombinator.com/item?id=21607401)
