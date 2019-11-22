@@ -5,12 +5,12 @@ On this episode of Problems That Don't Need to Be Solved, we have a doozy from r
 
 > ["Generate a random RGB value where the average of R, G and B is A, A being an integer from 0-255."](https://www.reddit.com/r/computerscience/comments/a1ea1s/create_program_to_generate_random_rgb_values_that/)
 
-In other words, we have to generate a random RGB value so that (R+G+B)/3=A. Solving this seemingly simple problem, we'll learn some neat [COMBINATORICS](https://en.wikipedia.org/wiki/Combinatorics) and [EXISTENTIAL DREAD](https://en.wikipedia.org/wiki/Existential_crisis).
+In other words, we have to generate a random RGB value so that (R+G+B)/3=A, or equivalently, R+G+B=3A. We'll solve this problem using the Python programming language and learn some neat [combinatorics](https://en.wikipedia.org/wiki/Combinatorics) along the way.
 
 ### An attempt
-The first algorithm that might come to mind is the following. Generate random values one at a time for R, G and B, ensuring at each step that 0<=R,G,B<=255 and that it's still possible to satisfy (R+G+B)/3=A, i.e. R+G+B=3A. If we always stay within these constraints, then we should end up with a valid RGB value with an average of A.
+The first algorithm that might come to mind is to generate R, G and B one at a time, ensuring that we satisfy the constrants of the problem at each step. Being RGB, they have to be in the range 0-255. We must also ensure that it remains possible to satisfy R+G+B=3A. If we stay within these constraints, then we will always end up with a valid RGB value with an average of A, no matter what value A has. There's always at least one solution to R+G+B=3A, and that's the RGB value (A,A,A).
 
-Here it is in Python code.
+Here's this simple-ish algorithm in Python code.
 
     :::python
     import random as rd
@@ -30,7 +30,7 @@ Here it is in Python code.
         B = S
         return R, G, B
 
-This approach seems reasonable, and if we run a test that checks whether the resulting RGB values have an average of A, it passes with <font color="red">flyi</font><font color="green">ng c</font><font color="blue">olours</font>.
+This approach seems reasonable, and if we run a test that checks whether the resulting RGB values have an average of A (for A=1), it passes with <font color="red">flyi</font><font color="green">ng c</font><font color="blue">olours</font>.
 
     :::python
     A = 1
@@ -42,42 +42,56 @@ However, this doesn't give us the full picture. Besides ensuring that R+G+B=3A, 
 
 ![distribution of RGB values]({{ url_for('static', filename='img/rgb-average/rgb-value-distribution-broken.png') }})
 
-(3, 0, 0) is the most likely value by far at ~25%. This is because P(R=3) -- the probability that R=3 -- is, according to our algorithm, 1/4. And when R=3, the only valid value we can assign to G & B is 0 (otherwise, R+G+B>3A), forcing an RGB value of (3, 0, 0). Meanwhile, there are multiple possible RGB values for each of R=0, R=1 and R=2 that have to share their 1/4 slices of probability pie. (3, 0, 0) ends up with a disproportionately high probability of being chosen. *TODO this paragraph and the next one are a fuckin' drag, man.*
+(3,0,0) is the most likely value by far at ~25%. The pie chart below illustrates why this is the case.
 
-It was difficult to catch this error. R+G+B=3A can be checked directly, but the randomness of the solution cannot. At least, not easily. We had to run the code 1000s of times and then visualise the output.
+![bug visualisation pie chart]({{ url_for('static', filename='img/rgb-average/first-algo-bug-visualisation.png') }})
+
+Our algorithm picks an R value from 0, 1, 2 and 3 with equal probability, so 25% of the probability pie is assigned to each possible R value. The quarter slices of pie are then further divided by the number of possible GBs that satisfy R+G+B=3A. For R=3, the only valid GB value is (0,0), and so the RGB value (3,0,0) ends up with a whole 25% slice of probability. For R=1, the possible GBs are (0,2), (2,0) and (1,1), so the 25% slice is divided between the RGB values of (1,0,2), (1,2,0) and (1,1,1), giving them each a probability of ~8.3%.
 
 ### Well, I'll be damned! What's the darn-tootin' solution, then?
-The possible values of R are not equally likely. For example, in the case where A=1, P(R=3) is less than P(R=1). R=3 is only possible when (G,B) is (0,0) (10% of the time), whereas R=1 is possible when (G,B) is any of (0,2), (2,0) or (1,1) (30% of the time).
+The issue with the first algorithm is our false assumption that all possible R values are equally likely. In the case of A=1, P(R=3) -- the probability that R is 3 -- is 0.1, since 1/10 of the possible RGB values have R=3. Meanwhile, P(R=1)=0.3, since 3/10 of the possible RGB values have R=1.
 
-Hence, before picking R at random, we have to calculate the probability of each of its possible values. P(R=r) for some r is given by #{GB values that sum to 3A-r} / #{RGB values that average to A}.
+Hence, before picking R at random, we have to calculate the probability of each of its possible values.
 
-Let's consider the numerator and the denominator separately. Here's the value of #{GB values that sum to 3A-r}:
+P(R=r) for some r is given by:
+
+> \#{GB values that sum to 3A-r} / #{RGB values that average to A}
+
+(Syntax note: \#{blah} here means "the number of blah", so \#{GB values that sum to 3A-r} is the same as saying "the number of GB values that sum to 3A-r").
+
+You can see why this gives P(R=3)=0.1 and P(R=1)=0.3, given that #{GB values that sum to 2}=3, #{GB values that sum to 0}=1, and #{RGB values that average to 1}=10.
+
+How do we calculate this for any 'r' and any 'A'? Let's consider the numerator and the denominator separately.
+
+### P(R=r): the numerator
+Here's the value of #{GB values that sum to 3A-r}:
 
 ![numerator formula, min(3A-r, 255) - max(3A-r-255, 0) + 1]({{ url_for('static', filename='img/rgb-average/equation-1-numerator.png') }})
 
-We subtract the minimum value that G can be assigned from the maximum value it can be assigned, then add 1 because it's an inclusive range (the length of a range of integers A<=i<=B is B-A+1). Note: the number of possible G values is the same as the number of possible GB values, since every G value has only 1 corresponding B that goes with it. 
+G and B can be any value in the interval \[max(3A-r-255, 0), min(3A-r, 255)\], so all we're doing is calculating the length of this interval. It's similar to what we did in the first algorithm.
 
-To convince yourself that this is correct, consider A=87, 3A=261 and r=1. We have 3A-r=260. The possible GB values are (255,5), (254,6), ..., (5,255). There are 251 such values. This agrees with the expression above. Repeat for various values of A and r. *TODO merge this paragraph and the previous one, if possible. Make it less verbose.*
+To convince yourself that it's correct, consider the case where A=87, 3A=261 and r=1. We have 3A-r=260. The GB values that sum to 260 are (255,5), (254,6), ..., (5,255). There are 255-5+1=251 such values. This agrees with the expression above. Repeat for various values of A and r.
 
-Now we need to calculate the denominator of P(R=r): #{RGB values that average to A}. The expression is below. It looks scary, but we'll explain each part in an intuitive manner.
+### P(R=r): the denominator
+The expression for #{RGB values that average to A} is below. It looks scary, but we'll explain each part in an intuitive manner.
 
 ![denominator formula, binom(3A+3-1, 2) - 3 * binom(3A+3-1-256, 2) + 3 * binom(3A+3-1-2\*256, 2)]({{ url_for('static', filename='img/rgb-average/equation-2-denominator.png') }})
 
-The first part, **in black**, is the number of ways to divide 3A between R, G and B. The () syntax represents the "binomial coefficient" function, which can also be written as nCk: ["the number of ways to choose an (unordered) subset of k elements from a fixed set of n elements"](https://en.wikipedia.org/wiki/Binomial_coefficient). Above, we have **{3A+3-1}C{2}**, or "the number of ways to choose 2 things from 3A+3-1 things". *TODO this is a bit of a mess.*
+(Syntax note: () is the ["binomial coefficient" function](https://en.wikipedia.org/wiki/Binomial_coefficient), which can also be written as nCk: "the number of combinations of k things that you can choose from n things". For example, 10C2 is the number of possible pairs of socks you could make from 10 socks).
 
-Why do we need this binomial coefficient thing? Let's consider an example where A=2, 3A=6. Imagine that we have the numbers 1-6 lined up with spaces between them. We have to put "partitions" in 2 of the spaces in order to divide 3A=6 between R, G and B, as seen below.
+The first part, **in black**, gives the number of ways that R, G and B can add up to 3A. Using the nCk syntax, we can write it as **{3A+3-1}C{2}**, or "the number of ways to choose 2 things from 3A+3-1 things".
 
-*TODO consistent spacing around '='.*
+But why is "the number of ways that R, G and B can add up to 3A" the same as "the number of ways to choose 2 things from 3A+3-1 things"?
+
+Let's consider an example where A=2, 3A=6. Imagine that we have the numbers 1-6 lined up with spaces between them. We have to put "partitions" in 2 of the spaces in order to divide 3A=6 between R, G and B, as seen below.
 
 ![visualisation of partitioning of 3A]({{ url_for('static', filename='img/rgb-average/comb-explained-1.png') }})
 
-Here, R=2, G=3 and B=1. We have 3A-1 = 5 spaces, and we have to insert partitions into 2 of them, which gives {3A-1}C{2} possible combinations.
+Here, R=2, G=3 and B=1. We have 3A-1=5 spaces, and we have to insert partitions into 2 of them, which gives {3A-1}C{2} possible combinations.
 
-HOWEVER, to complete the **first part** we also have to account for the case where any of R, G or B are 0. For that reason, we need 3 extra spaces acting as flags that let us set each of R, G and B to 0. If we put a partition in one of these spaces, it means that the corresponding R/G/B is set to 0. *TODO repetitive use of the phrase "for each of".*
+HOWEVER, to complete the **first part** we also have to account for the case where any of R, G or B are 0. For that reason, we need 3 extra spaces acting as flags that let us set each of R, G and B to 0. If we put a partition in one of these spaces, it means that the corresponding R/G/B is set to 0.
 
-*TODO consider adding sections to break it up, one for numerator and one for the denominator*
-
-Here we see an illustration of G=0.
+Here we see how to set G=0.
 
 ![visualisation of partitioning of 3A, part 2]({{ url_for('static', filename='img/rgb-average/comb-explained-2.png') }})
 
@@ -93,7 +107,7 @@ Here's an example where 3A=264. We set aside 256 numbers for R, then partition t
 
 ![partitioning of 3A when R>255]({{ url_for('static', filename='img/rgb-average/comb-explained-4-r-gt-255.png') }})
 
-The <font color="red">final part</font> of the expression is needed because, in the <font color="blue">second part</font>, we double-subtracted the case where more than one of R, G and B are greater than 255. First we subtracted combinations where R>255, which includes combinations where G>255. Then we subtracted combinations where G>255, which includes combinations where R>255. In the end we've double-subtracted the combinations where R>255 as well as G>255.
+The <font color="red">final part</font> of the expression for #{RGB values that average to A} is needed because, in the <font color="blue">second part</font>, we double-subtracted the case where more than one of R, G and B are greater than 255, so we have to re-add them. First we subtracted combinations where R>255, which includes combinations where G>255. Then we subtracted combinations where G>255, which includes combinations where R>255. In the end we've double-subtracted the combinations where R>255 as well as G>255.
 
 In this example, A=173 and 3A=519. We set aside 256 numbers for R and 256 numbers for G, then partition the remaining 7 numbers between R, G & B like before.
 
@@ -101,7 +115,10 @@ In this example, A=173 and 3A=519. We set aside 256 numbers for R and 256 number
 
 There are 3A+3-1-2\*256 spaces, of which we pick 2. There are <font color="red">{3A+3-1-2\*256}C{2}</font> ways to do this. Multiply by 3 because there are 3 different pairs of R, G & B that can both be >255, and out pops the <font color="red">final part</font>.
 
-Having derived all 3 parts, we can now calculate #{RGB values that average to A}, which in turn lets us calculate P(R=r). This is the key to our final algorithm. We use a weighted random choice to pick R, based on P(R=r). After that, G and B can be determined from an unweighted random choice like in the "first attempt" algorithm.
+And with that, we understand how to calculate #{RGB values that average to A}. Which, in turn, allows us to calculate P(R=r)!
+
+### Putting it all together: using P(R=r) to generate random RGB values
+The hardest part is done. Now we pick R randomly based on P(R=r). After that, G and B can be determined from a random choice with uniform probability like in the "first attempt" algorithm.
 
 Here it is in Python code.
 
@@ -112,7 +129,7 @@ Here it is in Python code.
     def generate_rgbs(A, n=1):
         S = 3*A
         num_rgbs = num_rgbs_that_sum_to(S)
-        # R can't be smaller than 3A - 2*255. Otherwise, even with G = B = 255, we will have:
+        # R can't be smaller than 3A - 2*255. Otherwise, even with G=B=255, we will have:
         #   R + G + B = (3A - 2*255 - blah) + 255 + 255 = 3A - blah < 3A.
         # Similarly, R can't be bigger than 3A.
         # We also need to ensure that R is in the range [0, 255].
@@ -138,6 +155,7 @@ Here it is in Python code.
     def generate_rgb(S, R_possible_values, R_probabilities):
         """Generates R,G,B that sum to S given pre-computed probabilities
         for possible R values."""
+        # Weighted random choice based on P(R=r).
         R, = rd.choices(population=R_possible_values, weights=R_probabilities)
         S -= R
         G = rd.randint(max(S - 255, 0), min(S, 255))
@@ -145,15 +163,13 @@ Here it is in Python code.
         B = S
         return (R, G, B)
 
-Besides generating valid RGB values, all of the possible RGB values for A=245 seem to have an equal probability of being generated.
+Besides generating valid RGB values, all of the possible RGB values seem to have an equal probability of being generated (here, for A=245).
 
 ![distribution of RGB values]({{ url_for('static', filename='img/rgb-average/rgb-value-distribution.png') }})
 
 ### Conclusion
-We've battled through the combinatorics and come out the other side with a working algorithm. Tune in for the next episode of Problems That Don't Need to Be Solved, where we'll be looking at Rubix Cubes. *TODO something other than Rubix Cubes.*
+We've battled through the combinatorics and come out the other side with a working algorithm. An extension to the algorithm that might be interesting would be to make it work for the "general" case. That is, generate a random tuple V = (V1, V2, ..., Vn) such that the average (V1+...+Vn)/n is A, and where Bl <= Vi, A <= Bu. The combinatorics behind this would be similar to what we did above.
 
-*TODO Possibly merge "homework" into "conclusion".*
+A different approach to the problem would be to generate random RGB values directly from the sequence of valid values rather than going through the rigmarole of calculating probability distributions. In other words, if there are N possible RGB values, we generate a random number 'k' between 1 and N and pass it to our magic function 'f' so that f(k) outputs the kth RGB value with the target average.
 
-### Homework
-* Generate random RGB values directly from the sequence of valid values rather than going through the rigmarole of calculating probability distributions. In other words, if there are N possible RGB values, we generate a random number 'k' between 1 and N and pass it to our magic function 'f' so that f(k) outputs the kth valid RGB value.
-* Create a generic version of the algorithm that generates random tuples of integers, with arbitrary bounds on the values of the integers. More formally, the task would be to generate a random tuple V = (V1, V2, ..., Vn) such that (V1+V2+...+Vn)/n = A, where Bl <= Vi, A <= Bu. The combinatorics behind this would be similar to what we did above.
+That's all for now. Tune in for the next episode of Problems That Don't Need to Be Solved, where we'll be looking at Rubix Cubes.
