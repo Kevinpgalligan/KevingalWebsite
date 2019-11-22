@@ -174,3 +174,6 @@ We've battled through the combinatorics and come out the other side with a worki
 A different approach to the problem would be to generate random RGB values directly from the sequence of valid values rather than going through the rigmarole of calculating probability distributions. In other words, if there are N possible RGB values, we generate a random number 'k' between 1 and N and pass it to our magic function 'f' so that f(k) outputs the kth RGB value with the target average.
 
 That's all for now. Tune in for the next episode of Problems That Don't Need to Be Solved, where we'll be looking at Rubix Cubes.
+
+### Discussion
+* [reddit](https://www.reddit.com/r/programming/comments/e03k3p/random_rgb_values_that_average_to_n_or/)

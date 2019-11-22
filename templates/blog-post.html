@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% set active_page = "blog" %}
-{% if page.imgthumbnail is defined %}
-    {% set img_thumbnail = page.imgthumbnail %}
-{% endif %}
+{% if page.imgthumbnail is defined %}{% set img_thumbnail = page.imgthumbnail %}{% endif %}
 {% block title %} {{ page.title }} {% endblock title %}
 {% block content %}
 <h2>{{ page.title }}</h2>
