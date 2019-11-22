@@ -1,5 +1,6 @@
 title: "Random RGB values that average to N; or, Pointlessness and Probability"
 date: 2019-11-18
+imgthumbnail: img/rgb-average/thumbnail.png
 
 On this episode of Problems That Don't Need to Be Solved, we have a doozy from r/computerscience.
 
@@ -10,7 +11,7 @@ In other words, we have to generate a random RGB value so that (R+G+B)/3=A, or e
 ### An attempt
 The first algorithm that might come to mind is to generate R, G and B one at a time, ensuring that we satisfy the constrants of the problem at each step. Being RGB, they have to be in the range 0-255. We must also ensure that it remains possible to satisfy R+G+B=3A. If we stay within these constraints, then we will always end up with a valid RGB value with an average of A, no matter what value A has. There's always at least one solution to R+G+B=3A, and that's the RGB value (A,A,A).
 
-Here's this simple-ish algorithm in Python code.
+Here's this simple algorithm in Python code.
 
     :::python
     import random as rd
