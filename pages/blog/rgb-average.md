@@ -1,5 +1,5 @@
 title: "Random RGB values that average to N; or, Pointlessness and Probability"
-date: 2019-11-18
+date: 2019-11-22
 imgthumbnail: img/rgb-average/thumbnail.png
 
 On this episode of Problems That Don't Need to Be Solved, we have a doozy from r/computerscience.
