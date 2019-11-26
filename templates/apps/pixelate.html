@@ -20,8 +20,8 @@
 </div>
 <h5>Output</h5>
 <div>
-    <p>Pixel size <input id="block-size" type="number" value="3" onkeydown="return false" autocomplete="off" onchange="drawPixelated()"/></p>
-    <p>Pixel size in result <input id="new-block-size" type="number" value="3" onkeydown="return false" autocomplete="off" onchange="drawPixelated()"/></p>
+    <p>Pixel size <input id="block-size" type="number" value="3" autocomplete="off" min="1" onchange="drawPixelated()"/></p>
+    <p>Pixel size in result <input id="new-block-size" type="number" value="3" autocomplete="off" min="1" onchange="drawPixelated()"/></p>
     <p>Black & white <input id="black-n-white" type="checkbox" autocomplete="off" onchange="drawPixelated()" checked /></p>
     <p>Lightness threshold (only affects black & white)
         <input id="lightness-threshold" type="range" min="0" max="255" autocomplete="off" value="128"

@@ -92,7 +92,3 @@ function pixelIndexes(img, i, j) {
     var red = i * (img.width * 4) + j * 4;
     return [red, red + 1, red + 2, red + 3];
 }
-
-function debug(s) {
-    console.log(s);
-}
