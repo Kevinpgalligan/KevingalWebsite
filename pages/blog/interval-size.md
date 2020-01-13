@@ -1,52 +1,50 @@
-title: "Programming trick: interval size formula"
-date: 2019-10-08
+title: "Calculating the number of days until your birthday and why it's a useful programming trick"
+date: 2019-10-26
 draft: yes
 
-Alternative title: Calculate Interval Size With This 1 Weird Trick! Mathematicians HATE It!
+It's December 8th. Your birthday is December 22nd. How many days are there until your birthday?
 
-When you're given 2 index values of an array and need to calculate the number of elements between them, it's surprisingly easy to mess up and get an off-by-1 error, especially when you start changing whether the bounds are inclusive / exclusive.
+The answer, it probably won't interest you to find out, is: it depends. It depends on whether you include today in your count, and whether you include the day of the birthday itself. Something something 3 answers.
 
-As it turns out, there's a simple formula for calculating interval size, and we're going to cover it in this article so that you're never again troubled by off-by-one errors when calculating the number of days until your birthday.
+Something something recast the problem as a programming thing. If you're like me, you derped over this problem, writing out a small sample case to figure it out.
 
-### The problem
-We're asked to calculate the number of elements in this list between index 3 and index 7.
+There's a simple formula that answers the question definitively, and it's super useful for programming and avoiding off-by-one errors. And also lots of real-life applications such as calculating the number of days until your birthday. (Bring in Aunt Catherine here, and then say f\*ck you Aunt Catherine at the end).
 
-    [a b c d e f g h i j]
-     0 1 2 3 4 5 6 7 8 9
+### Using the formula in an example
+Consider the range 2-6.
 
-Obviously, the answer is `7 - 3 = 4`, right?
+   2 3 4 5 6
 
-Not really. It depends on whether we consider the "bounds", 3 and 7, to be inclusive or exclusive. If a bound is inclusive, it means we include the element at that index in our calculation. If it's exclusive, we exclude the element.
+The "bounds" here are 2 and 6. If both of the bounds are *inclusive* (that is, they're included in the range, so the numbers in the range are 2, 3, 4, 5 and 6), then the number of elements in the range is 5, given by 6-2+1. More generally, that's U-L+1, where U is the upper bound and L is the lower bound.
 
-We can see that, if both 3 and 7 are exclusive, there are 3 elements in the specified interval.
+     1+1+1+1+1=5
+     v v v v v
+    |2 3 4 5 6|
 
-             v v v
-    [a b c d|e f g|h i j]
-     0 1 2 3|4 5 6|7 8 9
+If one of the bounds is inclusive and the other is exclusive, then the number of elements is 4, given by U-L.
 
-If 3 is inclusive and 7 is exclusive, or 3 is exclusive and 7 is inclusive, there are 4 elements.
+      1+1+1+1=4
+      v v v v
+    2|3 4 5 6|
+    
+     1+1+1+1=4
+     v v v v
+    |2 3 4 5|6
 
-           v v v v
-    [a b c|d e f g|h i j]
-     0 1 2|3 4 5 6|7 8 9
+Finally, if both of the bounds are exclusive, then there are 3 elements in the range, given by U-L-1.
 
-             v v v v
-    [a b c d|e f g h|i j]
-     0 1 2 3|4 5 6 7|8 9
+      1+1+1=3
+      v v v
+    2|3 4 5|6
 
-Finally, if both 3 and 7 are inclusive, there are 5 elements.
+To summarise, here are all general versions of the formula:
 
-           v v v v v
-    [a b c|d e f g h|i j]
-     0 1 2|3 4 5 6 7|8 9
+    Both bounds exclusive:        #E = U - L - 1
+    One inclusive, one exclusive: #E = U - L
+    Both bounds inclusive:        #E = U - L + 1
+    (#E is number of elements in the range)
 
-If we look at the example closely and think hard for a moment, out pops...
-
-### The magic formula
-
-    Open:      #E = U - L - 1
-    Half-open: #E = U - L
-    Closed:    #E = U - L + 1
+Let's relate it back to the birthday example from the start of the post. If you want to include today and the day of your birthday in your count, then there are 22-8+1=15 days until your birthday. Including just today .
 
 ### Conclusion
 <!-- Fuck Shane! -->

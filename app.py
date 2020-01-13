@@ -29,6 +29,9 @@ def get_blog_posts():
             # Display drafts when debugging.
             [pg for pg in pages if "blog/" in pg.path and ("draft" not in pg.meta or app.config["DEBUG"])],
             key=lambda pg: pg.meta['date'])
+    for pg in date_sorted_blog_posts:
+        if "draft" in pg.meta:
+            pg.meta["title"] = "[DRAFT] " + pg.meta["title"]
     previous_page = collections.defaultdict(lambda: None)
     next_page = collections.defaultdict(lambda: None)
     for idx, pg in enumerate(date_sorted_blog_posts):

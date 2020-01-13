@@ -27,13 +27,13 @@
 <body>
     <header>
         <div data-nosnippet>
-        <div class="banner"><h1>kevingal.com</h1></div>
         {% set top_level_pages = [
             "home",
             "blog",
             "projects"
         ] %}
         <nav>
+        <img src="/static/img/favicon-16x16.png">
         {% for pg in top_level_pages: %}
             <a href="/{% if pg == "home" %}index{% else %}{{ pg }}{% endif %}.html" class="navlink"{% if pg == active_page %} id="active-page-navlink"{% endif %}>{{ pg }}</a>
         {% endfor %}
