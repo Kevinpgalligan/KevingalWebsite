@@ -21,7 +21,8 @@
 <div>
     <p>Pixel height/width in original (multiple pixels are averaged to form 1 pixel)<input id="block-size" type="number" value="3" autocomplete="off" min="1" onchange="drawPixelated()"/></p>
     <p>Pixel height/width in result <input id="new-block-size" type="number" value="3" autocomplete="off" min="1" onchange="drawPixelated()"/></p>
-    <p>Black & white <input id="black-n-white" type="checkbox" autocomplete="off" onchange="drawPixelated()" checked /></p>
+    <p>Black & white <input id="black-n-white" type="checkbox" autocomplete="off" onchange="drawPixelated()" /></p>
+    <p>Inverted b&w <input id="inverted-bw" type="checkbox" autocomplete="off" onchange="drawPixelated()" /></p>
     <p>Black/white threshold (0-255)
         <input id="lightness-threshold" type="range" min="0" max="255" autocomplete="off" value="128"
                oninput="updateSliderDisplay(this.value); drawPixelated()" />
@@ -30,6 +31,7 @@
 </div>
 <h5>Output</h5>
 <div>
+    <p>Resolution: <span id="outputResolution">0x0</span></p>
     <canvas id="output-img-display" width="0" height="0"></canvas>
 </div>
 

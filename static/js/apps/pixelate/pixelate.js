@@ -21,6 +21,7 @@ function drawPixelated() {
     var newBlockSize = parseInt(document.getElementById("new-block-size").value);
     var blackAndWhite = document.getElementById("black-n-white").checked;
     var lightnessThreshold = parseInt(document.getElementById("lightness-threshold").value);
+    var invertedBW = document.getElementById("inverted-bw").checked;
 
     var blockWidth = Math.ceil(imageData.width / blockSize);
     var blockHeight = Math.ceil(imageData.height / blockSize);
@@ -55,7 +56,12 @@ function drawPixelated() {
                 blockValues[3] = 255;
                 // Standard formula for estimating "luminance" or "brightness" of RGB.
                 var lightness = Math.round(0.2126*blockValues[0] + 0.7152*blockValues[1] + 0.0722*blockValues[2]);
-                var newVal = (lightness > lightnessThreshold) ? 255 : 0;
+                var newVal;
+                if (invertedBW) {
+                    newVal = (lightness > lightnessThreshold) ? 0 : 255;
+                } else {
+                    newVal = (lightness > lightnessThreshold) ? 255 : 0;
+                }
                 for (var blockValIndex = 0; blockValIndex < 3; blockValIndex++) {
                     blockValues[blockValIndex] = newVal;
                 }
@@ -71,6 +77,7 @@ function drawPixelated() {
         }
     }
     ctx.putImageData(pixelatedImg, 0, 0);
+    document.getElementById('outputResolution').innerHTML = outputWidth + "x" + outputHeight + " (" + (outputWidth * outputHeight) + " cells)";
 }
 
 function getPixel(img, i, j) {
