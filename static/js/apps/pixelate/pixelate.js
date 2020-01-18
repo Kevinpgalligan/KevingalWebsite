@@ -77,7 +77,7 @@ function drawPixelated() {
         }
     }
     ctx.putImageData(pixelatedImg, 0, 0);
-    document.getElementById('outputResolution').innerHTML = outputWidth + "x" + outputHeight + " (" + (outputWidth * outputHeight) + " cells)";
+    document.getElementById('outputResolution').innerHTML = outputWidth + "x" + outputHeight + " (" + (outputWidth * outputHeight) + " pixels)";
 }
 
 function getPixel(img, i, j) {
