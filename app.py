@@ -26,12 +26,8 @@ freezer = Freezer(app)
 @functools.lru_cache(maxsize=None)
 def get_blog_posts():
     date_sorted_blog_posts = sorted(
-            # Display drafts when debugging.
-            [pg for pg in pages if "blog/" in pg.path and ("draft" not in pg.meta or app.config["DEBUG"])],
+            [pg for pg in pages if "blog/" in pg.path and "draft" not in pg.meta],
             key=lambda pg: pg.meta['date'])
-    for pg in date_sorted_blog_posts:
-        if "draft" in pg.meta:
-            pg.meta["title"] = "[DRAFT] " + pg.meta["title"]
     previous_page = collections.defaultdict(lambda: None)
     next_page = collections.defaultdict(lambda: None)
     for idx, pg in enumerate(date_sorted_blog_posts):
@@ -66,6 +62,12 @@ def specific_app(name):
 def not_found():
     return render_template('404.html')
 
+@app.route('/blog/drafts.html')
+def draft_posts():
+    return render_template(
+        'blog/drafts.html',
+        draft_posts=[pg for pg in pages if "blog" in pg.path and "draft" in pg.meta])
+
 @app.route('/<path:path>.html')
 def blog_post(path):
     _, previous_page, next_page = get_blog_posts()
@@ -75,6 +77,10 @@ def blog_post(path):
         page=page,
         previous_page=previous_page[page],
         next_page=next_page[page])
+
+@freezer.register_generator
+def drafts():
+    yield "/blog/drafts.html"
 
 @freezer.register_generator
 def error_handlers():

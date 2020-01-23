@@ -12,25 +12,12 @@ header {
     font-size: 20px;
 }
 
-/*
-a.navlink:visited, a.navlink:link {
-    color: grey;
-    font-weight: bold;
-    text-decoration: none;
+/* Center elements. */
+.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-a.navlink:hover {
-    color: blue;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-a#active-page-navlink {
-    color: blue;
-    font-weight: bold;
-    text-decoration: underline;
-}
-*/
 
 nav, h1, h2, h3, h4, h5, h6 {
     font-family: 'Helvetica', sans-serif;
@@ -41,21 +28,14 @@ nav, h1, h2, h3, h4, h5, h6 {
     zoom: 1.0;
 }
 
+/* Make code elements look nicer. */
+code {
+    background-color: #fffbab;
+}
+
 div.codehilite {
     max-width: 800px;
     overflow-x: auto;
-}
-
-.previous-page-link {
-    float: left;
-    max-width: 40%;
-    padding-bottom: 20px;
-}
-
-.next-page-link {
-    float: right;
-    max-width: 40%;
-    padding-bottom: 20px;
 }
 
 /* Stuff relating to Emojipasta Generator. */

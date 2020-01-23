@@ -2,11 +2,11 @@ title: Finding Mona Lisa in the Game of Life
 date: 2020-01-19
 draft: yes
 
-TODO: 1) add results, 2) center images, 3) possibly scale images, 4) better highlighting for code HTML elements, 5) fix bug with previous/next, this article doesn't seem to have them.
-
 The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is like a 2d, grid-shaped petri dish. Each grid square in the dish is a cell that can be either alive or dead.
 
-![Evolution of Life for a number of states]({{ url_for('static', filename='img/mona-lisa-gol/some-life.gif') }})
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/some-life.gif') }}"
+     alt="Evolution of Life for a number of states."
+     class="centered">
 
 The petri dish changes state according to simple rules:
 
@@ -18,11 +18,15 @@ Picking out any cell in the above animation, you will observe that it lives or d
 
 Besides resulting in cool-looking patterns, it has been proven that the Game of Life ("Life" for short) can simulate anything that can be done by your computer, whether that's summing numbers or captioning images of cats. Not bad for a petri dish.
 
-!["Spaceship" pattern moving along in Life]({{ url_for('static', filename='img/mona-lisa-gol/spaceship.gif') }})
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/spaceship.gif') }}"
+     alt="Spaceship pattern moving along in Life"
+     class="centered">
 
 What does this have to do with Mona Lisa? It's easy to load a black & white picture as a Life state, where black pixels are live cells and white pixels are dead cells. Effectively, we can simulate a Life state that looks like Mona Lisa. The dark regions of the picture die off immediately due to overpopulation, leaving an outline, which then melts away further and leaves only hints of our precious Mona.
 
-![Evolution of Life with Mona Lisa picture as starting state]({{ url_for('static', filename='img/mona-lisa-gol/mona-start.gif') }})
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/mona-start.gif') }}"
+     alt="Evolution of Life with Mona Lisa picture as starting state"
+     class="centered">
 
 This looks kinda cool, but what if we want to find a Life state that eventually, after following the rules of Life for a few rounds, reaches a state that looks like Mona Lisa? This requires working backwards from the target picture, which turns out to be a **much** more difficult problem.
 
@@ -33,7 +37,9 @@ We call Life state A the "parent" of state B if A turns into B by following the 
 
 What we *can* do is construct a boolean equation that captures the conditions that any parent state of our target state must satisfy, then solve it to find a parent, if a parent exists.
 
-![Evolution of the Scream painting as a Life state]({{ url_for('static', filename='img/mona-lisa-gol/scream.gif') }})
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/scream.gif') }}"
+     alt="Evolution of the Scream painting as a Life state"
+     class="centered">
 
 (Side note: a boolean equation is an equation where the variables take on true / false values, and where the operators, instead of the pluses and minuses that we usually see, are replaced by boolean operators such as AND and OR. For example, the equation `sour AND (NOT sweet)` is solved by setting `sour=true` and `sweet=false`. [Read more here](https://en.wikipedia.org/wiki/Boolean_algebra)).
 
@@ -71,17 +77,23 @@ The first "but" is that, as we touched on in the previous section, *not all Life
 
 The second "but" is that, as the number of cells increases, so too does the difficulty of the problem. Trying to generate a SAT equation for ~1800 cells blew up my program by consuming the entire 1GB of memory that was available to it. The time to find the parent of a Life state also starts to become prohibitive with more than ~400 cells. [SAT problems](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem), after all, are in the NP-complete class of problems (which means that they are damn hard to solve with current methods).
 
-![Evolution of cloverleaf pattern]({{ url_for('static', filename='img/mona-lisa-gol/cloverleaf.gif') }})
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/cloverleaf.gif') }}"
+     alt="Evolution of cloverleaf pattern"
+     class="centered">
 
 To demonstrate this, below are the timings I got after finding the parent state (which we will refer to as "backsearch" from now on) of random Life states of varying sizes. My processor is a wimpy i3-8130U 2.20GHz.
 
-![Time for backsearch vs number of cells, seems to grow exponentially]({{ url_for('static', filename='img/mona-lisa-gol/cells-vs-backsearch-time.png') }})
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/cells-vs-backsearch-time.png') }}"
+     alt="Time for backsearch vs number of cells, seems to grow exponentially"
+     class="centered">
 
 As a result of these "buts", any pictures we use will have to be restricted in size to around 20x20 or less (<=400 cells). Beyond that, the problems are too difficult for my computer to handle, and are often impossible to solve.
 
 Here's the output of backsearch on a modest 13x11 sad face. It manages to find 2 previous states before landing in a Garden of Eden. Interestingly, there's no hint of the sad face in the first state, and not much more in the second state.
 
-![Life state becomes sad face, found using backsearch]({{ url_for('static', filename='img/mona-lisa-gol/sadface.gif') }})
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/sadface.gif') }}"
+     alt="Life state becomes sad face, found using backsearch"
+     class="centered">
 
 ### The results
 Mona Lisa.

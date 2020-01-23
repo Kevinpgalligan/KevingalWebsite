@@ -41,11 +41,15 @@ This approach seems reasonable, and if we run a test that checks whether the res
 
 However, this doesn't give us the full picture. Besides ensuring that R+G+B=3A, we also need to check that all of the possible RGB values are equally likely to appear, since the problem statement requires randomness. Graphing the frequency of the possible values, we see that this is not the case.
 
-![distribution of RGB values]({{ url_for('static', filename='img/rgb-average/rgb-value-distribution-broken.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/rgb-value-distribution-broken.png') }}"
+     alt="distribution of RGB values"
+     class="centered">
 
 (3,0,0) is the most likely value by far at ~25%. The pie chart below illustrates why this is the case.
 
-![bug visualisation pie chart]({{ url_for('static', filename='img/rgb-average/first-algo-bug-visualisation.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/first-algo-bug-visualisation.png') }}"
+     alt="bug visualisation pie chart"
+     class="centered">
 
 Our algorithm picks an R value from 0, 1, 2 and 3 with equal probability, so 25% of the probability pie is assigned to each possible R value. The quarter slices of pie are then further divided by the number of possible GBs that satisfy R+G+B=3A. For R=3, the only valid GB value is (0,0), and so the RGB value (3,0,0) ends up with a whole 25% slice of probability. For R=1, the possible GBs are (0,2), (2,0) and (1,1), so the 25% slice is divided between the RGB values of (1,0,2), (1,2,0) and (1,1,1), giving them each a probability of ~8.3%.
 
@@ -67,7 +71,9 @@ How do we calculate this for any 'r' and any 'A'? Let's consider the numerator a
 ### P(R=r): the numerator
 Here's the value of #{GB values that sum to 3A-r}:
 
-![numerator formula, min(3A-r, 255) - max(3A-r-255, 0) + 1]({{ url_for('static', filename='img/rgb-average/equation-1-numerator.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/equation-1-numerator.png') }}"
+     alt="numerator formula, min(3A-r, 255) - max(3A-r-255, 0) + 1"
+     class="centered">
 
 G and B can be any value in the interval \[max(3A-r-255, 0), min(3A-r, 255)\], so all we're doing is calculating the length of this interval. It's similar to what we did in the first algorithm.
 
@@ -76,7 +82,9 @@ To convince yourself that it's correct, consider the case where A=87, 3A=261 and
 ### P(R=r): the denominator
 The expression for #{RGB values that average to A} is below. It looks scary, but we'll explain each part in an intuitive manner.
 
-![denominator formula, binom(3A+3-1, 2) - 3 * binom(3A+3-1-256, 2) + 3 * binom(3A+3-1-2\*256, 2)]({{ url_for('static', filename='img/rgb-average/equation-2-denominator.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/equation-2-denominator.png') }}"
+     alt="denominator formula, binom(3A+3-1, 2) - 3 * binom(3A+3-1-256, 2) + 3 * binom(3A+3-1-2\*256, 2)"
+     class="centered">
 
 (Syntax note: () is the ["binomial coefficient" function](https://en.wikipedia.org/wiki/Binomial_coefficient), which can also be written as nCk: "the number of combinations of k things that you can choose from n things". For example, 10C2 is the number of possible pairs of socks you could make from 10 socks).
 
@@ -86,7 +94,9 @@ But why is "the number of ways that R, G and B can add up to 3A" the same as "th
 
 Let's consider an example where A=2, 3A=6. Imagine that we have the numbers 1-6 lined up with spaces between them. We have to put "partitions" in 2 of the spaces in order to divide 3A=6 between R, G and B, as seen below.
 
-![visualisation of partitioning of 3A]({{ url_for('static', filename='img/rgb-average/comb-explained-1.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/comb-explained-1.png') }}"
+     alt="visualisation of partitioning of 3A"
+     class="centered">
 
 Here, R=2, G=3 and B=1. We have 3A-1=5 spaces, and we have to insert partitions into 2 of them, which gives {3A-1}C{2} possible combinations.
 
@@ -94,11 +104,15 @@ HOWEVER, to complete the **first part** we also have to account for the case whe
 
 Here we see how to set G=0.
 
-![visualisation of partitioning of 3A, part 2]({{ url_for('static', filename='img/rgb-average/comb-explained-2.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/comb-explained-2.png') }}"
+     alt="visualisation of partitioning of 3A, part 2"
+     class="centered">
 
 And here, R=0 and B=0.
 
-![visualisation of partitioning of 3A, part 3]({{ url_for('static', filename='img/rgb-average/comb-explained-3.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/comb-explained-3.png') }}"
+     alt="visualisation of partitioning of 3A, part 3"
+     class="centered">
 
 To conclude: including the zero flags, we need 3A-1+3 spaces, of which we pick 2. And like that, we can make sense of the **first part** of the expression, **{3A-1+3}C{2}**.
 
@@ -106,13 +120,17 @@ We need the <font color="blue">second part</font> of the expression because, in 
 
 Here's an example where 3A=264. We set aside 256 numbers for R, then partition the remaining ones like we did before. If we "enabled" the R=0 flag, then the final value of R would just be 256.
 
-![partitioning of 3A when R>255]({{ url_for('static', filename='img/rgb-average/comb-explained-4-r-gt-255.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/comb-explained-4-r-gt-255.png') }}"
+     alt="partitioning of 3A when R>255"
+     class="centered">
 
 The <font color="red">final part</font> of the expression for #{RGB values that average to A} is needed because, in the <font color="blue">second part</font>, we double-subtracted the case where more than one of R, G and B are greater than 255, so we have to re-add them. First we subtracted combinations where R>255, which includes combinations where G>255. Then we subtracted combinations where G>255, which includes combinations where R>255. In the end we've double-subtracted the combinations where R>255 as well as G>255.
 
 In this example, A=173 and 3A=519. We set aside 256 numbers for R and 256 numbers for G, then partition the remaining 7 numbers between R, G & B like before.
 
-![partitioning of 3A when R>255 and G>255]({{ url_for('static', filename='img/rgb-average/comb-explained-5-rg-gt-255.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/comb-explained-5-rg-gt-255.png') }}"
+     alt="partitioning of 3A when R>255 and G>255"
+     class="centered">
 
 There are 3A+3-1-2\*256 spaces, of which we pick 2. There are <font color="red">{3A+3-1-2\*256}C{2}</font> ways to do this. Multiply by 3 because there are 3 different pairs of R, G & B that can both be >255, and out pops the <font color="red">final part</font>.
 
@@ -166,7 +184,9 @@ Here it is in Python code.
 
 Besides generating valid RGB values, all of the possible RGB values seem to have an equal probability of being generated (here, for A=245).
 
-![distribution of RGB values]({{ url_for('static', filename='img/rgb-average/rgb-value-distribution.png') }})
+<img src="{{ url_for('static', filename='img/rgb-average/rgb-value-distribution.png') }}"
+     alt="distribution of RGB values"
+     class="centered">
 
 ### Conclusion
 We've battled through the combinatorics and come out the other side with a working algorithm. An extension to the algorithm that might be interesting would be to make it work for the "general" case. That is, generate a random tuple V = (V1, V2, ..., Vn) such that the average (V1+...+Vn)/n is A, and where Bl <= Vi, A <= Bu. The combinatorics behind this would be similar to what we did above.

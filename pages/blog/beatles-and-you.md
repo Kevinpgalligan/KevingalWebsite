@@ -21,7 +21,9 @@ This incredibly unquantified statement brings two incredibly important questions
 
 This post will answer these questions.
 
-![Photo of Lennon & McCartney]({{ url_for('static', filename='img/lennon-mccartney-and-you/beatles-eyeshot.png') }})
+<img src="{{ url_for('static', filename='img/lennon-mccartney-and-you/beatles-eyeshot.png') }}"
+     alt="Photo of Lennon & McCartney"
+     class="centered">
 
 ### How many Lennon-McCartney songs are addressed to "you"?
 I wrote a [script](https://github.com/Kevinpgalligan/KevingalWebsite/blob/master/experiments/beatles-and-you/beatles-lyrics-scraper.py) to download the lyrics from the Beatles' ["core catalogue" studio albums](https://en.wikipedia.org/wiki/The_Beatles_discography#Studio_albums). Instrumental songs, cover songs and songs credited to Ringo Starr / George Harrison were removed manually. This left a total of 140 songs. A bit short of the full ~180 songs published by Lennon-McCartney, but it should be a representative sample.
