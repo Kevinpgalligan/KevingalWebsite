@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="{{ url_for('pygments_css') }}">
+    {%  block headerextras %}
+    {% endblock headerextras %}
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
     {% if img_thumbnail is defined %}
     <meta property="og:image" content="{{ url_for('static', filename=img_thumbnail) }}" />
@@ -23,7 +25,6 @@
     </script>
     {% endif %}
 </head>
-{% set active_page = active_page|default("home") %}
 <body>
     <header>
         <div data-nosnippet>
@@ -35,7 +36,7 @@
         <nav>
         <img src="/static/img/favicon-16x16.png">
         {% for pg in top_level_pages: %}
-            <a href="/{% if pg == "home" %}index{% else %}{{ pg }}{% endif %}.html" class="navlink"{% if pg == active_page %} id="active-page-navlink"{% endif %}>{{ pg }}</a>
+            <a href="/{% if pg == "home" %}index{% else %}{{ pg }}{% endif %}.html" class="navlink">{{ pg }}</a>
         {% endfor %}
         </nav>
         </div>

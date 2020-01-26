@@ -1,0 +1,18 @@
+#emojipastainput {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+#emojipastageneratebutton {
+    display: block;
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+#emojipastaoutput {
+    margin-top: 10px;
+}

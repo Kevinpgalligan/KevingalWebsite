@@ -1,0 +1,7 @@
+/* Stuff that might tamper with other pages on the
+   site in unexpected ways. */
+
+img {
+    max-width: 100%;
+    height: auto;
+}

@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% set active_page = "apps" %}
 {% block title %} Pixelate{% endblock title %}
 {% block content %}
 <script src="/static/js/apps/pixelate/pixelate.js"></script>
@@ -19,8 +18,8 @@
     <canvas id="input-img-display" width="0" height="0"></canvas>
 </div>
 <div>
-    <p>Pixel height/width in original (multiple pixels are averaged to form 1 pixel)<input id="block-size" type="number" value="3" autocomplete="off" min="1" onchange="drawPixelated()"/></p>
-    <p>Pixel height/width in result <input id="new-block-size" type="number" value="3" autocomplete="off" min="1" onchange="drawPixelated()"/></p>
+    <p>Pixel height/width in original (the input image is divided into blocks of this size, which are averaged to get the value of 1 pixel in the output image)<input id="block-size" type="number" value="3" autocomplete="off" min="1" onchange="drawPixelated()"/></p>
+    <p>Pixel height & width in result <input id="new-block-size" type="number" value="3" autocomplete="off" min="1" onchange="drawPixelated()"/></p>
     <p>Black & white <input id="black-n-white" type="checkbox" autocomplete="off" onchange="drawPixelated()" /></p>
     <p>Inverted b&w <input id="inverted-bw" type="checkbox" autocomplete="off" onchange="drawPixelated()" /></p>
     <p>Black/white threshold (0-255)

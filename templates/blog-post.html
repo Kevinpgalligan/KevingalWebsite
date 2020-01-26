@@ -1,6 +1,8 @@
 {% extends "base.html" %}
-{% set active_page = "blog" %}
 {% if page.imgthumbnail is defined %}{% set img_thumbnail = page.imgthumbnail %}{% endif %}
+{% block headerextras %}
+<link rel="stylesheet" href="/static/css/blog.css">
+{% endblock headerextras %}
 {% block title %} {{ page.title }} {% endblock title %}
 {% block content %}
 <h2>{{ page.title }}</h2>

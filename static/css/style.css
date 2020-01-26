@@ -23,6 +23,7 @@ nav, h1, h2, h3, h4, h5, h6 {
     font-family: 'Helvetica', sans-serif;
 }
 
+/* Making it a reasonable size on mobile. */
 @viewport {
     width: device-width;
     zoom: 1.0;
@@ -36,24 +37,4 @@ code {
 div.codehilite {
     max-width: 800px;
     overflow-x: auto;
-}
-
-/* Stuff relating to Emojipasta Generator. */
-#emojipastainput {
-    box-sizing: border-box;
-    width: 100%;
-    margin-bottom: 10px;
-    resize: none;
-}
-
-#emojipastageneratebutton {
-    display: block;
-    padding: 15px 30px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-#emojipastaoutput {
-    margin-top: 10px;
 }
