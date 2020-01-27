@@ -2,7 +2,7 @@ title: Finding Mona Lisa in the Game of Life
 date: 2020-01-19
 draft: yes
 
-The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is like a 2d, grid-shaped petri dish. Each grid square in the dish is a cell that can be either alive or dead.
+The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a 2d, grid-shaped petri dish. Each grid square in the dish is a cell that can be either alive or dead.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/some-life.gif') }}"
      alt="Evolution of Life for a number of states."
@@ -16,19 +16,19 @@ The petri dish changes state according to simple rules:
 
 Picking out any cell in the above animation, you will observe that it lives or dies according to these rules.
 
-Besides resulting in cool-looking patterns, it has been proven that the Game of Life ("Life" for short) can simulate anything that can be done by your computer, whether that's summing numbers or captioning images of cats. Not bad for a petri dish.
+Besides resulting in cool-looking patterns, it has been proven that the Game of Life ("Life" for short) can simulate anything that can be done by a computer, whether that's summing numbers or captioning images of cats. Not bad for a petri dish.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/spaceship.gif') }}"
      alt="Spaceship pattern moving along in Life"
      class="centered">
 
-What does this have to do with Mona Lisa? It's easy to load a black & white picture as a Life state, where black pixels are live cells and white pixels are dead cells. In other words, we can simulate Life that starts off looking like Mona Lisa. The dark regions of the picture die off immediately due to overpopulation, leaving an outline, which then melts away further and leaves only hints of the original shapes.
+What does this have to do with Mona Lisa? It's easy to load a black & white picture as a Life state, where black pixels are live cells and white pixels are dead cells. This allows us to simulate Life that looks like Mona Lisa. The dark regions die off immediately due to overpopulation, leaving an outline, which then melts away further and leaves only hints of the original picture.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/mona-start.gif') }}"
      alt="Evolution of Life with Mona Lisa picture as starting state"
      class="centered">
 
-This looks kinda cool, but what if we want to find a Life state that eventually, after following the rules of Life for a few rounds, reaches a state that looks like Mona Lisa? Like a slow reveal, or a way of hiding a secret message. This requires working backwards instead of forwards from the target picture, which turns out to be a **much** more difficult problem.
+This looks kinda cool, but what if we want to find a Life state that eventually, after following the rules of Life for a few rounds, reaches a state that looks like Mona Lisa? This requires working backwards instead of forwards from the target picture, which turns out to be a **much** more difficult problem.
 
 In this article, we're going to explore just how difficult this problem is, and how it can be attempted using what are known as "SAT solvers". We'll then look at animations of flowers, Steve Buscemi and other objects of interest that we can generate with the solution.
 
@@ -43,7 +43,7 @@ What we *can* do is construct a boolean equation that captures the conditions th
      alt="Evolution of the Scream painting as a Life state"
      class="centered">
 
-In the boolean equation that we construct, each variable corresponds to a cell and the value of the variable indicates the state of the cell. False means that the cell is dead, true means alive. If we find a set of cell states that satisfy the equation, i.e. cause it to evaluate to true, then a state with that configuration of cells is actually a parent of our target state.
+In the boolean equation that we construct, each variable corresponds to a cell and the value of the variable indicates the health of the cell. False means that the cell is dead, while true means that it's alive. If we find a set of cell states that cause the equation to evaluate to true, then a state with that configuration of cells is a parent of our target state.
 
 What will the equation look like? Let's consider a 3x3 Life grid as an example.
 
@@ -64,14 +64,20 @@ Keeping in mind that true means alive and false means dead, this can be translat
              OR ...repeat 82 more times for other valid neighbour states))
     OR
     (!b2 AND ((a1 AND a2 AND a3 AND !b1 AND !b3 AND !c1 AND !c2 AND !c3)
-                   OR ...repeat 55 more times for other valid neighbour states))
+              OR ...repeat 55 more times for other valid neighbour states))
 
-If we repeat this construction for every cell in the grid and chain them together using ANDs, we end up with an equation that we can solve to find a parent of the target state. And, as it happens, there are many "SAT-solving" programs that search for solutions to boolean equations. Once we have our equation, we ship it off to our SAT solver of choice and sit back, relaxedly sipping our lattes until it gets back to us with a result.
+If we repeat this construction for every cell in the grid and chain them together using ANDs, we end up with an equation that we can solve to find a parent of the target state. And, as it happens, there are many "SAT-solving" programs that search for solutions to boolean equations. Once we have our equation, we can ship it off to our SAT solver of choice and sit back, relaxedly sipping our lattes until it gets back to us with a result.
 
 ### Great, let's move on to the pretty pictures
 WAIT. While this is nice in theory, there are significant "buts".
 
-The first "but" is that, as we touched on in the previous section, *not all Life states have parents*. Such states are known as [Gardens of Eden](https://en.wikipedia.org/wiki/Garden_of_Eden_(cellular_automaton)). If our target picture happens to be a Garden of Eden in Life, then the SAT solver will definitely fail, no matter how good it is. And the larger a Life state, the more likely it is to be a Garden of Eden, because it has more sub-sections that can possibly be in impossible configurations.
+The first "but" is that, as we touched on in the previous section, *not all Life states have parents*. Such states are known as [Gardens of Eden](https://en.wikipedia.org/wiki/Garden_of_Eden_(cellular_automaton)). Here's an example of a Garden of Eden from Wikipedia. It doesn't have a parent, which means that it's impossible to reach this state by starting in any other 9x33 Life state.
+
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/garden-of-eden-example.png') }}"
+     alt="An example of a Garden of Eden"
+     class="centered">
+
+If our target picture happens to be a Garden of Eden in Life, then the SAT solver will definitely fail to find a parent, because no parent exists. And the larger a Life state, the more likely it is to be a Garden of Eden, because it has more sub-sections that can possibly be in impossible configurations.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/cloverleaf.gif') }}"
      alt="Evolution of cloverleaf pattern"
@@ -79,7 +85,7 @@ The first "but" is that, as we touched on in the previous section, *not all Life
 
 The second "but" is that, as the number of cells increases, so too does the difficulty of the problem. Trying to generate a SAT equation for ~1800 cells blew up my program by consuming the entire 1GB of memory that was available to it. The time to find the parent of a Life state also starts to become prohibitive with more than ~400 cells. [SAT problems](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem), after all, are in the NP-complete class of problems (which means that they are damn hard to solve with current methods).
 
-To demonstrate this, below are the timings I got after running backsearch of random Life states of varying sizes (backsearch being the process of finding a Life state's parent). For the record, my processor is a wimpy i3-8130U 2.20GHz.
+To demonstrate this, below are the timings I got after running backsearch on random Life states of varying sizes (backsearch being the process of finding a Life state's parent). For the record, my processor is a wimpy i3-8130U 2.20GHz.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/cells-vs-backsearch-time.png') }}"
      alt="Time for backsearch vs number of cells, seems to grow exponentially"
@@ -94,24 +100,28 @@ Here's the output of backsearch on a modest 13x11 sad face. It manages to find 2
      class="centered">
 
 ### The results
-The parent state of Mona Lisa's face is a Garden of Eden that doesn't bear any resemblance to the painting.
+This parent state of Mona Lisa's face is a Garden of Eden that doesn't bear any resemblance to the painting. There happens to be a spiral pattern radiating from the left side of her head.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/mona.gif') }}"
      alt="Life becomes Mona Lisa"
      class="centered">
 
-Marilyn Monroe, GIF HERE.
+Here's a flower. The parent state found by the SAT solver is, once again, a Garden of Eden, and doesn't contain much trace of the flower.
 
-A flower, GIF HERE.
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/flower.gif') }}"
+     alt="Life becomes a flower"
+     class="centered">
 
-A truck, GIF HERE.
+Marilyn Monroe.
 
-A hamster, GIF HERE.
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/marilyn.gif') }}"
+     alt="Life becomes Marilyn Monroe"
+     class="centered">
 
-Steve Buscemi, GIF HERE.
+More ideas: secret message ("fuck"), truck, hamster, Steve Buscemi
 
 ### Conclusions
-We have seen that it is possible to find parents of Game of Life states, although it's inherently difficult.
+We have seen that it is possible to find parents of Game of Life states, although it's difficult by nature. TODO comment on how we end up in Gardens of Eden a lot.
 
 A few possibilities come to mind for improving the solution:
 
