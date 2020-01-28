@@ -1,6 +1,6 @@
 title: Finding Mona Lisa in the Game of Life
-date: 2020-01-19
-draft: yes
+date: 2020-01-28
+imgthumbnail: img/mona-lisa-gol/thumbnail.png
 
 The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a 2d, grid-shaped petri dish. Each grid square in the dish is a cell that can be either alive or dead.
 
@@ -22,19 +22,19 @@ Besides resulting in cool-looking patterns, it has been proven that the Game of 
      alt="Spaceship pattern moving along in Life"
      class="centered">
 
-What does this have to do with Mona Lisa? It's easy to load a black & white picture as a Life state, where black pixels are live cells and white pixels are dead cells. This allows us to begin a Life simulation with a state that looks like Mona Lisa. The dark regions die off immediately due to overpopulation, leaving an outline, which then melts away further and leaves only hints of the original picture.
+What does this have to do with Mona Lisa? It's easy to load a black & white picture as a Life state, where black pixels are live cells and white pixels are dead cells. This allows us to run a Life simulation with a state that looks like Mona Lisa. The dark regions die off immediately due to overpopulation, leaving an outline, which then melts away further and leaves only hints of the original picture.
 
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/mona-start.gif') }}"
      alt="Evolution of Life with Mona Lisa picture as starting state"
      class="centered">
 
-This looks kinda cool, but what if we want to find a Life state that eventually, after following the rules of Life for a few rounds, reaches a state that looks like Mona Lisa? This requires working backwards instead of forwards from the target picture, which turns out to be a **much** more difficult problem.
+This looks kinda cool, but what if we want to find a Life state that eventually, after following the rules of Life for a few rounds, reaches a state that looks like Mona Lisa? This requires working backwards instead of forwards from the target picture, which is a **much** more difficult problem.
 
 In this article, we're going to explore just how difficult this problem is, and how it can be attempted using what are known as "SAT solvers". We'll then look at animations of flowers, Steve Buscemi, and other objects of interest that we can generate with the solution.
 
 ### Life, the Universe and SAT Solvers
-We call Life state A the "parent" of state B if A turns into B by following the rules of Life. The reason that it's difficult to find the parent of a state is that the rules of Life are non-reversible. There's no easy way to go from a Life state to its parent, and in fact, it's possible for a state to have multiple parents or even no parents.
+We call Life state A the "parent" of state B if A turns into B by following the rules of Life. The reason that it's difficult to find the parent of a state is that the rules of Life are non-reversible. There's no direct way to go from a Life state to its parent, and in fact, it's possible for a state to have multiple parents or even no parents.
 
 What we *can* do is construct a boolean equation that captures the conditions that any parent state of our target state must satisfy, then solve it to find a parent, if a parent exists.
 
@@ -44,7 +44,7 @@ What we *can* do is construct a boolean equation that captures the conditions th
      alt="Evolution of the Scream painting as a Life state"
      class="centered">
 
-In the boolean equation that we construct, each variable corresponds to a cell and the value of the variable indicates the health of the cell. False means that the cell is dead, while true means that it's alive. If we find a set of cell states that cause the equation to evaluate to true, then a state with that configuration of cells is a parent of our target state.
+In the boolean equation that we construct, each variable corresponds to a cell and the value of the variable indicates the health of the cell. False means that the cell is dead, while true means that it's alive. If we find a set of variable assignments that causes the equation to evaluate to true, then the corresponding Life state (with false/true variables corresponding to dead/live cells) is a parent of our target state.
 
 What will the equation look like? Let's consider a 3x3 Life grid as an example.
 
@@ -86,13 +86,13 @@ If our target picture happens to be a Garden of Eden in Life, then the SAT solve
 
 The second "but" is that, as the number of cells increases, so too does the difficulty of the problem. Trying to generate a SAT equation for ~1800 cells blew up my program by consuming the entire 1GB of memory that was available to it. The time taken to find the parent of a Life state also starts to become prohibitive with more than ~400 cells. [SAT problems](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem), after all, are in the NP-complete class of problems, which means that they are damn hard to solve with current methods.
 
-To demonstrate this, below are the timings I got after running backsearch on random Life states of varying sizes, backsearch being the process of finding a Life state's parent. For the record, my processor is a wimpy i3-8130U 2.20GHz.
+To demonstrate this, below are the timings I got after running backsearch on random Life states of varying sizes, backsearch being the process of finding a Life state's parent. This includes the time taken to generate the SAT encoding. For the record, my processor is a wimpy i3-8130U 2.20GHz.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/cells-vs-backsearch-time.png') }}"
      alt="Time for backsearch vs number of cells, seems to grow exponentially"
      class="centered">
 
-As a result of these "buts", any pictures we use in this article will be 20x20 or less (<=400 cells). Beyond that, the problems take a long time for my computer to handle, and are often impossible to solve.
+As a result of these "buts", any pictures we use in this article will be 20x20 or less (<=400 cells). Beyond that, the problems take a long time for my computer to solve, and there is often no solution.
 
 Here's the output of backsearch on a modest 13x11 sad face. It manages to find 2 previous states before landing in a Garden of Eden. Interestingly, there's no hint of the sad face in the first state, and not much more in the second state, although the live cells do seem to converge towards their final positions.
 
@@ -101,13 +101,13 @@ Here's the output of backsearch on a modest 13x11 sad face. It manages to find 2
      class="centered">
 
 ### The results
-We run backsearch on Mona Lisa's face and find a parent state. The parent that we find is a Garden of Eden and bears no resemblance to Mona Lisa. Next, we set up our Life simulation with the parent of Mona Lisa's face as the start state. After evaluating the rules of Life once, the start state transitions to Mona Lisa's face. Here's the result.
+Here's the result of running backsearch on Mona Lisa's face. The parent we find looks nothing like Mona Lisa. It's also a Garden of Eden, so we've run into a dead-end and can't backsearch any further.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/mona.gif') }}"
      alt="Life becomes Mona Lisa"
      class="centered">
 
-A flower. The parent state found by the SAT solver is, once again, a Garden of Eden. It contains a faint outline of the flower.
+More results, this time on a flower. The parent state found by the SAT solver is, once again, a Garden of Eden. It contains a faint outline of the flower.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/flower.gif') }}"
      alt="Life becomes a flower"
@@ -119,7 +119,7 @@ Marilyn Monroe and her Garden of Eden parent.
      alt="Life becomes Marilyn Monroe"
      class="centered">
 
-Steve Buscemi, whose black & white version looks like a pissed-off <a href="https://www.smbc-comics.com/">SMBC</a> character.
+Steve Buscemi, who looks like a pissed-off <a href="https://www.smbc-comics.com/">SMBC</a> character when in black and white.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/buscemi.gif') }}"
      alt="Life becomes Steve Buscemi"
@@ -131,30 +131,30 @@ Aaaaand a puppy.
      alt="Life becomes a puppy"
      class="centered">
 
-Unfortunately, besides the sad face, we only ever manage a single successful backsearch before running into a dead end.
+Unfortunately, besides the sad face, we only ever manage a single successful backsearch before running into a dead-end.
 
 ### Conclusions
-We have seen that it is possible to find parents of Game of Life states, although it's a difficult problem for computers to solve. We could speed up the search by encoding the problem in smaller boolean equations. One such encoding is described in The Art of Computer Programming, Volume 4, Fascicle 6. We could also swap out our SAT solver (MiniSAT) for a faster one. In particular, one that allows for parallel search would reduce the search time significantly on computers with multiple processors.
+It's possible to find parents of Game of Life states, although it's a difficult problem for computers to solve. We could possibly speed up the search by using a different SAT encoding of the problem. We could also replace MiniSAT with a different SAT solver.
 
-We have also seen that, with our current approach, the parents found by backsearch barely resemble the target picture and often turn out to be Gardens of Eden. To improve on this and find long chains of Life states that gradually turn into the target picture, we could try to search for multiple parent states and pick the one that a) most resembles the target picture, and b) has some property that's less common in Gardens of Eden (fewer or more clustered live cells, perhaps?).
+The parents found by our backsearch barely resemble the target picture and often turn out to be Gardens of Eden. To find longer chains of Life states that gradually turn into the target picture, we could identify multiple parent states and pick the one that a) most resembles the target picture, and b) has some property that's less common in Gardens of Eden (more clustered live cells, perhaps?).
 
-Finally, the Game of Life is just one of <a href="https://en.wikipedia.org/wiki/Cellular_automaton">many possible rulesets</a> that define the behaviour of petri dishes. It would be interesting to experiment with different rulesets and see if they're more amenable to our goal of evolving pictures.
+Finally, the Game of Life is just one of <a href="https://en.wikipedia.org/wiki/Cellular_automaton">many possible rulesets</a> that define the behaviour of petri dishes. It would be interesting to experiment with different rulesets and see if they're more amenable to the goal of gradually evolving chaos into a picture.
 
-Here's a parting gift. Run this Life state through a 19x19 <a href="https://www.dcode.fr/game-of-life">Life simulator</a> and see what happens.
+On that note, here's a parting gift. Run this Life state through a 19x19 <a href="https://www.dcode.fr/game-of-life">Life simulator</a> and see what happens.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/message.png') }}"
      alt="Secret message"
      class="centered">
 
 ### Technical details
-[Here's the code](https://github.com/Kevinpgalligan/MonaLisaGameOfLife) to run Life simulations, do backsearch and create GIFs. It's all in Common Lisp. The cl-sat library was used as a wrapper to call the MiniSat SAT solver, while the skippy library was used to create GIFs. Credit to the #lispgames IRC community for helping me with my silly questions about Common Lisp.
+[Here's the code](https://github.com/Kevinpgalligan/MonaLisaGameOfLife) to run Life simulations, do backsearch and create GIFs. It's all in Common Lisp. I've only tested it using the SBCL implementation of Common Lisp. The cl-sat library was used as a wrapper to call the MiniSat SAT solver, while the skippy library was used to create GIFs. Credit to the #lispgames IRC community for helping me with my silly questions.
 
 ### Further reading
 Some fun stuff I came across while researching this article.
 
 * My first idea was to use evolutionary algorithms for finding patterns in Life, but [this turned out to have been done already](https://pdfs.semanticscholar.org/ba77/59e4d871d09459e3751d110137a8434591f6.pdf) in a paper titled "Generating Interesting Patterns in Conway’s Game of Life Through a Genetic Algorithm" by Alfaro, Mendoza and Tice.
-* I then had the idea to look for specific patterns, such as pictures. I wasted a bunch of time on trying to do this using evolutionary algorithms until realising that the problem could be solved directly using SAT. And, as it happens, there is already backsearch software for Life [[1]](https://github.com/flopp/gol-sat)[[2]](https://www.conwaylife.com/forums/viewtopic.php?f=9&t=3247). It doesn't seem to have been 
-* Backwards solver #2 (from the previous point) mentions The Art of Computer Science, Volume 4, Fascicle 6 as a source of information and exercises on backsearch in Life. I haven't been able to get my hands on the full text.
+* I then had the idea to look for specific patterns, such as pictures. I wasted a bunch of time on trying to do this using evolutionary algorithms until realising that the problem could be solved directly using SAT. A brief search brings up multiple backsearch programs for Life [[1]](https://github.com/flopp/gol-sat)[[2]](https://www.conwaylife.com/forums/viewtopic.php?f=9&t=3247). They don't seem to have been applied to find pictures, however.
+* Backwards solver #2 (from the previous point) mentions The Art of Computer Science, Volume 4, Fascicle 6 as a source of information and exercises on backsearch in Life. In particular, it describes a more efficient SAT encoding. I haven't been able to get my hands on the full text, though.
 * A cool thing: [still life paintings in Life](https://codegolf.stackexchange.com/questions/38573/paint-a-still-life-or-a-moving-one-draw-an-image-in-the-game-of-life).
 * Another cool thing: [text & image generator in Life](http://tlrobinson.net/blog/2009/02/game-of-life-generator/).
 
