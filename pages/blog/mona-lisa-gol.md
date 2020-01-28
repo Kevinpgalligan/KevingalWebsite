@@ -85,7 +85,7 @@ The first "but" is that, as we touched on in the previous section, *not all Life
 If our target picture happens to be a Garden of Eden in Life, then the SAT solver will definitely fail to find a parent, because no parent will exist. And the larger a Life state, the more likely it is to be a Garden of Eden, because it has more sub-sections that can possibly be in impossible configurations.
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/starry-night.gif') }}"
-     alt="Evolution of Starry Night"
+     alt="Evolution of Starry Night as a Life state"
      class="centered">
 
 The second "but" is that, as the number of cells increases, so too does the difficulty of the problem. Trying to generate a SAT equation for ~1800 cells blew up my program by consuming the entire 1GB of memory that was available to it. The time taken to find the parent of a Life state also starts to become prohibitive with more than ~400 cells. [SAT problems](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem), after all, are in the NP-complete class of problems, which means that they are damn hard to solve with current methods.
@@ -163,7 +163,7 @@ Some fun stuff I came across while researching this article.
 * Another cool thing: [text & image generator in Life](http://tlrobinson.net/blog/2009/02/game-of-life-generator/).
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/venus.gif') }}"
-     alt="Life state becomes sad face, found using backsearch"
+     alt="Life state becomes the Birth of Venus"
      class="centered">
 
 
