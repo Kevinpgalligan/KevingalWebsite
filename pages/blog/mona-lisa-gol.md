@@ -162,6 +162,9 @@ Some fun stuff I came across while researching this article.
 * A cool thing: [still life paintings in Life](https://codegolf.stackexchange.com/questions/38573/paint-a-still-life-or-a-moving-one-draw-an-image-in-the-game-of-life).
 * Another cool thing: [text & image generator in Life](http://tlrobinson.net/blog/2009/02/game-of-life-generator/).
 
+### Discussion
+* [reddit](https://www.reddit.com/r/programming/comments/ev5nv2/finding_mona_lisa_in_the_game_of_life/)
+
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/venus.gif') }}"
      alt="Life state becomes the Birth of Venus"
      class="centered">
