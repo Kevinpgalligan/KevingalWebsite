@@ -69,6 +69,10 @@ Keeping in mind that true means alive and false means dead, this can be translat
 
 If we repeat this construction for every cell in the grid and chain them together using ANDs, we end up with an equation that we can solve to find a parent of the target state. And, as it happens, there are many "SAT-solving" programs that search for solutions to boolean equations. Once we have our equation, we can ship it off to our SAT solver of choice and sit back, relaxedly sipping our lattes until it gets back to us with a result.
 
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/girl-with-a-pearl-earring.gif') }}"
+     alt="Evolution of the Girl With a Pearl Earring painting as a Life state"
+     class="centered">
+
 ### Great, let's move on to the pretty pictures
 WAIT. While this is nice in theory, there are significant "buts".
 
@@ -80,8 +84,8 @@ The first "but" is that, as we touched on in the previous section, *not all Life
 
 If our target picture happens to be a Garden of Eden in Life, then the SAT solver will definitely fail to find a parent, because no parent will exist. And the larger a Life state, the more likely it is to be a Garden of Eden, because it has more sub-sections that can possibly be in impossible configurations.
 
-<img src="{{ url_for('static', filename='img/mona-lisa-gol/cloverleaf.gif') }}"
-     alt="Evolution of cloverleaf pattern"
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/starry-night.gif') }}"
+     alt="Evolution of Starry Night"
      class="centered">
 
 The second "but" is that, as the number of cells increases, so too does the difficulty of the problem. Trying to generate a SAT equation for ~1800 cells blew up my program by consuming the entire 1GB of memory that was available to it. The time taken to find the parent of a Life state also starts to become prohibitive with more than ~400 cells. [SAT problems](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem), after all, are in the NP-complete class of problems, which means that they are damn hard to solve with current methods.
@@ -158,4 +162,9 @@ Some fun stuff I came across while researching this article.
 * A cool thing: [still life paintings in Life](https://codegolf.stackexchange.com/questions/38573/paint-a-still-life-or-a-moving-one-draw-an-image-in-the-game-of-life).
 * Another cool thing: [text & image generator in Life](http://tlrobinson.net/blog/2009/02/game-of-life-generator/).
 
-<p class="tiny"><a href="{{ url_for('static', filename='img/mona-lisa-gol/message.gif') }}">spoiler</a></p>
+<img src="{{ url_for('static', filename='img/mona-lisa-gol/venus.gif') }}"
+     alt="Life state becomes sad face, found using backsearch"
+     class="centered">
+
+
+<p class="tiny"><a href="{{ url_for('static', filename='img/mona-lisa-gol/message.gif') }}">parting gift spoiler</a></p>
