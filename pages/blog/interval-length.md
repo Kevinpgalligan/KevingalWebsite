@@ -1,6 +1,5 @@
 title: "Counting the number of days until your birthday and why it's a useful programming trick"
 date: 2020-02-01
-draft: yes
 
 Spot quiz! See how many of these calculations you get right. No calculator necessary.
 
