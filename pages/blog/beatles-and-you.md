@@ -1,4 +1,4 @@
-title: Did The Beatles love "you"? A quantitative study
+title: Did the Beatles love "you"? A quantitative study
 date: 2019-10-14
 draft: yes
 
@@ -17,7 +17,7 @@ This refers to page 3 of the book *Help! 50 Songwriting, Recording and Career Ti
 This incredibly unquantified statement brings two incredibly important questions to mind.
 
 * Exactly how many Beatles songs refer to "you" in the first line?
-* Is there actually a correlation between chart success and the inclusion of "you" in the first line of a song, or is David Rowley blowing hot steam out of his orifices?
+* Is there actually a correlation between chart success and the inclusion of "you" in the first line of a song, or is the author of this book blowing hot steam out of his orifice?
 
 This post will answer these questions.
 
