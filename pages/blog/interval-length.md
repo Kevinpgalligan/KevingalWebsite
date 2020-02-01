@@ -50,7 +50,9 @@ Now, let's rephrase the problems from before in terms of intervals.
 
 We have all 3 types of interval here: open, half-open and closed. As such, we can generalise the little calculations we did so that they work for any interval. If you have an open interval `(L, U)`, then the number of elements is `U-L-1`. If you have a half-open interval `(L, U]` or `[L, U)`, then it's `U-L`. And finally, if you have a closed interval `[L, U]`, it's `U-L+1`. They're all the same formula, you just have to add 1 if both bounds are closed and subtract 1 if they're both open.
 
-That's it. I was going to make this into a whole big thing, but it's really that simple.
+This is the reason why programming interfaces use half-open bounds for ranges. In Python, for example, you say `mylist[L:L+N]` to copy the list items with indexes in the interval `[L, L+N)`. That's (L+N)-L=N elements. Much neater than having rogue +1s and -1s floating around the place.
+
+That's it. I was going to make this into a whole big thing, but it's really that simple. 
 
 <!-- Fuck Shane! -->
 
