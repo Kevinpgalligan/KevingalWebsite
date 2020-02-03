@@ -1,7 +1,8 @@
 import sys
 import collections
 import functools
-from flask import Flask, render_template, render_template_string, Markup
+import datetime
+from flask import Flask, render_template, render_template_string, Markup, Response
 from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
 
@@ -22,9 +23,14 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
 pages = FlatPages(app)
 freezer = Freezer(app)
 
+MAX_NUM_POSTS_IN_FEED = 5
+
 # Only calculate it once, otherwise it'll get crazy for large numbers of blog posts.
 @functools.lru_cache(maxsize=None)
 def get_blog_posts():
+    for page in pages:
+        date = page.meta["date"]
+        page.meta["date_rssified"] = date.strftime('%a, %d %b %Y %T')
     date_sorted_blog_posts = sorted(
             [pg for pg in pages if "blog/" in pg.path and "draft" not in pg.meta],
             key=lambda pg: pg.meta['date'])
@@ -89,6 +95,17 @@ def error_handlers():
 @app.route('/pygments.css')
 def pygments_css():
     return pygments_style_defs('tango'), 200, {'Content-Type': 'text/css'}
+
+@app.route("/feed.xml")
+def rss_feed():
+    date_sorted_blog_posts, _, _ = get_blog_posts()
+    date_sorted_blog_posts = date_sorted_blog_posts[:MAX_NUM_POSTS_IN_FEED]
+    return Response(
+        render_template(
+            "rss.xml",
+            blog_posts=date_sorted_blog_posts,
+            pub_date=date_sorted_blog_posts[0].meta["date_rssified"]),
+        mimetype="application/rss+xml")
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":

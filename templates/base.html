@@ -28,16 +28,11 @@
 <body>
     <header>
         <div data-nosnippet>
-        {% set top_level_pages = [
-            "home",
-            "blog",
-            "projects"
-        ] %}
         <nav>
-        <img src="/static/img/favicon-16x16.png">
-        {% for pg in top_level_pages: %}
-            <a href="/{% if pg == "home" %}index{% else %}{{ pg }}{% endif %}.html" class="navlink">{{ pg }}</a>
-        {% endfor %}
+        <a href="/index.html" class="navlink">home</a>
+        | <a href="/blog.html" class="navlink">blog</a>
+        | <a href="/projects.html" class="navlink">projects</a>
+        | <a href="/feed.xml"><img class="navbar-img" src="{{ url_for('static', filename='img/rss.png') }}"></a>
         </nav>
         </div>
     </header>

@@ -4,6 +4,24 @@ body {
     max-width: 800px;
 }
 
+a {
+    color: blue;
+}
+
+a:hover {
+    color: #2c7cc9;
+}
+
+.navbar-img {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.spaced-li {
+    margin-top: 10px;
+}
+
 header {
     text-align: center;
 }
