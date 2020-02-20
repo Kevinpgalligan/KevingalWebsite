@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
     <title>kevingal's blog.</title>
-    <link>https://kevingal.com</link>
+    <link>https://www.kevingal.com</link>
     <description>Blog posts by Kevin Galligan.</description>
     <pubDate>{{ pub_date }} GMT</pubDate>
     <lastBuildDate>{{ pub_date }} GMT</lastBuildDate>

@@ -9,9 +9,11 @@ TICKS_REQUIRED_TO_PUT_AWAY_BAG = 5
 
 RECTANGLE_SIZE = 20
 GAP_BETWEEN_RECTS = 6
-SCREEN_SIZE = (width, height) = (
+SPACE_FOR_BUTTON = 40
+BUTTON_SIZE = 0.8*SPACE_FOR_BUTTON
+SCREEN_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT) = (
     ROWS * (RECTANGLE_SIZE + GAP_BETWEEN_RECTS) + GAP_BETWEEN_RECTS,
-    (len(SEATS) + 1) * (RECTANGLE_SIZE + GAP_BETWEEN_RECTS) + GAP_BETWEEN_RECTS)
+    (len(SEATS) + 1) * (RECTANGLE_SIZE + GAP_BETWEEN_RECTS) + GAP_BETWEEN_RECTS + SPACE_FOR_BUTTON)
 BACKGROUND_COLOUR = (255, 255, 255)
 PASSENGER_COLOUR = (255, 0, 0)
 SEAT_COLOUR = (0, 0, 255)
@@ -125,17 +127,41 @@ class RectDrawer:
 def main():
     pygame.init()
     screen = pygame.display.set_mode(SCREEN_SIZE)
-    sim = Simulation([0])
-
+    # sim = Simulation([0, ROWS-1])
+    sim = Simulation([ROWS//4, ROWS//4*3])
+    
+    paused = True
     while True:
+        sim.render(screen)
+        if paused:
+            button = pygame.draw.polygon(
+                screen,
+                (0, 255, 0),
+                [(SCREEN_WIDTH//2, SCREEN_HEIGHT-0.1*SPACE_FOR_BUTTON),
+                 (SCREEN_WIDTH//2, SCREEN_HEIGHT-0.9*SPACE_FOR_BUTTON),
+                 (SCREEN_WIDTH//2+BUTTON_SIZE,
+                  SCREEN_HEIGHT-0.5*SPACE_FOR_BUTTON)],
+                0)
+        else:
+            button = pygame.draw.rect(
+                screen,
+                (255, 0, 0),
+                (SCREEN_WIDTH//2 - BUTTON_SIZE//2,
+                 SCREEN_HEIGHT-0.9*SPACE_FOR_BUTTON,
+                 BUTTON_SIZE,
+                 BUTTON_SIZE),
+                0)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 print(str(sim.tick_counter) + " ticks elapsed.")
                 sys.exit()
-        if not sim.finished():
+            if event.type == pygame.MOUSEBUTTONUP:
+                if button.collidepoint(pygame.mouse.get_pos()):
+                    paused = not paused
+        if not paused and not sim.finished():
             time.sleep(0.15)
             sim.tick()
-        sim.render(screen)
         pygame.display.flip()
 
 if __name__ == "__main__":
