@@ -9,3 +9,9 @@ img {
 video {
     max-width: 100%;
 }
+
+blockquote {
+    margin-left: 32px;
+    border-left: 4px solid #CCC;
+    padding-left: 8px;
+}
