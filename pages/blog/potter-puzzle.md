@@ -3,22 +3,22 @@ date: 2019-10-03
 
 There's a neat puzzle near the end of *Harry Potter and the Philosopher's Stone* (aka *Sorcerer's Stone*). Harry and Hermione enter a chamber, the entrances are blocked by magic fire, and only by decoding the following riddle will they be able to escape:
 
-      Danger lies before you, while safety lies behind,
-      Two of us will help you, whichever you would find,
-      One among us seven will let you move ahead,
-      Another will transport the drinker back instead,
-      Two among our number hold only nettle wine,
-      Three of us are killers, waiting hidden in line.
-      Choose, unless you wish to stay here for evermore,
-      To help you in your choice, we give you these clues four:
-      First, however slyly the poison tries to hide
-      You will always find some on nettle wine’s left side;
-      Second, different are those who stand at either end,
-      But if you would move onwards, neither is your friend;
-      Third, as you see clearly, all are different size,
-      Neither dwarf nor giant holds death in their insides;
-      Fourth, the second left and the second on the right
-      Are twins once you taste them, though different at first sight.
+> Danger lies before you, while safety lies behind,  
+> Two of us will help you, whichever you would find,  
+> One among us seven will let you move ahead,  
+> Another will transport the drinker back instead,  
+> Two among our number hold only nettle wine,  
+> Three of us are killers, waiting hidden in line.  
+> Choose, unless you wish to stay here for evermore,  
+> To help you in your choice, we give you these clues four:  
+> First, however slyly the poison tries to hide  
+> You will always find some on nettle wine’s left side;  
+> Second, different are those who stand at either end,  
+> But if you would move onwards, neither is your friend;  
+> Third, as you see clearly, all are different size,  
+> Neither dwarf nor giant holds death in their insides;  
+> Fourth, the second left and the second on the right  
+> Are twins once you taste them, though different at first sight.
 
 ![Some potions]({{ url_for('static', filename='img/potter-puzzle/some-potions.png') }})
 
@@ -66,7 +66,7 @@ And eventually, by continuing like this and discarding WIP solutions if they rea
 
 ![Solution of example]({{ url_for('static', filename='img/potter-puzzle/some-potions.png') }})
 
-Of course, we weren't guaranteed to find a solution. There might have been no solution, or multiple solutions (and having multiple solutions is equivalent to the puzzle being unsolvable because you can't tell which is the correct one).
+Of course, we weren't guaranteed to find a solution. There might have been no solution, or multiple solutions. Having multiple solutions is equivalent to the puzzle being unsolvable because you can't tell which is the correct one.
 
 Applying our algorithm to all puzzle versions gives us the following solutions. 8 versions of the puzzle are solvable, 8 have no solutions and 26 have multiple solutions.
 

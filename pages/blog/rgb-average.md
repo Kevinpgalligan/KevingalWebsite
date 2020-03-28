@@ -2,9 +2,9 @@ title: "Random RGB values that average to N; or, Pointlessness and Probability"
 date: 2019-11-22
 imgthumbnail: img/rgb-average/thumbnail.png
 
-On this episode of Problems That Don't Need to Be Solved, we have a doozy from r/computerscience.
+On this episode of Problems That Don't Need to Be Solved, we have [a doozy from r/computerscience](https://www.reddit.com/r/computerscience/comments/a1ea1s/create_program_to_generate_random_rgb_values_that/).
 
-> ["Generate a random RGB value where the average of R, G and B is A, A being an integer from 0-255."](https://www.reddit.com/r/computerscience/comments/a1ea1s/create_program_to_generate_random_rgb_values_that/)
+> Generate a random RGB value where the average of R, G and B is A, A being an integer from 0-255.
 
 In other words, we have to generate a random RGB value so that (R+G+B)/3=A, or equivalently, R+G+B=3A. We'll solve this problem using the Python programming language and learn some neat [combinatorics](https://en.wikipedia.org/wiki/Combinatorics) along the way.
 
@@ -60,7 +60,7 @@ Hence, before picking R at random, we have to calculate the probability of each 
 
 P(R=r) for some r is given by:
 
-> \#{GB values that sum to 3A-r} / #{RGB values that average to A}
+&nbsp;&nbsp;&nbsp;&nbsp;\#{GB values that sum to 3A-r} / #{RGB values that average to A}
 
 (Syntax note: \#{blah} here means "the number of blah", so \#{GB values that sum to 3A-r} is the same as saying "the number of GB values that sum to 3A-r").
 
