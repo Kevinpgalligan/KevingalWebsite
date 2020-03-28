@@ -1,5 +1,6 @@
 title: Did the Beatles love "you"?
-date: 2020-03-10
+date: 2020-03-28
+imgthumbnail: img/beatles-and-you/thumbnail.jpg
 draft: yes
 
 On page 3 of *Help! 50 Songwriting, Recording and Career Tips used by the Beatles*, author David Rowley suggests that songwriters should put the word "you" in the first line of their songs:
@@ -38,7 +39,7 @@ Lennon-McCartney loved "you", evidently, but can we show that this aspect of the
 
 To this end, I downloaded the songs in the weekly [Billboard Hot 100](https://en.wikipedia.org/wiki/Billboard_Hot_100) from the start of 1962 until the start of 1970 ([code](https://github.com/Kevinpgalligan/BeatlesAndYou/blob/master/chart_scrape.py)). That's the active period of the Beatles, roughly speaking, spanning 417 weeks and a total of 5681 unique songs in the charts. (Side note: this means that, each week, ~86% of the songs on the Billboard Hot 100 were actually repeats from previous weeks).
 
-I then gathered the lyrics of 5184 of those songs ([code](https://github.com/Kevinpgalligan/BeatlesAndYou/blob/master/chart_lyrics_scrape.py), [more code](https://github.com/Kevinpgalligan/BeatlesAndYou/blob/master/google_lyrics_scrape.py), [even more code](https://github.com/Kevinpgalligan/BeatlesAndYou/blob/master/general_lyrics_scrape.py)). That's 91.3% of the songs. The remainder were written by the Beatles, instrumental, or obscure enough that the lyrics were difficult to track down on the internet. Special mention goes to the song [Wipeout](https://www.youtube.com/watch?v=p13yZAjhU0M), by The Surfaris, which I almost removed from the dataset when I mistook its single line for a copyright notice: "Ah ha ha ha ha ha ha ha ha ha ha ha, wipe out".
+I then gathered the lyrics of 5184 (91.3%) of those songs ([code](https://github.com/Kevinpgalligan/BeatlesAndYou/blob/master/chart_lyrics_scrape.py), [more code](https://github.com/Kevinpgalligan/BeatlesAndYou/blob/master/google_lyrics_scrape.py), [even more code](https://github.com/Kevinpgalligan/BeatlesAndYou/blob/master/general_lyrics_scrape.py)). The remainder were written by the Beatles, instrumental, or obscure enough that the lyrics were difficult to track down on the internet. Special mention goes to the song [Wipeout](https://www.youtube.com/watch?v=p13yZAjhU0M), by The Surfaris, which I almost removed from the dataset when I mistook its single line for a copyright notice: "Ah ha ha ha ha ha ha ha ha ha ha ha, wipe out".
 
 Analysis of the lyrics reveals that Lennon-McCartney were not at all exceptional in their love of the second person perspective: **27%** of the songs contain "you" in the first line, while **88%** contain it somewhere in the lyrics.
 
@@ -60,9 +61,9 @@ Anyway, to finish our analysis, let's look at the distribution of success scores
      alt="box plot comparing success scores of songs containing you vs songs that don't; the distributions are similar but with the 'not you' songs having a slightly higher median / middle value."
      class="centered">
 
-The coloured boxes show the range of success scores you would be left with if you dropped the 25% least successful and 25% most successful songs. The orange line is the median or "middle" success score, which is a measure of the average. The "whiskers" extending from the boxes represent the full range of the success scores -- excluding the extreme values, which are represented by circles. Wipe Out sits triumphantly on top of the whole lot.
+The coloured boxes show the range of success scores you would be left with if you dropped the 25% least successful and 25% most successful songs. The orange line is the middle or "median" success score, which is a type of average. The "whiskers" extending from the boxes represent the full range of the success scores -- excluding the extreme values, which are represented by circles. Wipe Out sits triumphantly on top of the whole lot.
 
-Funnily enough, songs that don't contain "you" have a higher median success score by 13% (278 vs 316).
+As it turns out, songs that don't contain "you" have a higher median success score by 13% (278 vs 316).
 
 Here's the distribution of songs that contain "you" in the first line (n=1412) versus those that don't (n=3772).
 
