@@ -73,7 +73,7 @@ Here's the distribution of songs that contain "you" in the first line (n=1412) v
 Songs with "you" in the first line actually have a 9% higher median success score than those without (302 vs 276). It seems that there are a number of lower-scoring "you" songs that don't have "you" in the first line, which drag down the median of whichever category they're in.
 
 ### Conclusions
-We have seen that the second person perspective was overwhelmingly common in 60s song lyrics. More than Lennon-McCartney secret sauce, it was standard songwriting practice. Furthermore, our overanalysis hasn't shown use of "you" to have a correlation with chart success. Considering that it was used in almost 90% of chart songs, however, there has to be something of secret sauce about it. Chart-hitting 60s songwriters must have known what they were doing, right?
+We have seen that the second person perspective was overwhelmingly common in 60s song lyrics. More than Lennon-McCartney secret sauce, it was standard songwriting practice. Furthermore, our overanalysis hasn't shown the use of "you" to have a correlation with chart success. Considering that it was used in almost 90% of chart songs, however, there has to be something of secret sauce about it. Chart-hitting 60s songwriters must have known what they were doing, right?
 
 ...*right?*
 
