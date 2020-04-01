@@ -164,6 +164,7 @@ Some fun stuff I came across while researching this article.
 
 ### Discussion
 * [reddit](https://www.reddit.com/r/programming/comments/ev5nv2/finding_mona_lisa_in_the_game_of_life/)
+* [Hacker News](https://news.ycombinator.com/item?id=22552006)
 
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/venus.gif') }}"
      alt="Life state becomes the Birth of Venus"
