@@ -56,9 +56,9 @@ def blog():
         date_sorted_blog_posts=date_sorted_blog_posts,
         num_posts=len(date_sorted_blog_posts))
 
-@app.route('/projects.html')
-def projects():
-    return render_template('projects.html')
+@app.route('/apps.html')
+def apps():
+    return render_template('apps.html')
 
 @app.route('/apps/<name>.html')
 def specific_app(name):
