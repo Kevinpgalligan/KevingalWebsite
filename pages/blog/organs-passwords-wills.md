@@ -1,5 +1,6 @@
-title: "Organs, passwords and wills: sh*t to sort out before you die"
+title: "Organs, passwords and wills"
 date: 2019-12-17
+description: How to not leave behind a mess when you die.
 draft: yes
 
 You're going to die. Your dog is going to die. I'm going to die. We're all going to die. I feel like this is a fact that isn't repeated often enough. The blah blah people of blah have the right idea. They drape themselves with rotting meat as a constant reminder of their impending doom.

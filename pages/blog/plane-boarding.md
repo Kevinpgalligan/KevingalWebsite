@@ -1,5 +1,6 @@
 title: Simulating plane designs for faster boarding
 date: 2019-09-07
+description: Moving entrances closer to the middle could make plane boarding faster.
 
 In the process of boarding a plane, you find yourself standing behind a man so unwashed that you imagine seeing a cartoonish, green stink cloud emanating from his trenchcoat. In front of him, a crouched old woman struggles futilely to lift her humongous suitcases, each of which is large enough to fit her inside them, into the luggage rack. Behind you is a red-eyed, defeated mother, who clutches a baby that screeches like an untuned violin. You think to yourself: "there has to be a faster way to get through this hell". Then the baby vomits into your backpack.
 

@@ -1,7 +1,8 @@
 body {
-    background-color: white;
     font-family: 'Courier New', monospace;
     max-width: 800px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 a {
@@ -61,4 +62,8 @@ code {
 div.codehilite {
     max-width: 800px;
     overflow-x: auto;
+}
+
+.blog-post-description {
+    color: rgb(128, 128, 128);
 }

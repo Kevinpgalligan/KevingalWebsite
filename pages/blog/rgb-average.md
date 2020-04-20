@@ -1,5 +1,6 @@
 title: "Random RGB values that average to N; or, Pointlessness and Probability"
 date: 2019-11-22
+description: A simple-seeming problem is solved using tricky combinatorics.
 imgthumbnail: img/rgb-average/thumbnail.png
 
 On this episode of Problems That Don't Need to Be Solved, we have [a doozy from r/computerscience](https://www.reddit.com/r/computerscience/comments/a1ea1s/create_program_to_generate_random_rgb_values_that/).
