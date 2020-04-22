@@ -25,10 +25,10 @@ There's a neat puzzle near the end of *Harry Potter and the Philosopher's Stone*
 
 Put simply, they have to figure out which potions are in which bottles.
 
-In this post, we're going to solve all 42 possible versions of the puzzle via programming and create a diagram of the results (like the picture above, but much bigger).
+In this post, we're going to solve all 42 possible versions of the puzzle via programming and create a diagram of the results. A diagram like the picture above, but much bigger.
 
 ### Wait, why are there 42 versions?
-It's because the positions of the "giant" and "dwarf" potion bottles are not specified. There are 7 possible positions for the giant, and for each of those, there are 6 remaining positions for the dwarf, which gives `7 * 6 = 42`. There's no way to know which one J.K. Rowling had in mind when she wrote the puzzle, unless she retcons it through Twitter. Until that inevitable day, we could pick a random version and have a crack at it. But, there's no guarantee that it would be solvable, hence why we're performing the public service of solving all 42 versions (or proving them unsolvable).
+It's because the positions of the "giant" and "dwarf" potion bottles are not specified. There are 7 possible positions for the giant, and for each of those, there are 6 remaining positions for the dwarf, which gives `7 * 6 = 42`. There's no way to know which one J.K. Rowling had in mind when she wrote the puzzle, unless she retcons it through Twitter. We could pick a random version and have a crack at it, but there would be no guarantee that the version we picked would be solvable. That's why we're performing the public service of solving, or proving unsolvable, all 42 versions.
 
 ### JUST SOLVE IT
 First, here are the constraints of the puzzle, reworded in plainer terms:
@@ -43,11 +43,11 @@ How do we tackle it? Consider this version. Note that, as stated in the puzzle, 
 
 ![Example version]({{ url_for('static', filename='img/potter-puzzle/solve-1.png') }})
 
-Let's try using a dumb brute force search, i.e. taking the bottles one at a time and trying all of their possible contents.
+Let's take the bottles one at a time and try all of their possible contents. This is known as the brute-force approach.
 
-The first bottle, for example, can't contain the move-forward potion because of constraint #3 (see above). Neither can it contain a harmless potion, due to constraint #2 -- it would be impossible for there to be a poison potion to its left. That leaves us with a poison potion and the move-backward potion as possible contents. We try both of these.
+The first bottle, for example, can't contain the move-forward potion because of constraint #3 that we mentioned above. Neither can it contain a harmless potion, due to constraint #2 -- it would be impossible for there to be a poison potion to its left. That leaves us with a poison potion and the move-backward potion as possible contents. We try both of these.
 
-(Note: in the pictures that follow, green potions = poison, orange = harmless, blue = move-backward, purple = move-forward).
+Note: in the pictures that follow, green potions = poison, orange = harmless, blue = move-backward, purple = move-forward.
 
 ![Example with first potion filled in]({{ url_for('static', filename='img/potter-puzzle/solve-2.png') }})
 
@@ -91,10 +91,14 @@ I leave you with a quote I like from the book.
 
 > Hermione pointed at a rounded bottle at the right end of the line.
 
-Drats. This still leaves multiple candidates. Get retconning, J.K.
+Drats. This still leaves 4 candidates:
+
+![Canonical versions, which match the dialogue from the book]({{ url_for('static', filename='img/potter-puzzle/canonical.png') }})
+
+Get retconning, J.K.
 
 ### The code
-If you're curious about the code for solving the puzzles / drawing the diagram of solutions, see <a href="https://github.com/Kevinpgalligan/KevingalWebsite/blob/master/experiments/hp.py">HERE</a>.
+If you're curious about the code for solving the puzzles / drawing the diagram of solutions, see <a href="https://github.com/Kevinpgalligan/KevingalWebsite/blob/master/experiments/hp.py">here</a>.
 
 ### Discussion
 * [reddit](https://www.reddit.com/r/programming/comments/deauxe/solving_all_42_versions_of_the_harry_potter/)
