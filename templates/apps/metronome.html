@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Just a F*cking Metronome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<script>
+var go = false;
+var bpm = 100;
+var audio = new Audio("/static/sound/b.mp3");
+function change() {
+    go = !go;
+    if (go) {
+        updatePlayButton("■");
+        play();
+    } else {
+        updatePlayButton("►");
+    }
+}
+function updatePlayButton(text) {
+    document.getElementById("change").innerHTML = text;
+}
+function play() {
+    if (go) {
+        setTimeout(play, 60*1000/bpm);
+        audio.play();
+    }
+}
+function adjustBpm(d) {
+    if (bpm+d > 0) {
+        bpm += d;
+    }
+    document.getElementById("bpm").innerHTML = bpm;
+}
+</script>
+<style>
+
+</style>
+<button onclick="adjustBpm(-1);">-1</button><span id="bpm">100</span><button onclick="adjustBpm(1);">+1</button><br/>
+<button onclick="adjustBpm(-5);">-5</button><button id="change" onclick="change();">►</button><button onclick="adjustBpm(5);">+5</button><br/>
+<button onclick="adjustBpm(-25);">-25</button><button onclick="adjustBpm(25);">+25</button>
+<p><a href="/">home</a></p>
+<p>TODO: style, correctness, minify</p>
+</body>
+</html>

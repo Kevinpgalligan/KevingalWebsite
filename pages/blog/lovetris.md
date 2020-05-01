@@ -68,11 +68,17 @@ Results of unoptimised beam search with untuned parameters.
 
 Various things to improve! Cached states -- with a search depth of 6 and a beam width of 2, we examine 2^(6+1)=128 states. It turns out that about 90/128 (30%-ish) of the states we examine are duplicates. We're wasting effort by examining states that we've already seen. We can avoid this by keeping track of states and not visiting a state again if we've already seen it.
 
-Profiling (see appendix) / multi-threading to speed it up. Allows us to extend search depth / beam width.
+### Performance tuning
+Flame graph: https://github.com/40ants/cl-flamegraph
 
-And finally, tune parameters.
+Multi-threading
 
-BETTER RESULT!?
+Allows us to extend search depth / beam width.
+
+Finally, tuned heuristic parameters using EA.
+
+### Final results
+With tuned beam search.
 
 ### Monte Carlo Tree Search
 May or may not do this.

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block title %} kevingal/apps {% endblock title %}
 {% block content %}
-<h2>Tools</h2>
 <ul>
     <li class="spaced-li"><a href="{{ url_for("specific_app", name="emojipasta") }}">Emojipasta 🤖 Generator ️✨</a>: add word-relevant emojis to text.</li>
     <li class="spaced-li"><a href="{{ url_for("specific_app", name="pixelate") }}">Pixelate</a>: make images more pixely.</li>
     <img src="/static/img/pixelate/dog-before.png"><img src="/static/img/pixelate/dog-after.png"><img src="/static/img/pixelate/dog-after-bw.png">
+    <li class="spaced-li"><a href="{{ url_for("specific_app", name="metronome") }}">Just a F*cking Metronome</a>: a metronome in under 1KB.</li>
 </ul>
 
 {% endblock content %}
