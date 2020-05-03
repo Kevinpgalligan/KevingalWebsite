@@ -53,13 +53,11 @@ We have all 3 types of interval here: open, half-open and closed. As such, we ca
 
 This is the reason why programming interfaces use half-open bounds for ranges. In Python, for example, you say `mylist[L:L+N]` to copy the list items with indexes in the interval `[L, L+N)`. That's (L+N)-L=N elements. Much neater than having rogue +1s and -1s floating around the place.
 
-That's it. I was going to make this into a whole big thing, but it's really that simple. 
+That's it. I was going to make this into a whole big thing, but it's really that simple. I used to come up with small example cases and finger-count in order to figure out interval length. This way is less stressful on the ol' brain.
 
 <!-- Fuck Shane! -->
 
 ### Farewell to Fencepostia
-You should now be able to count the number of days until your birthday with full confidence, and perhaps more usefully, avoid annoying off-by-1 errors in your programming. I used to come up with small example cases of this problem and finger-count in order to figure it out. I didn't realise that there was a better way, and I never had it explained to me. If you search the internet for "subarray length", you'll come across scary topics like "finding the length of the largest subarray with contiguous elements". It doesn't seem to be written down anywhere. Maybe that's because it's obvious, but it wasn't for me.
-
-On that note, happy counting, and say hello to Aunt Catherine.
+You should now be able to count the number of days until your birthday with full confidence, and perhaps more usefully, avoid annoying off-by-1 errors in your programming. Happy counting, and say hello to Aunt Catherine.
 
 <small>\*From the over-used joke: "There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors."</small>

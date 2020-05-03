@@ -11,14 +11,18 @@ var audio = new Audio("/static/sound/b.mp3");
 function change() {
     go = !go;
     if (go) {
-        updatePlayButton("■");
+        updatePlayButton("■", "on");
         play();
     } else {
-        updatePlayButton("►");
+        updatePlayButton("►", "off");
     }
 }
-function updatePlayButton(text) {
-    document.getElementById("change").innerHTML = text;
+function g(id) {
+    return document.getElementById(id);
+}
+function updatePlayButton(text, cls) {
+    g("change").innerHTML = text;
+    g("change").className = cls;
 }
 function play() {
     if (go) {
@@ -27,19 +31,39 @@ function play() {
     }
 }
 function adjustBpm(d) {
-    if (bpm+d > 0) {
-        bpm += d;
+    if (bpm+d < 40 || bpm+d > 200) {
+        g("bpm").style.color = "red";
+        setTimeout(function () {
+            g("bpm").style.color = "black";
+        }, 200);
     }
-    document.getElementById("bpm").innerHTML = bpm;
+    bpm = Math.min(Math.max(40, bpm+d), 200);
+    g("bpm").innerHTML = bpm + " bpm";
 }
 </script>
 <style>
-
+div {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    max-width: 250px;
+}
+#bpm {
+    text-align: center;
+    padding: 5px;
+}
+.off {
+    background-color: #4CAF50;
+}
+.on {
+    background-color: red;
+}
 </style>
-<button onclick="adjustBpm(-1);">-1</button><span id="bpm">100</span><button onclick="adjustBpm(1);">+1</button><br/>
-<button onclick="adjustBpm(-5);">-5</button><button id="change" onclick="change();">►</button><button onclick="adjustBpm(5);">+5</button><br/>
+<div>
+<span id="bpm">100 bpm</span><button id="change" class="off" onclick="change();">►</button>
+<button onclick="adjustBpm(-1);">-1</button><button onclick="adjustBpm(1);">+1</button>
+<button onclick="adjustBpm(-5);">-5</button><button onclick="adjustBpm(5);">+5</button>
 <button onclick="adjustBpm(-25);">-25</button><button onclick="adjustBpm(25);">+25</button>
-<p><a href="/">home</a></p>
-<p>TODO: style, correctness, minify</p>
+</div>
+<p>Just a F*cking Metronome | <a href="/">kevingal.com</a></p>
 </body>
 </html>
