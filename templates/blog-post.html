@@ -10,11 +10,6 @@
 {{ page.html|safe }}
 <hr>
 <p><i>Post Date: {{ page.date }}</i></p>
+<p>For more, <a href="https://twitter.com/KevinGalligan2">follow me on Twitter</a> or subscribe to the <a href="/feed.xml">RSS feed</a>.</p>
 <a href="/blog.html">Back to blog</a>
-{% if previous_page %} <p>Previous article: <a href="{{ url_for("blog_post", path=previous_page.path) }}">{{ previous_page.title }}</a></p>
-{% else %} <p>No previous article.</p>
-{% endif %}
-{% if next_page %} <p>Next article: <a href="{{ url_for("blog_post", path=next_page.path) }}">{{ next_page.title }}</a></p>
-{% else %} <p>No next article.</p>
-{% endif %}
 {% endblock content %}

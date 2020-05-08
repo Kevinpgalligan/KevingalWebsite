@@ -29,10 +29,6 @@ Off-by-1 errors have been written about since before Jesus Christ. At the latest
 
 The good news is that there's a simple, easy-to-remember formula that applies to all of the above calculations. Once you've learned it, you'll never again suffer from this particular brand of off-by-1 horror. Nor will you miscount the number of days until Aunt Catherine's birthday.
 
-<img src="{{ url_for('static', filename='img/interval-length/aunt-catherine.jpg') }}"
-     alt="Angry Aunt Catherine."
-     class="centered">
-
 ### Give me the formula
 Let's reconsider all of the above problems as calculations of interval length.
 

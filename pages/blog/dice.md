@@ -1,10 +1,7 @@
-title: Are your dice fair?
+title: How to cheat at dice, and how to detect it (using statistics)
 date: 2020-04-16
-description: Testing a hypothesis on some dice I own.
+description: Hypothesis testing on dice.
 draft: yes
 
-While clearing out my room, I discovered an old wooden die. Since I had no use for it, and I was filling my brain with useless stuff like probability and statistics at the time, I decided to run a test on the die to see if it was fair. A "hypothesis" test, as they call it in statistics, which I knew nothing about.
-
-Picture of the die here.
-
+In a dark, smoke-filled basement, at a table surrounded by bearded giants with anchor tattoos on their cannonball arms. You'll get some funny looks if you pull out your fountain pen and start your data collection.
 
