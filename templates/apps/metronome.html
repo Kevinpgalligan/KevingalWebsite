@@ -2,71 +2,10 @@
 <head>
     <title>Just a F*cking Metronome</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/apps/metronome/m.css">
 </head>
 <body>
-<script>
-var go = false;
-var bpm = 100;
-function change() {
-    go = !go;
-    if (go) {
-        updatePlayButton("stop");
-        play();
-    } else {
-        updatePlayButton("play");
-    }
-}
-function schedule() {
-    setTimeout(play, 60*1000/bpm);
-}
-function play() {
-    if (go) {
-        schedule();
-        g("audio").play();
-    }
-}
-function g(id) {
-    return document.getElementById(id);
-}
-function updatePlayButton(s) {
-    g("change").innerHTML = s;
-    g("change").className = s;
-}
-function adjustBpm(d) {
-    if (bpm+d < 40 || bpm+d > 200) {
-        g("bpm").style.color = "red";
-        setTimeout(function () {
-            g("bpm").style.color = "black";
-        }, 200);
-    }
-    bpm = Math.min(Math.max(40, bpm+d), 200);
-    g("bpm").innerHTML = bpm + " bpm";
-}
-</script>
-<style>
-div {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    max-width: 150px;
-}
-#bpm {
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
-}
-.play {
-    background-color: #4CAF50;
-}
-.stop {
-    background-color: red;
-}
-button {
-    height: 50px;
-}
-</style>
-<audio id="audio">
-    <source src="/static/audio/b.mp3" type="audio/mpeg">
-</audio>
+<script src="/static/apps/metronome/a.js"></script>
 <div>
 <span id="bpm">100 bpm</span><button id="change" class="play" onclick="change();">play</button>
 <button onclick="adjustBpm(-1);">-1</button><button onclick="adjustBpm(1);">+1</button>

@@ -43,7 +43,7 @@ How do we tackle it? Consider this version. Note that, as stated in the puzzle, 
 
 ![Example version]({{ url_for('static', filename='img/potter-puzzle/solve-1.png') }})
 
-Let's take the bottles one at a time and try all of their possible contents. This is known as the brute-force approach.
+Let's take the bottles one at a time and try all of their possible contents. This approach is known as brute-force search.
 
 The first bottle, for example, can't contain the move-forward potion because of constraint #3 that we mentioned above. Neither can it contain a harmless potion, due to constraint #2 -- it would be impossible for there to be a poison potion to its left. That leaves us with a poison potion and the move-backward potion as possible contents. We try both of these.
 

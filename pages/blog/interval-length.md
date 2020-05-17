@@ -25,7 +25,7 @@ If you got all of them correct without finger-counting, without drops of nervous
 
 If not, then you've fallen victim to one of the 2 hard problems\* in computer science: the off-by-1 error.
 
-Off-by-1 errors have been written about since before Jesus Christ. At the latest, they were mentioned by [a Roman named Vitruvius](https://web.archive.org/web/20160305221341/http://www.dsm.fordham.edu/~moniot/Opinions/fencepost-error-history.shtml), who served in the army of Julius Caesar. He was talking about the number of fenceposts around a temple, but the principle is the same. The problem is old and wily, and you shouldn't feel bad if it caught you out.
+Off-by-1 errors have been written about since before Jesus Christ. At the latest, they were mentioned by [a Roman named Vitruvius](https://web.archive.org/web/20160305221341/http://www.dsm.fordham.edu/~moniot/Opinions/fencepost-error-history.shtml), who served in the army of Julius Caesar. He was talking about the number of fenceposts around a temple, but the principle is the same. The problem is old, and you shouldn't feel bad if it caught you out.
 
 The good news is that there's a simple, easy-to-remember formula that applies to all of the above calculations. Once you've learned it, you'll never again suffer from this particular brand of off-by-1 horror. Nor will you miscount the number of days until Aunt Catherine's birthday.
 
@@ -45,7 +45,9 @@ Now, let's rephrase the problems from before in terms of intervals.
 * Cabbages: the half-open interval `[2, 9)`, contains 7=9-2 elements.
 * Dystopia: the closed interval `[50, 60]`, contains 11=60-50+1 elements.
 
-We have all 3 types of interval here: open, half-open and closed. As such, we can generalise the little calculations we did so that they work for any interval. If you have an open interval `(L, U)`, then the number of elements is `U-L-1`. If you have a half-open interval `(L, U]` or `[L, U)`, then it's `U-L`. And finally, if you have a closed interval `[L, U]`, it's `U-L+1`. They're all the same formula, you just have to add 1 if both bounds are closed and subtract 1 if they're both open.
+We have all 3 types of interval here: open, half-open and closed. If you look closely, you'll notice a pattern in how we calculate the number of elements: subtract the lower bound from the upper bound, then add -1, 0 or +1 depending on the type of interval.
+
+Here it is more explicitly. If you have an open interval `(L, U)`, then the number of elements is `U-L-1`. If you have a half-open interval `(L, U]` or `[L, U)`, then it's `U-L`. And finally, if you have a closed interval `[L, U]`, it's `U-L+1`. They're all the same formula, you just have to add 1 if both bounds are closed and subtract 1 if they're both open.
 
 This is the reason why programming interfaces use half-open bounds for ranges. In Python, for example, you say `mylist[L:L+N]` to copy the list items with indexes in the interval `[L, L+N)`. That's (L+N)-L=N elements. Much neater than having rogue +1s and -1s floating around the place.
 

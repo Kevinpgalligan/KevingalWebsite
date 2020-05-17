@@ -10,7 +10,7 @@ On this episode of Problems That Don't Need to Be Solved, we have [a doozy from 
 In other words, we have to generate a random RGB value so that (R+G+B)/3=A, or equivalently, R+G+B=3A. We'll solve this problem using the Python programming language and learn some neat [combinatorics](https://en.wikipedia.org/wiki/Combinatorics) along the way.
 
 ### An attempt
-The first algorithm that might come to mind is to generate R, G and B one at a time, ensuring that we satisfy the constrants of the problem at each step. Being RGB, they have to be in the range 0-255. We must also ensure that it remains possible to satisfy R+G+B=3A. If we stay within these constraints, then we will always end up with a valid RGB value with an average of A, no matter what value A has. There's always at least one solution to R+G+B=3A, and that's the RGB value (A,A,A).
+The first algorithm that might come to mind is to generate R, G and B one at a time, ensuring that we satisfy the constrants of the problem at each step. Being RGB, they have to be in the range 0-255. We must also ensure that it remains possible to satisfy R+G+B=3A. If we stay within these constraints, then we will always end up with a valid RGB value with an average of A, no matter what value A has. Note that there's always at least one solution to R+G+B=3A, and that's the RGB value (A,A,A).
 
 Here's this simple algorithm in Python code.
 
@@ -125,7 +125,7 @@ Here's an example where 3A=264. We set aside 256 numbers for R, then partition t
      alt="partitioning of 3A when R>255"
      class="centered">
 
-The <font color="red">final part</font> of the expression for #{RGB values that average to A} is needed because, in the <font color="blue">second part</font>, we double-subtracted the case where more than one of R, G and B are greater than 255, so we have to re-add them. First we subtracted combinations where R>255, which includes combinations where G>255. Then we subtracted combinations where G>255, which includes combinations where R>255. In the end we've double-subtracted the combinations where R>255 as well as G>255.
+The <font color="red">final part</font> of the expression for #{RGB values that average to A} is needed because, in the <font color="blue">second part</font>, we double-subtracted the case where more than one of R, G and B are greater than 255, so we have to re-add them. First we subtracted combinations where R>255, which includes combinations where G>255. Then we subtracted combinations where G>255, which includes combinations where R>255. In the end, we've double-subtracted the combinations where R>255 as well as G>255.
 
 In this example, A=173 and 3A=519. We set aside 256 numbers for R and 256 numbers for G, then partition the remaining 7 numbers between R, G & B like before.
 
