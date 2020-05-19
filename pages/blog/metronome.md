@@ -1,22 +1,24 @@
-title: "Just a Fucking Metronome: an N-byte metronome app"
-date: 2020-05-01
-description: An ad-free, no-bullshit, human-friendly metronome web app.
+title: "A metronome web app in 971 bytes"
+date: 2020-05-19
+description: Making an Earth-sized metronome app.
 draft: yes
 
 You might have heard already, but we're in the middle of a pandemic.
 
 A [website obesity pandemic](https://idlewords.com/talks/website_obesity.htm).
 
-The weight of the average website in 2017 was 3MB [[1]](https://discuss.httparchive.org/t/tracking-page-weight-over-time/1049/2). That's 3.5 times the size of a copy of The Brothers Karamazov [[2]](http://www.gutenberg.org/ebooks/28054). Often, less than 1% of the weight is actual content. Most of the weight comes from ads and uncompressed, [Taft test](https://tafttest.com/)-failing images. This gets worse every year, making the web slower and less accessible for everyone.
+The weight of the average website in 2017 was 3MB [[1]](https://discuss.httparchive.org/t/tracking-page-weight-over-time/1049/2). That's 3.5 times the size of an e-book copy of The Brothers Karamazov [[2]](http://www.gutenberg.org/ebooks/28054). Most of this weight comes from ads, JavaScript bloat and uncompressed, [Taft test](https://tafttest.com/)-failing images. This gets worse every year, making the web slower and less accessible for everyone.
 
-Recently, with this glum state of affairs on the back of my mind, I was searching for a metronome web app. A metronome, by the way, is a tool that emits sound at fixed intervals, allowing you to practice playing music to a regular beat. I didn't like any of them. Either they were extremely overweight (as large as 11.35MB), or they were mobile-unfriendly (it's annoying to set numeric values precisely using a slider, like the "beats per minute" (BPM) of a metronome), or they were full of trackers (hi Google and Facebook!).
+Recently, with this glum state of affairs at the back of my mind, I found myself in need of a metronome web app. A metronome, if you didn't know, is a tool that ticks at regular intervals. It's a music thing.
 
-And so, I decided to make my own. Mobile-friendliness would be essential. I also wanted to design the interface without sliders, because *fuck sliders*. Finally, to add spice to the task, I wanted to make the app less than 1KB in size. The smallest metronome app I found was 217KB, but since people make [1KB JavaScript games for fun](https://js1k.com/), I was confident that this would be possible.
+I didn't like any of the apps I found. They were extremely overweight (as large as 11.35MB), mobile-unfriendly (I don't think I need to describe the horror of trying to set a precise numeric value with a slider), and full of trackers (hi Google!).
 
-### Human-readable version (N KB)
-The final app can be found <a href="{{ url_for("specific_app", name="metronome") }}">here</a>. I'll first present the human-readable version, which is quite a bit larger than the minified version.
+And so, I decided to make my own. It would be mobile-friendly and slider-free. To add spice to the task, it would also be less than 1KB in size. Relative to the 217KB bulk of the smallest metronome app I could find, 1KB seemed tight. But since people make [1KB JavaScript games for fun](https://js1k.com/), I was confident that it would be possible.
 
-The HTML is simple, consisting of just a play button and a few buttons to change the BPM of the metronome. It weighs in at 777 bytes.
+### Human-readable version
+The final app, in its beautiful ugliness, can be found <a href="{{ url_for("specific_app", name="metronome") }}">here</a>. I'll first present the human-readable version of the source, which is quite a bit larger than 1KB.
+
+The HTML is simple, consisting of just a play button and a few buttons to change the BPM (beats per minute) of the metronome. It weighs in at 777 bytes.
 
     :::html
     <html>
@@ -42,7 +44,7 @@ The HTML is simple, consisting of just a play button and a few buttons to change
     </body>
     </html>
 
-The CSS is similarly light-weight, at 266 bytes. It includes some luxurious styling options, like colouring the play button red or green.
+The CSS is similarly light-weight, at 266 bytes. It includes some extravagant styling options, like colour for the play button, which I had to tear out later in order to get the size down.
 
     :::css
     div {
@@ -65,7 +67,7 @@ The CSS is similarly light-weight, at 266 bytes. It includes some luxurious styl
         height: 50px;
     }
 
-Finally, the JavaScript, which weighs in at a chunky 1573 bytes. In the main thread, when the user starts the metronome, it kicks off a scheduling function that runs every 25 milliseconds. The scheduling function calls the WebAudio interface to scheule any beeps that are due to play in the next 100 milliseconds. WebAudio then plays the beeps in a separate thread. If we played the audio directly in the main thread (which is what I tried before reading [this excellent article](https://www.html5rocks.com/en/tutorials/audio/scheduling/)), then there would be unacceptable delays in sound whenever we lost control to the browser's UI and book-keeping functions.
+Finally, the JavaScript, which weighs in at a chunky 1573 bytes. When the user starts the metronome, it kicks off a scheduling function in the main thread that runs every 25 milliseconds. The scheduling function calls the WebAudio interface to scheule any beeps that are due to play in the next 100 milliseconds. WebAudio then plays the beeps in a separate thread. If we played the audio directly in the main thread, which is what I tried before [finding enlightenment](https://www.html5rocks.com/en/tutorials/audio/scheduling/), then there would be unacceptable delays in sound whenever we lost control of the main thread to the browser's UI and book-keeping functions.
 
     :::javascript
     var play = false;
@@ -117,13 +119,12 @@ Finally, the JavaScript, which weighs in at a chunky 1573 bytes. In the main thr
             updatePlayButton("play");
         }
     }
-    function g(id) {
-        return document.getElementById(id);
-    }
+
     function updatePlayButton(s) {
         g("change").innerHTML = s;
         g("change").className = s;
     }
+
     function adjustBpm(d) {
         if (bpm+d < 20 || bpm+d > 240) {
             g("bpm").style.color = "red";
@@ -135,23 +136,69 @@ Finally, the JavaScript, which weighs in at a chunky 1573 bytes. In the main thr
         g("bpm").innerHTML = bpm + " bpm";
     }
 
-### Minified version (976 bytes)
-To shrink the waistline of the website below the target 1KB, I employed a few strategies:
+    function g(id) {
+        return document.getElementById(id);
+    }
 
-* Removing unnecessary HTML. Described [here](https://blog.notryan.com/013.txt), for example. Highlights: tag attributes not needing quotes if the attribute value doesn't contain spaces, making `<p id=x>` the same as `<p id="x">`; and being able to omit \<html\>, \<head\> and \<body\> tags.
-* Making IDs, variable names, function names etc. as small as possible.
+In total, this added up to **2616 bytes**, or 260% of the target size. It took quite a bit of effort to slim this down.
 
-After going through all that, I was left with a 1-line, 976-byte file. It was more space efficient to include the CSS and JavaScript inline. Other dirty tricks worth mentioning: using JS to generate the buttons...what else? Removed unnecessary stuff. Extravagant use of colour.
-
-How to make the 1-liner wrap?
+### Minified version
+Here's the minified version, which weighs **971 bytes**. That's about 3.5 tweets.
 
     :::html
-    <!DOCTYPE html><title>Metronome ⌛</title><meta name=viewport content=width=device-width><style>body{display:grid;grid-template-columns:50%50%;max-width:150px}#b,button{text-align:center;line-height:50px}</style><script>p=!1,b=100,i=.025,l=.1,n=0,M=Math,D=document,x=new AudioContext,H=((e,n)=>e.innerHTML=n),h=((e,n)=>H(D.getElementById(e),n)),s=(()=>{for(;n<x.currentTime+l;)o=x.createOscillator(),v=x.createGain(),o.connect(v),v.connect(x.destination),o.frequency.value=200,o.start(n),o.stop(n+.1),G=v.gain,G.setValueAtTime(.01,0),G.exponentialRampToValueAtTime(1,n,n+.05),G.linearRampToValueAtTime(0,n+.1),n+=60/b}),r=(()=>p&&(s(),setTimeout(r,i))),c=(()=>{p=!p,p?(h("c","stop"),n=x.currentTime,r()):h("c","play")}),a=(e=>h("b",b=M.min(M.max(20,b+e),240))),window.onload=(()=>[-1,1,-5,5,-25,25].forEach(n=>(e=D.createElement("button"),e.addEventListener("click",()=>a(n)),H(e,""+n),D.body.appendChild(e))));</script><p id=b>100</p><button id=c onclick=c();>play</button>
+    <!DOCTYPE html><title>Metronome</title><meta name=viewport content=width=device-width>
+    <style>body{display:grid;grid-template-columns:50%50%;max-width:150px}#b,button{
+    text-align:center;line-height:50px}</style><script>p=!1,b=100,i=.025,l=.1,n=0,
+    M=Math,D=document,x=new AudioContext,H=((e,n)=>e.innerHTML=n),h=((e,n)=>H(
+    D.getElementById(e),n)),s=(()=>{for(;n<x.currentTime+l;)o=x.createOscillator(),
+    v=x.createGain(),o.connect(v),v.connect(x.destination),o.frequency.value=200,o.start(n),
+    o.stop(n+.1),G=v.gain,G.setValueAtTime(.01,0),G.exponentialRampToValueAtTime(1,n,n+.05),
+    G.linearRampToValueAtTime(0,n+.1),n+=60/b}),r=(()=>p&&(s(),setTimeout(r,i))),
+    c=(()=>{p=!p,p?(h("c","stop"),n=x.currentTime,r()):h("c","play")}),a=(e=>h("b",
+    b=M.min(M.max(20,b+e),240))),window.onload=(()=>[-1,1,-5,5,-25,25].forEach(n=>
+    (e=D.createElement("button"),e.addEventListener("click",()=>a(n)),H(e,""+n),
+    D.body.appendChild(e))));</script><p id=b>100</p><button id=c onclick=c();>play</button>
 
+To shrink the waistline of the website below the target 1KB, I employed many dirty tricks:
 
-Golfing: https://dev.to/emnudge/js-code-golfing-how-to-ruin-everyone-s-day-40h3
+* Removing all content and style unrelated to the functionality of the metronome. No more pretty colours or descriptive text.
+* Removing unnecessary HTML. Some tips described [here](https://blog.notryan.com/013.txt), for example. My favourite bits: 1) attributes don't need quotes if the value doesn't contain spaces, making `<p id=x>` the same as `<p id="x">`; and 2) if you omit &lt;html&gt;, &lt;head&gt; and &lt;body&gt; tags, they'll be generated by the browser.
+* Applying various [JavaScript golf techniques](https://dev.to/emnudge/js-code-golfing-how-to-ruin-everyone-s-day-40h3), such as replacing all regular functions with arrow functions, replacing local variables with global ones, and reducing names to 1 letter.
+* Running the HTML, CSS and JavaScript through minifiers to remove whitespace. The [JavaScript one](https://javascript-minifier.com/) in particular introduced some nice tricks, like replacing `false` with `!1`.
+* Dynamically generating the BPM-changing buttons on page load, saving about 50 bytes. Here's the snippet: `window.onload=(()=>[-1,1,-5,5,-25,25].forEach(n=>(e=D.createElement("button"),e.addEventListener("click",()=>a(n)),H(e,""+n),D.body.appendChild(e))));`.
 
-Minifier: https://javascript-minifier.com/
+Functionally, it's exactly the same as before.
 
 ### Comparison
-5.18MB, 11.35MB, 546.96KB, 374.94KB, 591.47KB, 217.56KB, 3.87MB
+Here's a size comparison of my metronome versus the top 7 metronomes (labelled A-G) that come up when you search "metronome online" with {Insert Evil Search Engine Here}. Note that the scale on the y-axis is logarithmic, so it goes from 1 to 10 to 100 to 1000, and so on. If it weren't logarithmic, then my metronome's bar would be microscopically tiny. Metronome A is 11.35MB (around 10<sup>8</sup> bytes), metronome G is 217.56KB (10<sup>6</sup>), and my metronome is 971 bytes (10<sup>3</sup>).
+
+<img src="{{ url_for('static', filename='img/metronome/size.png') }}"
+     alt="Bar chart comparing sizes of various metronome apps to mine."
+     class="centered">
+
+Yes, folks, you heard it here first: mine is smaller. To get a sense for just how much smaller, consider this depiction of Earth beside Jupiter (source: https://theplanets.org/jupiter/):
+
+<img src="{{ url_for('static', filename='img/metronome/planets.jpg') }}"
+     alt="todo"
+     class="centered">
+
+[I quote](https://www.universetoday.com/37124/volume-of-the-planets/):
+
+> The largest planet in our Solar System, Jupiter’s size is astounding. Jupiter has a volume of 1.43 x 1015 cubic kilometers. To show what this number means, you could fit 1321 Earths inside of Jupiter. It is hard to imagine how large that actually is.
+
+If you imagine my metronome app as Earth, then Metronome A has the volume of **8 Jupiters**. It is hard to imagine how large that actually is. Or what it could possibly be doing with all of that volume, since none of the larger metronomes offer any functionality beyond ticking at regular intervals. Although, admittedly, they're much prettier.
+
+### Final thoughts
+Based on my experiences, I would like to propose the First Law of Slim Websites:
+
+> The size of a webpage should be proportional to its functionality.
+
+That's it. There's no Second Law.
+
+I'm not suggesting that everyone becomes a masochistic and tries to squeeze their website into the smallest possible size. While fun, it takes a lot of effort and tends to look like shit. Just make your websites Earth-sized, please. Or even Neptune-sized. Not everyone can afford to download 8 Jupiters.
+
+**P.S.:** You may have noticed that the human-readable version of the metronome was titled "Just a F\*cking Metronome". I removed this title for reasons of size and public decency. However, my hope is that it inspires an entire suite of bloat-free software, such as:
+
+* Just a F\*cking Guitar Tuner.
+* Just a F\*cking Mortgage Calculator.
+* Just a F\*cking Notes App.

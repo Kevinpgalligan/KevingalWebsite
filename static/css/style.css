@@ -62,6 +62,7 @@ code {
 div.codehilite {
     max-width: 800px;
     overflow-x: auto;
+    padding-left: 5px;
 }
 
 .blog-post-description {
