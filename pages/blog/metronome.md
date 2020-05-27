@@ -1,21 +1,38 @@
-title: "A metronome web app in 971 bytes"
+title: "The fat web meets a 971-byte metronome"
 date: 2020-05-19
 description: Making an Earth-sized metronome app.
 draft: yes
+Sources:
 
 You might have heard already, but we're in the middle of a pandemic.
 
 A [website obesity pandemic](https://idlewords.com/talks/website_obesity.htm).
 
-The weight of the average website in 2017 was 3MB [[1]](https://discuss.httparchive.org/t/tracking-page-weight-over-time/1049/2). That's 3.5 times the size of an e-book copy of The Brothers Karamazov [[2]](http://www.gutenberg.org/ebooks/28054). Most of this weight comes from ads, JavaScript bloat and uncompressed, [Taft test](https://tafttest.com/)-failing images. This gets worse every year, making the web slower and less accessible for everyone.
+The median webpage size in 2020 is 2MB<sup>[1](https://httparchive.org/reports/state-of-the-web)</sup>. That's almost 1000 times larger than the [first ever website](http://info.cern.ch/hypertext/WWW/TheProject.html), which was published by Tim Berners-Lee in 1991 and which consisted of 2.4 kilobytes (KB) of pure HTML.
 
+In this article, we'll explore just how big the typical webpage has become. Frustrated by the inaccessibility and bloatedness of a selection of metronome apps, I was driven to create my own. For fun, I made it in less than 1KB. So I'll present that too and compare it to the metronome apps I found on the web.
+
+
+### The obese web
+According to the HTTP Archive<sup>[2](https://httparchive.org/reports/page-weight)</sup>, the average webpage now includes on top of that 2.4KB an extra 23KB of HTML. Something something understandable.
+
+On top of that extra HTML, typically, you see 980KB of images. Said images may or may not pass the [Taft Test](https://tafttest.com/), a sanity check that tests whether the aesthetic of a webpage would be improved by replacing all of its images with pictures of William Howard Taft, the most voluminous ever president of the U.S.
+
+You then have 450KB of JavaScript. To get an idea of how much code that is, assume that each line consists of 50 characters, and that you can write 200 lines of code per day. It would then take you 45 days to write all of that JavaScript. Considering how much dynamic functionality is actually necessary to use the typical web page - which appears to be just text and possibly a few images - this seems *preposterous*. We can only account for this fat through ads, tracking, and bloat that has been dragged in from the JavaScript ecosystem<sup>[3](missing link)</sup>.
+
+Finally, you have 1392KB of video. TODO figure out if this includes stuff like YouTube videos. And clarify why the figures don't add up (450+980+1392>2000), or rephrase such that this clarification isn't necessary.
+
+### So what? Computers are faster now
+This might not seem like a big deal, BUT Mauritania. Look at this shit: <https://whatdoesmysitecost.com/#gniCost>
+
+### Making an Earth-sized metronome
 Recently, with this glum state of affairs at the back of my mind, I found myself in need of a metronome web app. A metronome, if you didn't know, is a tool that ticks at regular intervals. It's a music thing.
 
-I didn't like any of the apps I found. They were extremely overweight (as large as 11.35MB), mobile-unfriendly (I don't think I need to describe the horror of trying to set a precise numeric value with a slider), and full of trackers (hi Google!).
+I didn't like any of the apps I found. They were extremely overweight (as large as 11.35MB), mobile-unfriendly (I can't express the horror of trying to set a precise numeric value with a slider), and full of trackers (hi Google!).
 
 And so, I decided to make my own. It would be mobile-friendly and slider-free. To add spice to the task, it would also be less than 1KB in size. Relative to the 217KB bulk of the smallest metronome app I could find, 1KB seemed tight. But since people make [1KB JavaScript games for fun](https://js1k.com/), I was confident that it would be possible.
 
-### Human-readable version
+### The metronome: human-readable version
 The final app, in its beautiful ugliness, can be found <a href="{{ url_for("specific_app", name="metronome") }}">here</a>. I'll first present the human-readable version of the source, which is quite a bit larger than 1KB.
 
 The HTML is simple, consisting of just a play button and a few buttons to change the BPM (beats per minute) of the metronome. It weighs in at 777 bytes.
@@ -142,7 +159,7 @@ Finally, the JavaScript, which weighs in at a chunky 1573 bytes. When the user s
 
 In total, this added up to **2616 bytes**, or 260% of the target size. It took quite a bit of effort to slim this down.
 
-### Minified version
+### The metronome: minified version
 Here's the minified version, which weighs **971 bytes**. That's about 3.5 tweets.
 
     :::html
@@ -169,7 +186,7 @@ To shrink the waistline of the website below the target 1KB, I employed many dir
 
 Functionally, it's exactly the same as before.
 
-### Comparison
+### The metronome: size comparison
 Here's a size comparison of my metronome versus the top 7 metronomes (labelled A-G) that come up when you search "metronome online" with {Insert Evil Search Engine Here}. Note that the scale on the y-axis is logarithmic, so it goes from 1 to 10 to 100 to 1000, and so on. If it weren't logarithmic, then my metronome's bar would be microscopically tiny. Metronome A is 11.35MB (around 10<sup>8</sup> bytes), metronome G is 217.56KB (10<sup>6</sup>), and my metronome is 971 bytes (10<sup>3</sup>).
 
 <img src="{{ url_for('static', filename='img/metronome/size.png') }}"
@@ -182,7 +199,7 @@ Yes, folks, you heard it here first: mine is smaller. To get a sense for just ho
      alt="todo"
      class="centered">
 
-[I quote](https://www.universetoday.com/37124/volume-of-the-planets/):
+[Quote](https://www.universetoday.com/37124/volume-of-the-planets/):
 
 > The largest planet in our Solar System, Jupiter’s size is astounding. Jupiter has a volume of 1.43 x 1015 cubic kilometers. To show what this number means, you could fit 1321 Earths inside of Jupiter. It is hard to imagine how large that actually is.
 
@@ -197,8 +214,5 @@ That's it. There's no Second Law.
 
 I'm not suggesting that everyone becomes a masochistic and tries to squeeze their website into the smallest possible size. While fun, it takes a lot of effort and tends to look like shit. Just make your websites Earth-sized, please. Or even Neptune-sized. Not everyone can afford to download 8 Jupiters.
 
-**P.S.:** You may have noticed that the human-readable version of the metronome was titled "Just a F\*cking Metronome". I removed this title for reasons of size and public decency. However, my hope is that it inspires an entire suite of bloat-free software, such as:
-
-* Just a F\*cking Guitar Tuner.
-* Just a F\*cking Mortgage Calculator.
-* Just a F\*cking Notes App.
+### Further reading
+* [The Average Page is a Myth](https://www.igvita.com/2016/01/12/the-average-page-is-a-myth/)
