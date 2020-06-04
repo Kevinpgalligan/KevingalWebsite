@@ -23,7 +23,7 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
 pages = FlatPages(app)
 freezer = Freezer(app)
 
-MAX_NUM_POSTS_IN_FEED = 5
+MAX_NUM_POSTS_IN_FEED = 10
 
 # Only calculate it once, otherwise it'll get crazy for large numbers of blog posts.
 @functools.lru_cache(maxsize=None)

@@ -4,12 +4,9 @@
 {% endblock headerextras %}
 {% block title %} kevingal/blog {% endblock title %}
 {% block content %}
-<h2>Blog Posts</h2>
-<p>{{ num_posts }} post{{ "s" if num_posts != 1 else "" }}.</p>
-<ul class="blog-post-list">
-    {% for page in date_sorted_blog_posts %}<li class="spaced-li"><a href="{{ url_for("blog_post", path=page.path) }}">{{ page.title }}</a> <br /><span class="blog-post-description">({{ page.date }}) {{ page.description }}</span></li>
-    {% else %}
-    <li>...</li>
-    {% endfor %}
+<h2>Blog Posts ({{ num_posts }} of them)</h2>
+<ul class="bloglist">
+{% for page in date_sorted_blog_posts %}<li><a href="{{ url_for("blog_post", path=page.path) }}">{{ page.title }}</a>, {{ page.date }}. {{ page.description }}</li>
+{% endfor %}
 </ul>
 {% endblock content %}

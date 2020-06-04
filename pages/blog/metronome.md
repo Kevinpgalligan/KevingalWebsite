@@ -1,29 +1,53 @@
-title: "The fat web meets a 971-byte metronome"
+title: "Obese websites and Earth-sized metronomes"
 date: 2020-05-19
 description: Making an Earth-sized metronome app.
 draft: yes
-Sources:
 
-You might have heard already, but we're in the middle of a pandemic.
+As you may have heard, we're in the midst of a crisis.
 
-A [website obesity pandemic](https://idlewords.com/talks/website_obesity.htm).
+No, not that one. I'm talking about the [website obesity crisis](https://idlewords.com/talks/website_obesity.htm).
 
-The median webpage size in 2020 is 2MB<sup>[1](https://httparchive.org/reports/state-of-the-web)</sup>. That's almost 1000 times larger than the [first ever website](http://info.cern.ch/hypertext/WWW/TheProject.html), which was published by Tim Berners-Lee in 1991 and which consisted of 2.4 kilobytes (KB) of pure HTML.
-
-In this article, we'll explore just how big the typical webpage has become. Frustrated by the inaccessibility and bloatedness of a selection of metronome apps, I was driven to create my own. For fun, I made it in less than 1KB. So I'll present that too and compare it to the metronome apps I found on the web.
+The [first ever webpage](http://info.cern.ch/hypertext/WWW/TheProject.html) was 2.2KB in size. It was a sparse list of links, accessed through black-screened terminals with green text. Pure, aerodynamic HTML.
 
 
-### The obese web
-According to the HTTP Archive<sup>[2](https://httparchive.org/reports/page-weight)</sup>, the average webpage now includes on top of that 2.4KB an extra 23KB of HTML. Something something understandable.
+<figure>
+<img src="{{ url_for('static', filename='img/metronome/firstpage.png') }}"
+     alt="The first ever webpage, published by Tim Berners-Lee in 1991. Black background, green text."
+     class="centered">
 
-On top of that extra HTML, typically, you see 980KB of images. Said images may or may not pass the [Taft Test](https://tafttest.com/), a sanity check that tests whether the aesthetic of a webpage would be improved by replacing all of its images with pictures of William Howard Taft, the most voluminous ever president of the U.S.
+<figcaption>The first webpage.</figcaption>
+</figure>
 
-You then have 450KB of JavaScript. To get an idea of how much code that is, assume that each line consists of 50 characters, and that you can write 200 lines of code per day. It would then take you 45 days to write all of that JavaScript. Considering how much dynamic functionality is actually necessary to use the typical web page - which appears to be just text and possibly a few images - this seems *preposterous*. We can only account for this fat through ads, tracking, and bloat that has been dragged in from the JavaScript ecosystem<sup>[3](missing link)</sup>.
+Our expectations of the World Wide Web have grown since then, and so have websites. The median webpage size, as of 2020, is 2MB, and it has been increasing at a rate of about 165KB per year for the past 10 years<sup>[1](https://httparchive.org/reports/state-of-the-web)</sup>.
 
-Finally, you have 1392KB of video. TODO figure out if this includes stuff like YouTube videos. And clarify why the figures don't add up (450+980+1392>2000), or rephrase such that this clarification isn't necessary.
+Images and scripts are mostly responsible for driving this newfound corpulence. Images account for almost 60% of the collective mass of the web, once you exclude the smallest and largest 10% of webpages. JavaScript accounts for a further 25%, followed by 6% for custom fonts, 5% for CSS, 3% for video, and a mere 2% for HTML. 
 
-### So what? Computers are faster now
+<figure>
+<img src="{{ url_for('static', filename='img/metronome/breakdown.png') }}"
+     alt="Bar chart showing the web's mass by resource type. HTML 2.01%, videos 2.75%, CSS 4.93%, fonts 6.35%, JavaScript 24.95%, images 59.01%."
+     class="centered">
+
+<figcaption>Percentage of the web's total mass taken up by common data types, after the smallest 10% and largest 10% of webpages have been excluded. These figures were extracted from the <a href="https://httparchive.org">HTTP Archive</a>. Methodology described in Appendix A.</figcaption>
+</figure>
+
+Most websites don't have this exact weight breakdown, but it's roughly what you can expect to download when you visit a large number of websites on the modern web.
+
+The "average" 2MB webpage, then -- which is, in fact, a [myth](https://www.igvita.com/2016/01/12/the-average-page-is-a-myth/) -- comes with 1.2MB of image data. That's rather a lot of eyeball stimulation. The below portrait of William Howard Taft, the most voluminous ever president of the United States and basis of the [Taft Test](https://tafttest.com/), uses up only 1.5% of that 1.2MB budget. We can only assume either that modern websites include a *lot* of Taft-sized images, or that their images are excessively high resolution.
+
+<img src="{{ url_for('static', filename='img/metronome/taft.jpg') }}"
+     alt="A picture of President Taft, in black & white. He appears to be a good-humoured man. He has a moustache. He's sitting in a chair. He's rotund."
+     class="centered">
+
+And let's be honest with ourselves: most images on the internet have less utility and aesthetic value than Taft.
+
+More offensive still, the "average" webpage is now bundled with 500KB of JavaScript. To put this in perspective, if you wrote 200 lines of code per day at 50 characters per line, it would take you 50 days to write that much JavaScript. Considering that the average website less interactive than a treestump, this is *astonishing* to me. You could fit 15 copies of the original Super Mario Bros into 500KB. Instead of a delightful platforming adventure worth hours of fun, you are instead subjected to ads, tracking scripts and mountains of garbage pulled in by the JavaScript ecosystem<sup>[2](http://lea.verou.me/2020/05/todays-javascript-from-an-outsiders-perspective/)</sup>.
+
+To summarise our flying tour of the modern web: it's fat. Unhealthily so.
+
+### "So what? The internet is faster now."
 This might not seem like a big deal, BUT Mauritania. Look at this shit: <https://whatdoesmysitecost.com/#gniCost>
+
+Hours of work required to pay for an xMB mobile plan / to load a site, this is a nice way to think about how expensive it is: <https://time.com/3589909/internet-next-billion-mobile/> OR <https://deviceatlas.com/blog/understanding-web-page-weight>
 
 ### Making an Earth-sized metronome
 Recently, with this glum state of affairs at the back of my mind, I found myself in need of a metronome web app. A metronome, if you didn't know, is a tool that ticks at regular intervals. It's a music thing.
@@ -214,5 +238,45 @@ That's it. There's no Second Law.
 
 I'm not suggesting that everyone becomes a masochistic and tries to squeeze their website into the smallest possible size. While fun, it takes a lot of effort and tends to look like shit. Just make your websites Earth-sized, please. Or even Neptune-sized. Not everyone can afford to download 8 Jupiters.
 
-### Further reading
-* [The Average Page is a Myth](https://www.igvita.com/2016/01/12/the-average-page-is-a-myth/)
+### Appendix A: HTTP Archive query
+The [HTTP Archive](https://httparchive.org) is a community-run effort to capture data and statistics about the web. Every month, millions of webpages are trawled and summary statistics are published on the HTTP Archive website. This data is publicly available.
+
+After loading the HTTP Archive database into Google BigQuery (instructions [here](https://github.com/HTTPArchive/httparchive.org/blob/master/docs/gettingstarted_bigquery.md), takes 5 minutes), I ran this query to fetch the data I needed for my bar chart. 
+
+    :::sql
+    SELECT
+      SUM(bytesHtml) as html,
+      SUM(bytesJS) as js,
+      SUM(bytesCSS) as css,
+      SUM(bytesImg) as img,
+      SUM(bytesFont) as font,
+      SUM(bytesVideo) as video,
+      COUNT(*) as count
+    FROM
+      `httparchive.summary_pages.2020_04_01_desktop`
+    WHERE
+      bytesTotal >= 456601 AND bytesTotal <= 7363789
+
+It fetches data from April 1st, 2020. The bounds on bytesTotal are the p10 and p90 values of page size, plucked from [here](https://httparchive.org/reports/page-weight).
+
+And here are the results:
+
+    html 188774196140
+    js 2337263808937
+    css 462249675219
+    img 5528893867126
+    font 595097490698
+    video 257342218994
+    count 3728058
+
+Another interesting query I ran: how many webpages have at least one image?
+
+    :::sql
+    SELECT
+      COUNT(*) as count
+    FROM
+      `httparchive.summary_pages.2020_04_01_desktop`
+    WHERE
+      bytesImg > 0
+
+Result: 4,658,956. There are about 4,660,072 webpages in the database, making the answer over 99.9%.
