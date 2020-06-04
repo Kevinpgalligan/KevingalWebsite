@@ -40,7 +40,7 @@ The "average" 2MB webpage, then -- which is, in fact, a [myth](https://www.igvit
 
 And let's be honest with ourselves: most images on the internet have less utility and aesthetic value than Taft.
 
-More offensive still, the "average" webpage is now bundled with 500KB of JavaScript. To put this in perspective, if you wrote 200 lines of code per day at 50 characters per line, it would take you 50 days to write that much JavaScript. Considering that the average website less interactive than a treestump, this is *astonishing* to me. You could fit 15 copies of the original Super Mario Bros into 500KB. Instead of a delightful platforming adventure worth hours of fun, you are instead subjected to ads, tracking scripts and mountains of garbage pulled in by the JavaScript ecosystem<sup>[2](http://lea.verou.me/2020/05/todays-javascript-from-an-outsiders-perspective/)</sup>.
+More offensive still, the "average" webpage is now bundled with 500KB of JavaScript. To put this in perspective, if you wrote 200 lines of code per day at 50 characters per line, it would take you 50 days to write that much JavaScript. Considering that the average website less interactive than a treestump, this is *astonishing* to me. You could fit 15 copies of the original Super Mario Bros into 500KB. Except, instead of a delightful platforming adventure worth hours of fun, you are subjected to ads, tracking scripts and mountains of garbage pulled in by the JavaScript ecosystem<sup>[2](http://lea.verou.me/2020/05/todays-javascript-from-an-outsiders-perspective/)</sup>.
 
 To summarise our flying tour of the modern web: it's fat. Unhealthily so.
 
