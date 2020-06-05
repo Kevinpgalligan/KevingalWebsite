@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% if page.imgthumbnail is defined %}{% set img_thumbnail = page.imgthumbnail %}{% endif %}
 {% block headerextras %}
+<link rel="stylesheet" href="{{ url_for('pygments_css') }}">
 <link rel="stylesheet" href="/static/css/blog.css">
 {% if page.description %}<meta property="description" content="{{ page.description }}">{% endif %}
 {% endblock headerextras %}
