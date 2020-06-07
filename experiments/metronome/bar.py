@@ -3,13 +3,14 @@ import matplotlib.pyplot as plt
 BYTES_INTERQUARTILE = [117444183625, 1492513128682, 283180779936, 2814808632228, 363177891001, 70743962271]
 BYTES_10_TO_90 = [188774196140, 2337263808937, 462249675219, 5528893867126, 595097490698, 257342218994]
 
+TOTAL = 9405167424348
+
 def main():
     # plot_bar(BYTES_INTERQUARTILE)
     plot_bar(BYTES_10_TO_90)
 
 def plot_bar(bs):
-    totalsum = sum(bs)
-    props = [round(100*s/totalsum, 2) for s in bs]
+    props = [round(100*s/TOTAL, 2) for s in bs]
     colours = ["red", "#f3e31d", "purple", "#77dd77", "black", "#aec6cf"]
     names = ["html", "js", "css", "img", "font", "video"]
     attrs = list(zip(props, names, colours))
