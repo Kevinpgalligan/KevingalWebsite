@@ -163,6 +163,6 @@ Apparently, this technique can also be applied to animation, making it useful fo
 As for making the app smaller, here are some of the things I tried:
 
 * [Removing unnecessary HTML](https://blog.notryan.com/013.txt). My favourite bits: 1) attributes don't need quotes if the value doesn't contain spaces, making `<p id=x>` the same as `<p id="x">`; and 2) if you omit &lt;html&gt;, &lt;head&gt; and &lt;body&gt; tags, they'll be generated for you by the browser.
-* Various [JavaScript golf techniques](https://dev.to/emnudge/js-code-golfing-how-to-ruin-everyone-s-day-40h3), such as replacing all regular functions with arrow functions, replacing local variables with global ones, and reducing names to 1 letter.
+* Various [JavaScript golf techniques](https://dev.to/emnudge/js-code-golfing-how-to-ruin-everyone-s-day-40h3), such as replacing regular functions with arrow functions, replacing local variables with global ones, and reducing names to 1 letter.
 * Running the HTML, CSS and JavaScript through minifiers to remove whitespace. The [JavaScript one](https://javascript-minifier.com/) in particular introduced some neat abbreviations, like replacing `false` with `!1`.
 * Programmatically generating some of the buttons on page load, saving about 50 bytes.

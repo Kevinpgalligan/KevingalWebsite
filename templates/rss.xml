@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
     <title>Kevin's Blog</title>
-    <link>https://www.kevingal.com</link>
+    <link>https://kevingal.com</link>
     <description>Maths, computers and stuff.</description>
     <pubDate>{{ pub_date }} GMT</pubDate>
     <lastBuildDate>{{ pub_date }} GMT</lastBuildDate>
@@ -11,9 +11,9 @@
     <item>
         <title>{{ page.title }}</title>
         <description>{{ page.description }}</description>
-        <link>https://www.kevingal.com{{ url_for("blog_post", path=page.path) }}</link>
+        <link>https://kevingal.com{{ url_for("blog_post", path=page.path) }}</link>
         <pubDate>{{ page.date_rssified }} GMT</pubDate>
-        <guid>https://www.kevingal.com{{ url_for("blog_post", path=page.path) }}</guid>
+        <guid>https://kevingal.com{{ url_for("blog_post", path=page.path) }}</guid>
     </item>{% endfor %}
 </channel>
 </rss> 

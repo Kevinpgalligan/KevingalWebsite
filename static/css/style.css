@@ -57,7 +57,7 @@ nav, h1, h2, h3, h4, h5, h6 {
     padding-left: 10px;
 }
 .bloglist li:nth-child(even) {
-    background: #fefab0;
+    background: #F0F0F0;
 }
 .bloglist li:nth-child(odd) {
     background: #FFF;
