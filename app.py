@@ -2,7 +2,8 @@ import sys
 import collections
 import functools
 import datetime
-from flask import Flask, render_template, render_template_string, Markup, Response
+from flask import (Flask, render_template, render_template_string,
+    Markup, Response, send_from_directory)
 from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
 
@@ -106,6 +107,13 @@ def rss_feed():
             blog_posts=date_sorted_blog_posts,
             pub_date=date_sorted_blog_posts[0].meta["date_rssified"]),
         mimetype="application/rss+xml")
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(
+        os.path.join(app.root_path, "static"),
+        "favicon.ico",
+        mimetype="image")
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
