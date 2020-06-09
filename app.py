@@ -6,6 +6,7 @@ from flask import (Flask, render_template, render_template_string,
     Markup, Response, send_from_directory)
 from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
+import os.path
 
 FLATPAGES_EXTENSION = '.md'
 
