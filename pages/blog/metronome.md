@@ -106,7 +106,7 @@ If my metronome app were Earth, then Metronome A would have the volume of **eigh
 Keep in mind that none of the larger metronomes offer any features besides ticking. Admittedly, they're much prettier, but my point is that the weight of these web apps is massively disproportionate to the functionality that they offer. And the same can be said for much of the modern web.
 
 ### Final thoughts
-I'm not suggesting that we become leather-clad monks, purging strips of fat from our websites with puritan fury. While fun, compressing a website takes a lot of effort, and the end result tends to look like shit (<a href="{{ url_for("specific_app", name="metronome") }}">as you can see</a>). Let's just try to keep our websites Earth-sized, please. Or even Neptune-sized. Not everyone can afford to download Jupiter.
+I'm not suggesting that we become leather-clad monks, purging strips of fat from our websites with puritan fury. While fun, compressing a website takes a lot of effort, and the end result tends to <a href="{{ url_for("specific_app", name="metronome") }}">look like shit</a>. Let's just try to keep our websites Earth-sized, please. Or even Neptune-sized. Not everyone can afford to download Jupiter.
 
 ### Appendix A: Page weight breakdown
 After loading the HTTP Archive database into Google BigQuery (it's free and takes 5 minutes, instructions [here](https://github.com/HTTPArchive/httparchive.org/blob/master/docs/gettingstarted_bigquery.md)), I ran this query to fetch the data I needed for my bar chart. 
