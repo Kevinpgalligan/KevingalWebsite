@@ -77,6 +77,13 @@ Allows us to extend search depth / beam width.
 
 Finally, tuned heuristic parameters using EA.
 
+### Links
+* Designing good Tetris players: https://hal.inria.fr/hal-00926213/document
+* Heuristics for Tetris: http://www.diva-portal.org/smash/get/diva2:815662/FULLTEXT01.pdf
+* Nice Tetris bot, reference point for heuristics: https://codemyroad.wordpress.com/2013/04/14/tetris-ai-the-near-perfect-player/
+* Machine learning for Tetris: https://arxiv.org/pdf/1905.01652.pdf
+* I also had a bunch of links related to MCTS.
+
 ### Final results
 With tuned beam search.
 
