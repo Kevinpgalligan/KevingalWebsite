@@ -53,17 +53,6 @@ nav, h1, h2, h3, h4, h5, h6 {
     font-size: 6px;
 }
 
-/* For the blog's table of posts. */
-.bloglist {
-    padding-left: 10px;
-}
-.bloglist li:nth-child(even) {
-    background: #F0F0F0;
-}
-.bloglist li:nth-child(odd) {
-    background: #FFF;
-}
-
 /* Make code elements look nicer. */
 code {
     background-color: #f9f2f4;

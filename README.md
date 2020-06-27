@@ -18,3 +18,6 @@ Execute `./run.sh` to start Flask webserver. Allows local testing before pushing
 Execute `./build.sh` to build static copy of site in `build` folder. Not so useful in itself.
 
 Execute `./deploy.sh` to generate static files and push them to the kevinpgalligan.github.io repository. Shows a diff before pushing.
+
+## Requirements
+python3, pip3, setuptools (install through pip3). Maybe some other stuff, the setup script isn't as bulletproof as I would like.

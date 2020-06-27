@@ -4,9 +4,7 @@
 {% endblock headerextras %}
 {% block title %} kevingal/blog {% endblock title %}
 {% block content %}
-<h2>Blog Posts ({{ num_posts }} of them)</h2>
-<ul class="bloglist">
-{% for page in date_sorted_blog_posts %}<li><a href="{{ url_for("blog_post", path=page.path) }}">{{ page.title }}</a>, {{ page.date }}. {{ page.description }}</li>
+<h2>Blog Posts ({{ num_posts }})</h2>
+{% for page in date_sorted_blog_posts %}<p><a href="{{ url_for("blog_post", path=page.path) }}">{{ page.title }}</a><br>({{ page.date }}) {{ page.description }}</p>
 {% endfor %}
-</ul>
 {% endblock content %}
