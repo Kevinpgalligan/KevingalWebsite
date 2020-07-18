@@ -10,7 +10,7 @@
     {% for page in blog_posts %}
     <item>
         <title>{{ page.title }}</title>
-        <description>{{ page.description }}</description>
+        <description>{{ page.html }}</description>
         <link>https://kevingal.com{{ url_for("blog_post", path=page.path) }}</link>
         <pubDate>{{ page.date_rssified }} GMT</pubDate>
         <guid>https://kevingal.com{{ url_for("blog_post", path=page.path) }}</guid>

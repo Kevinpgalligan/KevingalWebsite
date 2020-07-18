@@ -1,6 +1,5 @@
 import sys
 import collections
-import functools
 import datetime
 from flask import (Flask, render_template, render_template_string,
     Markup, Response, send_from_directory)
@@ -27,8 +26,6 @@ freezer = Freezer(app)
 
 MAX_NUM_POSTS_IN_FEED = 10
 
-# Only calculate it once, otherwise it'll get crazy for large numbers of blog posts.
-@functools.lru_cache(maxsize=None)
 def get_blog_posts():
     for page in pages:
         date = page.meta["date"]
@@ -36,14 +33,7 @@ def get_blog_posts():
     date_sorted_blog_posts = sorted(
             [pg for pg in pages if "blog/" in pg.path and "draft" not in pg.meta],
             key=lambda pg: pg.meta['date'])
-    previous_page = collections.defaultdict(lambda: None)
-    next_page = collections.defaultdict(lambda: None)
-    for idx, pg in enumerate(date_sorted_blog_posts):
-        if idx > 0:
-            previous_page[pg] = date_sorted_blog_posts[idx - 1]
-        if idx < len(date_sorted_blog_posts) - 1:
-            next_page[pg] = date_sorted_blog_posts[idx + 1]
-    return list(reversed(date_sorted_blog_posts)), previous_page, next_page
+    return list(reversed(date_sorted_blog_posts))
 
 @app.route('/')
 @app.route('/index.html')
@@ -52,10 +42,20 @@ def index():
 
 @app.route('/blog.html')
 def blog():
-    date_sorted_blog_posts, _, _ = get_blog_posts()
+    date_sorted_blog_posts = get_blog_posts()
+    posts_by_year = collections.defaultdict(list)
+    for post in date_sorted_blog_posts:
+        posts_by_year[post.meta["date"].year].append(post)
+    posts_by_year = list(
+        sorted(
+            posts_by_year.items(),
+            # Don't use lexicographic sorting, it'll fail
+            # after the year 9999.
+            key=lambda pair: int(pair[0]),
+            reverse=True))
     return render_template(
         'blog.html',
-        date_sorted_blog_posts=date_sorted_blog_posts,
+        posts_by_year=posts_by_year,
         num_posts=len(date_sorted_blog_posts))
 
 @app.route('/software.html')
@@ -78,13 +78,7 @@ def draft_posts():
 
 @app.route('/<path:path>.html')
 def blog_post(path):
-    _, previous_page, next_page = get_blog_posts()
-    page = pages.get_or_404(path)
-    return render_template(
-        'blog-post.html',
-        page=page,
-        previous_page=previous_page[page],
-        next_page=next_page[page])
+    return render_template('blog-post.html', page=pages.get_or_404(path))
 
 @freezer.register_generator
 def drafts():
@@ -100,7 +94,7 @@ def pygments_css():
 
 @app.route("/feed.xml")
 def rss_feed():
-    date_sorted_blog_posts, _, _ = get_blog_posts()
+    date_sorted_blog_posts = get_blog_posts()
     date_sorted_blog_posts = date_sorted_blog_posts[:MAX_NUM_POSTS_IN_FEED]
     return Response(
         render_template(

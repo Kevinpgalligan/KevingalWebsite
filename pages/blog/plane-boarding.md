@@ -2,12 +2,12 @@ title: Simulating plane designs for faster boarding
 date: 2019-09-07
 description: Moving entrances closer to the middle could make plane boarding faster.
 
-Boarding a plane, you wait behind a man so unwashed that you can almost see a stink cloud emanating from his trenchcoat. Two rows ahead, an old woman struggles to lift her humongous suitcases, each of which is large enough to fit her inside them. Behind you is a red-eyed, defeated mother, holding a shrill baby. "There has to be a faster way to get through this," you think to yourself. Then the baby vomits into your backpack.
+Boarding a plane, you wait behind a man so unwashed that you can almost see a stink cloud emanating from his trenchcoat. Two rows ahead, an old woman struggles to lift her humongous suitcases, each of which is large enough to fit her inside. Behind you is a red-eyed, defeated mother, holding a shrill baby. "There has to be a faster way to get through this," you think to yourself. Then the baby vomits into your backpack.
 
 ### A faster way
 Consider a typical plane in Europe, such as Ryanair's Boeing 737-800. 2 entrances for passengers, one at each end of the plane. 200 seats spread across 32 rows, with an aisle down the middle.
 
-Passengers board using the entrance that is closest to their seat. This makes boarding more efficient because passengers from the back and passengers from the front never have to climb over each other.
+Passengers board using the entrance that is closest to their seat. This makes boarding more efficient because passengers from the back and passengers from the front don't have to climb over each other.
 
 Here's an idea: what if we moved the entrances to 1/4 and 3/4 of the way through the plane, respectively, rather than placing them at the ends. Pre-boarding, passengers would still be sorted into 2 groups based on how close their seats were to the entrances. During boarding, however, they would effectively be split into 4 groups: those who turned left at the 1st entrance, those who turned right at the 1st entrance, those who turned left at the 2nd entrance, and those who turned right at the 2nd entrance.
 

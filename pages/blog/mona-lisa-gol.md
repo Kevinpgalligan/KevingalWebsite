@@ -1,6 +1,6 @@
 title: Finding Mona Lisa in the Game of Life
 date: 2020-01-28
-description: Using a SAT-solver to find Game of Life states that turn into pictures.
+description: Using a SAT solver to find Game of Life states that turn into pictures.
 imgthumbnail: img/mona-lisa-gol/thumbnail.png
 
 The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a 2d, grid-shaped petri dish. Each grid square in the dish is a cell that can be either alive or dead.
@@ -154,6 +154,13 @@ On that note, here's a parting gift. Run this Life state through a 19x19 <a href
 ### Technical details
 [Here's the code](https://github.com/Kevinpgalligan/MonaLisaGameOfLife) to run Life simulations, do backsearch and create GIFs. It's all in Common Lisp. I've only tested it using the SBCL implementation of Common Lisp. The cl-sat library was used as a wrapper to call the MiniSat SAT solver, while the skippy library was used to create GIFs. Credit to the #lispgames IRC community for helping me with my silly questions.
 
+### Addendum (July 18th 2020)
+On further reflection, the main limit on size seemed to be cl-sat, both because it was slow to convert the SAT expression to the form expected by SAT solvers and because it exhausted memory rather easily. I imagine it would be possible to handle much larger Life grids by cutting out cl-sat and writing the SAT constraints directly to a file, which could then be passed to your SAT solver of choice.
+
+Also, based on Reddit conversation, it seems that you can avoid Gardens of Eden by searching multiple generations into the past in the same SAT expression. To clarify: if you go original -> parent -> grandparent, then parent can turn out to be a Garden of Eden. The proposal is to go directly from original -> grandparent. I don't know to what extent this would increase the complexity of the expression.
+
+Maybe I'll come back to this some day and find a giant Life state that turns into a detailed portrait of John Conway.
+
 ### Further reading
 Some fun stuff I came across while researching this article.
 
@@ -170,6 +177,5 @@ Some fun stuff I came across while researching this article.
 <img src="{{ url_for('static', filename='img/mona-lisa-gol/venus.gif') }}"
      alt="Life state becomes the Birth of Venus"
      class="centered">
-
 
 <p class="tiny"><a href="{{ url_for('static', filename='img/mona-lisa-gol/message.gif') }}">parting gift spoiler</a></p>
