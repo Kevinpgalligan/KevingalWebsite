@@ -42,7 +42,7 @@ Of course, there may be engineering or safety issues that prevent plane manufact
 Whatever the case, it's a nice distraction to think about as the trenchcoat stink cloud wafts its way towards you and the baby in your vicinity makes threatening heaving motions.
 
 ### Discussion
-* [reddit](https://kevingal.com/blog/plane-boarding.html)
+* [reddit](https://www.reddit.com/r/programming/comments/d1wljy/simulating_plane_designs_for_faster_boarding/)
 
 ### Appendix A: follow-up reading
 Further thoughts on the efficiency of plane boarding can be enjoyed in this [fun video by CPG Gray](https://www.youtube.com/watch?v=oAHbLRjF0vo), which doesn't mention plane design but discusses a number of algorithms for faster boarding.
