@@ -53,8 +53,9 @@ nav, h1, h2, h3, h4, h5, h6 {
     font-size: 6px;
 }
 
-/* Make code elements look nicer. */
-code {
+/* Prettify inline code elements. The 'not' part
+prevents it from f*cking up codehilite formatting. */
+:not(pre) > code {
     background-color: #f9f2f4;
     color: #c7254e;
     font-size: 16px;

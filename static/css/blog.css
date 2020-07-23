@@ -25,3 +25,7 @@ figcaption {
     margin-right: auto;
     text-align: center;
 }
+
+.footnote {
+    font-size: small;
+}

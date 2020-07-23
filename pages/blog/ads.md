@@ -3,13 +3,13 @@ date: 2020-07-18
 description: After 20-odd years, I've had an epiphany.
 draft: yes
 
-I haven't owned a television in 8 years. It was only 4 months ago, after moving home to live with my parents, that I became reacquainted with television advertising. Since then, I've been exposed to the background hum of television on a daily basis. It's always there. Crooning to me as I sit down for dinner. Whispering in my ear as I fall asleep on the couch. Shouting at me as I leave the room for quieter climes. Jumping up and down at my knee, begging for attention. It's the ad, ad-vert, ad-vert-isement. 15 minutes for every hour of TV.
+I haven't owned a television in 8 years. It was only 4 months ago, after moving home to live with my parents, that I became reacquainted with television advertising. Since then, I've been exposed to the background hum of television on a daily basis. It's always there. Crooning to me as I sit down for dinner. Whispering in my ear as I fall asleep on the couch. Shouting at me as I leave the room in search of quiet. Jumping up and down at my knee, begging for attention. It's the ad, ad-vert, ad-ver-tisement. 15 minutes for every hour of TV.
 
-At first, I resisted this new source of distraction. I use ad-blocking software for a reason, I thought. Ads aren't good for you, I thought. Ads are for suckers, I thought. The whole concept of advertising is fucked up, I thought.
+At first, I resisted this new source of distraction. I use ad-blocking software for a reason, I thought. Ads aren't good for you, and they're for suckers. The whole concept of advertising is fucked up. I would be happy if I never saw another ad for the rest of my life.
 
-O, what a fool I was. For 8 years - 8 long years! - I rejected the comforting embrace of the marketer. I cast out the copywriter and declined to break bread with the ad executive. I, a sociable animal, made myself a hermit. It's incredible to me now that I could ever have been so cruel to myself. That I could turn away from the warm glow of the ad, when it's the nature of humans to seek warmth.
+O, what a fool I was. For 8 years - 8 long years! - I rejected the comforting embrace of the marketer, cast out the copywriter, and declined to break bread with the ad executive. I, a sociable animal, made myself a hermit. It's incredible to me now that I could ever have been so cruel to myself. That I could turn away from the warm glow of the ad, when it's the nature of humans to seek warmth.
 
-But worry not, my friend, for the wandering lamb has at last returned to the fold. After prolonged exposure to TV marketing, I have hit upon a wonderful revelation. And the revelation is this.
+But worry not, my friend, for the wandering lamb has returned to the fold. After prolonged exposure to TV marketing, I have hit upon a wonderful revelation. And the revelation is this.
 
 *I love ads!*
 

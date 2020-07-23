@@ -23,7 +23,7 @@ Answers in 5...
 
 If you got all of them correct without finger-counting, without drops of nervous sweat rolling down your neck, and without asking any questions on StackOverflow, then congratulations. You are an Übermensch of calculation, and there is nothing for you to learn here.
 
-If not, then you've fallen victim to one of the 2 hard problems\* in computer science: the off-by-1 error.
+If not, then you've fallen victim to one of the 2 hard problems[^joke] in computer science: the off-by-1 error.
 
 Off-by-1 errors have been written about since before Jesus Christ. At the latest, they were mentioned by [a Roman named Vitruvius](https://web.archive.org/web/20160305221341/http://www.dsm.fordham.edu/~moniot/Opinions/fencepost-error-history.shtml), who served in the army of Julius Caesar. He was talking about the number of fenceposts around a temple, but the principle is the same. The problem is old, and you shouldn't feel bad if it caught you out.
 
@@ -58,4 +58,4 @@ That's it. I was going to make this into a whole big thing, but it's really that
 ### Farewell to Fencepostia
 You should now be able to count the number of days until your birthday with full confidence, and perhaps more usefully, avoid annoying off-by-1 errors in your programming. Happy counting, and say hello to Aunt Catherine.
 
-<small>\*From the over-used joke: "There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors."</small>
+[^joke]: From the over-used joke: "There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors."

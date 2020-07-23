@@ -6,16 +6,30 @@ from flask import (Flask, render_template, render_template_string,
 from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
 import os.path
+import re
 
 FLATPAGES_EXTENSION = '.md'
+FOOTNOTE_REGEX = re.compile(r"\[\^[0-9a-zA-Z-]+\]")
 
-def prerender_jinja(text, flatpages):
+def render_html(text, flatpages, page):
+    if page.path.startswith("blog/"):
+        # Add a horizontal bar at the end of a blog post if
+        # there are no footnotes. If there are, then the
+        # footnotes extension will add a bar above the
+        # footnotes automatically.
+        match = FOOTNOTE_REGEX.search(text)
+        if match is None:
+            text += "\n<hr>"
     prerendered_body = render_template_string(Markup(text))
     return pygmented_markdown(prerendered_body, flatpages)
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.config['FLATPAGES_HTML_RENDERER'] = prerender_jinja
+app.config['FLATPAGES_HTML_RENDERER'] = render_html
+app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
+    "codehilite",
+    "footnotes"
+]
 app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
     'codehilite': {
         'guess_lang': 'False'
