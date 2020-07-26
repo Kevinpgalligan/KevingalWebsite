@@ -22,8 +22,6 @@ Oxygen poisoning, collapsed lungs and burst eardrums were among the risks undert
 
 > ...the drum generally heals up; and if a hole remains in it, although one is somewhat deaf, one can blow tobacco smoke out of the ear in question, which is a social accomplishment.
 
-You just can't find this level of entertainment in a textbook!
-
 BB makes frequent use of analogy to convey scales that are outside the realm of human experience, like the volume of an atom. There are no figures like "6 million yottagrams" here, thank you very much. BB says that an atom lying next to a line of 1 millimeter is comparable an A4 sheet of paper lying next to the Empire State Building. This is one of at least 4 analogies based on the Empire State Building. Then, to demonstrate that an atom is mostly empty space, he asks the reader to imagine inflating its nucleus to the size of a pea; to keep the scale consistent, you'd have to inflate the atom's shell to the size of a football stadium.
 
 Another example, which you'll recognise if you've seen Carl Sagan's *Cosmos*, is the [Cosmic Calendar](https://en.wikipedia.org/wiki/Cosmic_Calendar). The idea is to imagine the entire history of the Universe as a 365-day calendar. On that calendar, modern humans exist for only the last 10 minutes of December 31st. Way more evocative than saying "humans have existed for only 0.002% of the history of the Universe".
@@ -34,7 +32,7 @@ Science has advanced since *A Short History of Everything* was published in 2003
 
 Most disgracefully, BB buys into the old sailor myth of divers literally being sucked up and squished into the helmet of their diving suits, a phenomenon known as The Squeeze. Of course, this is a ridiculous flight of fancy, probably fabricated by J.B.S. Haldane after a rough session in the pressure pot. I don't understand how BB could ever be taken in by such an obviously fake story[^myth].
 
-Anyone who fixates on these minor inaccuracies is missing the Universe for the atoms, however. I happily recommend *A Short History of Everything* to anyone with even a passing interest in science. It's packed with anecdotes to make you smile and analogies to make you go "oooohhhhh".
+Anyone who fixates on these minor inaccuracies is missing the Universe for the atoms, however. I happily recommend *A Short History of Everything* to anyone with even a passing interest in science. It's packed with entertaining anecdotes and "ooh"-worthy analogies.
 
 [^moon]: The Moon is 384,400,000-ish metres from Earth; a page is roughly 0.00012 metres thick; there are 544 pages in A Short History of Nearly Everything (including many pages of references); 384,400,000/(0.00012x544)=~6 billion copies would be required to touch the moon; and there are 7-8 billion people on Earth. The stack would overshoot by tens of thousands of kilometres, but that's the best Bill Bryson-esque analogy I could come up with.
 
