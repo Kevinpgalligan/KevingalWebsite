@@ -34,7 +34,7 @@ function deleteOldWebsiteFilesWithConfirmation {
         return 1
     else
         echo "Carrying out delete operation."
-        rm -r $(ls "$1")
+        rm -r $(ls .)
         return 0
     fi
 }
