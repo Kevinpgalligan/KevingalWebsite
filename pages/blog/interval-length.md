@@ -29,7 +29,7 @@ Off-by-1 errors have been written about since before Jesus Christ. At the latest
 
 The good news is that there's a simple, easy-to-remember formula that applies to all of the above calculations. Once you've learned it, you'll never again suffer from this particular brand of off-by-1 horror. Nor will you miscount the number of days until Aunt Catherine's birthday.
 
-### Give me the formula
+### Give me the formula!
 Let's reconsider all of the above problems as calculations of interval length.
 
 What's an interval? It's a set of integers that lies between a lower and upper bound. For example, the interval `[3, 7]` contains the numbers 3, 4, 5, 6 and 7. It's a set, so we write it using the set notation `{3,4,5,6,7}`.
@@ -51,7 +51,7 @@ Here it is more explicitly. If you have an open interval `(L, U)`, then the numb
 
 This is the reason why programming interfaces use half-open bounds for ranges. In Python, for example, you say `mylist[L:L+N]` to copy the list items with indexes in the interval `[L, L+N)`. That's (L+N)-L=N elements. Much neater than having rogue +1s and -1s floating around the place.
 
-That's it. I was going to make this into a whole big thing, but it's really that simple. I used to come up with small example cases and finger-count in order to figure out interval length. This way is less stressful on the ol' brain.
+That's it. I was going to make this into a whole big thing, but it's really that simple. I used to come up with small example cases and finger-count in order to figure out interval length. This way is easier.
 
 <!-- Fuck Shane! -->
 
