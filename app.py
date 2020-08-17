@@ -28,7 +28,8 @@ app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = render_html
 app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
     "codehilite",
-    "footnotes"
+    "footnotes",
+    "mdx_math"
 ]
 app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
     'codehilite': {
@@ -92,7 +93,13 @@ def draft_posts():
 
 @app.route('/<path:path>.html')
 def blog_post(path):
-    return render_template('blog-post.html', page=pages.get_or_404(path))
+    page = pages.get_or_404(path)
+    if "requires" in page.meta:
+        print(page.meta["requires"]) # DEBUG DEBUG DEBUG
+    return render_template(
+        'blog-post.html',
+        page=page,
+        requires_math="requires" in page.meta and "math" in page.meta["requires"])
 
 @freezer.register_generator
 def drafts():

@@ -2,24 +2,25 @@ title: The darts player who estimated π
 date: 2020-08-05
 description: How you can estimate a mathematical constant using only darts and a dartboard.
 draft: yes
+requires: math
 
-A darts player and a mathematician walk into a bar. The mathematician takes a seat and orders cranberry juice, while the darts player starts practising over at the dartboard.
+A darts player and a mathematician walk into a bar. The mathematician takes a seat and orders cranberry juice, while the darts player starts practising at the dartboard.
 
 After a while, the mathematician looks over. "You're not very good, are you?" she says, as another dart whizzes uselessly into the backboard.
 
-"No," says the darts player miserably. "It's almost like playing bingo."
+"No," says the darts player miserably. "It's like playing bingo."
 
-At this, the mathematician's ears perk up. She sits up in her seat. "Bingo, you say?"
+The mathematician's ears perk up. "Bingo, you say?"
 
 "Yeah, just watch."
 
-The darts player throws a few darts at the board, and sure enough, they seem to distribute themselves across it without any noticeable pattern. At random.
+The darts player throws a few darts at the board, and sure enough, they seem to distribute themselves across it without any noticeable pattern. Almost... at random.
 
 INSERT PICTURE HERE
 
 The mathematician watches with interest. She takes a sip of her cranberry juice and says, "Listen. You might not be very good at darts, but I have a fun experiment we can try."
 
-She walks over to the chalkboard used for keeping score, grabs a lump of chalk and draws a circle inscribed in a square.
+She walks over to the chalkboard used for keeping score, grabs a lump of chalk, and draws a circle inscribed in a square.
 
 INSERT PICTURE HERE
 
@@ -65,7 +66,7 @@ She whips out her pocket calculator. "All right, let's do the math. 6/10 darts h
 
 "Oh," says the darts player glumly. "*Pi* begins with 3, doesn't it? We got the wrong answer."
 
-"Not so fast. Remember when I said that you'd have to throw *a lot* of darts?"
+"Remember when I said that you'd have to throw *a lot* of darts?"
 
 And so, that's what he does. 10 throws, 50 throws, 100 throws, 500 throws. Sweat breaks out on his forehead and his arm is already complaining. But still he continues, throwing dart after dart while the bartender eyes the barely-touched cranberry juice with disapproval.
 
@@ -83,7 +84,101 @@ Eventually, after extensive, self-congratulatory back-patting, they settle down 
 
 "Well... have you heard of *e*?"
 
-TODO:
+*FIN.*
 
-* The given number is only enough to get to three decimal places of accuracy.
-* Some reference to the darts player finding a use for his wonky throw.
+*...to  see this story reenacted in real life, watch [this video](https://www.youtube.com/watch?v=M34TO71SKGk) (Physics Girl, "Calculating Pi with Darts").*
+
+*...to learn more about the maths behind the story, read on.*
+
+### Story as code
+This story was inspired by exercise 3.5 of the computer science textbook, *Structure and Interpretation of Computer Programs*. It asks you to estimate π using a Monte Carlo algorithm, which just means repeating a simulation a bunch of times. In this section, we're gonna solve the exercise using Common Lisp, from the Lisp family of programming languages. Basic programming knowledge is assumed. If you don't care about programming, skip to the next section for some juicy maths.
+
+First, we define the radius as a constant. `defparameter` is the keyword for defining variables. `+r+` is the name of the constant, which, as described in the story, has a value of 1/2. By convention, constant names are surrounded by '+'.
+
+    :::lisp
+    (defparameter +r+ 1/2)
+
+We next define a simple utility function for squaring a number. `defun` is the keyword for defining a function, `square` is the name of our function, and `x` is the function argument. 
+
+    :::lisp
+    (defun square (x)
+      (* x x))
+
+In the function body, you'll notice that there's no return statement. That's because the return value of a function is the value of the final expression in the function body, which in this case is `(* x x)`. You'll also notice that the multiplication operator, `*`, comes before its operands. It's treated just like a function, so in the same way that we'd write `(square 5)` with our new function to square the number 5, we write `(* 1 2)` to multiply the numbers 1 & 2.
+
+Now we define a function to generate random x & y co-ordinates within the square, returning a list `(x y)`. The function has no arguments. In the function body, we `repeat` our procedure to generate a random co-ordinate, once for x and once for y, and `collect` the results in a list. The circle is centered at (0,0), so the random values we generate should be between -0.5 and +0.5.
+
+    :::lisp
+    (defun random-xy ()
+      (loop repeat 2
+            collect (- +r+ (random (* 2.0 +r+)))))
+
+We need one last helper function. Co-ordinates x & y lie within a circle if they satisfy:
+
+$$\sqrt{x^2 + y^2} \leq r.$$
+
+Here it is in code. We follow the convention that a function name should end in "-p" if it returns a true or false value, p being short for predicate.
+
+    :::lisp
+    (defun is-in-circle-p (x y)
+      (<= (sqrt (+ (square x) (square y)))
+          +r+))
+
+Finally, the meat of the code! Here's a function to simulate a given number of dart throws and return an estimate of π based on the results, just like in the story. There are some tricky parts here if you haven't used Lisp before, but I'll try to give the gist of what's going on.
+
+    :::lisp
+    (defun estimate-pi (throws)
+      (let ((in-circle-count 0))
+        (loop repeat throws
+              do (destructuring-bind (x y)
+                     (random-xy)
+                   (when (is-in-circle-p x y)
+                     (incf in-circle-count))))
+        (* 4 (/ in-circle-count throws))))
+
+The first new thing is the `let` statement. All we're doing is defining a new local variable, `in-circle-count`, and "letting" it equal 0. Next, we throw darts, `throws` times. `destructuring-bind` takes the 2-value list returned by `random-xy` and assigns the values to local variables `x` and `y`. *When* these co-ordinates are inside the circle, `incf` adds 1 to our count of circle-hitting darts. After the loop is done, we return our approximation. Simples!
+
+Let's see how this works in a Common Lisp interpreter.
+
+    :::lisp
+    CL-USER> (estimate-pi 1000)
+    3.104
+
+Throwing only 1000 darts, we get an approximation of 3.104. Not bad at all! But what happens if we increase the number of darts?
+
+    :::lisp
+    CL-USER> (estimate-pi 10000)
+    3.1356
+    CL-USER> (estimate-pi 100000)
+    3.14144
+    CL-USER> (estimate-pi 1000000)
+    3.142252
+    CL-USER> (estimate-pi 10000000)
+    3.1426332
+
+Hmmmm. That's fishy. After throwing 10 MILLION darts, our approximation is still only accurate to 2 decimal places! Have we been lied to?
+
+Well... yes. We'll explore this lie in the next section. But first: if you want to learn more about Common Lisp, the free book [*Practical Common Lisp*](http://www.gigamonkeys.com/book/) is often recommended to beginners. For Lisp newbies, I prefer *The Little Schemer*, which isn't actually about Common Lisp, but is an entertaining, hands-on introduction to Lisp in general.
+
+### The pi is a lie?
+Yeah, sorry. In the real world, to get our approximation accurate to 4 decimal places, we'd have to throw about 1 billion darts. I kept the number small in the story because a person throwing 1 billion darts in a single afternoon might stretch credulity a bit. So, believe it or not, throwing darts at a board is actually a crappy method of estimating π.
+
+Anyway, here's how you figure out the expected accuracy of your approximation given $n$ dart throws. Let $X$ be the number of darts that hit the dartboard. $X$ is what's known as a binomial random variable. "Random variable" means that it has a random value, while "binomial" means that it's equivalent to a bunch of coin flips. In our case, $X$'s random value is between 0 and $n$, and each "coin flip" has probability $p=\pi/4$ of landing on heads (a.k.a. hitting the dartboard).
+
+WHY SHOULD WE CARE ABOUT THIS RANDOM VARIABLE CRAP? Our end goal here is to calculate the probability of our estimate being within a small distance, $\epsilon$, of π. We can use the power of random variables to calculate this. Just bear with me for one more minute.
+
+Let $Y=4X/n$ be our estimate of π. It's also a random variable. We calculate the probability of $Y$ being within $\epsilon$ of π, like so:
+
+$$
+\begin{aligned}
+P(-\epsilon < Y-\pi < \epsilon) &= 1-2P(Y-\pi < -\epsilon) \\
+&= 1-2P(4X/n < \pi-\epsilon) \\
+&= 1-2P(X < n(\pi-\epsilon)/4).
+\end{aligned}
+$$
+
+Okayyyy, we've expressed the probability of our estimate having a given level of accuracy, in terms of the probability of $X$ being less than some number. And *that* can be estimated by using a normal approximation of the binomial random variable $X$. Binomial RVs with $n$ samples and $p$ near 0.5 can be approximated using a normal distribution with mean $\mu=np$ and standard deviation $\sigma=\sqrt{np(1-p)}$. And that's how we produce the following graph.
+
+<img src="{{ url_for('static', filename='img/darts/graph.png') }}"
+     alt="Plot of the probability of our approximation having a certain level of accuracy given 'n' throws."
+     class="centered">

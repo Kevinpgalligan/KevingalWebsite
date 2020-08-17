@@ -4,6 +4,18 @@
 <link rel="stylesheet" href="{{ url_for('pygments_css') }}">
 <link rel="stylesheet" href="/static/css/blog.css">
 {% if page.description %}<meta property="description" content="{{ page.description }}">{% endif %}
+{% if requires_math %}<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js" async></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	extensions: ["tex2jax.js"],
+	jax: ["input/TeX", "output/HTML-CSS"],
+	tex2jax: {
+		inlineMath: [ ['$','$'] ],
+		processEscapes: true
+	},
+	"HTML-CSS": { availableFonts: ["TeX"] }
+});
+</script>{% endif %}
 {% endblock headerextras %}
 {% block title %} {{ page.title }} {% endblock title %}
 {% block content %}
@@ -12,6 +24,6 @@
 <hr>
 {{ page.html|safe }}
 <p><a href="/blog.html">Back to blog</a></p>
-<p><a href="/feed.xml"><img src="{{ url_for('static', filename='img/rss.png') }}"></a> <a href="https://twitter.com/KevinGalligan2"><img src="{{ url_for('static', filename='img/twitter.png') }}"></a></p>
+<p><a href="/feed.xml"><img src="{{ url_for('static', filename='img/rss.png') }}"></a> <a href="https://twitter.com/KevinGalligan2"><img src="{{ url_for('static', filename='img/twitter.png') }}"></a> <a href="https://github.com/Kevinpgalligan"><img src="{{ url_for('static', filename='img/github.png') }}"></a></p>
 <p>I'd be happy to hear from you at <i>galligankevinp@gmail.com</i>.</p>
 {% endblock content %}

@@ -17,7 +17,7 @@ The bot was a surprise hit, spreading across the entire website and acquiring 30
 * The bot didn't respond when its username was uncapitalised ("u/anemojipastabot" instead of "u/AnEmojipastaBot").
 * People got it to post in inappropriate subreddits, like r/suicidewatch.
 * It entered infinite loops with other bots. The other bot would mention AnEmojipastaBot, then AnEmojipastaBot would mention the other bot, then the other bot would mention AnEmojipastaBot, and so on.
-* It crashed if the target comment got deleted.
+* It crashed if the target comment was deleted.
 * It crashed if it was summoned in a subreddit where it had been banned.
 * It didn't handle random network-related errors when calling the Reddit API.
 

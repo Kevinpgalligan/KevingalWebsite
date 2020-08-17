@@ -3,4 +3,5 @@
 venv/*
 env/*
 build/*
+*.fasl
 *.swp
