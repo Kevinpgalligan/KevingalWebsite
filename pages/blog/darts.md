@@ -4,77 +4,81 @@ description: How you can estimate a mathematical constant using only darts and a
 draft: yes
 requires: math
 
+*This article introduces a method for approximating π using darts and a dartboard. There are 3 parts: 1) a story, to introduce the concept; 2) a program that implements the method; and 3) a short mathematical analysis.*
+
+### The story
+
 A darts player and a mathematician walk into a bar. The mathematician takes a seat and orders cranberry juice, while the darts player starts practising at the dartboard.
 
 After a while, the mathematician looks over. "You're not very good, are you?" she says, as another dart whizzes uselessly into the backboard.
 
-"No," says the darts player miserably. "It's like playing bingo."
+"No," says the darts player miserably. "It's almost like playing bingo."
 
-The mathematician's ears perk up. "Bingo, you say?"
+The mathematician sits up. "Bingo, you say?"
 
 "Yeah, just watch."
 
 The darts player throws a few darts at the board, and sure enough, they seem to distribute themselves across it without any noticeable pattern. Almost... at random.
 
-INSERT PICTURE HERE
+<img src="{{ url_for('static', filename='img/darts/board.png') }}"
+     alt="Some darts scattered 'randomly' across a dartboard."
+     class="centered">
 
 The mathematician watches with interest. She takes a sip of her cranberry juice and says, "Listen. You might not be very good at darts, but I have a fun experiment we can try."
 
-She walks over to the chalkboard used for keeping score, grabs a lump of chalk, and draws a circle inscribed in a square.
-
-INSERT PICTURE HERE
+She walks over to the chalkboard used for keeping score and grabs a lump of chalk.
 
 "Have you heard of *pi* before?" she asks.
 
-"Yeah, I think so," replies the darts player. "It's a number, right?"
+"It's a number, right?" replies the darts player.
 
-"Yes. It's the most important mathematical constant. It's the ratio of the circumference of a circle," she runs the chalk over the outline of the circle again, "to its diameter." And now she drags the chalk in a straight line from the left-most to the right-most point of the circle.
+"Yep. It's the most important mathematical constant. It's the ratio of the circumference of a circle," she draws a circle with the chalk, "to its diameter." And now she drags the chalk in a straight line from the left-most to the right-most point of the circle.
 
-INSERT PICTURE HERE
+<img src="{{ url_for('static', filename='img/darts/circum-diam.png') }}"
+     alt="Illustration of circumference and diameter."
+     class="centered">
 
 The darts player looks unimpressed. "And?"
 
-"And," she beams, "using your ability to throw darts in a seemingly random pattern, I believe we can do a reasonable job of estimating *pi*."
+"And," she beams, "using your ability to throw darts in a seemingly random pattern, I believe we can do a reasonable job of estimating pi."
 
-"Huh. So my good-for-nothing throwing might be good for something after all. How will it work?"
+"Uhh... how, exactly?"
 
 "You'll have to throw some darts."
 
 The mathematician takes a dart and throws it at the board. It hits the bull's eye. "Beginner's luck," she says apologetically to the poor darts player. "Actually, you'll have to throw a lot of darts."
 
-She moves back to the chalkboard and begins to write. "If the backboard has a width and height of 1, then its area is 1. This means that the diameter of the dartboard is also 1, and its radius is half that, or 1/2. And the area of the dartboard, which is a circle, is πr<sup>2</sup>, or π/4."
+She moves back to the chalkboard and begins to write. "If the backboard has a width and height of 1, then its area is 1. This means that the diameter of the dartboard is also 1, and its radius is half that, or r=1/2. And the area of the dartboard, which is a circle, is πr<sup>2</sup>, or π/4."
 
 The darts player is focused intently, struggling to recall maths classes from the distant past.
 
-INSERT PICTURE HERE.
-
 "The area of the dartboard," continues the mathematician, "over the area of the backboard, gives the fraction of the backboard that is covered by the dartboard. That's just π/4. Do you follow?"
 
-The darts player nods. Barely.
+The darts player nods. More or less.
 
 "Excellent. Now, here's the key. If you throw a lot of darts at the board, and I mean a hell of a lot of darts, then we can expect *approximately* a fraction of π/4 of the darts to hit the dartboard instead of the backboard. That's because, due to your unusual gift, each randomly-thrown dart has a probability of π/4 of hitting the dartboard. If you throw N darts, then an average of π/4 times N of them will hit the dartboard."
 
-She raises her arms to the sky. "And there's our estimate! The number of darts that hit the dartboard, over the total number of darts thrown, is an approximation of π/4. Multiply by 4 and out pops π!"
+"And there's our estimate!" she exclaims, raising her arms triumphantly. "The number of darts that hit the dartboard, over the total number of darts thrown, is an approximation of π/4. Multiply by 4 and out pops π!"
 
 "Okay, I think I get it," says the darts player. "Let's get to work."
 
-They begin the experiment. The darts player starts throwing darts with mechanical, quivering inaccuracy. He is a throwing device with every cog miscalibrated. The human equivalent of a Rube Goldberg machine. The trajectory of each and every dart is a Michaelangelo of pure, unplanned chaos.
+They begin the experiment. The darts player throws darts with mechanical, quivering inaccuracy. The trajectory of each and every dart is a Michaelangelo of pure, unplanned chaos.
 
 The mathematician stops him after he has thrown 10 darts. She has been keeping count of how many darts have hit the dartboard, and how many have hit the backboard.
 
 She whips out her pocket calculator. "All right, let's do the math. 6/10 darts have hit the dartboard." She types it into the calculator. "Multiplying by 4... gives 2.4."
 
-"Oh," says the darts player glumly. "*Pi* begins with 3, doesn't it? We got the wrong answer."
+"Oh," says the darts player glumly. "Pi begins with 3, doesn't it? We got the wrong answer."
 
 "Remember when I said that you'd have to throw *a lot* of darts?"
 
 And so, that's what he does. 10 throws, 50 throws, 100 throws, 500 throws. Sweat breaks out on his forehead and his arm is already complaining. But still he continues, throwing dart after dart while the bartender eyes the barely-touched cranberry juice with disapproval.
 
-1000 throws, 2000 throws. 5000 throws! It seems like he has been throwing forever. Space-time appears to have been pulled and pushed so that the hours of throwing are stretched and contorted into days. The bar is spinning around him. Or he's spinning around inside the bar. He's not quite sure. But finally, when he's on the verge of physical and emotional collapse, the mathematician, who has diligently kept score the whole time, raises her hand. "I think that's enough."
+1000 throws, 2000 throws. 5000 throws! It seems like he has been throwing forever. The bar is spinning around him. Or he's spinning around the bar. He's not quite sure. But finally, when he's on the verge of physical and emotional collapse, the mathematician, who has diligently kept score the whole time, raises her hand. "I think that's enough."
 
-The darts player collapses into a chair. The mathematician sits down beside him with her calculator. "Let's see. Three, eight, five, five," she vocalises, "over five, zero, zero, zero. Times four. Equals..."
+The darts player collapses into a chair. The mathematician sits down beside him with her calculator. "Let's see. 7-8-5-3," she vocalises, "over 1-0-0-0-0. Times 4. Equals..."
 
-"...three... point...one... four... one... five... nine... yes! Yes, we did it!"
+"... 3... point.... 1... 4... yes! Yes, we did it!"
 
 They dance around each other, the darts player's exhaustion replaced by excited glee, the mathematician exploding with nerdy enthusiasm. Even the bartender cracks a smile.
 
@@ -84,14 +88,10 @@ Eventually, after extensive, self-congratulatory back-patting, they settle down 
 
 "Well... have you heard of *e*?"
 
-*FIN.*
+### The code
+To see what this story would look like in real life, watch [this video](https://www.youtube.com/watch?v=M34TO71SKGk) (Physics Girl, "Calculating Pi with Darts").
 
-*...to  see this story reenacted in real life, watch [this video](https://www.youtube.com/watch?v=M34TO71SKGk) (Physics Girl, "Calculating Pi with Darts").*
-
-*...to learn more about the maths behind the story, read on.*
-
-### Story as code
-This story was inspired by exercise 3.5 of the computer science textbook, *Structure and Interpretation of Computer Programs*. It asks you to estimate π using a Monte Carlo algorithm, which just means repeating a simulation a bunch of times. In this section, we're gonna solve the exercise using Common Lisp, from the Lisp family of programming languages. Basic programming knowledge is assumed. If you don't care about programming, skip to the next section for some juicy maths.
+The story was inspired by exercise 3.5 of the computer science textbook, *Structure and Interpretation of Computer Programs*. It asks you to estimate π using a Monte Carlo algorithm, which just means repeating a simulation a bunch of times. In this section, we're gonna solve the exercise using Common Lisp, from the Lisp family of programming languages. Basic programming knowledge is assumed. If you don't care about programming, skip to the next section for some juicy maths.
 
 First, we define the radius as a constant. `defparameter` is the keyword for defining variables. `+r+` is the name of the constant, which, as described in the story, has a value of 1/2. By convention, constant names are surrounded by '+'.
 
