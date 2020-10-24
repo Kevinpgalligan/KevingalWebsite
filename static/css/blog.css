@@ -29,3 +29,27 @@ figcaption {
 .footnote {
     font-size: small;
 }
+
+/* Wrap any tables in a div with this class. 
+   Yeah, it sucks, but that's the only way
+   to add a scrollbar to an overflowing table,
+   without using a f*cked up block display. */
+.cooltablewrap {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.cooltablewrap table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.cooltablewrap th,
+.cooltablewrap td {
+    text-align: center;
+    padding: 2px;
+    border: 1px solid black;
+}
