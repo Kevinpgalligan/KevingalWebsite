@@ -94,8 +94,6 @@ def draft_posts():
 @app.route('/<path:path>.html')
 def blog_post(path):
     page = pages.get_or_404(path)
-    if "requires" in page.meta:
-        print(page.meta["requires"]) # DEBUG DEBUG DEBUG
     return render_template(
         'blog-post.html',
         page=page,

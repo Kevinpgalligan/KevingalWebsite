@@ -6,7 +6,7 @@ imgthumbnail: img/basketball/thumbnail.jpg
 
 I played a lot of basketball during lockdown. I had free time, there was a basketball hoop outside my house, and I had recently watched The Last Dance, the hit basketball documentary about Michael Jordan and the Chicago Bulls. The time was ripe for my basketball ascendance.
 
-Yet my 70-year-old father still managed to beat me at Around the World. Around the World is a basketball game where your objective is to score from each of several positions around the hoop. And my father beat me at it, despite all my practice, and despite the fact that he had never played much basketball in his life.
+Yet my father still managed to beat me at Around the World. Around the World is a basketball game where your objective is to score from each of several positions around the hoop. And my father beat me at it, despite all my practice, and despite the fact that he had never played much basketball in his life.
 
 This made me wonder -- how much better than someone do you need to be in order to beat them consistently at Around the World? That's the question we're going to answer in this article, using tools from probability. By the end, we'll have produced some cool graphs (if you're into that sort of thing), and we'll have definitively answered the question of whether your granny can beat Michael Jordan at basketball.
 
@@ -142,7 +142,7 @@ This confirms our observation that going first gives a bigger advantage to stron
 
 Let's say that my father, a mediocre player, has a score rate of 40%. And that I, a slightly less mediocre player, have a score rate of 50%. Then my father would still be expected to beat me in about 3/10 games. I guess this explains my humiliating defeats.
 
-As for the scenario we posed at the beginning of the article: your granny has almost no chance of beating Michael Jordan. But it's not impossible.
+As for the scenario we posed at the beginning of the article: it's almost impossible for a granny to beat Michael Jordan. But there's a chance.
 
 *Find the code behind this article [here](https://github.com/Kevinpgalligan/around-the-world).*
 
