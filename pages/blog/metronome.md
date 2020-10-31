@@ -2,6 +2,7 @@ title: "Obese websites and planet-sized metronomes"
 date: 2020-06-07
 description: A reflection on website obesity and my attempt to make a 981-byte metronome app.
 imgthumbnail: img/metronome/thumbnail.png
+requires: code
 
 As you may have heard, we're in the middle of a crisis.
 

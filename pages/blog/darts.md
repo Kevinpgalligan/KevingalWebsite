@@ -2,7 +2,7 @@ title: The darts player who estimated π
 date: 2020-08-05
 description: How you can estimate a mathematical constant using only darts and a dartboard.
 draft: yes
-requires: math
+requires: math code
 
 TODO: polish the story (crappy bit in the middle where she's explaining pi); split the code part into the FULL PROGRAM + results, and an appendix where the code is explained bit by bit; and polish the mathematical analysis. Also find a more appropriate place to put the physics girl link.
 

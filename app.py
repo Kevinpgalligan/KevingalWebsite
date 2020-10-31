@@ -97,7 +97,8 @@ def blog_post(path):
     return render_template(
         'blog-post.html',
         page=page,
-        requires_math="requires" in page.meta and "math" in page.meta["requires"])
+        requires_math="requires" in page.meta and "math" in page.meta["requires"],
+        requires_code="requires" in page.meta and "code" in page.meta["requires"])
 
 @freezer.register_generator
 def drafts():
