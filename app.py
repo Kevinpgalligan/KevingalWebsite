@@ -108,9 +108,10 @@ def drafts():
 def error_handlers():
     yield "/404.html"
 
-@app.route('/pygments.css')
-def pygments_css():
-    return pygments_style_defs('emacs'), 200, {'Content-Type': 'text/css'}
+# Leaving this in case I need to generate pygments.css again.
+#@app.route('/pygments.css')
+#def pygments_css():
+#    return pygments_style_defs('friendly'), 200, {'Content-Type': 'text/css'}
 
 @app.route("/feed.xml")
 def rss_feed():

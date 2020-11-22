@@ -56,16 +56,29 @@ nav, h1, h2, h3, h4, h5, h6 {
 /* Prettify inline code elements. The 'not' part
 prevents it from f*cking up codehilite formatting. */
 :not(pre) > code {
-    background-color: #f9f2f4;
-    color: #c7254e;
+    background-color: rgb(224, 224, 220);
+    color: rgb(36, 41, 46);
+    border-radius: 6px;
     font-size: 16px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+pre > code {
+    width: 100%;
 }
 
 div.codehilite {
     max-width: 800px;
     overflow-x: auto;
-    padding-left: 5px;
     line-height: 16px;
+    background-color: rgb(228, 228, 224);
+    padding: 10px;
+    border-style: solid;
+    border-color: rgb(212, 212, 212);
+    border-width: 3px;
 }
 
 .post-description {

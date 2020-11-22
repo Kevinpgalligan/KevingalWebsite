@@ -35,7 +35,7 @@ figcaption {
     overflow-x: auto;
 }
 
-/* Wrap any tables in a div with this class. 
+/* Wrap tables in a div. Give the div this class.
    Yeah, it sucks, but that's the only way
    to add a scrollbar to an overflowing table,
    without using a f*cked up block display. */
