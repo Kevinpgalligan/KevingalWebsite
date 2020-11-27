@@ -1,19 +1,21 @@
 title: Recreating grep in Python
-date: 2020-10-31
-description: A short guide to making Python CLI tools.
-draft: yes
+date: 2020-11-27
+description: A guide to making Python CLI tools.
 requires: code
+imgthumbnail: img/cli-tools/thumbnail.jpg
 
-Let's make a Python version of grep, nicknamed dumbgrep. Python's `argparse` package makes it easy to handle the parsing side of things. And using the Python Package Index (PyPI), it's easy to deliver a command line tool into the ravenous hands of greedy users.
+Let's make our own version of grep, nicknamed dumbgrep. Along the way, we'll learn about 19th-century Russian literature and how to make command line interface (CLI) tools in Python.
 
     $ grep existence </tmp/war-and-peace.txt
     in this part of the house and did not even know of the existence of
     even wish to know of his existence but would now have been offended
     [...]
 
-If you want to follow along, then you'll need Python 3. The full program is available [here](https://github.com/Kevinpgalligan/dumbgrep). I have no idea if it works on Windows.
+Why Python? Python's `argparse` package makes it easy to handle the parsing side of things. And using the Python Package Index (PyPI), you can easily deliver a CLI tool to the writhing masses of humanity.
 
 ### Baby steps 👶
+You'll need Python 3 if you want to follow along. For reference, the full program is available [here](https://github.com/Kevinpgalligan/dumbgrep). Shamefully, I've only tested it on Linux, so there might be extra hoop-jumping required to set it up on Windows.
+
 Here's the skeleton of our project.
 
     dumbgrep/
@@ -24,20 +26,20 @@ Here's the skeleton of our project.
         └── dumbgrepcli
                 └── __init__.py
 
-* **dumbgrep** is the Python script that the user will call to use our tool.
+* **dumbgrep** is the Python script that a user can call from the CLI.
 * **setup.py** contains the information we need to package our project and upload it to PyPI for distribution.
-* **\_\_init\_\_.py** contains the actual functionality of dumbgrep. If you didn't know, a folder that contains a file called **\_\_init\_\_.py** is a Python package. That package's code is saved in the **\_\_init\_\_.py** file. We can access the **\_\_init\_\_.py** code in Python by calling `import dumbgrepcli`.
+* **\_\_init\_\_.py** contains the actual functionality of dumbgrep. If you didn't know, a folder that contains a file called **\_\_init\_\_.py** is a Python package. That package's code is saved in the **\_\_init\_\_.py** file.
 
-Why not dump all of our Python code into the **dumbgrep** file? The structure above allows us to split our code into multiple files and even multiple subpackages, which might be useful if it ever grows too big. It's also easier to add tests.
+Why not dump all of our Python code into the **dumbgrep** file? This more complicated structure allows us to split the code into multiple files and even multiple subpackages, which will be useful if the codebase grows too big. It's also easier to add tests this way, for boring people who write tests.
 
-First, we write the **dumbgrep** script. All it does is call the `main()` function of our `dumbgrepcli` package, which we'll write later.
+Let's write the **dumbgrep** script. All it does is call the `main()` function of the `dumbgrepcli` package, which we'll write later.
 
     :::python
     #!/usr/bin/env python3
     import dumbgrepcli
     dumbgrepcli.main()
 
-The only unusual thing is the so-called [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) line at the start, which basically informs Unix-like systems that the script should be run using Python 3.
+The only thing about this that might possibly be unusual to a Python afficionado is the so-called [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) line at the start, which basically informs Unix-like systems that the script should be run using Python 3.
 
 Next, here's what we might write in **setup.py**. This determines how to build the package and how to upload it to PyPI.
 
@@ -63,9 +65,9 @@ Next, here's what we might write in **setup.py**. This determines how to build t
 		install_requires=[]
 	)
 
-Most of the fields are self-explanatory. "name" is the package's name on PyPI, which must be unique. The file in "scripts" will be installed in a place where the user can call it from the command line.
+Most of the fields are self-explanatory. "name" is the package's name on PyPI, which must be unique. The files under the "scripts" field will be installed to a place where the user can call them from the command line.
 
-As an aside: if you add a markdown-formatted README to your project, then a useful trick is to reuse it as the long description of your package on PyPI.
+As an aside: if you add a Markdown-formatted README to your project, then a useful trick is to reuse it as the long description of your package on PyPI.
 
 	:::python hl_lines="2 3 7 8"
 	...
@@ -79,10 +81,10 @@ As an aside: if you add a markdown-formatted README to your project, then a usef
 		...
     )
 
-That's the boring stuff out of the way! Now we can move on to our fabulous implementation of grep.
+That's the boring stuff out of the way! Now we can move on to plagiarising grep.
 
 ### G(lobally search for a) R(egular) E(xpression and) P(rint matching lines)
-Here's how we start our implementation of grep in **\_\_init\_\_.py**. We import Python's `argparse` module, which we'll use for argument-parsing. We define the long-awaited `main()` function. There's boilerplate code at the bottom to call `main()` when we execute the file directly, just so we can test it. Within `main()`, we create an `ArgumentParser`, add a string argument called "pattern" to it, parse the command line arguments, and finally, print out the value of the "pattern" argument.
+Here's how we start our implementation of grep in **\_\_init\_\_.py**.
 
     :::python
 	import argparse
@@ -95,6 +97,8 @@ Here's how we start our implementation of grep in **\_\_init\_\_.py**. We import
 
 	if __name__ == "__main__":
 		main()
+
+We import Python's `argparse` module, which we'll use for argument-parsing. We define the long-awaited `main()` function. There's boilerplate code at the bottom that calls `main()` when we execute the file directly, just so we can test it. Within `main()`, we create an `ArgumentParser`, add a string argument called "pattern" to it, parse the command line arguments, and finally, print out the value of the "pattern" argument.
 
 This already gets us a lot of stuff. We have nicely-formatted help, by default.
 
@@ -120,7 +124,7 @@ And we can access the value of the "pattern" argument through `args.pattern`.
 	$ python3 src/dumbgrepcli/__init__.py hello
 	hello
 
-All that remains is to code up the logic of grep, which is rather easy in Python, since it has a built-in regex package.
+All that remains is to code up the logic of grep. This is rather easy in Python, since it has a built-in regex package.
 
 	:::python hl_lines="2 3 9 10 11 12"
 	import argparse
@@ -134,14 +138,14 @@ All that remains is to code up the logic of grep, which is rather easy in Python
 		regex = re.compile(args.pattern)
 		for line in sys.stdin:
 			if regex.search(line):
-				sys.stdout.write(line)
+                sys.stdout.write(line)
 
 	if __name__ == "__main__":
 		main()
 
 We create a `Pattern` object based on the pattern provided by the user, and all lines of input that match this pattern are printed to standard output.
 
-And that's it! We've recreated grep. Let's set up a virtual environment where we can install this bad boy and test it out. A virtual environment is a self-contained Python installation that you can experiment on without mucking up your main Python installation.
+And that's it! We've recreated grep. Let's set up a virtual environment where we can install this bad boy and test it out. (A virtual environment is a self-contained Python installation that you can experiment on without mucking up your main Python installation).
 
 ##### Create and activate the environment
 
@@ -189,14 +193,14 @@ Let's say we want to recreate grep's "-v" flag, which means that only lines NOT 
 			if args.invert != bool(regex.search(line)):
 				sys.stdout.write(line)
 
-Hurray!
+Yippee.
 
 	$ python3 src/dumbgrepcli/__init__.py -v existence </tmp/war-and-peace.txt
 	The Project Gutenberg EBook of War and Peace, by Leo Tolstoy
 	This eBook is for the use of anyone anywhere at no cost and with almost
 	[...]
 
-How about the "--max-count" parameter, which limits the number of lines that grep prints out? This requires an integer parameter, and we count the number of matched lines so that we can exit early once the limit has been reached.
+How about the "--max-count" parameter, which limits the number of lines that grep prints out? We accept the limit as an integer argument, and count the number of matched lines so that we can exit early once the limit has been reached.
 
 	:::python hl_lines="2 6 7 9 12 14 15"
 	...
@@ -221,7 +225,7 @@ It works!
 	in this part of the house and did not even know of the existence of
 	$
 
-Okay, okay. That's enough of that. There's one last trick I'd like to share before we move on, however: colour highlighting in the terminal. If we want to highlight the matching part of a line, then we can use escape codes to modify font colour in the terminal. First we store the `Match` object returned by `regex.search(...)` in its own variable, since we'll need it later to isolate the part of the line that matches the pattern. We call a new function, `highlight()`, to format the output.
+Okay, okay. That's enough of that. There's one last trick I'd like to share before we finish, however: colour highlighting in the terminal. If we want to highlight the matching part of a line, then we can use escape codes to modify font colour in the terminal. First we store the `Match` object returned by `regex.search(...)` in its own variable, since we'll need it later to isolate the part of the line that matches the pattern. And we call a new function, `highlight()`, to format the output.
 
 	:::python hl_lines="4 5 7"
 	def main():
@@ -255,8 +259,8 @@ And the result:
 <figcaption>Heavy stuff.</figcaption>
 </figure>
 
-### Distribute to the clammering masses
-If we're feeling particularly benevolent and charitable, and we want our nifty tool to be available to the writhing mob, then we can upload it to PyPI. After all, why would anyone want to use the original grep when they could use our version?
+### Distribute to the clammering public
+If we're feeling particularly benevolent and charitable, then we can upload our nifty tool to PyPI. After all, why would anyone want to use the original grep when they could use our version?
 
     $ time python3 src/dumbgrepcli/__init__.py existence </tmp/war-and-peace.txt >/dev/null
     user    0m0.086s
@@ -265,16 +269,9 @@ If we're feeling particularly benevolent and charitable, and we want our nifty t
 
 Oh, right...
 
-Anyway, here's an excellent guide for the whole process: <https://packaging.python.org/tutorials/packaging-projects/>. I won't repeat the instructions here, since the guide is thorough and straightforward.
+Anyway, here's an excellent guide that describes the whole process: <https://packaging.python.org/tutorials/packaging-projects/>. There's no point in duplicating the instructions here, since the guide is thorough and straightforward. Once dumbgrep is on PyPI, anyone can download it by running `pip3 install dumbgrep-cli`, as per the package name we defined in **setup.py**.
 
-Once dumbgrep is on PyPI, anyone can download it by running `pip3 install dumbgrep-cli`.
-
-### Closing words
-We've seen how easy it is to create a CLI tool in Python. Python handles argument parsing and comes with its own distribution network. No fussing around with ".deb" files or any of that craic.
-
-The full dumbgrep code is available [here](https://github.com/Kevinpgalligan/dumbgrep). I've also created 2 actually kinda useful CLI tools that you can check out: [pseu](https://github.com/Kevinpgalligan/pseu) and [bs](https://github.com/Kevinpgalligan/bs). They even have unit tests.
-
-Finally, if you do end up using this tutorial to create a CLI tool (calculator, weather checker, news browser, whatever), please share it with me!
+That's it. The full dumbgrep code is available [here](https://github.com/Kevinpgalligan/dumbgrep). You can use it as a template for your own CLI tools. I've also created 2 actually kinda useful CLI tools that you can check out for inspiration: [pseu](https://github.com/Kevinpgalligan/pseu) and [bs](https://github.com/Kevinpgalligan/bs).
 
     $ pseu pick "good life choice" "bad life choice"
     bad life choice
