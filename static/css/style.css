@@ -1,9 +1,12 @@
 body {
     font-family: 'Courier New', monospace;
     line-height: 21px;
-    max-width: 800px;
+    max-width: 600px;
     padding-left: 10px;
     padding-right: 10px;
+    position: relative;
+    margin: auto;
+    padding-bottom: 30px;
 }
 
 a {
@@ -25,6 +28,7 @@ a:hover {
 }
 
 header {
+    margin-top: 10px;
     text-align: center;
 }
 
