@@ -3,7 +3,10 @@ td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; p
 span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
 td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.codehilite .hll { display: block; background-color: rgb(255,255,234); }
+
+/* NOTE: I modified this to highlight lines properly. */
+.codehilite .hll { display: inline; background-color: rgb(255,255,234); }
+
 .codehilite { background: #f0f0f0; }
 .codehilite .c { color: #60a0b0; font-style: italic } /* Comment */
 .codehilite .err { border: 1px solid #FF0000 } /* Error */

@@ -144,6 +144,6 @@ Let's say that my father, a mediocre player, has a score rate of 40%. And that I
 
 As for the scenario we posed at the beginning of the article: it's almost impossible for a granny to beat Michael Jordan. But there's a chance.
 
-*Find the code behind this article [here](https://github.com/Kevinpgalligan/around-the-world).*
+*See the code [here](https://github.com/Kevinpgalligan/around-the-world).*
 
 [^infinite]: As you might have guessed, we don't compute the entire infinite sum to generate this graph. We stop after enough terms have been added that the error in the result is small.

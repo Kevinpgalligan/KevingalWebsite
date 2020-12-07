@@ -30,7 +30,7 @@ Here's the skeleton of our project.
 * **setup.py** contains the information we need to package our project and upload it to PyPI for distribution.
 * **\_\_init\_\_.py** contains the actual functionality of dumbgrep. If you didn't know, a folder that contains a file called **\_\_init\_\_.py** is a Python package. That package's code is saved in the **\_\_init\_\_.py** file.
 
-Why not dump all of our Python code into the **dumbgrep** file? This more complicated structure allows us to split the code into multiple files and even multiple subpackages, which will be useful if the codebase grows too big. It's also easier to add tests this way, for boring people who write tests.
+Why not dump all of our Python code into the **dumbgrep** file? This more complicated structure allows us to split the code into multiple files and even multiple subpackages, which will be useful if the codebase grows too big. It's also easier to add tests this way, if you're boring like that.
 
 Let's write the **dumbgrep** script. All it does is call the `main()` function of the `dumbgrepcli` package, which we'll write later.
 
