@@ -19,8 +19,7 @@ MathJax.Hub.Config({
 {% endblock headerextras %}
 {% block title %} {{ page.title }} {% endblock title %}
 {% block content %}
-<p><i>Date: {{ page.date }}</i></p>
-<h2>{{ page.title }}</h2>
+<h2 class="post-title">{{ page.title }} <span class="post-date">{{ page.date }}</span></h2>
 <hr>
 {{ page.html|safe }}
 <p><a href="/blog.html">Back to blog</a></p>
