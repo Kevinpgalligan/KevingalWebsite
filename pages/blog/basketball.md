@@ -3,6 +3,7 @@ date: 2020-10-22
 description: How often a better player of Around the World should beat a weaker player.
 requires: math
 imgthumbnail: img/basketball/thumbnail.jpg
+publish: y
 
 I played a lot of basketball during lockdown. I had free time, there was a basketball hoop outside my house, and I had recently watched The Last Dance, the hit basketball documentary about Michael Jordan and the Chicago Bulls. The time was ripe for my basketball ascendance.
 

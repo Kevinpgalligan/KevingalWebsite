@@ -1,7 +1,6 @@
 title: "LOVETRIS: an AI for HATETRIS, the ridiculously hard version of Tetris"
 date: 2020-04-17
-Description: Greedy search, beam search, Monte Carlo tree search.
-draft: yes
+Description: Greedy search, Monte Carlo tree search.
 
 [HATETRIS](https://qntm.org/hatetris) is a version of Tetris where you are given the worst piece every time. Here's a short clip of it in action.
 
@@ -84,14 +83,16 @@ Finally, tuned heuristic parameters using EA.
 * Machine learning for Tetris: https://arxiv.org/pdf/1905.01652.pdf
 * I also had a bunch of links related to MCTS.
 
-### Final results
-With tuned beam search.
-
 ### Monte Carlo Tree Search
 May or may not do this.
 
-### Conclusion
-Yea boiiiii.
+### New thoughts on the write-up
+It now (Dec 8th, 2020) seems to me that a "story" write-up is both more work and less interesting. Better to present a high-level overview of all the techniques I used. And the results.
 
-### Appendix A: tuning heuristic weights
-Evolutionary algorithms boiiii.
+* Caching.
+* Parallel tree search.
+* MCTS.
+* Heuristics.
+* EA to tune heuristics.
+* Flame graph profiling.
+* Human records as a runway.

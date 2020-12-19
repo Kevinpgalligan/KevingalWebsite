@@ -85,6 +85,15 @@ div.codehilite {
     border-width: 3px;
 }
 
-.post-description {
+.post-entry {
+    margin-bottom: 20px;
+}
+
+.post-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.post-date {
     color: rgb(128, 128, 128);
 }

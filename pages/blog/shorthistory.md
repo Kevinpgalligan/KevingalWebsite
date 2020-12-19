@@ -1,6 +1,7 @@
 title: "A short review of A Short History of Nearly Everything"
 date: 2020-07-18
 description: My thoughts on Bill Bryson's popular science book.
+publish: y
 
 If everyone on Earth owned a copy of *A Short History of Nearly Everything*, and they stacked their copies one on top of the other, then that stack would touch the Moon[^moon].
 

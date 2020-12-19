@@ -1,7 +1,6 @@
 title: I love ads!
 date: 2020-07-18
 description: After 20-odd years, I've had an epiphany.
-draft: yes
 
 I haven't owned a television in 8 years. It was only 4 months ago, after moving home to live with my parents, that I became reacquainted with television advertising. Since then, I've been exposed to the background hum of television on a daily basis. It's always there. Crooning to me as I sit down for dinner. Whispering in my ear as I fall asleep on the couch. Shouting at me as I leave the room in search of quiet. Jumping up and down at my knee, begging for attention. It's the ad, ad-vert, ad-ver-tisement. 15 minutes for every hour of TV.
 

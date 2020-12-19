@@ -2,6 +2,7 @@ title: Did the Beatles love "you"?
 date: 2020-04-01
 description: Overanalysing a claim that putting "you" in the first line of a song makes it better.
 imgthumbnail: img/beatles-and-you/thumbnail.jpg
+publish: y
 
 On page 3 of *Help! 50 Songwriting, Recording and Career Tips used by the Beatles*, author David Rowley suggests that songwriters should put the word "you" in the first line of their songs:
 

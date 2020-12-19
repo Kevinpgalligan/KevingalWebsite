@@ -1,7 +1,6 @@
 title: The darts player who estimated π
 date: 2020-08-05
 description: How you can estimate a mathematical constant using only darts and a dartboard.
-draft: yes
 requires: math code
 
 *This article introduces a method for approximating π using darts and a dartboard. There are 3 parts: 1) a story, to introduce the method; 2) a computer program that implements it; and 3) a short mathematical analysis.*

@@ -46,7 +46,7 @@ def get_blog_posts():
         date = page.meta["date"]
         page.meta["date_rssified"] = date.strftime('%a, %d %b %Y %T')
     date_sorted_blog_posts = sorted(
-            [pg for pg in pages if "blog/" in pg.path and "draft" not in pg.meta],
+            [pg for pg in pages if "blog/" in pg.path and "publish" in pg.meta],
             key=lambda pg: pg.meta['date'])
     return list(reversed(date_sorted_blog_posts))
 
@@ -57,21 +57,11 @@ def index():
 
 @app.route('/blog.html')
 def blog():
-    date_sorted_blog_posts = get_blog_posts()
-    posts_by_year = collections.defaultdict(list)
-    for post in date_sorted_blog_posts:
-        posts_by_year[post.meta["date"].year].append(post)
-    posts_by_year = list(
-        sorted(
-            posts_by_year.items(),
-            # Don't use lexicographic sorting, it'll fail
-            # after the year 9999.
-            key=lambda pair: int(pair[0]),
-            reverse=True))
+    posts = get_blog_posts()
     return render_template(
         'blog.html',
-        posts_by_year=posts_by_year,
-        num_posts=len(date_sorted_blog_posts))
+        posts=posts,
+        num_posts=len(posts))
 
 @app.route('/software.html')
 def apps():
@@ -89,7 +79,7 @@ def not_found():
 def draft_posts():
     return render_template(
         'blog/drafts.html',
-        draft_posts=[pg for pg in pages if "blog" in pg.path and "draft" in pg.meta])
+        draft_posts=[pg for pg in pages if "blog" in pg.path and "publish" not in pg.meta])
 
 @app.route('/<path:path>.html')
 def blog_post(path):
