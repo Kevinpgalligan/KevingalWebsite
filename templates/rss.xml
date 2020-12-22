@@ -11,9 +11,9 @@
     <item>
         <title>{{ page.title }}</title>
         <description>{{ page.html }}</description>
-        <link>https://kevingal.com{{ url_for("blog_post", path=page.path) }}</link>
+        <link>https://kevingal.com{{ url_for("page", path=page.path) }}</link>
         <pubDate>{{ page.date_rssified }} GMT</pubDate>
-        <guid>https://kevingal.com{{ url_for("blog_post", path=page.path) }}</guid>
+        <guid>https://kevingal.com{{ url_for("page", path=page.path) }}</guid>
     </item>{% endfor %}
 </channel>
 </rss> 

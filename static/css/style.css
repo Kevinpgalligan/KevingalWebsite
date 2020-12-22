@@ -52,6 +52,14 @@ nav, h1, h2, h3, h4, h5, h6 {
     line-height: normal;
 }
 
+/* Added this to space out the sections on the
+software page a bit more. Who knows what chaotic
+knock-on effect it will have. */
+h3 {
+    margin-top: 25px;
+    margin-bottom: 13px;
+}
+
 /* Making it a reasonable size on mobile. */
 @viewport {
     width: device-width;
@@ -79,6 +87,10 @@ pre > code {
     width: 100%;
 }
 
+pre {
+    margin: 0px;
+}
+
 div.codehilite {
     max-width: 800px;
     overflow-x: auto;
@@ -100,10 +112,5 @@ div.codehilite {
 }
 
 .post-entry-date {
-    color: rgb(128, 128, 128);
-}
-
-.post-date {
-    font-size: 18px;
     color: rgb(128, 128, 128);
 }

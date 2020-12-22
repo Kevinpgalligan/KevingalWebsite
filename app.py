@@ -29,11 +29,15 @@ app.config['FLATPAGES_HTML_RENDERER'] = render_html
 app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
     "codehilite",
     "footnotes",
-    "mdx_math"
+    "mdx_math",
+    "toc"
 ]
 app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
     'codehilite': {
         'guess_lang': 'False'
+    },
+    'toc': {
+        'toc_depth': '3-5'
     }
 }
 pages = FlatPages(app)
@@ -42,13 +46,13 @@ freezer = Freezer(app)
 MAX_NUM_POSTS_IN_FEED = 10
 
 def get_blog_posts():
-    for page in pages:
+    blog_posts = sorted(
+        [pg for pg in pages if "blog/" in pg.path and "publish" in pg.meta],
+        key=lambda pg: pg.meta['date'])
+    for page in blog_posts:
         date = page.meta["date"]
         page.meta["date_rssified"] = date.strftime('%a, %d %b %Y %T')
-    date_sorted_blog_posts = sorted(
-            [pg for pg in pages if "blog/" in pg.path and "publish" in pg.meta],
-            key=lambda pg: pg.meta['date'])
-    return list(reversed(date_sorted_blog_posts))
+    return list(reversed(blog_posts))
 
 @app.route('/')
 @app.route('/index.html')
@@ -62,10 +66,6 @@ def blog():
         'blog.html',
         posts=posts,
         num_posts=len(posts))
-
-@app.route('/software.html')
-def apps():
-    return render_template('software.html')
 
 @app.route('/apps/<name>.html')
 def specific_app(name):
@@ -82,10 +82,14 @@ def draft_posts():
         draft_posts=[pg for pg in pages if "blog" in pg.path and "publish" not in pg.meta])
 
 @app.route('/<path:path>.html')
-def blog_post(path):
+def page(path):
     page = pages.get_or_404(path)
+    if path.startswith("blog/"):
+        template = 'blog-post.html'
+    else:
+        template = "page.html"
     return render_template(
-        'blog-post.html',
+        template,
         page=page,
         requires_math="requires" in page.meta and "math" in page.meta["requires"],
         requires_code="requires" in page.meta and "code" in page.meta["requires"])

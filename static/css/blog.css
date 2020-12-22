@@ -58,3 +58,13 @@ figcaption {
     padding: 2px;
     border: 1px solid black;
 }
+
+.post-title {
+    margin-bottom: 5px;
+}
+
+.post-date {
+    margin-top: 5px;
+    font-size: 18px;
+    color: rgb(128, 128, 128);
+}

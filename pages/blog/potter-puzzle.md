@@ -96,7 +96,7 @@ Drats. This still leaves 4 candidates:
 
 ![Canonical versions, which match the dialogue from the book]({{ url_for('static', filename='img/potter-puzzle/canonical.png') }})
 
-Get retconning, J.K.
+Time for J.K. to do some more retconning.
 
 ### The code
 If you're curious about the code for solving the puzzles / drawing the diagram of solutions, see <a href="https://github.com/Kevinpgalligan/KevingalWebsite/blob/master/experiments/hp.py">here</a>.
