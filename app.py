@@ -9,17 +9,8 @@ import os.path
 import re
 
 FLATPAGES_EXTENSION = '.md'
-FOOTNOTE_REGEX = re.compile(r"\[\^[0-9a-zA-Z-]+\]")
 
 def render_html(text, flatpages, page):
-    if page.path.startswith("blog/"):
-        # Add a horizontal bar at the end of a blog post if
-        # there are no footnotes. If there are, then the
-        # footnotes extension will add a bar above the
-        # footnotes automatically.
-        match = FOOTNOTE_REGEX.search(text)
-        if match is None:
-            text += "\n<hr>"
     prerendered_body = render_template_string(Markup(text))
     return pygmented_markdown(prerendered_body, flatpages)
 
@@ -95,12 +86,18 @@ def page(path):
         requires_code="requires" in page.meta and "code" in page.meta["requires"])
 
 @freezer.register_generator
-def drafts():
-    yield "/blog/drafts.html"
-
-@freezer.register_generator
-def error_handlers():
-    yield "/404.html"
+def missing_links():
+    # These aren't linked using app.route() or the
+    # url_for() command, we've gotta let Frozen Flask
+    # know where they are.
+    links = [
+        "/blog/drafts.html",
+        "/404.html",
+        "/software.html",
+        "/apps/pixelate.html"
+    ]
+    for link in links:
+        yield link
 
 # Leaving this in case I need to generate pygments.css again.
 #@app.route('/pygments.css')
