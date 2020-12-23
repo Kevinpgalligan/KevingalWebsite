@@ -1,9 +1,14 @@
 title: kevingal/software
 
 ## Software
-I've developed some free software, typically because it's useful or amusing to me. Below is a selection of that software. Projects marked with 🌎 are web apps, i.e. you can use them in your browser. Projects marked with 📥 are desktop apps. The (potentially external) link to each project is in its title.
+Below is a selection of free software I've developed, typically because it's useful or amusing to me.
 
-Quick list:
+Key:
+
+* 🌎 = web app.
+* 📥 = desktop app.
+
+Navigation list:
 
 [TOC]
 
