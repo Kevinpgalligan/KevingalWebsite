@@ -160,7 +160,7 @@ And that's it! We've recreated grep. Let's set up a virtual environment where we
 	
 ##### Install dumbgrep
 
-	(env) $ python3 setup.py install
+	(env) $ pip install .
 	running install
 	running bdist_egg
 	running egg_info
