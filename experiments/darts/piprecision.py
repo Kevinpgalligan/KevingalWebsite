@@ -19,7 +19,7 @@ def plot(eps):
         if y >= TARGET_SUCCESS_RATE:
             break
         n *= 1.2
-    plt.plot(ns, ys, label="eps={}".format(eps), marker="o")
+    plt.plot(ns, ys, label="ε={}".format(eps), marker="o")
 
 def main():
     for eps in [0.1, 0.01, 0.001, 0.0001]:
@@ -29,8 +29,8 @@ def main():
     plt.ylim(bottom=0., top=1.)
     plt.axhline(y=TARGET_SUCCESS_RATE, color="red", linestyle="--")
     plt.grid(linestyle="--")
-    plt.xlabel("throws")
-    plt.ylabel("P(approximation error < epsilon)")
+    plt.xlabel("n")
+    plt.ylabel("P(E < ε)")
     plt.show()
 
 if __name__ == "__main__":

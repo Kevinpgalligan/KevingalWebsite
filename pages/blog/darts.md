@@ -1,90 +1,95 @@
 title: The darts player who estimated π
 date: 2020-12-23
-description: How you can estimate a mathematical constant using only darts and a dartboard.
+description: A story of darts and Monte Carlo methods.
 requires: math code
 
-A young student walked into a bar. She had just finished a gruelling computational mathematics assignment, and it was time for a relaxing game of darts.
+A student walked into a bar. She had just finished a gruelling computational maths assignment, and it was time for a relaxing game of darts.
 
-She wandered over to the darts board and started to throw. After clumsily hurling a couple of darts, she stood back to review her efforts. The darts seemed to be distributed across the board without any noticeable pattern. Almost... at random.
+She wandered over to a darts board in the corner and started to throw. After hurling a few darts, she stood back to review her efforts. She wasn't a talented darts player, and the darts seemed to distribute themselves across the board without any noticeable pattern. Almost... at random.
 
 <img src="{{ url_for('static', filename='img/darts/board.png') }}"
      alt="Some darts scattered 'randomly' across a dartboard."
      class="centered">
 
-This last thought put her mind to work. She had been doing monte carlo stuff. If the darts were indeed landing at random, then it would be as if she were taking a random sampel from teh square. If she treated it as a 1x1 square, with area 1, then she could estimate the area of the circle by the proportion of darts that landed in the circle. hits/(hits+misses). Then another thought occurred to her. The area of a circle is πr^2; if she knew the area of the circle, she could estimate π! The formula is BLAH. All without using so much as a ruler.
+This last thought put her mind to work. If the darts were aimed at random, then it would be like sampling random points from the darts board. And couldn't that sample be used to estimate the area of the circular part of the board? For example, if 7 out of 10 darts landed in the circle, she would expect the circle to fill about 7/10 of the overall board. And wouldn't that be neat?
 
-She throws 100 darts. An estimate of.... 3.02 (or whatever). Well, it wasn't bad, but it seemed like she would have to throw an awful lot of darts to get a worthwhile estimate. And her arm was already tired. But wait! Couldn't she program a computer to do this sort of repetitive shit? She had been studying monte carlo simulation.
+But just as she was about to run off and get a measuring tape, another thought occurred to her. Since the area of a circle is $\pi r^2$, wouldn't her estimate also give a free estimate of $\pi$? If the backboard, a square, had sides of length $1$, then its area would be $A=1\times1=1$, and the circle would have radius $r=1/2$. And if a fraction $f$ of her darts hit the circle, her estimate of the area would be $fA=f=\pi (1/2)^2=\pi/4$. Her estimate of $\pi$ would then be:
 
-So she raced home and wrote up the following computer program to do the dirty work. She occupied an alternative universe where Common Lisp was the most popular programming language in the world, so that's the one she used. Her program took a single parameter, `n`, and simulated that many dart throws. The output was an estimate of π.
+$$\pi=4f.$$
+
+An estimate of the most famous mathematical constant, and she wouldn't need anything besides darts!
+
+She began to throw. 10 darts, 20 darts, 50 darts. She kept a diligent count of where the darts landed. She stopped when her arm got sore, after she had thrown 100 darts. 81 darts had landed in the circle, which gave an estimate of $\pi = 4(81/100) = 3.24$. It was in the same ballpark as $\pi$, but it seemed like she would need to throw lots more darts to get a decent estimate. And her arm was already dead from throwing. If only there were a way to automate this tedious process.
+
+But of course! That's what she was studying computational maths for. She raced home to her computer and wrote the following code to do the dirty work. She occupied an alternative universe where Common Lisp was the most popular programming language, so that's the programming language she used. Her program took a single parameter, `n`, and simulated `n` dart throws. The output was an estimate of $\pi$.
 
     :::lisp
-    (defparameter +r+ 1/2)
-
     (defun estimate-pi (n)
-      (let ((in-circle-count 0))
-        (loop repeat n
-              do (destructuring-bind (x y)
-                     (random-xy)
-                   (when (is-in-circle-p x y)
-                     (incf in-circle-count))))
-        (* 4 (/ in-circle-count n))))
+      (let ((in-circle-count
+              (loop repeat n
+                    sum (if (apply #'is-in-circle-p (random-xy)) 1 0))))
+        (* 4 (/ in-circle-count throws))))
 
     (defun random-xy ()
       (loop repeat 2
-            collect (- +r+ (random (* 2.0 +r+)))))
+            collect (- 1/2 (random (* 2.0 1/2)))))
 
     (defun is-in-circle-p (x y)
-      (<= (sqrt (+ (square x) (square y)))
-          +r+))
+      (<= (sqrt (+ (square x) (square y))) 1/2))
 
     (defun square (x)
       (* x x))
 
-She simulated 1000 throws.
+She simulated 1000 throws through her Common Lisp interpreter.
 
     :::lisp
-    CL-USER> (estimate-pi 1000)
+    > (estimate-pi 1000)
     3.104
 
 Wonderful! She would merely have to keep increasing the number of throws and her estimate would get better and better. Soon she'd have the most accurate estimate of π in the world.
 
     :::lisp
-    CL-USER> (estimate-pi 10000)
+    > (estimate-pi 10000)
     3.1356
-    CL-USER> (estimate-pi 100000)
+    > (estimate-pi 100000)
     3.14144
-    CL-USER> (estimate-pi 1000000)
+    > (estimate-pi 1000000)
     3.142252
-    CL-USER> (estimate-pi 10000000)
+    > (estimate-pi 10000000)
     3.1426332
 
-Except, after simulating 10 *million* throws, her approximation was still only accurate to 2 decimal places! Her computer's fan was getting noisy and she didn't want to tire it out, in the same way that she had become tired out in the bar. She sat back and wondered how many darts she would need to throw in order to achieve an estimate of a particular level of accuracy. Luckily, she was also taking a course on probability, so she knew there was a high probability that she would be able to figure it out.
+Except, after simulating 10 *million* throws, her approximation was still only accurate to 2 decimal places! Her computer's fan was getting noisy, and she didn't want to push it to the limit. Instead, she sat back and wondered how many darts she would need to throw in order to achieve an accuracy of, say, 4 decimal places. Luckily, there was a high probability that she would be able to figure this out, since she was also taking a course on probability.
 
-The other day, she had learned about binomial random variables. Let's say we throw $n$ darts. Let $X$ be the number of darts that hit the dartboard. $X$ is what's known as a binomial random variable. "Random variable" means that it has a random value, while "binomial" means that it's equivalent to a bunch of coin flips. In our case, $X$'s random value is between 0 and $n$, and each "coin flip" has probability $p=\pi/4$ of landing on heads (a.k.a. hitting the dartboard).
+She knew that she could model the number of darts to hit the darts board as a [*binomial random variable*](https://en.wikipedia.org/wiki/Binomial_distribution), $X$ -- a random variable being a variable that assumes each of its possible values with a certain probability. In this case, if she threw $n$ darts, then $X$ could take on any value from $0$ to $n$. Her estimate $Y$ could be modelled as $Y=4X/n$, and the error as $E=\vert Y-\pi\vert$.
 
-WHY SHOULD WE CARE ABOUT THIS RANDOM VARIABLE CRAP? Our end goal here is to calculate the probability of our estimate being within a small distance, $\epsilon$, of π. We can use the power of random variables to calculate this. Just bear with me for one more minute.
-
-Let $Y=4X/n$ be our estimate of π. It's also a random variable. We calculate the probability of $Y$ being within $\epsilon$ of π, like so:
+After all that, she could estimate the probability of the error being less than some small value, $\epsilon$.
 
 $$
 \begin{aligned}
-P(-\epsilon < Y-\pi < \epsilon) &= 1-2P(Y-\pi < -\epsilon) \\
+P(E < \epsilon) &= 1-2P(Y-\pi < -\epsilon) \\
 &= 1-2P(4X/n < \pi-\epsilon) \\
 &= 1-2P(X < n(\pi-\epsilon)/4).
 \end{aligned}
 $$
 
-Okayyyy, we've expressed the probability of our estimate having a given level of accuracy, in terms of the probability of $X$ being less than some number. And *that* can be estimated by using a normal approximation of the binomial random variable $X$. Binomial RVs with $n$ samples and $p$ near 0.5 can be approximated using a normal distribution with mean $\mu=np$ and standard deviation $\sigma=\sqrt{np(1-p)}$. And that's how we produce the following graph.
+The tricky part here would be calculating $P(X < n(\pi-\epsilon)$. The probability of a binomial random variable being less than some number $k$ is
+
+$$P(X < k) = \sum^{k-1}_{i=0} {n \choose i}p^i(1-p)^{n-i},$$
+
+which is a pain in the ass to calculate as $k$ becomes very large. Thankfully, however, she knew that binomial random variables with $n$ samples and $p$ not too small or too large can be approximated using a normal distribution with mean $\mu=np$ and standard deviation $\sigma=\sqrt{np(1-p)}$. That's how she produced the following graph, which indicated that an accuracy beyond 3 or 4 decimal places was a hopeless cause.
 
 <img src="{{ url_for('static', filename='img/darts/graph.png') }}"
      alt="Plot of the probability of our approximation having a certain level of accuracy given 'n' throws."
      class="centered">
 
+A few days later, the student was explaining her dart experiment to a friend.
+
+"I see," said the friend. "It seems you've squeezed as much of π as you can out of darts. What will your next project be?"
 
 "Well... have you heard of *e*?"
 
-### Appendix A: in the real world
-The story above was inspired by exercise 3.5 of the computer science textbook, *Structure and Interpretation of Computer Programs*. It asks you to estimate π using a Monte Carlo algorithm, which just means that you simulate throwing a dart a bunch of times.
+### Appendix A: background
+This story was inspired by exercise 3.5 of the computer science textbook, *Structure and Interpretation of Computer Programs*. It asks you to estimate π using a Monte Carlo algorithm, which just means that you simulate a bunch of dart throws.
 
 To see the darts experiment in action, watch [this video](https://www.youtube.com/watch?v=M34TO71SKGk) (Physics Girl, "Calculating Pi with Darts").
 

@@ -1,21 +1,21 @@
-(defparameter +r+ 1/2)
+#!/usr/bin/sbcl --script
+
+(defun estimate-pi (n)
+  (let ((in-circle-count
+          (loop repeat n
+                sum (if (apply #'is-in-circle-p (random-xy)) 1 0))))
+    (* 4 (/ in-circle-count throws))))
+
+(defun random-xy ()
+  (loop repeat 2
+        collect (- 1/2 (random (* 2.0 1/2)))))
+
+(defun is-in-circle-p (x y)
+  (<= (sqrt (+ (square x) (square y))) 1/2))
 
 (defun square (x)
   (* x x))
 
-(defun random-xy ()
-  (loop repeat 2
-        collect (- +r+ (random (* 2.0 +r+)))))
-
-(defun is-in-circle-p (x y)
-  (<= (sqrt (+ (square x) (square y)))
-      +r+))
-
-(defun estimate-pi (throws)
-  (let ((in-circle-count 0))
-    (loop repeat throws
-          do (destructuring-bind (x y)
-                 (random-xy)
-               (when (is-in-circle-p x y)
-                 (incf in-circle-count))))
-    (* 4 (/ in-circle-count throws))))
+(setf *random-state* (make-random-state t))
+(princ (float (estimate-pi (parse-integer (second *posix-argv*)))))
+(terpri)
