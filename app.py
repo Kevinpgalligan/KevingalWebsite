@@ -21,7 +21,8 @@ app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
     "codehilite",
     "footnotes",
     "mdx_math",
-    "toc"
+    "toc",
+    "tables"
 ]
 app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
     'codehilite': {
