@@ -2,6 +2,7 @@ title: The darts player who estimated π
 date: 2021-01-15
 description: A story of darts and Monte Carlo methods.
 requires: math code
+imgthumbnail: img/darts/thumbnail.jpg
 publish: yes
 
 A computational maths student walked into a bar. It had been a gruelling semester, and she was eager to relax now that exams were over.
@@ -135,4 +136,4 @@ Finally, the meat of the code! Here's the function to simulate a given number of
 
 We `let` a local variable, `in-circle-count`, equal the number of darts that land on the dartboard. This number is calculated by looping `n` times and summing 1 if a dart throw lands on the board, or 0 if it doesn't. `apply` takes each pair of coordinates that we generate, `(x y)`, and passes it to `is-in-circle-p`. Finally, within the body of the `let`, and using the value of `in-circle-count`, we calculate our estimate.
 
-If you want to learn more about Lisp, I recommend taking a look  *The Little Schemer*. It's an entertaining, hands-on introduction to Scheme, another language in the Lisp family.
+If you want to learn more about Lisp, I recommend taking a look at  *The Little Schemer*. It's an entertaining, hands-on introduction to Scheme, another language in the Lisp family.
