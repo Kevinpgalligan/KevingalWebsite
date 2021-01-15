@@ -47,7 +47,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nl { color: #002070; font-weight: bold } /* Name.Label */
 .codehilite .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
 .codehilite .nt { color: #062873; font-weight: bold } /* Name.Tag */
-.codehilite .nv { color: #bb60d5 } /* Name.Variable */
+.codehilite .nv { color: #000080 } /* Name.Variable */
 .codehilite .ow { color: #007020; font-weight: bold } /* Operator.Word */
 .codehilite .w { color: #bbbbbb } /* Text.Whitespace */
 .codehilite .mb { color: #40a070 } /* Literal.Number.Bin */

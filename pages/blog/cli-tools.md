@@ -1,6 +1,6 @@
 title: Recreating grep in Python
 date: 2020-11-27
-description: An example of how to make Python CLI tools.
+description: How to make Python CLI tools.
 requires: code
 imgthumbnail: img/cli-tools/thumbnail.jpg
 publish: y

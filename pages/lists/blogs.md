@@ -76,3 +76,6 @@ Name | Tags | Description
 [magnushoff.com](https://magnushoff.com/articles/) | 💾 | Cool article on making Minesweeper better.
 [lwn.net](https://lwn.net/) | 💾 | Free software news.
 [NotRyan](https://blog.notryan.com/) | 💾 | Cool plaintext design.
+[research!rsc](https://research.swtch.com/) | 💾 | Some cool posts.
+[owlspace.xyz](https://owlspace.xyz/) | 💾 | Cybersec.
+[rosenzweig.io](rosenzweig.io/blog) | 💾 | Stuff.

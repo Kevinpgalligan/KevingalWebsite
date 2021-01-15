@@ -43,7 +43,7 @@ Examples (more in the README):
 	15
 
 ### [pseu](https://github.com/Kevinpgalligan/pseu) 📥
-A Python CLI tool that randomly generates numbers, shuffles, picks, and rolls dice. Possible uses: picking someone to do a shitty job, relieving yourself of the agony of deciding which movie to watch, making life choices.
+A Python CLI tool that randomly generates numbers, shuffles, picks, and rolls dice. Possible uses: picking someone to do a shitty job; relieving yourself of the agony of deciding which movie to watch; making life choices.
 
 Installation:
 
