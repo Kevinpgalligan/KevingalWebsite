@@ -104,10 +104,11 @@ div.codehilite {
 
 .post-entry {
     margin-bottom: 20px;
+    font-size: 14px;
 }
 
 .post-entry-title {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 5px;
 }
 
