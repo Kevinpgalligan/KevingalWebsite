@@ -1,27 +1,30 @@
 title: The darts player who estimated π
 date: 2021-01-15
 description: A story of darts and Monte Carlo methods.
-requires: math code
+requires: code
 imgthumbnail: img/darts/thumbnail.jpg
 publish: yes
+tags: probability simulation lisp
 
 A computational maths student walked into a bar. It had been a gruelling semester, and she was eager to relax now that exams were over.
 
-A dartboard in the corner caught her eye. She wandered over, picked up a few darts, and chucked them at the board. She wasn't a talented darts player, and the darts distributed themselves without a pattern. Almost... at random.
+A dartboard in the corner caught her eye. She wandered over, picked up a few darts, and chucked them at the board. She wasn't a talented darts player, and the darts distributed themselves without a noticeable pattern. Almost... at random.
 
 <img src="{{ url_for('static', filename='img/darts/board.png') }}"
      alt="Some darts scattered 'randomly' across a dartboard."
      class="centered">
 
-This thought put an idea in her head. If the darts were aimed at random, it would be like sampling random points from the dartboard's frame. And couldn't that sample be used to estimate the area of the dartboard itself? The dartboard was taking up some fraction $f$ of the frame's area, so the area of the dartboard was $fA$. The frame's surface area, $A$, could be calculated by measuring its sides and multiplying them together, since it was a square. Then, if 7 out of 10 darts hit the dartboard, she could estimate its area to be $A(7/10)$ of the frame. And wouldn't that be a neat little experiment?
+This thought put an idea in her head. If the darts were aimed at random, it would be like sampling random points from the dartboard's frame. And couldn't that sample be used to estimate the area of the dartboard itself? The dartboard was taking up some fraction $`f`$ of the frame's area, so the area of the dartboard was $`fA`$. The frame's surface area, $`A`$, could be calculated by measuring its sides and multiplying them together, since it was a square. Then, if 7 out of 10 darts hit the dartboard, she could estimate its area to be $`A(7/10)`$ of the frame. And wouldn't that be a neat little experiment?
 
-Just as she was about to run off in search of measuring tape, another thought occurred to her. Since the area of a circle is $\pi r^2$, couldn't she also use her experiment to estimate π? If the frame had sides of length $x$, then its area would be $A=x\times x=x^2$. The dartboard's radius would be about half the width of the frame, or $r=x/2$. And if a fraction $f$ of her darts hit the circle, her estimate of the area would be $fA=fx^2=\pi (x/2)^2$. Her estimate of π would then be:
+Just as she was about to run off in search of measuring tape, another thought occurred to her. Since the area of a circle is $`\pi r^2`$, couldn't she also use her experiment to estimate π? If the frame had sides of length $`x`$, then its area would be $`A=x\times x=x^2`$. The dartboard's radius would be about half the width of the frame, or $`r=x/2`$. And if a fraction $`f`$ of her darts hit the circle, her estimate of the area would be $`fA=fx^2=\pi (x/2)^2`$. Her estimate of π would then be:
 
-$$\pi=4f.$$
+```math
+\pi=4f.
+```
 
 An estimate of the most famous mathematical constant, using nothing but darts!
 
-She began to throw, keeping a diligent count of where the darts landed. 10 darts, 20 darts, 50 darts. She stopped after 100 throws, when her arm got sore. 81 darts had landed in the circle, which gave an estimate of $\pi = 4(81/100) = 3.24$. It was in the same ballpark as π, but it seemed like she would need to throw a lot more darts to improve her estimate. And her arm was already dead from throwing. If only there were a way to automate this tedious process.
+She began to throw, keeping a diligent count of where the darts landed. 10 darts, 20 darts, 50 darts. She stopped after 100 throws, when her arm got sore. 81 darts had landed in the circle, which gave an estimate of $`\pi = 4(81/100) = 3.24`$. It was in the same ballpark as π, but it seemed like she would need to throw a lot more darts to improve her estimate. And her arm was already dead from throwing. If only there were a way to automate this tedious process.
 
 But of course! That's what she was studying computational maths for. She raced home to her computer and wrote the following code to simulate the dart throws. She occupied an alternate universe where Common Lisp was the most popular programming language, so that's the programming language she used. Her code took a single parameter, `n`, and simulated `n` dart throws. The output was an estimate of π.
 
@@ -62,23 +65,25 @@ Wonderful. She would merely have to increase the number of throws and her estima
 
 Except, after simulating 10 *million* throws, her approximation was still only accurate to 2 decimal places! Her computer's fan was getting noisy, and she didn't want to push it over the edge. Instead, she sat back and wondered how many darts she would have to throw in order to achieve an accuracy of, say, 4 decimal places. Luckily, there was a high probability that she would be able to figure this out, since her course included a module on probability.
 
-She knew that she could model the number of darts to hit the dartboard as a [*binomial random variable*](https://en.wikipedia.org/wiki/Binomial_distribution), $X$ -- a random variable being a variable that takes on each of its possible values with a certain probability. In this case, if she threw $n$ darts, then $X$ could take on any value from $0$ to $n$. Her estimate $Y$ could be modelled as another random variable, $Y=4X/n$. The error in her estimate could be modelled as $E=\vert Y-\pi\vert$.
+She knew that she could model the number of darts to hit the dartboard as a [*binomial random variable*](https://en.wikipedia.org/wiki/Binomial_distribution), $`X`$ -- a random variable being a variable that takes on each of its possible values with a certain probability. In this case, if she threw $`n`$ darts, then $`X`$ could take on any value from $`0`$ to $`n`$. Her estimate $`Y`$ could be modelled as another random variable, $`Y=4X/n`$. The error in her estimate could be modelled as $`E=\vert Y-\pi\vert`$.
 
-After all that, she could estimate the probability of the error being less than some small value, $\epsilon$.
+After all that, she could estimate the probability of the error being less than some small value, $`\epsilon`$.
 
-$$
+```math
 \begin{aligned}
 P(E < \epsilon) &= 1-2P(Y-\pi < -\epsilon) \\
 &= 1-2P(4X/n < \pi-\epsilon) \\
 &= 1-2P(X < n(\pi-\epsilon)/4).
 \end{aligned}
-$$
+```
 
-How could she calculate $P(X < n(\pi-\epsilon))$? The probability of a binomial random variable being less than some number $k$ is
+How could she calculate $`P(X < n(\pi-\epsilon))`$? The probability of a binomial random variable being less than some number $`k`$ is
 
-$$P(X < k) = \sum^{k-1}_{i=0} {n \choose i}p^i(1-p)^{n-i},$$
+```math
+P(X < k) = \sum^{k-1}_{i=0} {n \choose i}p^i(1-p)^{n-i},
+```
 
-where $p$, in the case of the darts experiment, would be the probability of an individual dart hitting the board. This sum is a pain in the ass to calculate as $k$ becomes very large. Thankfully, she knew that binomial random variables can be approximated using a normal distribution with mean $\mu=np$ and standard deviation $\sigma=\sqrt{np(1-p)}$.
+where $`p`$, in the case of the darts experiment, would be the probability of an individual dart hitting the board. This sum is a pain in the ass to calculate as $`k`$ becomes very large. Thankfully, she knew that binomial random variables can be approximated using a normal distribution with mean $`\mu=np`$ and standard deviation $`\sigma=\sqrt{np(1-p)}`$.
 
 That's how she produced the following graph, which indicated that an accuracy beyond 3 or 4 decimal places was a hopeless cause. Back when she threw 100 darts, there had been about a 50% chance of her estimate being accurate to 1 decimal place. For a 95% chance of 4 decimal places of accuracy, she would need to throw over 1 billion darts.
 
@@ -117,7 +122,9 @@ Now we define a function to generate random x & y coordinates within the square,
 
 We need one last helper function. Coordinates x & y lie within a circle if they satisfy:
 
-$$\sqrt{x^2 + y^2} \leq r.$$
+```math
+\sqrt{x^2 + y^2} \leq r.
+```
 
 Here it is in code. We follow the convention that a function name should end in "-p" if it returns a true or false value, p being short for predicate.
 

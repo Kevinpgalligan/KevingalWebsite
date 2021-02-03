@@ -2,6 +2,7 @@ title: The story of u/AnEmojipastaBot
 description: A Reddit bot whose function was to turn comments into emojipasta.
 date: 2019-09-29
 publish: y
+tags: web
 
 u/AnEmojipastaBot was a Reddit bot inspired by <a href="https://www.reddit.com/r/emojipasta">r/emojipasta</a>. The idea was simple: turn the comments of other users into emojipasta, on request.
 

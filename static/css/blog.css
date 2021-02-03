@@ -30,11 +30,6 @@ figcaption {
     font-size: small;
 }
 
-/* Stops MathJax-rendered equations from overflowing. */
-.MathJax_Display {
-    overflow-x: auto;
-}
-
 /* Wrap tables in a div. Give the div this class.
    Yeah, it sucks, but that's the only way
    to add a scrollbar to an overflowing table,
@@ -67,4 +62,10 @@ figcaption {
     margin-top: 5px;
     font-size: 18px;
     color: rgb(128, 128, 128);
+}
+
+.tags {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-style: dotted;
 }

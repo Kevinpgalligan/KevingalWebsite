@@ -7,6 +7,7 @@ from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
 from flask_frozen import Freezer
 import os.path
 import re
+import functools
 
 FLATPAGES_EXTENSION = '.md'
 
@@ -20,7 +21,7 @@ app.config['FLATPAGES_HTML_RENDERER'] = render_html
 app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
     "codehilite",
     "footnotes",
-    "mdx_math",
+    "markdown_katex",
     "toc",
     "tables"
 ]
@@ -30,6 +31,9 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
     },
     'toc': {
         'toc_depth': '3-5'
+    },
+    'markdown_katex': {
+        'insert_fonts_css': False
     }
 }
 pages = FlatPages(app)
@@ -37,19 +41,45 @@ freezer = Freezer(app)
 
 MAX_NUM_POSTS_IN_FEED = 10
 
-def get_blog_posts():
-    blog_posts = sorted(
-        [pg for pg in pages if "blog/" in pg.path and "publish" in pg.meta],
-        key=lambda pg: pg.meta['date'])
-    for page in blog_posts:
-        date = page.meta["date"]
-        page.meta["date_rssified"] = date.strftime('%a, %d %b %Y %T')
-    return list(reversed(blog_posts))
+class Tag:
+    def __init__(self, name, count):
+        self.name = name
+        self.count = count
 
+# Cache so it doesn't have to be recomputed
+# every time.
+@functools.lru_cache(maxsize=1)
+def get_blog_posts():
+    posts = [pg for pg in pages if "blog/" in pg.path and "publish" in pg.meta]
+    posts.sort(key=lambda post: post.meta["date"], reverse=True)
+    for post in posts:
+        tweak_post_meta(post)
+    return posts
+
+def tweak_post_meta(pg):
+    if "date" in pg.meta:
+        pg.meta["date_rssified"] = pg.meta["date"].strftime('%a, %d %b %Y %T')
+    if "tags" in pg.meta and not isinstance(pg.meta["tags"], list):
+        pg.meta["tags"] = pg.meta["tags"].split(" ")
+
+def get_posts_for_tag(tag):
+    return [post for post in get_blog_posts()
+            if tag in post.meta["tags"]]
+
+def get_tags():
+    posts = get_blog_posts()
+    counts = collections.defaultdict(int)
+    for post in posts:
+        for tag in post.meta["tags"]:
+            counts[tag] += 1
+    return sorted([Tag(name, count) for name, count in counts.items()],
+                   key=lambda t: t.count,
+                   reverse=True)
+    
 @app.route('/')
 @app.route('/index.html')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', tags=get_tags())
 
 @app.route('/blog.html')
 def blog():
@@ -57,11 +87,21 @@ def blog():
     return render_template(
         'blog.html',
         posts=posts,
-        num_posts=len(posts))
+        num_posts=len(posts),
+        tags=get_tags())
 
 @app.route('/apps/<name>.html')
 def specific_app(name):
     return render_template('apps/' + name + '.html')
+
+@app.route('/blog/tags/<name>.html')
+def tag(name):
+    posts = get_posts_for_tag(name)
+    return render_template(
+        'tag.html',
+        num_posts=len(posts),
+        tag_name=name,
+        posts=posts)
 
 @app.route('/404.html')
 def not_found():
@@ -76,6 +116,7 @@ def draft_posts():
 @app.route('/<path:path>.html')
 def page(path):
     page = pages.get_or_404(path)
+    tweak_post_meta(page)
     if path.startswith("blog/"):
         template = 'blog-post.html'
     else:
@@ -83,7 +124,6 @@ def page(path):
     return render_template(
         template,
         page=page,
-        requires_math="requires" in page.meta and "math" in page.meta["requires"],
         requires_code="requires" in page.meta and "code" in page.meta["requires"])
 
 @freezer.register_generator
@@ -113,7 +153,7 @@ def rss_feed():
         render_template(
             "rss.xml",
             blog_posts=date_sorted_blog_posts,
-            pub_date=date_sorted_blog_posts[0].meta["date_rssified"]),
+            pub_date=date_sorted_blog_posts[0].date_rssified),
         mimetype="application/rss+xml")
 
 @app.route("/favicon.ico")

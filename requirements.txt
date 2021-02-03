@@ -2,4 +2,4 @@ Flask
 Frozen-Flask
 Flask-FlatPages
 Pygments
-python-markdown-math
+markdown-katex

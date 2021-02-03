@@ -2,6 +2,7 @@ title: Simulating plane designs for faster boarding
 date: 2019-09-07
 description: Moving entrances closer to the middle could make plane boarding faster.
 publish: y
+tags: simulation python
 
 Boarding a plane, you wait behind a man so unwashed that you can almost see a stink cloud emanating from his trenchcoat. Two rows ahead, an old woman struggles to lift her humongous suitcases, each of which is large enough to fit her inside. Behind you is a red-eyed, defeated mother, holding a shrill baby. "There has to be a faster way to get through this," you think to yourself. Then the baby vomits into your backpack.
 

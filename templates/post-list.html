@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block headerextras %}
+<link rel="stylesheet" href="/static/css/blog.css">
+{% endblock headerextras %}
+{% block content %}
+{% block extrashitbeforepostlist %}{% endblock extrashitbeforepostlist %}
+<table class="post-list">
+<tbody>{% for page in posts %}
+<tr class="post-entry"><td class="post-entry-date">{{ page.date }}</td> <td class="post-entry-title"><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></td></tr>
+{% endfor %}</tbody>
+</table>
+{% endblock content %}

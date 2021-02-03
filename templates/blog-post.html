@@ -6,10 +6,11 @@
 {% block content %}
 <h2 class="post-title">{{ page.title }} </h2>
 <h3 class="post-date">{{ page.date }}</h3>
+<p>Tags: {% for tag in page.tags %}<a href="/blog/tags/{{tag}}.html">{{tag}}</a> {% endfor %}</p>
 <hr>
 {{ page.html|safe }}
 <hr>
 <p><a href="/blog.html">Back to blog</a></p>
 <p><a href="/feed.xml"><img src="{{ url_for('static', filename='img/rss.png') }}"></a> <a href="https://github.com/Kevinpgalligan"><img src="{{ url_for('static', filename='img/github.png') }}"></a></p>
-<p>Contact at <i>galligankevinp@gmail.com</i>.</p>
+<p>Feel free to email me at <i>galligankevinp@gmail.com</i>.</p>
 {% endblock content %}

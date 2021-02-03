@@ -1,9 +1,9 @@
 title: Can your granny beat Michael Jordan at basketball? A probabilistic answer
 date: 2020-10-22
 description: How often a better player of Around the World should beat a weaker player.
-requires: math
 imgthumbnail: img/basketball/thumbnail.jpg
 publish: y
+tags: probability
 
 I played a lot of basketball during lockdown. I had free time, there was a basketball hoop outside my house, and I had recently watched The Last Dance, the hit basketball documentary about Michael Jordan and the Chicago Bulls. The time was ripe for my basketball ascendance.
 
@@ -17,47 +17,49 @@ This made me wonder -- how much better than someone do you need to be in order t
 
 Around the World is a race. Players take turns shooting from set positions around the hoop. A player's turn ends when they miss a shot. The winner is the first player to score a shot from all positions. In my variant, we had to score 7 shots, spaced at regular intervals in a semi-circle around the hoop (see above).
 
-Another way to look at it is that the winner is the person who misses the fewest shots before scoring 7 times. And this can be modelled using what is known as a [Pascal distribution](https://en.wikipedia.org/wiki/Negative_binomial_distribution). Given that a player scores each shot with probability $p$, the probability that they miss $k$ shots before finishing the game is
+Another way to look at it is that the winner is the person who misses the fewest shots before scoring 7 times. And this can be modelled using what is known as a [Pascal distribution](https://en.wikipedia.org/wiki/Negative_binomial_distribution). Given that a player scores each shot with probability $`p`$, the probability that they miss $`k`$ shots before finishing the game is
 
-$$P(X=k)={k+7-1 \choose 7-1}(1-p)^k p^7.$$
+```math
+P(X=k)={k+7-1 \choose 7-1}(1-p)^k p^7.
+```
 
-Where did this ugly-looking expression come from? Well, there are ${k+7-1 \choose 7-1}$ sequences of shots ([binomial coefficient formula](https://en.wikipedia.org/wiki/Binomial_coefficient)) where the player misses $k$ shots before finishing. Why that many!? The player takes $k+7$ shots in total. The last shot has to be a success, as that's when the player finishes the game. This leaves $k+7-1$ shots, of which we *choose* $7-1=6$ to be successes. As for $(1-p)^k p^7$, it's the probability of a single sequence of shots where the player misses $k$ shots before scoring 7.
+Where did this ugly-looking expression come from? Well, there are $`{k+7-1 \choose 7-1}`$ sequences of shots ([binomial coefficient formula](https://en.wikipedia.org/wiki/Binomial_coefficient)) where the player misses $`k`$ shots before finishing. Why that many!? The player takes $`k+7`$ shots in total. The last shot has to be a success, as that's when the player finishes the game. This leaves $`k+7-1`$ shots, of which we *choose* $`7-1=6`$ to be successes. As for $`(1-p)^k p^7`$, it's the probability of a single sequence of shots where the player misses $`k`$ shots before scoring 7.
 
-Now that we've hand-wavingly derived the probability formula, what does the distribution look like for different values of $p$? How many shots should you expect to miss at different skill levels?
+Now that we've hand-wavingly derived the probability formula, what does the distribution look like for different values of $`p`$? How many shots should you expect to miss at different skill levels?
 
-Here's the distribution when $p=0.1$. This is roughly granny-level shooting ability. A granny musters enough energy to hurl the ball in the general direction of the hoop, and it happens to go in, about 1 in 10 times. On average, it takes more than 60 misses before granny finishes the game (indicated by the red line).
+Here's the distribution when $`p=0.1`$. This is roughly granny-level shooting ability. A granny musters enough energy to hurl the ball in the general direction of the hoop, and it happens to go in, about 1 in 10 times. On average, it takes more than 60 misses before granny finishes the game (indicated by the red line).
 
 <img src="{{ url_for('static', filename='img/basketball/pascal-p0.1.png') }}"
      alt="The distribution for p=0.1; 9/10 shots are misses. A curve that peaks at around 55 missed shots. The mean is just over 60 missed shots."
      class="centered">
 
-Michael Jordan's average free throw percentage over his career was 83.5% ([ref](https://stats.nba.com/player/893/career/)), so let's look at $p=0.835$. We see that it would be common (3/10 games) for MJ to not miss a single shot, and the other player wouldn't even touch the ball if MJ was the starting player. On average, we'd expect MJ to miss slightly more than 1 shot.
+Michael Jordan's average free throw percentage over his career was 83.5% ([ref](https://stats.nba.com/player/893/career/)), so let's look at $`p=0.835`$. We see that it would be common (3/10 games) for MJ to not miss a single shot, and the other player wouldn't even touch the ball if MJ was the starting player. On average, we'd expect MJ to miss slightly more than 1 shot.
 
 <img src="{{ url_for('static', filename='img/basketball/pascal-p0.835.png') }}"
      alt="The distribution for p=0.835."
      class="centered">
 
-Finally, between the two extremes, here's $p=0.5$. This player misses an average of 7 shots before finishing. It's like me on a good day.
+Finally, between the two extremes, here's $`p=0.5`$. This player misses an average of 7 shots before finishing. It's like me on a good day.
 
 <img src="{{ url_for('static', filename='img/basketball/pascal-p0.5.png') }}"
      alt="The distribution for p=0.5."
      class="centered">
 
-Our goal is to estimate the win probability of one player versus another. Me versus my dad. Michael Jordan versus your granny. Michael Jordan versus Michael Jordan. And so on. To do that, we'll have to define some new variables. Let $W$ be the event of a win for the first player, let $F$ be the number of shots they miss, and let $S$ be the same but for the second player. Also let $p_F$ and $p_S$ be the shot success probabilities of each player. We can now state the probability of the first player winning:
+Our goal is to estimate the win probability of one player versus another. Me versus my dad. Michael Jordan versus your granny. Michael Jordan versus Michael Jordan. And so on. To do that, we'll have to define some new variables. Let $`W`$ be the event of a win for the first player, let $`F`$ be the number of shots they miss, and let $`S`$ be the same but for the second player. Also let $`p_F`$ and $`p_S`$ be the shot success probabilities of each player. We can now state the probability of the first player winning:
 
-$$
+```math
 P(W) = \sum_{s=0}^\infty P(S=s) P(F \leq S).
-$$
+```
 
-We know the value of $P(S=s)$ from above, except that $p$ is swapped for $p_S$. And we get $P(F \leq s)$ by summing up $P(F=f)$ for all $f \leq s$:
+We know the value of $`P(S=s)`$ from above, except that $`p`$ is swapped for $`p_S`$. And we get $`P(F \leq s)`$ by summing up $`P(F=f)`$ for all $`f \leq s`$:
 
-$$
+```math
 P(F \leq s) = \sum_{f=0}^s P(F=f).
-$$
+```
 
-Why $\leq$ and not $<$? This is because the first player wins if they miss the same amount of shots as the second player, as the game ends before the second player can finish their shots.
+Why $`\leq`$ and not $`<`$? This is because the first player wins if they miss the same amount of shots as the second player, as the game ends before the second player can finish their shots.
 
-With that out of the way, here's a heat map of the first player's win probability, for varying values of $p_F$ and $p_S$[^infinite]. It ranges from black (the first player will almost certainly lose) to white (the first player will almost certainly win). When we compare Michael Jordan as the first player ($p_F=0.835$) to a granny as the second player ($p_S=0.1$), the result is blindingly white. Granny doesn't stand a chance.
+With that out of the way, here's a heat map of the first player's win probability, for varying values of $`p_F`$ and $`p_S`$[^infinite]. It ranges from black (the first player will almost certainly lose) to white (the first player will almost certainly win). When we compare Michael Jordan as the first player ($`p_F=0.835`$) to a granny as the second player ($`p_S=0.1`$), the result is blindingly white. Granny doesn't stand a chance.
 
 <img src="{{ url_for('static', filename='img/basketball/heatmap.png') }}"
      alt="Heatmap of win probability of first player. p_F and p_S are varied between 0.1 and 0.9. "
@@ -65,7 +67,7 @@ With that out of the way, here's a heat map of the first player's win probabilit
 
 Another observation: the pixel in the bottom left corner is a reddy orange, which is close to a 50% win rate for the first player. The pixel in the top right corner is an orangey yellow, around 70%. It seems that going first gives a bigger advantage to more skillful players.
 
-Here's similar data in table format, with results rounded to 4 decimal places. $p_F$ increases as you go down the table, while $p_S$ increases as you go left to right.
+Here's similar data in table format, with results rounded to 4 decimal places. $`p_F`$ increases as you go down the table, while $`p_S`$ increases as you go left to right.
 
 <div class="cooltablewrap">
 <table>

@@ -2,8 +2,9 @@ title: "Random RGB values that average to N; or, Pointlessness and Probability"
 date: 2019-11-22
 description: A simple-seeming problem is solved using tricky combinatorics.
 imgthumbnail: img/rgb-average/thumbnail.png
-requires: math code
+requires: code
 publish: y
+tags: probability problem-solving
 
 On this episode of Problems That Don't Need to Be Solved, we have [a doozy from r/computerscience](https://www.reddit.com/r/computerscience/comments/a1ea1s/create_program_to_generate_random_rgb_values_that/).
 
@@ -74,20 +75,20 @@ How do we calculate this for any 'r' and any 'A'? Let's consider the numerator a
 ### P(R=r): the numerator
 Here's the value of #{GB values that sum to 3A-r}:
 
-$$
+```math
 \text{min}(3A-r,255) - \text{max}(3A-r-255,0)+1.
-$$
+```
 
-G and B can be any value in the interval $[\text{max}(3A-r-255, 0), \text{min}(3A-r, 255)]$, so all we're doing is calculating the length of this interval. It's similar to what we did in the first algorithm.
+G and B can be any value in the interval $`[\text{max}(3A-r-255, 0), \text{min}(3A-r, 255)]`$, so all we're doing is calculating the length of this interval. It's similar to what we did in the first algorithm.
 
 To convince yourself that it's correct, consider the case where A=87, 3A=261 and r=1. We have 3A-r=260. The GB values that sum to 260 are (255,5), (254,6), ..., (5,255). There are 255-5+1=251 such values. This agrees with the expression above. Repeat for various values of A and r.
 
 ### P(R=r): the denominator
 The expression for #{RGB values that average to A} is below. It looks scary, but we'll explain each part in an intuitive manner.
 
-$$
+```math
 {3A+3-1 \choose 2} \color{blue}{-3{3A+3-1-256 \choose 2}} \color{red}{+3{3A+3-1-2\cdot 256 \choose 2}}
-$$
+```
 
 (Syntax note: () is the ["binomial coefficient" function](https://en.wikipedia.org/wiki/Binomial_coefficient), which can also be written as nCk: "the number of combinations of k things that you can choose from n things". For example, 10C2 is the number of possible pairs of socks you could make from 10 socks).
 

@@ -4,6 +4,7 @@ description: A reflection on website obesity and my attempt to make a 981-byte m
 imgthumbnail: img/metronome/thumbnail.png
 requires: code
 publish: y
+tags: web
 
 As you may have heard, we're in the middle of a crisis.
 

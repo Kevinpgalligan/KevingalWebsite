@@ -1,7 +1,7 @@
-title: 20 years later, Java still doesn't have operator overloading
+title: 20 years without operator overloading in Java
 date: 2021-01-15
 description: 20 years have passed since Guy Steele's talk, "Growing a Language", and Java still doesn't have operator overloading.
-requires: code math
+requires: code
 
 A *syllable* is a sound that makes up part of a word. In the year two nought nought nought (2000), Guy Steele gave a talk called ["Growing a Language"](https://www.youtube.com/watch?v=_ahvzDzKdB0). He used a schtick in his talk: he did not use a word of more than one syllable if he did not first say what it meant. In this post, I use the same schtick.
 
@@ -37,8 +37,8 @@ Here is the same code but with operator overloading.
       return 2*x*x + 3*x - 5;
     }
 
-It is the quadratic equation $2x^2 + 3x - 5$. A *quadratic equation* is... well, let's leave that for the next day. With no operator overloading, the code is hard to read and bugs can slip in. It gets worse as the number of BigIntegers you use goes up.
+It is the quadratic equation $`2x^2 + 3x - 5`$. A *quadratic equation* is... well, let's leave that for the next day. With no operator overloading, the code is hard to read and bugs can slip in. It gets worse as the number of BigIntegers you use goes up.
 
 Some folks say that operator overloading is not worth it. Poor use of operator overloading is worse than any BigInteger mess, they say. But you can say that about any new thing that you might add to a programming language. And operator loading would be fab for those who want to use Java for math.
 
-There are signs that [the folks who own Java](https://blogs.oracle.com/javamagazine/is-it-time-for-overloading-in-java) see the need for operating overloading. I sure hope that they, and the other Java folks, add operator overloading to Java, though I don't use it so much these days.
+There are signs that [the folks who own Java](https://blogs.oracle.com/javamagazine/is-it-time-for-overloading-in-java) see the need for operating overloading. I sure hope that they, and the other Java folks, add operator overloading to Java, though I don't use Java so much these days.

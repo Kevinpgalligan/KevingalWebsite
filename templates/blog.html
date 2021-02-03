@@ -1,11 +1,5 @@
-{% extends "base.html" %}
-{% block headerextras %}
-<link rel="stylesheet" href="/static/css/blog.css">
-{% endblock headerextras %}
+{% extends "post-list.html" %}
 {% block title %} kevingal/blog {% endblock title %}
-{% block content %}
-<h2>Blog Posts ({{ num_posts }} of 'em)</h2> 
-{% for page in posts %}
-<div class="post-entry"><div class="post-entry-title"><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></div><div><span class="post-entry-date">{{ page.date }}</span> {{ page.description }}</div></div>
-{% endfor %}
-{% endblock content %}
+{% block extrashitbeforepostlist %}<h2>Blog Posts ({{num_posts}} of 'em)</h2>
+<div class="tags">Tags: {% for tag in tags %}<a href="/blog/tags/{{tag.name}}.html">{{tag.name}}</a> ({{tag.count}}) {% endfor %}</div>
+{% endblock extrashitbeforepostlist %}

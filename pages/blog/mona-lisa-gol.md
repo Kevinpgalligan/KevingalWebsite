@@ -3,6 +3,7 @@ date: 2020-01-28
 description: Using a SAT solver to find Game of Life states that turn into pictures.
 imgthumbnail: img/mona-lisa-gol/thumbnail.png
 publish: y
+tags: game-of-life lisp
 
 The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a 2d, grid-shaped petri dish. Each grid square in the dish is a cell that can be either alive or dead.
 
