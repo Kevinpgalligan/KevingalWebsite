@@ -157,13 +157,13 @@ def missing_links():
 
 @app.route("/feed.xml")
 def rss_feed():
-    date_sorted_blog_posts = get_blog_posts()
-    date_sorted_blog_posts = date_sorted_blog_posts[:MAX_NUM_POSTS_IN_FEED]
+    posts = get_blog_posts()
+    posts = posts[:MAX_NUM_POSTS_IN_FEED]
     return Response(
         render_template(
             "rss.xml",
-            blog_posts=date_sorted_blog_posts,
-            pub_date=date_sorted_blog_posts[0].date_rssified),
+            blog_posts=posts,
+            pub_date=posts[0].meta["date_rssified"]),
         mimetype="application/rss+xml")
 
 @app.route("/favicon.ico")
