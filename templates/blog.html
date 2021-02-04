@@ -1,5 +1,5 @@
 {% extends "post-list.html" %}
 {% block title %} kevingal/blog {% endblock title %}
 {% block extrashitbeforepostlist %}<h2>Blog Posts ({{num_posts}} of 'em)</h2>
-<div class="tags">Tags: {% for tag in tags %}<a href="/blog/tags/{{tag.name}}.html">{{tag.name}}</a> ({{tag.count}}) {% endfor %}</div>
+<div class="tags">Tags: {% for tag in tags %}<a href="{{url_for('tag', name=tag.name)}}">{{tag.name}}</a> ({{tag.count}}) {% endfor %}</div>
 {% endblock extrashitbeforepostlist %}

@@ -20,7 +20,7 @@
 
 <p>Here are the tags I've used on my blog, sorted by frequency.</p>
 
-<p>{% for tag in tags %}<a href="/blog/tags/{{tag.name}}.html">{{tag.name}}</a> ({{tag.count}}) {% endfor %}</p>
+<p>{% for tag in tags %}<a href="{{url_for('tag', name=tag.name)}}">{{tag.name}}</a> ({{tag.count}}) {% endfor %}</p>
 
 <p><b>Q: Why doesn't your blog have comments?</b></p>
 

@@ -6,7 +6,7 @@
 {% block content %}
 <h2 class="post-title">{{ page.title }} </h2>
 <h3 class="post-date">{{ page.date }}</h3>
-<p>Tags: {% for tag in page.tags %}<a href="/blog/tags/{{tag}}.html">{{tag}}</a> {% endfor %}</p>
+<p>Tags: {% for tag in page.tags %}<a href="{{url_for('tag', name=tag)}}">{{tag}}</a> {% endfor %}</p>
 <hr>
 {{ page.html|safe }}
 <hr>

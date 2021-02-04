@@ -103,7 +103,7 @@ def blog():
 def specific_app(name):
     return render_template('apps/' + name + '.html')
 
-@app.route('/blog/tags/<name>.html')
+@app.route('/blog/tag/<name>.html')
 def tag(name):
     posts = get_posts_for_tag(name)
     return render_template(
