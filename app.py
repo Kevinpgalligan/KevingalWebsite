@@ -10,12 +10,20 @@ import re
 import functools
 
 FLATPAGES_EXTENSION = '.md'
+# I hope I never have to change this.
+WEBSITE_URL = "https://kevingal.com"
 
 def render_html(text, flatpages, page):
     prerendered_body = render_template_string(Markup(text))
     return pygmented_markdown(prerendered_body, flatpages)
 
 app = Flask(__name__)
+
+def full_url(path):
+    # Takes an absolute path, like /static/img/blah.jpg, and joins it with
+    # the website URL (https://blah.com or 127.0.0.1).
+    return WEBSITE_URL + path
+
 app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = render_html
 app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
@@ -36,6 +44,7 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
         'insert_fonts_css': False
     }
 }
+app.jinja_env.globals.update(full_url=full_url)
 pages = FlatPages(app)
 freezer = Freezer(app)
 
@@ -75,7 +84,7 @@ def get_tags():
     return sorted([Tag(name, count) for name, count in counts.items()],
                    key=lambda t: t.count,
                    reverse=True)
-    
+
 @app.route('/')
 @app.route('/index.html')
 def index():

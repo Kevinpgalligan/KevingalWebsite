@@ -6,13 +6,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/style.css">
-    {%  block headerextras %}
-    {% endblock headerextras %}
+    {%  block headerextras %}{% endblock headerextras %}
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon.ico') }}">
-    {% if img_thumbnail is defined %}
-    <meta property="og:image" content="{{ url_for('static', filename=img_thumbnail) }}" />
-    <meta name="thumbnail" content="{{ url_for('static', filename=img_thumbnail) }}" />
-    {% endif %}
 </head>
 <body>
     <header>
