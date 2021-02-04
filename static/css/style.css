@@ -74,6 +74,12 @@ h3 {
     font-size: 6px;
 }
 
+/* So that equations don't overflow when the
+page is too narrow. */
+.katex-display {
+    overflow-x: auto;
+}
+
 /* Prettify inline code elements. The 'not' part
 prevents it from f*cking up codehilite formatting. */
 :not(pre) > code {

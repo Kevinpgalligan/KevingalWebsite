@@ -124,7 +124,8 @@ def page(path):
     return render_template(
         template,
         page=page,
-        requires_code="requires" in page.meta and "code" in page.meta["requires"])
+        requires_code="requires" in page.meta and "code" in page.meta["requires"],
+        requires_math="requires" in page.meta and "math" in page.meta["requires"])
 
 @freezer.register_generator
 def missing_links():

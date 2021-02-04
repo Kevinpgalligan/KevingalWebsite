@@ -1,7 +1,7 @@
 title: The darts player who estimated π
 date: 2021-01-15
 description: A story of darts and Monte Carlo methods.
-requires: code
+requires: code math
 imgthumbnail: img/darts/thumbnail.jpg
 publish: yes
 tags: probability simulation lisp

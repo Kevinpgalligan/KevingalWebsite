@@ -2,7 +2,7 @@ title: "Random RGB values that average to N; or, Pointlessness and Probability"
 date: 2019-11-22
 description: A simple-seeming problem is solved using tricky combinatorics.
 imgthumbnail: img/rgb-average/thumbnail.png
-requires: code
+requires: code math
 publish: y
 tags: probability problem-solving
 
