@@ -1,3 +1,13 @@
+html {
+    /* Soooo, this is necessary to always show
+       the scrollbar, even if the page is short
+       enough that it doesn't need one. Otherwise,
+       the width will be different on short & long
+       pages, which is jarring when you switch
+       between them. */
+    overflow-y: scroll;
+}
+
 body {
     font-family: 'Courier New', monospace;
     line-height: 1.5;
@@ -120,11 +130,13 @@ div.codehilite {
 }
 
 .post-entry-date {
+    white-space: nowrap;
     vertical-align: top;
     color: rgb(128, 128, 128);
     padding-right: 10px;
 }
 
 .post-entry-title {
+    vertical-align: top;
     padding-bottom: 10px;
 }
