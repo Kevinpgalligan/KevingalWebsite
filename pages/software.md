@@ -17,13 +17,19 @@ Navigation list:
 ### [Emojipasta Generator](/apps/emojipasta.html) 🌎
 Add word-relevant 🤖 emojis ✨ to text with sometimes hilarious results. Based on [AnEmojipastaBot](https://github.com/Kevinpgalligan/EmojipastaBot), which I unleashed on Reddit a few years ago.
 
+<hr>
+
 ### [Pixelate](/apps/pixelate.html) 🌎
 Make images more pixely, make them black & white, or resize them. I used it for [this](/blog/mona-lisa-gol.html) blog post.
 
 ![dog from CIFAR-10, I think](/static/img/pixelate/dog-before.png)![pixelated version](/static/img/pixelate/dog-after.png)![black & white version](/static/img/pixelate/dog-after-bw.png)
 
+<hr>
+
 ### [Tiny Metronome](/apps/metronome.html) 🌎
 A mobile-friendly, 981-byte metronome. I made it because most of the metronome web apps I found on the internet were bloated, or clunky on mobile. I also wrote about this app in a [blog post](/blog/metronome.html).
+
+<hr>
 
 ### [bs](https://github.com/Kevinpgalligan/bs) 📥
 A Python CLI tool that converts numbers between bases with as little typing as possible. If you don't specify the base, it does all valid conversions between common ones.
@@ -41,6 +47,8 @@ Examples (more in the README):
 	  octal       177776
 	$ bs -t d F
 	15
+
+<hr>
 
 ### [pseu](https://github.com/Kevinpgalligan/pseu) 📥
 A Python CLI tool that randomly generates numbers, shuffles, picks, and rolls dice. Possible uses: picking someone to do a shitty job; relieving yourself of the agony of deciding which movie to watch; making life choices.
