@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} kevingal/software {% endblock title %}
+{% block content %}
+<h2>Software</h2>
+
+<p>Below is a selection of free software I've developed, typically because it's useful or amusing to me.</p>
+
+<p>Key:</p>
+
+<ul>
+<li>🌎 = web app.</li>
+<li>📥 = desktop app.</li>
+</ul>
+
+<p>Navigation list:</p>
+
+<ul>
+{% for project in projects %}<li><a href="#{{project.id}}">{{project.name}}</a> {{proj_type_to_emoji(project.type)}}</li>
+{% endfor %}
+</ul>
+
+{% for project in projects %}<hr>
+<h3>{{project.name}} {{proj_type_to_emoji(project.type)}} (<a id="{{project.id}}" href="{{project.link}}">link</a>)</h3>
+{{project.html|safe}}
+{% endfor %}
+{% endblock content %}
+

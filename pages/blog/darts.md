@@ -14,7 +14,9 @@ A dartboard in the corner caught her eye. She wandered over, picked up a few dar
      alt="Some darts scattered 'randomly' across a dartboard."
      class="centered">
 
-This thought put an idea in her head. If the darts were aimed at random, it would be like sampling random points from the dartboard's frame. And couldn't that sample be used to estimate the area of the dartboard itself? The dartboard was taking up some fraction $`f`$ of the frame's area, so the area of the dartboard was $`fA`$. The frame's surface area, $`A`$, could be calculated by measuring its sides and multiplying them together, since it was a square. Then, if 7 out of 10 darts hit the dartboard, she could estimate its area to be $`A(7/10)`$ of the frame. And wouldn't that be a neat little experiment?
+This gave her an idea. If the darts were aimed at random, it would be like sampling random points from the dartboard's wooden frame. And couldn't that sample be used to estimate the area of the dartboard itself? If a fraction $`f`$ of the darts landed on the dartboard, and the area of the wooden frame was $`A`$, then she'd expect the area of the dart board to be roughly $`fA`$.
+
+The dartboard was taking up some fraction $`f`$ of the frame's area, so the area of the dartboard was $`fA`$. The frame's surface area, $`A`$, could be calculated by measuring its sides and multiplying them together, since it was a square. Then, if 7 out of 10 darts hit the dartboard, she could estimate its area to be $`A(7/10)`$ of the frame. And wouldn't that be a neat little experiment?
 
 Just as she was about to run off in search of measuring tape, another thought occurred to her. Since the area of a circle is $`\pi r^2`$, couldn't she also use her experiment to estimate π? If the frame had sides of length $`x`$, then its area would be $`A=x\times x=x^2`$. The dartboard's radius would be about half the width of the frame, or $`r=x/2`$. And if a fraction $`f`$ of her darts hit the circle, her estimate of the area would be $`fA=fx^2=\pi (x/2)^2`$. Her estimate of π would then be:
 
@@ -63,7 +65,7 @@ Wonderful. She would merely have to increase the number of throws and her estima
     > (estimate-pi 10000000)
     3.1426332
 
-Except, after simulating 10 *million* throws, her approximation was still only accurate to 2 decimal places! Her computer's fan was getting noisy, and she didn't want to push it over the edge. Instead, she sat back and wondered how many darts she would have to throw in order to achieve an accuracy of, say, 4 decimal places. Luckily, there was a high probability that she would be able to figure this out, since her course included a module on probability.
+Except, after simulating 10 *million* throws, her approximation was still only accurate to 2 decimal places! Her computer's fan was getting noisy, and she didn't want to push it over the edge. Instead, she sat back and wondered how many darts she would have to throw in order to achieve an accuracy of, say, 4 decimal places. Luckily, her course included a module on probability, so she would probably be able to figure it out.
 
 She knew that she could model the number of darts to hit the dartboard as a [*binomial random variable*](https://en.wikipedia.org/wiki/Binomial_distribution), $`X`$ -- a random variable being a variable that takes on each of its possible values with a certain probability. In this case, if she threw $`n`$ darts, then $`X`$ could take on any value from $`0`$ to $`n`$. Her estimate $`Y`$ could be modelled as another random variable, $`Y=4X/n`$. The error in her estimate could be modelled as $`E=\vert Y-\pi\vert`$.
 
@@ -83,7 +85,7 @@ How could she calculate $`P(X < n(\pi-\epsilon))`$? The probability of a binomia
 P(X < k) = \sum^{k-1}_{i=0} {n \choose i}p^i(1-p)^{n-i},
 ```
 
-where $`p`$, in the case of the darts experiment, would be the probability of an individual dart hitting the board. This sum is a pain in the ass to calculate as $`k`$ becomes very large. Thankfully, she knew that binomial random variables can be approximated using a normal distribution with mean $`\mu=np`$ and standard deviation $`\sigma=\sqrt{np(1-p)}`$.
+where $`p`$, in the case of the darts experiment, would be the probability of an individual dart hitting the board. It would take too long to calculate this sum as $k$ grew large. Thankfully, she knew that binomial random variables can be approximated using a normal distribution with mean $`\mu=np`$ and standard deviation $`\sigma=\sqrt{np(1-p)}`$.
 
 That's how she produced the following graph, which indicated that an accuracy beyond 3 or 4 decimal places was a hopeless cause. Back when she threw 100 darts, there had been about a 50% chance of her estimate being accurate to 1 decimal place. For a 95% chance of 4 decimal places of accuracy, she would need to throw over 1 billion darts.
 

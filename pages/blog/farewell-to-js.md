@@ -11,7 +11,7 @@ Previously, readers had to download MathJax from a CDN somewhere. Well, their br
 
 This always stuck in my throat. It meant that the site couldn't render properly without JavaScript or without an internet connection. The CDN could vanish without warning. And it seemed unnecessary -- why shouldn't I be able to render when I build the site, rather than forcing people to download a (probably massive) rendering script?
 
-I came across a Flask plugin the other day called [markdown-katex](https://github.com/mbarkhau/markdown-katex) that resolved this gag-worthy state of affairs.
+I came across a Python Markdown plugin the other day called [markdown-katex](https://github.com/mbarkhau/markdown-katex) that resolved this gag-worthy state of affairs.
 
 Here's the build process and how markdown-katex now fits into it:
 

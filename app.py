@@ -3,7 +3,8 @@ import collections
 import datetime
 from flask import (Flask, render_template, render_template_string,
     Markup, Response, send_from_directory)
-from flask_flatpages import FlatPages, pygmented_markdown, pygments_style_defs
+from flask_flatpages import (FlatPages, pygmented_markdown,
+    pygments_style_defs)
 from flask_frozen import Freezer
 import os.path
 import re
@@ -23,6 +24,12 @@ def full_url(path):
     # Takes an absolute path, like /static/img/blah.jpg, and joins it with
     # the website URL (https://blah.com or 127.0.0.1).
     return WEBSITE_URL + path
+
+def proj_type_to_emoji(t):
+    return {
+        "web": "🌎",
+        "desktop": "📥"
+    }.get(t, "poo")
 
 app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = render_html
@@ -45,6 +52,7 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
     }
 }
 app.jinja_env.globals.update(full_url=full_url)
+app.jinja_env.globals.update(proj_type_to_emoji=proj_type_to_emoji)
 pages = FlatPages(app)
 freezer = Freezer(app)
 
@@ -122,6 +130,17 @@ def draft_posts():
         'blog/drafts.html',
         draft_posts=[pg for pg in pages if "blog" in pg.path and "publish" not in pg.meta])
 
+@app.route('/software.html')
+def software():
+    return render_template(
+        "software.html",
+        projects=sorted([proj_with_metadata(pg) for pg in pages if "projects/" in pg.path],
+                        key=lambda pg: int(pg.meta.get("order", 10000))))
+
+def proj_with_metadata(page):
+    page.meta["id"] = "-".join(page.meta["name"].lower().split(" "))
+    return page
+
 @app.route('/<path:path>.html')
 def page(path):
     page = pages.get_or_404(path)
@@ -144,7 +163,6 @@ def missing_links():
     links = [
         "/blog/drafts.html",
         "/404.html",
-        "/software.html",
         "/apps/pixelate.html"
     ]
     for link in links:
