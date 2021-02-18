@@ -2,7 +2,7 @@ title: Solving all 42 versions of the Harry Potter potions puzzle
 date: 2019-10-03
 description: Brute-force search is applied to a puzzle from Harry Potter.
 publish: y
-tags: problem-solving books
+tags: problem-solving books pop-culture
 
 There's a neat puzzle near the end of *Harry Potter and the Philosopher's Stone* (aka *Sorcerer's Stone*). Harry and Hermione enter a chamber, the entrances are blocked by magic fire, and only by decoding the following riddle will they be able to escape:
 

@@ -2,7 +2,7 @@ title: "Counting the number of days until your birthday and why it's a useful pr
 date: 2020-02-01
 description: There's a formula for interval length that saves you from finger-counting.
 publish: y
-tags: programming maths
+tags: programming
 
 Spot quiz! See how many of these calculations you get right. No calculator necessary.
 
