@@ -2,6 +2,7 @@ name: pseu
 link: https://github.com/Kevinpgalligan/pseu
 type: desktop
 order: 5
+description: a CLI tool for indecisive people.
 
 A Python CLI tool that randomly generates numbers, shuffles, picks, and rolls dice. Possible uses: picking someone to do a shitty job; relieving yourself of the agony of deciding which movie to watch; making life choices.
 

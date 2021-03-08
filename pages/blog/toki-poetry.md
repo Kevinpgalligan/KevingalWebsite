@@ -1,24 +1,72 @@
-title: My computer writes toki poetry
+title: My computer is a toki poet
 date: 2021-02-07
 description: Computer-generated poems in the toki pona language.
 imgthumbnail: img/toki-poetry/thumbnail.jpg
-tags: creative data lang
+tags: creative data
 
-I wrote a program to generate random poetry in toki pona!
+My computer can now generate random poetry in toki pona!
 
-> insert poem here
+Here's an example of its creative genius:
 
-Here's my pants-on-head attempt at a translation:
+> jan sama pi jan,  
+> ike li pona ala,  
+> tawa mi la tan.  
+>  
+> tenpo ni e kala.
 
-> blah
+And my attempt at a translation:
 
-toki pona is a constructed language with just 125 words, published by Sonja Lang in 2001. I thought it would be nice for a project like this because it's tiny and simple. It has only 14 letters (aeioumnptkswlj) and, unlike English, it's pronounced as it's written. The only letters that could trip up an English speaker are j (pronounced like y) and the vowels (pronounced like Spanish: a is ah, e is ay as in yay, o is oh, u is ooh, i is ee as in fee). It's easy to break the words up into syllables, which is required for generating poetry. No natural language processing library necessary.
+> person same of person,  
+> bad? not good,  
+> to me from.  
+>  
+> time this fish.
 
-explain how i gone and dun it
+For context:
 
-limericks & sonnets
+* toki pona is a constructed language with just 125 words, published by Sonja Lang in 2001.
+* It has only 14 letters (aeioumnptkswlj) and, unlike English, it's spelled phonetically. No contradictory spellings like through and cough, thank you very much!
+* The only letters that could trip up an English speaker are j, which is pronounced like y, and the vowels, which are pronounced like Spanish: a is ah, e is ay as in yay, o is oh, u is ooh, i is ee as in free.
+* And, relevant to the task of a machine poet, it's easy to break the words up into syllables.
 
-## Appendix A: all the rhymes
+The first thing I needed to make this poem generator was a bunch of toki pona text, which I gathered by downloading comments from r/tokipona with a script I happened to have lying around. Then I created a big ol' Markov chain based on that text, using some more code that I happened to have lying around.
+
+<figure>
+
+<img src="{{ url_for('static', filename='img/toki-poetry/chain.png') }}"
+     alt="A Markov chain / graph where the nodes are toki pona words and the edges between the nodes show the probability of going from one word to another. There are 4 nodes: start, toki, pona and awen. An arrow from start to toki has the label 11; start to pona has 2; toki to pona has 5; toki to awen has 1; and pona to awen has 2."
+     class="centered">
+
+<figcaption>A Markov chain with toki pona words!</figcaption>
+</figure>
+
+So to generate text with this Markov chain graph thing, you randomly traverse the graph, beginning at the node called *start*, which represents the start of a sentence. The probability of going from one node to another is weighted by the number of times the words appear next to each other in the corpus. The weight is stored in the edge between them. In this example, there's a probability of 11/(11+2) that you go from *start* to *toki*, while there's a probability of 2/(11+2) that you go from *start* to *pona*. Note that these probabilities add up to 1, which means we'll always go *somewhere*.
+
+<figure>
+<img src="{{ url_for('static', filename='img/toki-poetry/path.png') }}"
+     alt="A path through the Markov chain from before."
+     class="centered">
+
+<figcaption>A possible path through the Markov chain.</figcaption>
+</figure>
+
+Here's one possible path through the Markov chain, depending on how the random dice rolls turn out. It results in the sentence "toki pona awen". We could also have gotten "toki awen" or "pona awen".
+
+That's fine for normal text generation, but when you're generating poems, there are extra constraints on the output. One possible constraint is the number of syllables. Another possible constraint is that the final word might have to rhyme with another word.
+
+An example case. Say you've gone start -> toki -> awen. tut you need a word that rhymes with "sona", so you backtrack to toki. Then you try pona and it all works out. Same for the number of syllables. If we exceed the number of syllables allowed on the line, we have to backtrack and find a path that has the right number of syllables.
+
+Oh, how do you know the number of syllables? It's easy in toki pona, since the language is so simple and small. Just use a dumb regex.
+
+To check whether words rhymed, I used a dumb definition of rhymes.
+
+More examples. Sonnet. Haiku. Limerick.
+
+As for what I'll do with it, I'm not sure. Maybe I'll create a Twitter or Mastodon bot.
+
+[Here's the code](https://github.com/Kevinpgalligan/toki-poems).
+
+### Appendix A: all the rhymes
 Here are the groups of rhyming words, according to my definition of a rhyme. There are 61 rhyming words, split between 21 groups. That leaves 64 words without a rhyme buddy :(
 
 * ala utala pakala kala
@@ -43,7 +91,7 @@ Here are the groups of rhyming words, according to my definition of a rhyme. The
 * ona sona pona
 * poki toki
 
-## Appendix B: data spelunking
+### Appendix B: data spelunking
 It would be a waste not to do anything with the text data from r/tokipona, so here are some quick plots.
 
 Here's a word cloud. The bigger a word is, the more common it is on r/tokipona.

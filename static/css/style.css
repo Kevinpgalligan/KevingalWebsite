@@ -140,3 +140,7 @@ div.codehilite {
     vertical-align: top;
     padding-bottom: 10px;
 }
+
+.project-link {
+    float: right;
+}
