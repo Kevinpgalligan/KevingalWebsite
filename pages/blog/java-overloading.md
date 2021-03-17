@@ -4,7 +4,7 @@ description: 20 years have passed since Guy Steele's talk, "Growing a Language",
 requires: code math
 tags: programming
 
-A *syllable* is a sound that makes up part of a word. In the year two nought nought nought (2000), Guy Steele gave a talk called ["Growing a Language"](https://www.youtube.com/watch?v=_ahvzDzKdB0). He used a schtick in his talk: he did not use a word of more than one syllable if he did not first say what it meant. In this post, I use the same schtick.
+A *syllable* is a sound that makes up part of a word. In the year two nought nought nought (2000), a score of years ago, Guy Steele gave a talk called ["Growing a Language"](https://www.youtube.com/watch?v=_ahvzDzKdB0). He used a schtick in his talk: he did not use a word of more than one syllable if he did not first say what it meant. In this post, I use the same schtick.
 
 As such, I will have to say what some words mean up-front, if you will bear with me.
 
@@ -20,7 +20,7 @@ Guy's talk was a talk on the Java programming language. He used the syllable sch
 
 An *operator* is a blah.
 
-*Operator overloading* is where a programming language lets you add rules, so that the way an operator acts is based on the stuff that you give it. You can add rules for the "plus" operator so that it works when you add counts (`1+1`), or strings (`"hello " + "world"`), or complex numbers (`Complex(1, 1) + Complex(1, 1)`). Java has some of these rules, but the folks who make Java can't think of all the rules you'll need in your life. That's why it's good to let folks add their own rules.
+*Operator overloading* is where a programming language lets you add rules, so that the way an operator acts is based on the stuff that you give it. You can add rules for the "plus" operator so that it works when you add numbers (`1+1`), or strings (`"hello " + "world"`), or complex numbers (`Complex(1, 1) + Complex(1, 1)`). Java has some of these rules, but the folks who make Java can't think of all the rules you'll need in your life. That's why it's good to let folks add their own rules.
 
 A *number*, by the way, is a count. A *complex number* is a number with a real and a non-real part.
 
@@ -38,7 +38,7 @@ Here is the same code but with operator overloading.
       return 2*x*x + 3*x - 5;
     }
 
-It is the quadratic equation $`2x^2 + 3x - 5`$. A *quadratic equation* is... well, let's leave that for the next day. With no operator overloading, the code is hard to read and bugs can slip in. It gets worse as the number of BigIntegers you use goes up.
+It's the quadratic equation $`2x^2 + 3x - 5`$. A *quadratic equation* is... well, let's leave that for the next day. With no operator overloading, the code is hard to read and bugs can slip in. It gets worse as you use more and more BigIntegers.
 
 Some folks say that operator overloading is not worth it. Poor use of operator overloading is worse than any BigInteger mess, they say. But you can say that about any new thing that you might add to a programming language. And operator loading would be fab for those who want to use Java for math.
 
