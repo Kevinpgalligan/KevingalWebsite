@@ -93,7 +93,7 @@ I leave you with a quote I like from the book.
 
 > Hermione pointed at a rounded bottle at the right end of the line.
 
-Drats. This still leaves 4 candidates:
+Drats. This still leaves 4 candidates[^note]:
 
 ![Canonical versions, which match the dialogue from the book]({{ url_for('static', filename='img/potter-puzzle/canonical.png') }})
 
@@ -105,3 +105,5 @@ If you're curious about the code for solving the puzzles / drawing the diagram o
 ### Discussion
 * [reddit](https://www.reddit.com/r/programming/comments/deauxe/solving_all_42_versions_of_the_harry_potter/)
 * [habr](https://habr.com/ru/post/471856/) (Russian translation)
+
+[^note]: I added this at a later date, hence why someone in the Reddit thread wrote out these solutions themselves.
