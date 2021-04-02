@@ -1,6 +1,6 @@
 title: A Farewell to JavaScript
 date: 2021-02-06
-description: I purged the use of JavaScript from my site.
+description: I purged JavaScript from my site.
 imgthumbnail: img/farewell-to-js/thumbnail.jpg
 tags: web meta vim
 publish: y

@@ -86,7 +86,7 @@ We can stop here, because "pona" happens to rhyme with "sona". We'd also have to
 
 That's pretty much how the poem generation works. A concise description would be: weighted random search through a graph, with backtracking.
 
-Maybe, rather than throwing this poem generator on the trash heap of all the useless programs I've written, it'l be the basis for a Twitter or Mastodon bot. Stay tuned. In the meantime, [here's the code](https://github.com/Kevinpgalligan/toki-poems), and below are a few more poems I've generated.
+Maybe, rather than throwing this poem generator on the trash heap of all the useless programs I've written, it'll be the basis for a Twitter or Mastodon bot. Stay tuned. In the meantime, [here's the code](https://github.com/Kevinpgalligan/toki-poems), and below are a few more poems I've generated.
 
 A limerick (rhyming scheme *aabba*).
 

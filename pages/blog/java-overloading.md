@@ -1,10 +1,10 @@
 title: 20 years without operator overloading in Java
-date: 2021-01-15
+date: 2021-03-20
 description: 20 years have passed since Guy Steele's talk, "Growing a Language", and Java still doesn't have operator overloading.
 requires: code math
 tags: programming
 
-A *syllable* is a sound that makes up part of a word. In the year two nought nought nought (2000), a score of years ago, Guy Steele gave a talk called ["Growing a Language"](https://www.youtube.com/watch?v=_ahvzDzKdB0). He used a schtick in his talk: he did not use a word of more than one syllable if he did not first say what it meant. In this post, I use the same schtick.
+A *syllable* is a sound that makes up part of a word. In the year two nought nought nought (2000), Guy Steele gave a talk called ["Growing a Language"](https://www.youtube.com/watch?v=_ahvzDzKdB0). He used a schtick in his talk, where he did not use a word of more than one syllable if he did not first say what it meant. In this post, I will use the same schtick.
 
 As such, I will have to say what some words mean up-front, if you will bear with me.
 
@@ -16,7 +16,7 @@ A *programming language* is a language that you use to tell a computer what to d
 
 *Java* is a programming language that is a cinch to run on any computer. It cleans up the junk left by your code, and takes care of a lot of small stuff like that for you.
 
-Guy's talk was a talk on the Java programming language. He used the syllable schtick to show that if you take a small language, and you let folks add new rules and words to it, then they can turn it into a big, strong language. They can add what they need, and leave out what they don't need. They can grow the language in the way they want.
+Guy's talk was a talk on the Java programming language. He used the syllable schtick to show that if you take a small language, and you let folks add new rules and words to it, then they can make it a big, strong language. They can add what they need, and leave out what they don't need. They can grow the language in the way they want. This way of thought may have come from Guy's work on the Scheme programming language.
 
 An *operator* is a blah.
 
