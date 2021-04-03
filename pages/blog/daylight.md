@@ -5,7 +5,7 @@ imgthumbnail: img/daylight/thumbnail.jpg
 publish: y
 tags: data
 
-I made some graphs that show how much daylight there will be throughout 2021 in different parts of the world. I'm sure it has been done before, but fuck it.
+I made some graphs that show how much daylight there will be throughout 2021 in different parts of the world. I'm sure it has been done before, but when has that ever stopped a shameless plagiarist like myself?
 
 Here's Dublin, Ireland.
 
