@@ -43,6 +43,8 @@ Here is the same code but with operator overloading.
 
 It's the quadratic equation 2x<sup>2</sup>+3x-5. A *quadratic equation* is... well, let's leave that for the next day. With no operator overloading, the code is hard to read and bugs can slip in. It gets worse as you use more and more BigIntegers.
 
-Some folks say that operator overloading is not worth it. Poor use of operator overloading is worse than any BigInteger mess, they say. But in that way you can nix *any* new thing that you might add to a programming language, so I don't think it's a strong case. And the fact is, operator overloading would be great for those who want to use Java for math.
+Some folks say that operator overloading is not worth it. Poor use of operator overloading is worse than any BigInteger mess, they say. But with that line of thought you can nix *any* new tool that you might add to a programming language, so I don't think it's a strong case. And the fact is, operator overloading would be great for those who want to use Java for math.
 
 There are signs that [the folks who own Java](https://blogs.oracle.com/javamagazine/is-it-time-for-overloading-in-java) see the need for operator overloading. I sure hope that they, and the rest of the Java team, add it to Java some day, though I haven't used Java in 2 years.
+
+*Discussed on [Hacker News](https://news.ycombinator.com/item?id=26682582).*
