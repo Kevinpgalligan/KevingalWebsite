@@ -49,7 +49,7 @@ Finally, between the two extremes, here's $`p=0.5`$. This player misses an avera
 Our goal is to estimate the win probability of one player versus another. Me versus my dad. Michael Jordan versus your granny. Michael Jordan versus Michael Jordan. And so on. To do that, we'll have to define some new variables. Let $`W`$ be the event of a win for the first player, let $`F`$ be the number of shots they miss, and let $`S`$ be the same but for the second player. Also let $`p_F`$ and $`p_S`$ be the shot success probabilities of each player. We can now state the probability of the first player winning:
 
 ```math
-P(W) = \sum_{s=0}^\infty P(S=s) P(F \leq S).
+P(W) = \sum_{s=0}^\infty P(S=s) P(F \leq s).
 ```
 
 We know the value of $`P(S=s)`$ from above, except that $`p`$ is swapped for $`p_S`$. And we get $`P(F \leq s)`$ by summing up $`P(F=f)`$ for all $`f \leq s`$:

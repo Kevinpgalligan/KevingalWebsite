@@ -5,18 +5,19 @@
 
 <p>Below is a selection of free software I've developed, typically because it's useful or amusing to me.</p>
 
+<p>Navigation list for getting around this page quickly:</p>
+
+<table class="bordered-centered-table">
+<tr><th>Name</th><th>Type</th><th>Description</th><th>Quicklink</th></tr>
+{% for project in projects %}<tr><td>{{project.name}}</td><td>{{proj_type_to_emoji(project.type)}}</td><td>{{project.description}}</td><td><a href="#{{project.id}}">goto</a></td>
+{% endfor %}
+</table>
+
 <p>Key:</p>
 
 <ul>
 <li>🌎 = web app.</li>
 <li>📥 = desktop app.</li>
-</ul>
-
-<p>Navigation list:</p>
-
-<ul>
-{% for project in projects %}<li>{{proj_type_to_emoji(project.type)}} <a href="#{{project.id}}">{{project.name}}</a>{% if project.description is defined %}: {{project.description}}{% endif %}</li>
-{% endfor %}
 </ul>
 
 {% for project in projects %}<hr>

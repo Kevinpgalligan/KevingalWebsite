@@ -1,7 +1,7 @@
 name: bs
 link: https://github.com/Kevinpgalligan/bs
 type: desktop
-order: 4
+date: 2020-10-25
 description: a CLI tool for quick number base conversion.
 
 A Python CLI tool that converts numbers between bases with as little typing as possible. If you don't specify the base, it does all valid conversions between common ones.

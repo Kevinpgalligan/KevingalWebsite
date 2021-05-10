@@ -1,11 +1,13 @@
 title: A Visual Guide to Common Lisp Packages
 date: 2021-03-17
-description: Explaining h1ow Common Lisp packages work, through diagrams.
+description: The diagrammatic explanation that no one asked for.
 imgthumbnail: img/cl-packages/thumbnail.jpg
 requires: code
 tags: lisp
 
-Hello world!
+Don't get me wrong, 
+
+[toc]
 
 <figure>
 
@@ -15,3 +17,6 @@ Hello world!
 
 <figcaption>My first package!</figcaption>
 </figure>
+
+### What's a symbol?
+todo

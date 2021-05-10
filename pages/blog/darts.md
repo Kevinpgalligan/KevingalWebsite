@@ -6,7 +6,7 @@ imgthumbnail: img/darts/thumbnail.jpg
 publish: yes
 tags: probability simulation lisp
 
-A computational maths student walked into a bar. She had heard a whisper of a rumour of a footnote in a niche textbook that it was possible to estimate the most famous constant in mathematics, π, using nothing but darts, and she was there to test it out.
+A computational maths student walked into a bar. She had read a footnote somewhere which claimed that it was possible to estimate π, the most famous constant in mathematics, using nothing but darts. And she was there to test this idea out.
 
 A dartboard in the corner caught her eye. She walked over, picked up a few darts, and chucked them at the board. She wasn't a talented darts player, and the darts distributed themselves without a noticeable pattern. Almost... at random.
 

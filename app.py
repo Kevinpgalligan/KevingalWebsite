@@ -135,7 +135,7 @@ def software():
     return render_template(
         "software.html",
         projects=sorted([proj_with_metadata(pg) for pg in pages if "projects/" in pg.path],
-                        key=lambda pg: int(pg.meta.get("order", 10000))))
+                        key=lambda pg: pg.meta["date"]))
 
 def proj_with_metadata(page):
     page.meta["id"] = "-".join(page.meta["name"].lower().split(" "))

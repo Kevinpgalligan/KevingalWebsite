@@ -1,4 +1,4 @@
-title: "LOVETRIS: an AI for HATETRIS, the ridiculously hard version of Tetris"
+title: "An AI for HATETRIS, the ridiculously hard version of Tetris"
 date: 2020-04-17
 Description: Greedy search, Monte Carlo tree search.
 
