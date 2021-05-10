@@ -2,7 +2,7 @@ title: toki poems
 date: 2021-03-17
 description: Computer-generated poems in the toki pona language.
 imgthumbnail: img/toki-poetry/thumbnail.jpg
-tags: creative data
+tags: artsy data
 publish: y
 
 I wrote a cute little program to generate poetry in toki pona, the 125-word language that was published by Sonja Lang in 2001.
