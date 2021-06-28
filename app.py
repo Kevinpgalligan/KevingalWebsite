@@ -12,7 +12,8 @@ import functools
 
 FLATPAGES_EXTENSION = '.md'
 # I hope I never have to change this.
-WEBSITE_URL = "https://kevingal.com"
+DOMAIN = "kevingal.com"
+WEBSITE_URL = f"https://{DOMAIN}"
 
 def render_html(text, flatpages, page):
     prerendered_body = render_template_string(Markup(text))
@@ -30,6 +31,12 @@ def proj_type_to_emoji(t):
         "web": "🌎",
         "desktop": "📥"
     }.get(t, "poo")
+
+def url_to_linkname(url):
+    m = re.search(r"https?://([^/]+)/", url)
+    if not m:
+        return DOMAIN
+    return m.group(1)
 
 app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = render_html
@@ -53,6 +60,7 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
 }
 app.jinja_env.globals.update(full_url=full_url)
 app.jinja_env.globals.update(proj_type_to_emoji=proj_type_to_emoji)
+app.jinja_env.globals.update(url_to_linkname=url_to_linkname)
 pages = FlatPages(app)
 freezer = Freezer(app)
 

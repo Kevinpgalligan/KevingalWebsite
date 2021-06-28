@@ -21,7 +21,7 @@
 </ul>
 
 {% for project in projects %}<hr>
-<h3>{{proj_type_to_emoji(project.type)}} {{project.name}}<span class="project-link">(<a id="{{project.id}}" href="{{project.link}}">link</a>)</span></h3>
+<h3>{{proj_type_to_emoji(project.type)}} {{project.name}}<span class="project-link">(<a id="{{project.id}}" href="{{project.link}}">{{url_to_linkname(project.link)}}</a>)</span></h3>
 {{project.html|safe}}
 {% endfor %}
 {% endblock content %}
