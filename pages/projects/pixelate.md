@@ -2,7 +2,7 @@ name: Pixelate
 link: /apps/pixelate.html
 type: web
 date: 2020-01-28
-description: make images pixely, add dither, make them black & white, etc.
+description: Make images pixely, add dither, make them black & white, etc.
 
 Make images more pixely, make them black & white, resize them, or add a dithering effect. I used it for [this](/blog/mona-lisa-gol.html) blog post.
 
