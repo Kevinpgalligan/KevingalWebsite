@@ -26,3 +26,5 @@ It's a pattern I've noticed. You get trapped in a brain hole and forget the cont
 In each of those cases, there's a question you should ask that could save you a lot of trouble. Is there a more lightweight alternative to systemd? Is that function going to be called often enough to make optimisation worthwhile? Could memory be the actual bottleneck of your algorithm, making multi-threading redundant? Would anyone actually use that feature if you added it to your application?
 
 So besides developing our problem-solving skills, we must strive to be pragmatic, to avoid brain holes, and to always keep in mind the wider context of what we're doing. Otherwise, we'll end up wasting our time. Even after nearly 10 years of programming, I still often make this mistake.
+
+(Related: [The Sledgehammer and the Nut](https://datagenetics.com/blog/june72021/index.html), and many articles from [Programming in the 21st Century](https://prog21.dadgum.com/)).
