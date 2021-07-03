@@ -2,7 +2,6 @@ title: Approaching things backwards
 date: 2021-07-02
 description: On getting involved in open source software.
 imgthumbnail: img/easy/thumbnail.jpg
-publish: y
 tags: rant
 
 Here's a common question that fresh software developers have.
