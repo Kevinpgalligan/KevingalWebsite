@@ -1,4 +1,4 @@
-title: The darts player who estimated π
+title: The Darts Player Who Estimated π
 date: 2021-01-15
 description: A story of darts and Monte Carlo methods.
 requires: code math
