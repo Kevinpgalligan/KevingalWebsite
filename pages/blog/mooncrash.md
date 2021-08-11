@@ -1,4 +1,4 @@
-title: Why doesn't the Moon crash into Earth?
+title: Why the Moon doesn't crash into Earth
 date: 2021-07-04
 description: Because it keeps missing.
 imgthumbnail: img/mooncrash/thumbnail.jpg
