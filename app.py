@@ -28,8 +28,8 @@ def full_url(path):
 
 def proj_type_to_emoji(t):
     return {
-        "web": "🌎",
-        "desktop": "📥"
+        "web": "web",
+        "desktop": "desktop"
     }.get(t, "poo")
 
 def url_to_linkname(url):

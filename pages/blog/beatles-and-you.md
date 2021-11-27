@@ -1,4 +1,4 @@
-title: Did the Beatles love "you"?
+title: The Beatles and "you"
 date: 2020-04-01
 description: Overanalysing a claim that putting "you" in the first line of a song makes it better.
 imgthumbnail: img/beatles-and-you/thumbnail.jpg
