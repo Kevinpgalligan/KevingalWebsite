@@ -6,12 +6,10 @@
 <p>Below is a selection of free software I've developed, typically because it's useful or amusing to me.</p>
 
 <table class="bordered-centered-table">
-<tr><th>Name</th><th>Type</th><th>Description</th><th>More info</th></tr>
+<tr><th>Name/link</th><th>Type</th><th>Description</th><th>More info</th></tr>
 {% for project in projects %}<tr><td><a href="{{project.link}}">{{project.name}}</a></td><td>{{proj_type_to_emoji(project.type)}}</td><td>{{project.description}}</td><td><a href="#{{project.id}}">goto</a></td>
 {% endfor %}
 </table>
-
-<p>goto considered harmful?</p>
 
 {% for project in projects %}<hr>
 <h3>{{project.name}}<span class="project-link">(link: <a id="{{project.id}}" href="{{project.link}}">{{url_to_linkname(project.link)}}</a>)</span></h3>

@@ -1,15 +1,6 @@
 /* Stuff that might tamper with other pages on the
    site in unexpected ways. */
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-video {
-    max-width: 100%;
-}
-
 blockquote {
     margin-left: 32px;
     border-left: 4px solid #CCC;

@@ -185,3 +185,14 @@ div.codehilite {
     border-collapse: collapse;
     border: 1px solid black;
 }
+
+/* Scale images & videos so they're not too big. */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+video {
+    max-width: 100%;
+}
+
