@@ -1,6 +1,6 @@
-title: A Dialogue Concerning Open Source Software
+title: A Dialogue Concerning How to Get Involved in Open Source Software
 date: 2021-07-02
-description: A dialogue that contains my perspective on how to get involved in open source software.
+description: A discussion that really happened, about how to get into open source stuff.
 imgthumbnail: img/easy/thumbnail.jpg
 tags: rant
 
