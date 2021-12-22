@@ -1,4 +1,4 @@
-title: The bit-twiddling magic of two's complement, explained
+title: Two's complement and its bit-twiddling, explained
 date: 2021-12-14
 description: The motivation for two's complement, how it works, and where the bit-twiddling comes from.
 imgthumbnail: img/twos/thumbnail.jpg
@@ -40,7 +40,7 @@ This means that the logic gates that perform subtraction for the rightmost bit h
 
 But what if... WHAT IF, my friend, you could use the straightforward addition algorithm, but for negative numbers? And what if I told you, my dear friend, that two's complement allows you to do this! (Please be my friend). It allows you to treat negative numbers as if they were regular, boring old positive numbers, and avoid the ball of hair.
 
-So how exactly does two's complement work, then? Forget about the bit-twiddling for now. Let's say you have 8 bits, which can take on $`2^8=256`$ possible values (indexed from 0 to 255). In the two's complement system, the first half of the numbers in this range, 0 to 127, are their usual positive selves. +0 is mapped to +0, and +127 is mapped to +127.
+How exactly does two's complement work? Forget about the bit-twiddling for now. Let's say you have 8 bits, which can take on $`2^8=256`$ possible values (indexed from 0 to 255). In the two's complement system, the first half of the numbers in this range, 0 to 127, are their usual positive selves. +0 is mapped to +0, and +127 is mapped to +127.
 
 <figure>
 <img src="{{ url_for('static', filename='img/twos/twos-complement-map.png') }}"
@@ -88,7 +88,7 @@ Here are some more facts about two's complement.
 * If you take the two's complement of a number that's already in two's complement form, you get the number back: $`t(t(k)) = 2^b-(2^b-k) = k`$. It's the same as negating a negative number, which makes it positive.
 * To subtract a number from another number in two's complement, you convert the number you want to subtract into two's complement form, then add it to the other number. (See: the equation above where we add $`k`$ and $`t(l)`$). No hairy circuits involved!
 
-Okay. There are two details about two's complement left to discuss. The first detail is a big wart on its backside. The second detail is *where in the name of Knuth* they get the bit trickery that is usually used to introduce two's complement.
+Okay. There are two details about two's complement left to discuss. The first detail is a big wart on its backside. The second detail is *where in the name of Knuth* they got the bit trickery that they used to introduce you to two's complement all those years ago.
 
 The wart on two's complement's bottom is that, as you may have noticed, there's no +128 to match -128 in our 8-bit number line! The two's complement operation applied to 128 gives $`t(128)=256-128=128`$. That is, the two's complement of 128 is itself. There's no space left to represent both +128 and -128, so we have to map the value 128 to only one of them. I'm not sure why, but the convention is to pick -128. Some things still work as expected ($`1+t(128)=128+1=129=t(127)`$, i.e. adding 1 to -128 still gives -127). But when we try to negate -128, we get: $`t(t(128))=2^b-(2^b-128)=128=t(128)`$. -128 can't be negated!
 
@@ -97,11 +97,12 @@ This can be the source of nightmarish bugs. And, since all modern computers use 
     :::c
 	#include <stdio.h>
 	int main() {
-		char n = -(-128);
+		char n = -128;
+		n = -n;
 		printf("%d\n", n);
 	}
 
-And now, here it is. The moment that nobody has been waiting for. Where does the bit-twiddling come from? We have described the two's complement form as $`t(k)=2^b-k`$, so why is it introduced using bit flips and rogue +1's? I'm not sure why it's introduced in such a confusing way, but the bit-twiddling magic is just a trick to compute $`2^b-k`$ without performing subtraction or needing to store $`2^b`$ anywhere (which would require $`b+1`$ bits). This is easiest to demonstrate with an example. Let's say you have 4 bits, and you want to compute the two's complement of $`5_d=0101_b`$ (using our notation for decimal and binary numbers from before). The two's complement form is
+And now, here it is. The moment that nobody has been waiting for. Where does the bit-twiddling come from? We have described the two's complement form as $`t(k)=2^b-k`$, so why is it introduced using bit flips and rogue +1's? I'm not sure why it's introduced in such a confusing way, but the bit-twiddling magic is just a trick to compute $`t(k)`$ without performing subtraction or needing to store $`2^b`$ anywhere (which would require $`b+1`$ bits). This is easiest to demonstrate with an example. Let's say you have 4 bits, and you want to compute the two's complement of $`5_d=0101_b`$ (using our notation for decimal and binary numbers from before). The two's complement form is
 
 ```math
 \begin{aligned}
