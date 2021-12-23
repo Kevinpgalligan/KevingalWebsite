@@ -1,4 +1,4 @@
-title: Two's complement and its bit-twiddling, explained
+title: The bit-twiddling magic of two's complement, explained
 date: 2021-12-14
 description: The motivation for two's complement, how it works, and where the bit-twiddling comes from.
 imgthumbnail: img/twos/thumbnail.jpg

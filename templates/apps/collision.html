@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Collision Calculator{% endblock title %}
+{% block content %}
+
+<h3>Hash Collision Calculator</h3>
+<p>If you put 'k' items in 'N' buckets, what's the probability that at least 2 balls will end up in the same bucket? In other words, what's the probability of a hash collision? See <a href="{{ url_for("page", path="blog/collisions") }}">here</a> for an explanation.</p>
+
+<div>
+<p>k = <input id="items" type="number" value="1000" autocomplete="off", min="1" onchange="updateResults()" /> items</p>
+<p>N = <input id="buckets" type="number" value="100000" autocomplete="off", min="1" onchange="updateResults()" /> <select id="buckettype" onchange="updateResults()" ><option value="buckets">buckets</option><option value="bits">bits</option></select></p>
+
+<ul>
+<li>probability (exact): <span id="exact-prob"></span></li>
+<li>probability (approximate): <span id="approx-prob"></span></li>
+<li>relative error of approximation: <span id="rel-err"></span></li>
+</ul>
+</div>
+
+<p>If you specify the units of N to be bits, the number of buckets will be a power of 2 of the number you provide.</p>
+
+<script src="/static/js/apps/collision/collision.js"></script>
+<script>updateResults();</script>
+
+{% endblock content %}

@@ -7,9 +7,9 @@ tags: probability
 
 A [hash function](https://en.wikipedia.org/wiki/Hash_function) takes arbitrarily complex input - a word, a website, an image, a human being - and maps it to a single number. This is useful for various computer science stuffs, such as data storage.
 
-For example, let's say you want to store a book in one of $`N`$ boxes. If you put the book in a random box, it's quite likely that you'll forget which box you picked, especially as $`N`$ becomes large. What you can do instead is apply a hash function to the title of the book (probably *The Notebook*), which will spit out a number, $`i`$. You then put your book in the $`i`$-th box[^modulo]. When you want to retrieve *The Notebook* again, you recompute the hash function and it tells you to look in the $`i`$-th box, without you needing to remember anything! You won't lose a book from your Nicholas Sparks collection ever again.
+For example, let's say you want to store a book in one of $`N`$ boxes. If you put the book in a random box, it's quite likely that you'll forget which box you picked, especially as $`N`$ gets bigger. What you can do instead is apply a hash function to the title of the book (probably *The Notebook*), which will spit out a number, $`i`$. You then put your book in the $`i`$-th box[^modulo]. When you want to retrieve *The Notebook* again, you recompute the hash function and it tells you to look in the $`i`$-th box, without you needing to remember anything! You won't lose a book from your Nicholas Sparks collection ever again.
 
-We won't get into the specifics of what a hash function looks like. This post is instead concerned with [hash collisions](https://en.wikipedia.org/wiki/Hash_collision), which happen when your hash function assigns the same value to two different items. This might be a Bad Thing. Our hash function wouldn't be very useful, for instance, if it told us to put all our books in the 1st box, because we'd have to spend a lot of time rooting around in that box to find a specific book[^unique]. For this reason, a good hash function should have evenly distributed outputs. But even then, it's only a matter of time before a hash collision occurs as we add more and more books to our collection, and by the time we reach $`N+1`$ books, there won't enough boxes to store the books individually and there will definitely be at least 1 hash collision.
+We won't get into the specifics of what a hash function looks like. This post is instead concerned with [hash collisions](https://en.wikipedia.org/wiki/Hash_collision), which happen when your hash function assigns the same value to two different items. This might be a Bad Thing. Our hash function wouldn't be very useful, for instance, if it told us to put all our books in the 1st box, because we'd have to spend a lot of time rooting around in that box to find a specific book[^unique]. For this reason, a good hash function should have evenly distributed outputs. But even then, it's only a matter of time before a hash collision occurs as we add more and more books to our collection. By the time we reach $`N+1`$ books, there won't enough boxes to store the books individually and there will definitely be at least 1 hash collision.
 
 Given $`N`$ boxes and $`k`$ books, how do you figure out the *probability* of a hash collision? Hash collisions can be a Bad Thing, but rather than trying to eliminate them entirely (an impossible task), you might instead buy enough boxes that the probability of a hash collision is relatively low.
 
@@ -18,11 +18,11 @@ Jeff Preshing wrote a [neat article](https://preshing.com/20110504/hash-collisio
 ### The Birthday Problem
 Consider the following problem statements.
 
-1. When you compute the hash values of 500 different book titles from your magnificent book collection, and put each book into the corresponding box in a row of 100,000 boxes (yes, it's a lot of boxes), what's the probability that at least 2 books will be in the same box? (TODO).
+1. When you compute the hash values of 500 different book titles from your magnificent book collection, and put each book into the corresponding box in a row of 100,000 boxes (yes, it's a lot of boxes), what's the probability that at least 2 books will be in the same box? (~71.3%).
 
-2. When you put 50 balls into 100 buckets at random, what's the probability that at least 2 balls will end up in the same bucket? (99.999969%).
+2. When you put 50 balls into 100 buckets at random, what's the probability that at least 2 balls will end up in the same bucket? (~99.99997%).
 
-3. When there are 30 people in a room, what's the probability that at least 2 of them will share a birthday? (70.6316%).
+3. When there are 30 people in a room, what's the probability that at least 2 of them will share a birthday? (~70.6%).
 
 These are all versions of the [birthday problem](http://en.wikipedia.org/wiki/Birthday_problem), which is notorious for having an unintuitive answer. The key to understanding why the probabilities are so high is that, even though there might be only 50 balls in problem #2, there are 1275 *pairs* of balls, and only one of those pairs needs to be in the same bucket. Problems #1 and #3 have the exact same structure. In problem #1, you can think of the books as balls and the boxes as buckets, and in problem #3, the people are balls and the days of the year are buckets.
 
@@ -83,7 +83,7 @@ Now, here comes a trick. It's a fact that $`1-x \approx e^{-x}`$ as $`x`$ gets s
 
 The last equality comes from the fact that $`1+2+...+n=n(n+1)/2`$.
 
-This approximation reduces the complexity of computing the probability from $`\mathcal{O}(k)`$ to $`\mathcal{O}(1)`$. Or, phrased in non-computer-science terms: instead of doing around $`k`$ math operations, we only have to do a few of them! What's more, the approximation becomes more and more accurate as we increase $`N`$.
+This approximation reduces the complexity of computing the probability from $`\mathcal{O}(k)`$ to $`\mathcal{O}(1)`$. Or, phrased in non-computer-science terms: instead of doing around $`k`$ math operations, we only have to do a fixed number of them! What's more, the approximation becomes more and more accurate as we increase $`N`$.
 
 ### Approximations all the way down
 It's possible to simplify this equation even further, using the exact same trick as before! Note that the final line of equation (2) is in the form $`1-e^{-y}`$, where $`y=\frac{k(k-1)}{2N}`$. We've already seen that $`1-e^{-y} \approx y`$ when $`y`$ is small, and so the hash collision probability can be further approximated by:
@@ -106,7 +106,7 @@ How do these methods compare? Here are some plots!
 ### Conclusions
 We have seen how to calculate the probability of a hash collision, as well as 3 different ways to approximate it. I've implemented all of this as a [web app](linkhere), which you can play around with for your edutainment. May your books be evenly distributed in your boxes.
 
-TODOs summary: proofs, web app, plots, calculate probability of the birthday problem example
+TODOs summary: proofs, plots, fix pointless katex scrollbars
 
 ### Appendix A: Supporting proof for e-based approximation 
 TODO
@@ -114,6 +114,6 @@ TODO
 ### Appendix B: Supporting proof for k(k-1)=k(k)
 TODO
 
-[^modulo]: If $`N<i`$, then you take $`i+1 \pmod{N}`$. In other words, when you're counting up to the $`i`$-th box, loop back to the 1st one if you ever exceed $`N`$.
+[^modulo]: If $`N<i`$, then you take the book at position $`i+1 \pmod{N}`$. In other words, when you're counting up to the $`i`$-th box, loop back to the 1st one if you ever exceed $`N`$.
 
-[^unique]: Here's another motivation for avoiding hash collisions. Let's say you're designing a customer database for a particularly privacy-conscious fish monger. Rather than storing a customer's name in the database, which would be a horrific breach of privacy, you can instead apply a hash function to their name and store the resulting hash value. A hash collision occurs when two customers are assigned the same hash value by the hash function, which would result in fish orders of the customers getting mixed up. How embarrassing! What this means is that you need the range of the hash function (the number of buckets, $`N`$), to be large enough that a hash collision is ASTRONOMICALLY UNLIKELY.
+[^unique]: Here's another motivation for avoiding hash collisions. Let's say you're designing a customer database for a particularly privacy-conscious fish monger. Rather than storing a customer's name in the database, which would be a horrific breach of privacy, you can instead apply a hash function to their name and store the resulting hash value. A hash collision occurs when two customers are assigned the same hash value by the hash function, which could result in the customers' fish orders getting mixed up. How embarrassing! What this means is that you need the range of the hash function (the number of buckets, $`N`$), to be large enough that a hash collision is ASTRONOMICALLY UNLIKELY.
