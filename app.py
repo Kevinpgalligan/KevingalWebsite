@@ -168,10 +168,12 @@ def missing_links():
     # These aren't linked using app.route() or the
     # url_for() command, we've gotta let Frozen Flask
     # know where they are.
+    # Me from the future: gods, this is an awful hack.
     links = [
         "/blog/drafts.html",
         "/404.html",
-        "/apps/pixelate.html"
+        "/apps/pixelate.html",
+        "/apps/collision.html"
     ]
     for link in links:
         yield link
