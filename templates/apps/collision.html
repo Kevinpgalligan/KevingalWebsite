@@ -3,11 +3,12 @@
 {% block content %}
 
 <h3>Hash Collision Calculator</h3>
-<p>If you put 'k' items in 'N' buckets, what's the probability that at least 2 balls will end up in the same bucket? In other words, what's the probability of a hash collision? See <a href="{{ url_for("page", path="blog/collisions") }}">here</a> for an explanation.</p>
 
-<div>
+<div style="border-style: solid; padding: 5mm">
 <p>k = <input id="items" type="number" value="1000" autocomplete="off", min="1" onchange="updateResults()" /> items</p>
 <p>N = <input id="buckets" type="number" value="100000" autocomplete="off", min="1" onchange="updateResults()" /> <select id="buckettype" onchange="updateResults()" ><option value="buckets">buckets</option><option value="bits">bits</option></select></p>
+
+<span id="error-box" style="color: red"></span>
 
 <ul>
 <li>probability (exact): <span id="exact-prob"></span></li>
@@ -16,7 +17,11 @@
 </ul>
 </div>
 
-<p>If you specify the units of N to be bits, the number of buckets will be a power of 2 of the number you provide.</p>
+<p>If you put 'k' items in 'N' buckets, what's the probability that at least 2 items will end up in the same bucket? In other words, what's the probability of a hash collision? See <a href="{{ url_for("page", path="blog/collisions") }}">here</a> for an explanation.</p>
+
+<p>If you specify the units of N to be bits, the number of buckets will 2<sup>N</sup>.</p>
+
+<p>Due to numerical precision issues, the exact and/or approximate calculations may report a probability of 0 when N is very large (N=2<sup>128</sup>, for example), when in fact the probability is just very very small. Similarly, they may report a probability of 1 when the probability is very very close to 1. The approximate method is more robust. If you're using large N, like N=2<sup>128</sup>, then keep adding 0s onto k and you should eventually get a non-zero answer.</p>
 
 <script src="/static/js/apps/collision/collision.js"></script>
 <script>updateResults();</script>

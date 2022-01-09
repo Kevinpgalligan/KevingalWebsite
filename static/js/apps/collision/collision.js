@@ -1,21 +1,43 @@
 var K_LIMIT = 100000;
 var DIGITS = 5;
 
-// Test cases to iron out:
-// 1. k=1000, N=2^64 (gives p_e=0). Should be able to handle this case, need a smarter dumb algorithm.
-// 2. k=1000, N=2^1000000 (gives p_e=NaN and p_a=0; should just error out if N is too big).
-// 3. k=0, N=0 (don't accept bad input).
-// 4. k=-1, N=-1 (don't accept bad input).
-// ALSO, it should react as you type, you shouldn't have to press enter.
+/*
+For future me, this may allow a fix for the numerical precision issues:
+
+  https://stackoverflow.com/questions/16742578/bigdecimal-in-javascript
+
+Or: use fancy numerical tricks to avoid dealing with very large or very small values, e.g. taking logs.
+
+Cases that would be nice to fix:
+    k=1000, N=2^64 (exact method gives probability=0)
+    k=1000, N=2^128 (even approximate method gives probability=0)
+*/
 
 function updateResults() {
+    setError("");
     var k = parseInt(document.getElementById("items").value);
     var N = parseInt(document.getElementById("buckets").value);
     var buckettype = document.getElementById("buckettype").value;
     if (buckettype === "bits") {
         N = Math.pow(2, N);
     }
-    
+    if (k != k || N != N) {
+        // They're NaN!
+        setError("Invalid input!");
+        return;
+    }
+    if (N == Infinity) {
+        setError("N is too large!");
+        return;
+    }
+    if (k < 0 ) {
+        setError("k must be non-negative!");
+        return;
+    }
+    if (N <= 0) {
+        setError("N must be non-negative!");
+        return;
+    }
     var resultIds = ["exact-prob", "approx-prob", "rel-err"];
     resultIds.forEach((freud) => document.getElementById(freud).innerHTML = "...");
     var tooHard = k <= N && k > K_LIMIT;
@@ -29,14 +51,23 @@ function updateResults() {
     document.getElementById("rel-err").innerHTML = tooHard ? "ditto" : makeFloatPresentable(relativeError(exactProb, approxProb));
 }
 
+function setError(msg) {
+    if (msg.length > 0) {
+        msg = "error: " + msg;
+    }
+    document.getElementById("error-box").innerHTML = msg;
+}
+
 function bdayProb(k, N) {
     if (k > N) {
         return 1.0;
     }
     var result = 1.0;
     for (var i = 0; i < k; i = i+1) {
-        // May lose precision if individual terms are too small.
-        result *= (N-i)/N;
+        var term = 1 - i/N;
+        if (term > 0) {
+            result *= term;
+        }
     }
     return 1 - result;
 }

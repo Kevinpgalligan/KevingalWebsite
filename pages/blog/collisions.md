@@ -109,7 +109,23 @@ We have seen how to calculate the probability of a hash collision, as well as 3 
 TODOs summary: proofs, plots, fix pointless katex scrollbars
 
 ### Appendix A: Supporting proof for e-based approximation 
-TODO
+e^x = 1 + x + x^2/2! + x^3/3! + ...
+e^-x = 1 - x + x^2/2! - x^3/3! + ...
+
+As x -> 0, e^-x -> 1-x.
+
+Let f(x) = 1-x-e^-x.
+We wanna show that lim x->0 (f(x)) = 0.
+For every eps>0, there exists delta>0, such that 0 LT |x-0| LT delta implies |f(x)-0| LT eps.
+
+|f(x)-0| = |1-x-e^-x| < eps
+i.e. -eps < 1-x - e^-x < eps
+
+1-x > e^-x when log(1-x)>-x
+
+http://www.milefoot.com/math/calculus/limits/DeltaEpsilonProofs03.htm
+
+https://www.quora.com/How-can-one-use-the-approximation-e-x-approx-1-x-when-x-is-imaginary?share=1
 
 ### Appendix B: Supporting proof for k(k-1)=k(k)
 TODO
