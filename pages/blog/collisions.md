@@ -83,7 +83,7 @@ Now, here comes a trick. It's a fact that $`1-x \approx e^{-x}`$ as $`x`$ gets s
 
 The last equality comes from the fact that $`1+2+...+n=n(n+1)/2`$.
 
-This approximation reduces the complexity of computing the probability from $`\mathcal{O}(k)`$ to $`\mathcal{O}(1)`$. Or, phrased in non-computer-science terms: instead of doing around $`k`$ math operations, we only have to do a fixed number of them! What's more, the approximation becomes more and more accurate as we increase $`N`$.
+This approximation reduces the complexity of computing the probability, from $`\mathcal{O}(k)`$ to $`\mathcal{O}(1)`$. Or, phrased in non-computer-science terms: instead of doing around $`k`$ math operations, we only have to do a small fixed number of them! What's more, the approximation becomes more and more accurate as we increase $`N`$.
 
 ### Approximations all the way down
 It's possible to simplify this equation even further, using the exact same trick as before! Note that the final line of equation (2) is in the form $`1-e^{-y}`$, where $`y=\frac{k(k-1)}{2N}`$. We've already seen that $`1-e^{-y} \approx y`$ when $`y`$ is small, and so the hash collision probability can be further approximated by:
@@ -92,7 +92,7 @@ It's possible to simplify this equation even further, using the exact same trick
 \frac{k(k-1)}{2N}. \tag{3}
 ```
 
-The final approximation suggested by Preshing is that $`k(k-1)`$ starts to look an awful lot like $`k^2`$ as $`k`$ gets bigger (see Appendix B), so it can be written simply as
+The final approximation suggested by Preshing is that $`k(k-1)`$ starts to look an awful lot like $`k^2`$ as $`k`$ gets bigger (see Appendix A), so it can be written simply as
 
 ```math
 \frac{k^2}{2N}. \tag{4}
@@ -106,29 +106,45 @@ How do these methods compare? Here are some plots!
 ### Conclusions
 We have seen how to calculate the probability of a hash collision, as well as 3 different ways to approximate it. I've implemented all of this as a [web app](linkhere), which you can play around with for your edutainment. May your books be evenly distributed in your boxes.
 
-TODOs summary: proofs, plots, fix pointless katex scrollbars
+TODOs summary: plots, fix pointless katex scrollbars
 
-### Appendix A: Supporting proof for e-based approximation 
-e^x = 1 + x + x^2/2! + x^3/3! + ...
-e^-x = 1 - x + x^2/2! - x^3/3! + ...
+### Appendix A: Supporting proofs for approximations 
+How do we prove that the approximations we've used are "good" in some sense? Or more specifically, that:
 
-As x -> 0, e^-x -> 1-x.
+1. $`k(k-1) \sim k^2`$ as $`k \to \infty`$.
+2. $`1-x \sim e^{-x}`$ as $`x \to 0`$.
 
-Let f(x) = 1-x-e^-x.
-We wanna show that lim x->0 (f(x)) = 0.
-For every eps>0, there exists delta>0, such that 0 LT |x-0| LT delta implies |f(x)-0| LT eps.
+This might seem obvious (especially in #2, just set x=0 and they're the same!), but I was wondering how you would go about it with slightly more rigour.
 
-|f(x)-0| = |1-x-e^-x| < eps
-i.e. -eps < 1-x - e^-x < eps
+One approach is to consider the ratio of the approximation and the quantity being approximated, and show that this ratio goes to 1 under the limit. I am not a mathematician, so don't take these proofs seriously. Note however that I did [ask people to review them](https://www.reddit.com/r/learnmath/comments/s3cf8s/analysis_proving_that_these_are_good/) on r/learnmath.
 
-1-x > e^-x when log(1-x)>-x
+For #1, the ratio is:
 
-http://www.milefoot.com/math/calculus/limits/DeltaEpsilonProofs03.htm
+```math
+\begin{aligned}
+\frac{k^2}{k(k-1)} &= \frac{k^2}{k^2-k} \\
+&= \frac{k^2}{k^2} \times \frac{1}{1-1/k} \\
+&= \frac{1}{1-1/k},
+\end{aligned}
+```
 
-https://www.quora.com/How-can-one-use-the-approximation-e-x-approx-1-x-when-x-is-imaginary?share=1
+and then taking the limit we get $`\lim_{k \to \infty} \frac{1}{1-1/k} = \frac{1}{1-0} = 1`$.
 
-### Appendix B: Supporting proof for k(k-1)=k(k)
-TODO
+For #2, we use the Taylor series expansion of $`e^{-x}`$,
+
+```math
+e^{-x} = 1 - \frac{x}{1!} + \frac{x^2}{2!} - ...
+```
+
+Using this expansion in the ratio, we get
+
+```math
+\begin{aligned}
+\frac{1-x}{e^{-x}} &= \frac{1-x}{1-\frac{x}{1!}+\frac{x^2}{2!} - ...} \\
+&\mathrel{\underset{x \to 0}{=}} \frac{1 - 0}{1 - 0 + 0 - ...} \\
+&= 1.
+\end{aligned}
+```
 
 [^modulo]: If $`N<i`$, then you take the book at position $`i+1 \pmod{N}`$. In other words, when you're counting up to the $`i`$-th box, loop back to the 1st one if you ever exceed $`N`$.
 
