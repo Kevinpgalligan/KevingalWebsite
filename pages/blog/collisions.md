@@ -1,7 +1,7 @@
 title: The probability of a hash collision
 date: 2022-01-15
 description: Exploring the math behind hash collisions.
-imgthumbnail: img/hashcollisions/thumbnail.jpg
+imgthumbnail: img/collisions/thumbnail.jpg
 requires: math
 publish: y
 tags: probability
