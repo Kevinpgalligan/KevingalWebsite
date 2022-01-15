@@ -1,4 +1,4 @@
-title: Can you grow great programmers in a petri dish?
+title: Can great programmers be grown in a petri dish?
 date: 2020-12-02
 description: Whether great programmers are born or made.
 imgthumbnail: img/basketball/thumbnail.jpg

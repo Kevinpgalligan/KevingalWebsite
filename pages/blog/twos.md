@@ -16,7 +16,7 @@ Here's an example to reacquaint ourselves with two's complement. Let's say you h
 
 The POINT of two's complement, or at least one of the points, is that it allows you to take the same circuitry with which you add, multiply and subtract positive numbers, and use it to add, multiply and subtract negative numbers. This means you don't need complicated circuitry just for negative numbers.
 
-Let's explore why negative numbers might require complicated circuitry. Remember how they taught you to add numbers digit-by-digit in school? Computers add numbers in pretty much the same way. They go through the digits from least significant (rightmost) to most significant (leftmost) and add them up individually. If the sum of two digits is too big to store in a single digit, then you have to *carry* a 1 over to the digit, as shown in the example below. 
+Let's explore why negative numbers might require complicated circuitry. Remember how they taught you to add numbers digit-by-digit in school? Computers add numbers in pretty much the same way. They go through the digits from least significant (rightmost) to most significant (leftmost) and add them up individually. If the sum of two digits is too big to store in a single digit, then you have to *carry* a 1 over to the next digit, as shown in the example below. 
 
 <figure>
 <img src="{{ url_for('static', filename='img/twos/addition.png') }}"
@@ -88,11 +88,11 @@ Here are some more facts about two's complement.
 * If you take the two's complement of a number that's already in two's complement form, you get the number back: $`t(t(k)) = 2^b-(2^b-k) = k`$. It's the same as negating a negative number, which makes it positive.
 * To subtract a number from another number in two's complement, you convert the number you want to subtract into two's complement form, then add it to the other number. (See: the equation above where we add $`k`$ and $`t(l)`$). No hairy circuits involved!
 
-Okay. There are two details about two's complement left to discuss. The first detail is a big wart on its backside. The second detail is *where in the name of Knuth* they got the bit trickery that they used to introduce you to two's complement all those years ago.
+Okay. There are two details about two's complement left to discuss. The first detail is the big wart on its backside. The second detail is the bit-twiddling that was used to introduce you to two's complement all those years ago.
 
-The wart on two's complement's bottom is that, as you may have noticed, there's no +128 to match -128 in our 8-bit number line! The two's complement operation applied to 128 gives $`t(128)=256-128=128`$. That is, the two's complement of 128 is itself. There's no space left to represent both +128 and -128, so we have to map the value 128 to only one of them. I'm not sure why, but the convention is to pick -128. Some things still work as expected ($`1+t(128)=128+1=129=t(127)`$, i.e. adding 1 to -128 still gives -127). But when we try to negate -128, we get: $`t(t(128))=2^b-(2^b-128)=128=t(128)`$. -128 can't be negated!
+The wart on two's complement's bottom is that, as you may have noticed, there's no +128 to match -128 in our 8-bit number line! The two's complement operation applied to 128 gives $`t(128)=256-128=128`$. That is, the two's complement of 128 is itself. There's no space left to represent both +128 and -128, so we have to map the value 128 to only one of them. I'm not sure why, but the convention is to pick -128. Some things still work as expected: $`1+t(128)=128+1=129=t(127)`$, i.e. adding 1 to -128 still gives -127. But when we try to negate -128, we get: $`t(t(128))=2^b-(2^b-128)=128=t(128)`$. -128 can't be negated!
 
-This can be the source of nightmarish bugs. And, since all modern computers use two's complement (if I recall correctly, this fact is going to be encoded in the C standard), you can't avoid it. If you compile and run the following C code on your computer, it will most probably print -128.
+This can be the source of nightmarish bugs. And, since all modern computers use two's complement (if I recall correctly, this fact is going to be enshrined in the C standard), you can't avoid it. If you compile and run the following C code on your computer, it will most probably print -128.
 
     :::c
 	#include <stdio.h>
