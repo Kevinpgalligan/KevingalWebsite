@@ -35,8 +35,16 @@ def main():
     
     ks = [math.floor(k) for k in exp_range(args.startk, args.N, 10)]
     full_bday_probs = [bday(k, args.N) for k in ks]
+    print("ks")
+    print("  ", ks)
+    print("full")
+    print("  ", full_bday_probs)
     for name, f in methods:
-        rel_errs = [abs(fbp-f(k, args.N))/fbp for k, fbp in zip(ks, full_bday_probs)]
+        probs = [f(k, args.N) for k in ks]
+        rel_errs = [abs(fbp-p)/fbp for p, fbp in zip(probs, full_bday_probs)]
+        print(name)
+        print("  ", probs)
+        print("  ", rel_errs)
         plt.plot(ks, rel_errs, marker="o",
                  markerfacecolor="white", linestyle="--",
                  label=name)
