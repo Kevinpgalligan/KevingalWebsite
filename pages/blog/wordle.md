@@ -1,5 +1,5 @@
 title: Yet another Wordle solver
-date: 2022-02-07
+date: 2022-02-27
 description: Another one for the pile.
 imgthumbnail: img/wordle/thumbnail.jpg
 requires: math code
@@ -35,10 +35,10 @@ which is just the original explanation in (crappy) maths notation. We *minimise*
 The expected size can be expressed as
 
 ```math
-E[\lvert r(g,X,S) \rvert] = \sum_{x \in S} P(X=x) \,\lvert r(g,x,S) \rvert.
+E[\lvert r(g,X,S) \rvert] = \sum_{x \in S} P(X=x) \,\lvert r(g,x,S) \rvert,
 ```
 
-Each guess is equally probable, i.e. $`P(X=x)=\frac{1}{\lvert S \rvert}`$. 
+where each secret is equally probable, i.e. $`P(X=x)=\frac{1}{\lvert S \rvert}`$. 
 
 The final piece of the puzzle is to compute the new secret set $`r(g, x, S)`$. If we have a hint function $`h`$ that accepts a guess and a secret word, and returns a string representing the hint, such as "GYBBG" (green, yellow, black, black, green), then the new secret set is
 
@@ -48,7 +48,7 @@ r(g,x,S) = \{y \in S : h(g,x)=h(g,y)\}.
 
 In other words, we only keep secret words that return the same hint as the true secret word.
 
-This is great! We've fully specified how YAWS [greedily](https://en.wikipedia.org/wiki/Greedy_algorithm) picks the best next guess. The only problem is complexity. Let's say that the size of $`G`$ and the size of $`S`$ are both proportional to a number $`n`$. YAWS has to loop over all possible guesses, which is $`\mathcal{O}(n)`$ complexity. For each guess, it has to check all possible secrets, which is also $`\mathcal{O}(n)`$ complexity. And for each secret, it has to loop over all the other secrets to figure out which ones will be in the new set of secrets, which is - you guessed it - $`\mathcal{O}(n)`$ complexity. Overall, that makes it a $`\mathcal{O}(n^3)`$ algorithm, which is verrrrryyyy slow for Wordle's $`n \approx 10000`$.
+This is great! We've fully specified how YAWS [greedily](https://en.wikipedia.org/wiki/Greedy_algorithm) picks the best next guess. The only problem is complexity. Let's say that the size of $`G`$ and the size of $`S`$ are both proportional to a number $`n`$. YAWS has to loop over all possible guesses, which is $`\mathcal{O}(n)`$ complexity. For each guess, it has to check all possible secrets, which is also $`\mathcal{O}(n)`$ complexity. And for each secret, it has to loop over all the other secrets to figure out which ones will be in the new set of secrets, which is - you guessed it - $`\mathcal{O}(n)`$ complexity. Overall, that makes it an $`\mathcal{O}(n^3)`$ algorithm, which is verrrrryyyy slow for Wordle's $`n \approx 10000`$.
 
 A better approach is to group the secrets based on the hint they will return for a given guess $`g`$. Then we don't need to loop over the secrets a third time, because we already know which secrets give the same hint. This makes the complexity $`O(n^2)`$. Here's the improved algorithm in Python pseudocode.
 
@@ -57,16 +57,15 @@ A better approach is to group the secrets based on the hint they will return for
         buckets = collections.defaultdict(list)
         for x in S:
             buckets[h(g,x)].append(x)
-        return sum(len(bucket) * (len(bucket)/len(S))
-                   for bucket in buckets.values())
+        return sum(1/len(S) * len(buckets[h(g,x)]) for x in S)
 
-If that handwavey explanation didn't lose you completely, here are the results! This is the number of guesses made by YAWS when it's tested on all possible secret words, starting with a guess of RAISE. I've compared it to my first 28 Wordle scores.
+If that handwavey explanation didn't lose you completely, here are the results! This is the number of guesses made by YAWS when it's tested on all possible secret words, with its first guess being RAISE. I've compared it to my first 28 Wordle scores.
 
 <img src="{{ url_for('static', filename='img/wordle/me-vs-solver.png') }}"
      alt="My performance vs the solver's performance."
      class="centered">
 
-YAWS gets a score of 3 much more consistently than I do, and it never makes more than 5 guesses. It makes an average of 3.495 guesses, which is pretty close to [the best possible average](https://www.poirrier.ca/notes/wordle-optimal/) (3.4212). Not bad for a greedy algorithm. For a description of the optimal Wordle algorithm, I would recommend checking out [this write-up](sonorouschocolate.com/notes/index.php?title=The_best_strategies_for_Wordle), which is where I nicked some of the maths notation that I used above.
+YAWS gets a score of 3 much more consistently than I do, and it never makes more than 5 guesses. It makes an average (mean) of 3.495 guesses, which is pretty close to [the best possible average](https://www.poirrier.ca/notes/wordle-optimal/) (3.4212). Not bad for a greedy algorithm. For a description of the optimal Wordle algorithm, I would recommend checking out [this write-up](sonorouschocolate.com/notes/index.php?title=The_best_strategies_for_Wordle), which is where I nicked some of the maths notation that I used above.
 
 One last thing. Here's a graph of letter frequency among the Wordle secret words. [ETAOIN SHRDLU](https://en.wikipedia.org/wiki/Etaoin_shrdlu) is often used as a mnemonic to remember the most commonly used letters in the English language, but for Wordle it looks like that should be EAROT LISNCU.
 
