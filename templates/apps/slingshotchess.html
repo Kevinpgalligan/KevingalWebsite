@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block headerextras %}
+{% endblock headerextras %}
+{% block title %} Slingshot Chess{% endblock title %}
+{% block content %}
+
+<h3>Slingshot Chess</h3>
+<p>
+A version of chess where you launch your pieces at the enemy and try to knock their king off the edge of the board. <a href="https://github.com/Kevinpgalligan/slingshot-chess">Source code</a>.
+</p>
+
+<canvas id="canvas"></canvas>
+<script src="/static/js/apps/slingshotchess/vec2d.js"></script>
+<script src="/static/js/apps/slingshotchess/slingshotchess.js"></script>
+
+<script>
+init();
+runMainLoop();
+</script>
+
+{% endblock content %}

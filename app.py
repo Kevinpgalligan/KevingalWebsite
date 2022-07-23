@@ -173,7 +173,8 @@ def missing_links():
         "/blog/drafts.html",
         "/404.html",
         "/apps/pixelate.html",
-        "/apps/collision.html"
+        "/apps/collision.html",
+        "/apps/slingshotchess.html"
     ]
     for link in links:
         yield link
