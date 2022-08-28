@@ -1,5 +1,5 @@
 Flask
 Frozen-Flask
-Flask-FlatPages
+Flask-FlatPages==0.7.3
 Pygments
 markdown-katex

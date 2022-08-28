@@ -13,7 +13,7 @@ ka is a small calculator language. It supports various useful features for day-t
 
 There are 3 ways to interact with it: executing individual expressions through the CLI (`ka '1+1'`), a CLI interpreter (`ka`), and a GUI (`ka --gui`).
 
-	>>> 2 * (1/2)
+    >>> 2 * (1/2)
     1
     >>> 1 metre + 1 foot > feet
     4.2808398950131235
