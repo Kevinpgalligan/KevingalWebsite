@@ -4,7 +4,7 @@ description: Using Markov chains to model simple board games.
 imgthumbnail: img/thumbnail.jpg
 publish: y
 tags: probability
-requires: math code
+requires: math
 
 Children of a certain age are drawn to mindless board games like Snakes & Ladders, which involve no skill or decision-making or social engineering or anything that a reasonable human might associate with the word "fun". The outcome is determined entirely by chance, in the form of dice rolls. The only pleasure I can imagine being derived from such games is the trickle of dopamine that comes from winning and the schadenfreude that comes from seeing a snake devour your opponent, which in my considered opinion is setting children up to become inveterate gamblers and psychopaths, respectively.
 
