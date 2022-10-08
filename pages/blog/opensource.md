@@ -1,51 +1,24 @@
-title: A Dialogue Concerning How to Get Involved in Open Source Software
-date: 2021-07-02
-description: A discussion that really happened, about how to get into open source stuff.
-imgthumbnail: img/easy/thumbnail.jpg
+title: Get involved in open source software by using it
+date: 2022-10-08
+description: My uninformed thoughts on how to get involved in open source software.
+publish: y
+imgthumbnail: img/thumbnail.jpg
 tags: rant
 
-**PERSONS OF THE DIALOGUE:** Alice, Bob.
+Beginner software developers often ask this question:
 
-**SCENE:** A café somewhere.
+> Can someone tell me a good open source project to work on?
 
-----
+Even if someone suggests a project to work on, why would our hypothetical beginner, a burgeoning Linus Torvalds, care about a random project that someone pulled from their hat? It probably won't have any personal relevance to them. They probably won't know what it's for or how it works. In addition, big popular projects tend to have massive codebases with tens of thousands of lines of code, which could very well baffle a beginner.
 
-**BOB:** Can you suggest a good open source project to learn from and potentially contribute to, Alice?
+Let me suggest instead that if you want to get involved in open source software, *use it*. My experience is that by using software, I have an idea of how it works. I already know something about the domain in which the software operates. The software is useful to me personally, so I'm motivated to fix it and improve it.
 
-**ALICE:** That depends, Bob. Why do you want to do that in the first place?
+One type of open source software you might already use is the desktop application: Firefox, the GNOME calculator, tmux, various IRC clients, GIMP, vim. These are all applications that I use regularly, and if I encounter a bug in any of them, I'm motivated to fix it. For example: I [tried (and failed) to patch a bug](https://github.com/hexchat/hexchat/issues/2394#issuecomment-748543455) in the HexChat IRC application.
 
-**BOB:** Well, a friend of mine called... Cob... suggested that it's a good way to learn about software. Like a beginning artist learning from master painters!
+The problem with applications is that they generally have massive codebases. You won't necessarily be familiar with the programming language they use, and they require getting tangled up in application programming. You'll have to learn about GUI frameworks, how applications interact with operating systems, and other things that may or may not interest you.
 
-**ALICE:** Hm. I won't argue that getting involved in open source software can't be beneficial. But I don't think "go read open source" by itself is good advice for new programmers.
+But there's another way: use open source libraries in your own projects. You know, the same projects that you're doing to learn programming and to pad your CV. You will inevitably need to make use of code that other people have written. You will inevitably run into problems with that code, or identify a missing feature, at which point you can dig in and solve it yourself. The good thing is that you're motivated to solve the problem because it's your problem and it's blocking your project. Maybe you'll become particularly interested in one of these libraries and you can become actively involved in its development. And then all of a sudden you will have become an open source developer.
 
-**BOB:** And why is that?
+Another tip. The more niche the software you're using, the fewer eyes will be on the code and the more opportunity there will be to take things into your own hands. Using a popular Python package, there will be hundreds of people waiting to jump in and fix bugs. But for that Common Lisp package that only a dozen people use, you might be the only one who has experienced a particular bug, and you might be the only one who can fix it. For example, I contributed bugfixes to two Common Lisp libraries, [cl-sat](https://github.com/cl-model-languages/cl-sat/pull/5) and [random-state](https://github.com/Shinmera/random-state/pull/8), which I used in projects that I have described on this blog.
 
-**ALICE:** Let's say that "Cob" tells you to just go and read code from a honking big project somewhere. I see two problems with this. First, why should you care about the project? It was randomly selected from a hat of Cob's favourite software projects. It probably has no relevance to your life. Unless it immediately strikes you as interesting or useful, you won't have any prior motivation to get involved.
-
-**BOB:** That's true. Cob told me to look at the code for a project called *Flask*. I think it was something called a web framework? I had no idea what it was about.
-
-**ALICE:** Right. Then there's my second point. Telling someone to go and read good code doesn't work. How are they supposed to know where to start on a project that has tens of thousands, or hundreds of thousands, or millions of lines of code? Something something. And anyway, it's rare even for experienced programmers to read code as a learning activity (Gigamonkey). It's not like advising a writer to read good literature.
-
-**BOB:** What a wise and reasonable response to that shamelessly concocted strawman known as Cob. So what's your undoubtedly sensible alternative, Alice?
-
-**ALICE:** something something, start with your own project. [I would argue that you can't. Or at least, that it's much more difficult than it needs to be. Over the years, I have discovered that it's much easier to approach this problem from the other direction. Rather than setting out in an arbitrary direction and picking a random software project that someone suggests to you, the first step to getting involved in open source software should be to *use it*. Is there a cool personal project you want to work on? Well, as your projects grow in complexity, they'll require more open source packages. And those packages will, at some point, break. At which point, someone will have to step in and fix them -- and that person can be you! And believe me, open source packages do break.]
-
-**BOB:** But what if I don't have my own ideas!?
-
-**ALICE:** Doesn't matter, pick anything. Even if a package doesn't break and you never get your break-out opportunity, by using the package (1) it's useful for you, (2) you understand what it's used for, (3) you might have an idea of how it works, at least from an external perspective, (4) you might be curious about how it works internally, (5) maybe there's a feature that would be super useful for you that hasn't been added yet. That's like 5 things that could motivate you or help you to get involved!
-
-You don't even have to use it as part of your own projects. Just use cool software day-to-day, like a calendar or a calculator or what have you. And maybe you'll find bugs in this software, or you'll find yourself wishing for a feature that's missing. Then you have the perfect opportunity to step in and make things better (assuming you use open source software; if not, then it's time to change that).
-
-**BOB:** Okay, so you're dead-set against learning via reading open source code. What if you want to get involved in the open source *community*, and learn from the sages of open source?
-
-**ALICE:** That's a nobler motive, but still suffers from the problems of motivation. Unless you have high intrinsic motivation, I would advise against it. [I'm not an expert on the "philosophy" of open source software, but this seems like a more sustainable dynamic for the open source ecosystem in general. Software that is maintained by people who care about it and who are motivated to develop it and who use it every day. As opposed to random people coming along, who don't care about the software or have any particular use for it, who contribute the minimum required amount to pad their CV and then move on. That's an unsustainable approach, you can't expect people to work on software that they have no reason to give a shit about. And you can't expect yourself to be motivated to dig into software, or to want to contribute to it, if it doesn't mean anything to you.]
-
-**BOB:** But I need something to put on my CV!
-
-**ALICE:** That may be the case, you filthy company-worshipping mercenary. But which is a better story... (1) I was working on my own project that I came up with myself, and I came up against a bug in a library I was using, so I delved into the low-level library code, understood what was going wrong, and fixed it! Then I became super interested in the library and added more features to it, for the public good. (2) I went looking for a project to work on to pad my CV, smashed some easy issues in an open source project that I don't care so much about.
-
-Okay, I'm not saying it can't work. But if you're spinning your wheels and asking people "what's a good project to get involved in?", you should at least consider working on your own project and arriving at open source more naturally.
-
-Final comment: smaller software ecosystems are easier to find gaps in. And the less well known and used a project is, the more likely you are to find bugs in it. Chad Common Lisp vs Virgin Python, for example.
-
-**BOB:** Something funny.
+For experienced developers, let's stop recommending that new programmers launch themselves at large codebases and read them like a novel. [Nobody does that anyway](https://gigamonkeys.com/code-reading/). I still remember when I was learning Python through (and in spite of) the book Learning Python the Hard Way. The author recommended spending 1 week reading the codebase of a big web framework like Flask. 1 week was an annoyingly arbitrary timeframe, the objective of the task was not clear, and I didn't have a clue what a web framework was or what it was good for. My young self sensibly skipped the exercise. It's not like asking a journeyman painter to go to an art museum and learn from the work of the masters. We learn from the code of others by building a mental model of the problem in our head and then seeing the language idioms they used to solve it, not by aimlessly browsing their code with no idea what it's doing.
