@@ -57,7 +57,7 @@ FOR EXAMPLE. The two's complement forms of 0, 1 and 127 (which you can check in 
 \begin{aligned}
 t(0)&=2^8-0=2^8\equiv 0 &\pmod{2^8}, \\
 t(1)&=2^8-1=255\equiv 255 &\pmod{2^8}, \\
-t(127)&=2^8-127=129\equiv 127 &\pmod{2^8}.
+t(127)&=2^8-127=129\equiv 129 &\pmod{2^8}.
 \end{aligned}
 ```
 
