@@ -19,7 +19,7 @@
 
 <p>If you put 'k' items in 'N' buckets, what's the probability that at least 2 items will end up in the same bucket? In other words, what's the probability of a hash collision? See <a href="{{ url_for("page", path="blog/collisions") }}">here</a> for an explanation.</p>
 
-<p>If you specify the units of N to be bits, the number of buckets will 2<sup>N</sup>.</p>
+<p>If you specify the units of N to be bits, the number of buckets will be 2<sup>N</sup>.</p>
 
 <p>Due to numerical precision issues, the exact and/or approximate calculations may report a probability of 0 when N is very large (N=2<sup>128</sup>, for example), when in fact the probability is just very very small. Similarly, they may report a probability of 1 when the probability is very very close to 1. The approximate method is more robust. If you're using large N, like N=2<sup>128</sup>, then keep adding 0s onto k and you should eventually get a non-zero answer.</p>
 
