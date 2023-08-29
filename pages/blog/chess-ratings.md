@@ -2,7 +2,6 @@ title: Fluctuations in chess ratings
 date: 2023-05-23
 description: Investigating chess ratings and how much they're expected to fluctuate.
 imgthumbnail: img/thumbnail.jpg
-publish: y
 requires: math
 tags: probability chess
 

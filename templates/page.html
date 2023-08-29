@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block headerextras %}
-{% if page.description is defined %}<meta property="og:description" content="{{page.description}}" /> {% endif %}
+{% if page.description is defined %}<meta property="og:description" content="{{page.description}}" />
 {% if page.imgthumbnail is defined %}<meta property="og:image" content="{{ full_url(url_for('static', filename=page.imgthumbnail)) }}" />
+{% else %}<meta property="og:image" content="{{ full_url(url_for('static', filename='img/thumbnail.jpg')) }}" />
+{% endif %}
 <meta name="thumbnail" content="{{ url_for('static', filename=page.imgthumbnail) }}" />
 {% endif %}
 {% if requires_code %}<link rel="stylesheet" href="/static/css/pygments.css">{% endif %}
