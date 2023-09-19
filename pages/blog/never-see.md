@@ -1,5 +1,5 @@
 title: George Carlin's Things You Never See, AI edition
-date: 2023-09-12
+date: 2023-09-19
 description: AI-generated images of George Carlin jokes.
 publish: y
 tags: ai
