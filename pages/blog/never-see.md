@@ -22,7 +22,7 @@ I had to jump between various guides to get SD to work. I'm not going to link a 
 Another roadblock I hit was that my GPU (GeForce GTX 1050 Ti) has only 4GB of memory, while 6GB is normally required to run SD. Thankfully, a [fork exists](https://github.com/basujindal/stable-diffusion/tree/main) to run SD with lower memory requirements. It provides a version of `txt2img.py` that breaks the GPU computations into multiple stages, allowing you to get away with around 2.5GB of GPU memory. In exchange, you have to wait longer for results, and it took my computer over 1 minute to generate each image.
 
 ### The results
-Carlin's jokes and the corresponding images are shown below. The jokes are in italics, while my comments are not. I edited the text of each joke to make it more prompt-like before passing it to SD. For "things you never hear", I generally passed the dialogue by itself, quote marks included. All the images were originally generated at a resolution of 512x512, since the output was terrible when I used 256x256. Finally, a suggestion: the images may look better if you squint.
+Carlin's jokes and the corresponding images are shown below. The jokes are in italics, while my comments are not. I edited the text of each joke to make it more prompt-like before passing it to SD. For "things you never hear", I generally passed the dialogue by itself, quote marks included. All the images were originally generated at a resolution of 512x512, since the output was terrible when I tried 256x256. Finally, a suggestion: the images may look better if you squint.
 
 *You never see a Rolls-Royce with a bumper sticker that says "shit happens".* It looks like a fancy car, but no bumper sticker.
 
@@ -80,7 +80,7 @@ Carlin's jokes and the corresponding images are shown below. The jokes are in it
      alt="A man wearing a green bandana, a shirt, and a gold bracelet that looks obviously Photoshopped. He has stubble, his face is a bit flushed, and he has an intense expression on his face. He's holding long object that might be a poker, it weirdly disappears into his right nostril. He might also be holding a knife in the same hand."
      class="centered">
 
-*You never hear someone say "Honey, let's sell the children, move to Zanzibar, and begin taking opium rectally".* Hm, is this what Zanzibar looks like?
+*You never hear someone say "Honey, let's sell the children, move to Zanzibar, and begin taking opium rectally".* Yet more demon faces.
 
 <img src="{{ url_for('static', filename='img/never-see/sd/honey-lets-sell.jpg') }}"
      alt="A Black family sitting on a beach under some palm trees, their faces are quite messed up and their bodies are disconnected / intersecting with the trees."
@@ -92,7 +92,7 @@ Carlin's jokes and the corresponding images are shown below. The jokes are in it
      alt="A woman in a skimpy pink dress sitting on a bed, she's holding a disembodied hand and kissing the thumb, also holding a knife-like object and a metal rod."
      class="centered">
 
-*You don't want to come home and hear "Honey, remember how we told the children never to play on the railroad tracks?".* These children are creepy as hell.
+*You don't want to come home and hear "Honey, remember how we told the children never to play on the railroad tracks?".* AI-generated children are creepy, apparently.
 
 <img src="{{ url_for('static', filename='img/never-see/sd/railroad-tracks.jpg') }}"
      alt="Demon children looking happy and sitting on railroad tracks."
@@ -104,7 +104,7 @@ Carlin's jokes and the corresponding images are shown below. The jokes are in it
      alt="A serious-looking balding man, lots of nonsensical meme letters."
      class="centered">
 
-*You don't want to hear "I'M PREGNANT, YOU'RE THE FATHER, AND I'M GOING TO KILL ALL 3 OF US!"* Liking the intensity with this one.
+*You don't want to hear "I'M PREGNANT, YOU'RE THE FATHER, AND I'M GOING TO KILL ALL 3 OF US!"* Liking the intensity of this one.
 
 <img src="{{ url_for('static', filename='img/never-see/sd/pregnant.jpg') }}"
      alt="An intense, angry-looking woman whose mouth is wide open. There are weird black holes in her eyes, nostrils and mouth. Also, once again, there's nonsensical meme text."
@@ -116,7 +116,7 @@ Carlin's jokes and the corresponding images are shown below. The jokes are in it
      alt="Police officers kneeling down and inspecting a bunch of bags of white powder, scattered across a wooden floor. A TV with a cracked screen is in the background. The officers are missing their eyes and their faces are all blurred / contorted."
      class="centered">
 
-*You don't want to hear your fiancé say "I'll be right back, I've gotta take a dump" while the two of you are having dinner together with your parents for the first time.* I don't know what the hell this is.
+*You don't want to hear your fiancé say "I'll be right back, I've gotta take a dump" while the two of you are having dinner together with your parents for the first time.* And I'm not sure why a Willy Wonka meme is supposed to be relevant to this one.
 
 <img src="{{ url_for('static', filename='img/never-see/sd/dump.jpg') }}"
      alt="That Willy Wonka meme where he's leaning on his elbow, except someone else is badly superimposed over him. Again, there's meme text."
