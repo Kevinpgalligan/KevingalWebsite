@@ -61,9 +61,11 @@ Solving for `x` gives a distance of about 9.72km. Using this new distance estima
 It's very important, however, that the initial distance measurement be accurate. Even the slightest error can propagate through the whole triangle mesh and mess up all the estimated distances.
 
 ### What can go wrong
-Let's say we have accurately measured the angles between all the pillars on the map above. We don't know where the pillars are, though, or how far apart they are from each other. So the next step in a survey would be to measure the distance between a single pair of triangulation pillars. Let's say we measure the distance between Scalp Mountain and Creehennan Hill, both along the shores of Lough Foyle. Assuming 0% error, by propagating that distance measurement using the law of sines, we can reconstruct the map of triangulation pillars we saw earlier.
+Let's say we have accurately measured the angles between all the pillars on the map above. We don't know where the pillars are, though, or how far apart they are from each other. So the next step in a survey would be to measure the distance between a single pair of triangulation pillars. Let's say we measure the distance between Scalp Mountain and Creehennan Hill, both along the shores of Lough Foyle. Assuming the measurement has 0% error, that distance can be propagated through the whole triangle mesh using the law of sines, and the map of triangulation pillars can be reconstructed exactly.
 
-But if there's even a small amount of error, say 1%, we get the following.
+But if there's even a small amount of error in the distance measurement -- say, 1% -- we get the following.
+
+
 
 ### Closing thoughts
 I took that picture at Benbulbin myself, so I can appreciate how hard it must have been to capture all those measurements back in the day. There are 868 pillars in the dataset I looked at, and I shiver at the thought of climbing Benbulbin 868 times. A more detailed history of the 1800s survey can be found at [tripointing-ireland.org.uk](http://www.trigpointing-ireland.org.uk/trigpoints.php). 
