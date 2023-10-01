@@ -2,7 +2,7 @@ title: I submitted my thesis
 date: 2023-08-28
 description: It's overrrrrr.
 publish: y
-tags: meta
+tags: meta phd
 
 Today, after 4 years of toil, I **SUBMITTED MY PHD THESIS**. The only thing left to do is my thesis defence.
 
