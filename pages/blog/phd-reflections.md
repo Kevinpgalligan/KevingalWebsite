@@ -1,27 +1,117 @@
 title: Reflections on a PhD
-date: 2023-09-29
-description: My experience of doing a 4-year doctoral degree.
+date: 2023-11-08
+description: Exploring my PhD experience and giving unsolicited advice to potential PhD students.
 tags: phd
 
-Having spent about 13% of my life to-date obtaining a PhD, I've decided to describe my experiences for the benefit of anyone who's curious about PhDs or is wondering whether to do one. I will point people to this post if they ever ask me questions such as:
+### Introduction
+I've spent about 13% of my life obtaining a PhD. This article is for anyone who's wondering what that was like or whether they should do one themselves. I'll give a high-level sketch of my PhD experience, try to explain what research is like, discuss some of the challenges, and then draw my conclusions on whether it's a worthwhile thing to do.
 
-* What's a PhD like?
-* Should I do a PhD?
-* (Something funny).
+Before we begin, here's the obligatory disclaimer: all PhDs are different. They vary based on university, country, supervisor, field of study, the life situation of the student, and so on. I did mine at Maynooth University in Ireland. It took 4 years. I studied channel coding, a field that is a jumble of computer science, maths, and electronic engineering. I had 3 years of work experience beforehand, because of which I didn't have to rely entirely on my PhD stipend. My perspective is coloured by these details and will be different from that of, say, an American history PhD. That said, I'll try to give the broadest perspective I can.
 
-every PhD is different (supervisor, subject, etc)
+Another disclaimer: I think it's hard to understand what a PhD is REALLY like based on the ramblings of a random person on the internet. In retrospect, I didn't truly understand what I was getting myself into, despite reading articles like this one. Knowledge doesn't make up for experience. So, if you're considering whether to do a PhD, you will ideally want to acquire research experience beforehand in order to make a fully-informed decision.
 
-something about how it's hard to understand some things without experiencing them yourself
+### What was it like?
+I decided to do a PhD after working as a software developer for 3 years. I was bored with my job, and while I could've looked for a new one, I had always intended to return to university, and this seemed like the best time to do so. My motivation was that I wanted more freedom to learn new things, and I wanted to expand my career options to include research and teaching jobs.
 
-#### my experience
-cohort, 4 years, Ireland-specific stuff, stuff specific to my field, day to day life
+I emailed a few Ireland-based researchers to enquire about postgraduate opportunities, without much success. Then I found out about the new structured PhD programs that were being introduced to Ireland. Basically, Science Foundation Ireland (SFI) was copying the "cohort" model from other countries, in which groups of students start their PhD at the same time and follow a program (taught courses, training, a timeline) that is set out for them. This sounded good to me, so I applied to 3 of these programs. The only one I ended up interviewing for, and the one I joined, was the [SFI Center for Research Training in Data Science](https://www.data-science.ie/). Let's just call it the CRT. While my background was in computer science (with a sprinkling of maths), the term "data science", and the CRT, are broad enough that they encompass people with lots of different backgrounds, from physicists to psychologists. Historians... probably not.
 
-#### nice things
-sense of community, opportunity to learn new things, more doors are open, diverse skills (presenting, writing, researching), learn what research is
+Something that prospective PhD students have to consider is how they're going to pay for it. Unless you're filthy stinking rich, of course, or unless you want to be filthy stinking in debt. One option is for your potential supervisor to help you prepare a funding application. Another option is to enslave yourself to a company that will fund you to do research on their behalf. Generally, it's more difficult get funding in the humanities. Fortunately, my program was fully funded by SFI and their "enterprise alliance" (corporate backers). This freed me from having to find a supervisor or decide on a research project in advance, which I appreciated.
 
-#### not so nice things
-stressful w/ pressure to publish, isolating, everyone seems to have bad times during it, maybe everything challenging & worth doing is stressful most challenging bit isn't necessarily research, you don't get to spend your whole time learning, it's difficult to reproduce results & share your code, impostor syndrome, politics (Condo example), supervisor-dependent, financial aspect
+I was part of the first ever cohort of the CRT. There were 30 students, split across 3 Irish universities: Maynooth University, University of Limerick, and University College Dublin. For the first 6 months of the program, I did courses and projects with my fellow students. All of this was interesting, sociable, and fun. I was fulfilling my desire to learn new things, and I was full of motivation. Evidence: I set up this website during that time! Depending on the department you're studying in, a PhD can be an isolating experience, but being in a cohort reduces the risk of that, and my department in particular had a great social scene. COVID-19 torpedoed that, of course, and we spent significant parts of the next 2 years in lockdown, but it was still nice to have other students to share the experience with, and for emotional support when things weren't going so well.
 
+After working on assignments and projects for those few months, we were paired up with supervisors. Some students knew in advance what they would be studying and who their supervisor would be. I did not, and I stumbled into my research area (channel coding) by accident, as I had not even been aware of its existence I spoke with my future supervisor. Channel coding seemed to offer a mixture of computer science and maths, which were my subjects of interest. Also, my supervisor had more concrete project ideas than some of the other researchers I spoke with. So channel coding it was to be. At this point, all the students branched off and we started working on the research that would occupy us for the remainder of the 4 years.
 
-#### A life in a graph
-How to get GitHub contributions data: <https://stackoverflow.com/questions/18262288/finding-total-contributions-of-a-user-from-github-api>
+The end goal of a PhD, in material terms, is a thesis. A PhD student must create a body of original, publishable research (more on that in a second), write it in thesis form, and then defend it before a panel of experts at their viva[^snake]. The PhD can be thought of as an apprenticeship. In exchange for teaching you the Sacred Techniques of Research™, your supervisor gets you to crank out research papers, which in turn helps them advance their career. Everybody wins! (...in theory).
+
+Besides doing research, a PhD may involve activities such as:
+
+* Conferences. One of the ways to have your research accepted is to submit it to peer-reviewed conferences. Once you pass the peer review, you travel to the conference and present your work.
+* Industry placements. The "enterprise alliance" got its pound of flesh in the end, as all students in the CRT were required to do a 3-month industry placement. I did mine with Valeo, a car technology company.
+* Research placements. There was optional funding in the program for research visits, so I got to spend 3 months in Boston with my co-supervisor's research group. (It's common to have multiple supervisors).
+* Training events & courses. Universities usually require you to take classes and accumulate a certain number of credits before you can graduate. My program also included presentation training, masterclasses, mental health workshops, etc.
+* Teaching & tutoring. Some students are required to teach for the university as part of their funding agreement. Some get paid extra for it, some don't. There was no such teaching requirement at Maynooth University.
+
+Again, this is all highly individual. In the USA, for example, students usually spend their first year just doing coursework. PhDs also tend to take longer over there. My aim here has only been to give a flavour of what my PhD was like.
+
+### What IS research, tho?
+Besides mandatory coursework, the only thing that directly contributes towards getting a PhD is research. I never completely understood what research was before the PhD, and I'm still in no way an authority, but I'm going to hazard a definition of it:
+
+> Research is any activity that is undertaken to grow or refine human knowledge.
+
+This can take wildly different forms depending on your field of study. It might involve translating historical records, or running experiments in a lab, or writing computer code, or analysing data from a survey you conducted, or reading a heckload of books. What's common to all fields, though, is that you have to review the existing literature, and you have to add to that literature by writing up your findings.
+
+What's a literature review? All research is built on the work of those who came before, so to give yourself a starting point, and to avoid being unoriginal, you have to familiarise yourself with existing work - the "literature" - in your field. In my experience, literature review basically comes down to scouring the internet / Google Scholar for papers, skim-reading those papers, reading textbooks, tracking down references that you came across in a bibliography section, etc. This will be more or less involved depending on how big the field is and how much your supervisor can guide you.
+
+Everyone has to write up their findings to have them quality-checked by other researchers. Without this peer review process, crackpots would be able to publish their Theories of Everything alongside actual quality research. So, you can't escape the cold, hard reality of having to write words on a page. A lot of words. The exact quantity of words will depend on your field. History PhDs, for example, with whom I seem to have unresolved beef because I keep bringing them up, basically have to write an entire book. My thesis is 100 widely-spaced pages with lots of pictures. Once again, it's field-dependent.
+
+Most science research is conducted through English, which makes life a bit more difficult for non-native speakers. You're not expected to write the next great work of literature, but it can be an extra obstacle on your path to graduating, depending on your level of English. Not saying this to discourage anyone, of course, as it's just another thing you learn along the way, like LaTeX or how to do a literature review. Just felt that it would be remiss of me not to mention this privilege of native English speakers.
+
+Once you've written up your findings and published them through a conference or journal, you will generally want to (or will be compelled to) spread the word by giving talks, poster presentations and whatnot. I think I gave upwards of 10 presentations during my PhD, between CRT events and conferences I attended. Conferences also provide the opporunity to network with other researchers, see what everyone is working on, and find collaborators.
+
+### Things you should know
+Let's suppose you were enchanted by my sketch of the PhD life, and you're ready to offer your soul at the altar of academia. Here are some things I think you should know before you begin that journey.
+
+#### Supervisors are gods
+PhD students are highly dependent on their supervisors, moreso than someone in a corporate job is dependent on their manager. Your supervisor not only "manages" you, but also (in theory) must play the role of teacher and guide you in your research. In some universities, they even have the final say on whether you graduate. The power imbalance is, needless to say, large, and a bad supervisor can make your life miserable.
+
+All good supervisors are alike; each bad supervisor is bad in their own way. They might be inattentive and only make themselves available to meet once per month. They might give you a hard time for wanting to take holidays. They might try to squeeze extra work out of you and end up delaying your graduation. They might try to emotionally manipulate you into working harder. They might be clueless about your research area and leave you to figure things out for yourself. They might micromanage you and not let you pick your own research topics. They might be relentlessly critical and undermine your self-confidence.
+
+While, in theory, a university may have mechanisms to change supervisor or lodge a complaint against a supervisor, I haven't heard of anyone actually using such a mechanism. Doing so is likely to cause drama or set you back in your research progress, but ultimately may be worth it if you're truly miserable and don't want to quit the PhD.
+
+All that considered, your choice of supervisor is IMPORTANT. There are many qualities you can try to optimise for in a supervisor, from their level of experience to how much free time they have. In my opinion, the most important thing is that you like and respect them, and that they will treat you with kindness. Most people get bored of their research topic by the time they finish, and most people will publish papers that are read by only a handful of people. But at least if you get on well with your supervisor, you're more likely to be happy in your day-to-day life and to not end up being a sad ball of stress. Talk to your potential supervisor's PhD students to get a sense of what it's like to work with them.
+
+#### The mental health gauntlet
+Speaking of sad balls of stress, you should be aware that PhDs are often mentally taxing. I have, without a doubt, become a more anxious person over the past few years, which at one point led to me attending my university's counselling service. This was during the time of COVID-19, so I don't solely blame the PhD, but I also don't know any PhD students in my department who weren't seriously stressed at some point, and I witnessed several of them crying due to PhD issues. This being in a relatively chill university with relatively well-intentioned supervisors!
+
+PhD students generally have to publish papers to graduate, and their supervisors generally need to publish papers for career advancement - "publish or perish", they say. There is therefore a lot of pressure on students to churn out publishable research, which can be a major source of stress, particularly when the research isn't going well. Several of my fellow students had a terrible work-life balance and ended up working a lot of evenings/weekends. Combine this with isolation (you won't necessarily have any collaborators), impostor syndrome (as you are exposed to a lot of things you don't understand), and a trash supervisor (see above)... and it can potentially take a big toll on your mental health.
+
+I'm aware that these problems aren't necessarily unique to PhDs, and that even having the opportunity to do a PhD is a privilege. However, I found my PhD to be way more emotionally difficult than the cushy software engineering job I had before, and I want to promote awareness of these challenges. For me, the mental game was more of an obstacle than any of the problems I faced in my research.
+
+For a kinda silly example of how mental health and motivation can fluctuate during a PhD, here are my GitHub contributions over the past ~4 years. Note that each contribution can be as trivial as adding a movie to a list, or fixing a typo on this blog, so the numbers don't mean anything. But when I was feeling stressed or burnt-out, I tended to be inactive on GitHub, resulting in long gaps between contributions. While some of the gaps were due to holidays or other distractions, several of them were due to low mood or stress. I will merely note that the graph becomes sparser as time goes on.
+
+<img src="{{ url_for('static', filename='img/phd-reflections/github-contributions.png') }}"
+     alt="A bar chart showing my GitHub contributions over the past years. They get more sparse as time goes on."
+     class="centered">
+
+#### Idealism and reality
+Before starting my PhD, I had a vague idea of academia as a happy place where I could spend my days studying textbooks and working on whatever fun projects I wanted. This was delusional. I will now describe some of the harsh realities of academia that my younger, doe-eyed self was unaware of.
+
+Firstly, the pressure to publish means that you can't spend your whole time studying or working on whatever you want. You might end up working on an idea you think is useless or uninteresting, just because your supervisor tells you to or because you're desperate to get ANYTHING published. Even if you have a good idea, you might spend a couple of days fleshing it out, and then spend months doing the monotonous work of gathering results, reviewing the literature, and writing it up. Some people love this, some don't. However, it's true that you are likely to have total freedom in how you plan your day. If learning is important to you, then you can schedule time every day where you watch video lectures or work through a textbook. I found myself compromising on this when I was stressed and trying to finish papers, though.
+
+You might think that academia is full of noble idealists, dedicated to the sharing of ideas and the advancement of human knowledge, and driven by their love of ✨learning✨. While such people undoubtedly exist, you are also likely to come across cynical, ruthlessly ambitious careerists. These people will churn out trash papers and cite their own work (see: The Wire, and what happens when you give the police arrest quotas). They will shoot down your paper in peer review because it treads on "their turf" (happened to me and others). They will drive their students like mules on a farm to maximise research output. As in all areas of life, there are assholes.
+
+The publishing system is also imperfect, to say the least. Many of the largest journals and conferences have their research paywalled, making them inaccessible to people outside of universities. Even to get your research published usually requires a large cash payout. This has resulted in the development of work-arounds like [arxiv.org](https://arxiv.org/) (free online publishing) and [Sci-Hub](https://en.wikipedia.org/wiki/Sci-Hub) (WARNING: free access to paywalled research). Even still, like many aspects of life in a capitalist society, it's not a level playing field for everyone.
+
+While negative results ("this is NOT a cure for cancer") are just as valid a contribution to human knowledge as positive results ("we found the cure for cancer!"), there's a heavy bias towards positive results. This necessitates the use of massive amounts of Spin™ (also known as "bullshitting") to make your results sound as groundbreaking as possible. Being honest about the flaws in your work can provide reviewers with a larger surface area to attack you, because in their mind, "negative results" are the same as "bad research". For someone who prefers to be self-deprecating and honest, this is a hard reality to accept. Veteran researchers often embrace the cynicism and become expert bullshitters.
+
+Coming from the world of programming, and having a vague conception of the scientific method and this idea called "reproducibility", I expected that the philosophy of open source code would be readily embraced by the research community. In 4 years, however, I didn't find a single research paper in my field that came with source code. This stems from a combination of Jurassic-era intellectual property rules in universities, along with what a cynical person might suggest is an attempt by researchers to minimise the surface area that I mentioned before. Other viable explanations: laziness, ignorance, lack of incentives, etc. I wanted to publish source code with my papers but ran into walls, and so the cycle continues.
+
+Certain journals, conferences and universities have accumulated stores of a mysterious quality called Prestige. It's the appeal to authority falacy writ large, and yet people still fall for it. Harvard, Cambridge, Nature, Science - having these Big Names on your CV gives you more clout, [no matter how much of a dumbass you are](https://www.youtube.com/watch?v=aY985qzn7oI&t=364s). You will undoubtedly come across people who namedrop these places because they think it makes them look smarter. When I become dictator of the world, such people will be the first to be sent on a one-way trip to the bottom of the ocean.
+
+Oh, and do I even need to mention that your research isn't going to change the world and that probably only a handful of people will ever read it? Everyone says that, so I probably don't need to. And I haven't touched on cultural problems like [sexual harassment within male-dominated fields](https://www.youtube.com/watch?v=8DNRBa39Iig).
+
+Despite all of the above, I feel neutral towards academia. These problems might ultimately pale in comparison with those of working as a cog in a corporate machine. I have met researchers whom I look up to. I learned a lot of stuff that I wouldn't have otherwise. I haven't even completely discounted a career in academia. The point of this section is merely to burst the idealistic bubbles that were held by my past self so that I don't go into my PhD with unrealistic expectations (woops, too late).
+
+### To do or not to do
+We have come to the big question: Should you do a PhD or not?
+
+My answer: Yes, if you want.
+
+More seriously, I would suggest making sure that you have a good reason to do one. Getting to call yourself Doctor? Bad reason. Don't have anything better to do? Bad reason. You want to become a researcher or a lecturer at a university? Good reason. You think you'd enjoy doing it? Probably a good reason. 
+
+A question you can ask yourself to help with the decision, and which ultimately drove me to apply: "Will I regret it in the future if I don't try it?"
+
+Inform yourself as best you can as to what is in store for a PhD student and what the opportunity costs are. The path to a permanent position in academia might require you to be paid below your market value and to uproot your life every couple of years; for a more detailed discussion of this, I will once again link to the always-entertaining [Angela Collier](https://www.youtube.com/watch?v=mExlPihH3jk). Depending on your field, you could possibly make a lot more money if you stay in industry. For me, money isn't a priority once my basic needs are met, but this obviously depends on your values, and that's why the decision can only be made by YOU. While I have no regrets about doing a PhD, it would be a different story if it had caused me to accumulate a lifetime of debt with little prospect of paying it off, as might be the case for American history PhDs (sorry). Then again, if the only thing you're passionate about is history research, then this might be the only career path available to you.
+
+Financially speaking, it also helped that my day-to-day expenses were affordable and that I had savings to draw on for luxuries like holidays, a car, etc. Your PhD stipend, if you have one, won't leave you with much breathing room, and I know of people who ended up surviving on tins of beans at the end of the month because they went out too much. The PhD stipend in Ireland is generally below minimum wage, which is somehow legal because we're not classed as employees! (This is being improved in the latest government budget, but still below minimum wage). Do some research into what your quality of life will be like, if that's important to you.
+
+A PhD is a big commitment, and I would say it's better to err on the side of caution and say No if you have any doubts. While there is usually the possibility to drop out with a Masters degree if you're unhappy, there's always the risk of getting caught in the sunk-cost fallacy and forcing yourself through several years of misery to finish.
+
+### Conclusions
+As I said, I don't have any regrets about doing a PhD. I definitely would've regretted not trying it. I met my goal of learning new things, even if it wasn't to the extent that I had hoped. I've opened new career options for myself. I met lovely people. I developed a diverse set of skills: researching, writing, presenting. I learned what research actually is. Regarding the CRT in particular, I enjoyed being part of a cohort of students, and I appreciated the freedom it gave me to explore my options, although the restrictions of the structured program were frustrating for people who already knew what they wanted to do.
+
+Something I wish I did differently was postponing all my life decisions until after the PhD. It was easy to say "I'm busy for the next 4 years, I don't have to worry about what comes next". Now my viva is approaching (December 12th) and I haven't decided what the hell I'll do after that. I've been handed back the steering wheel of my life and I don't know where I'm driving to. This is very much a first-world problem, though, and I'm conscious of being in a position of privilege that hopefully I will not put to waste.
+
+That's all I have to say about PhDs. I'd be happy to receive feedback or answer any questions you may have, if you still think the self-important opinions of a not-even-graduated PhD student are worth seeking.
+
+[^snake]: In some countries, you also have to engage in mortal combat with a [deadly snake](https://www.mcsweeneys.net/articles/faq-the-snake-fight-portion-of-your-thesis-defense). 

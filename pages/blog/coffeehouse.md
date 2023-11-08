@@ -10,7 +10,7 @@ Despite my fear of appearing like an AI Bro, and despite already writing recentl
 
 In 1983, 40 years ago, Douglas Hofstadter was placed in front of a computer terminal by a group of students. They wanted him to interview an "intelligent program" called Nikolai that had been developed by the US Army. You can read a transcript of the resulting conversation [here](https://www.cse.unr.edu/~sushil/class/ai/notes/papers/coffeehouse.html), under the "Post Scriptum" heading. I won't say anything more about it in case you want to read it yourself.
 
-After reading that interview, I wanted to see how ChatGPT would hold up under Hofstadter's interrogation. My version of the interrogation, with ChatGPT, is copied below. I think it will be most interesting if you open up the original conversation side-by-side with this one and compare Nikolai's responses to ChatGPT's. I wouldn't be surprised if someone else has already thought to do this, and if so, that's my bad.
+After reading that interview, I wanted to see how ChatGPT would hold up under Hofstadter's interrogation. I wouldn't be surprised if someone else has already thought to do this, and if so, that's my bad. My version of the interrogation, with ChatGPT as the questionee, is copied below. I think it will be most interesting if you open up the original conversation side-by-side with this one and compare Nikolai's responses to ChatGPT's.
 
 ### The Interview
 
