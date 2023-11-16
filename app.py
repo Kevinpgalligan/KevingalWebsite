@@ -30,7 +30,7 @@ def proj_type_to_emoji(t):
     return {
         "web": "web",
         "desktop": "desktop"
-    }.get(t, "poo")
+    }.get(t, "BLAH")
 
 def url_to_linkname(url):
     m = re.search(r"https?://([^/]+)/", url)
@@ -175,7 +175,7 @@ def missing_links():
         "/apps/pixelate.html",
         "/apps/collision.html",
         "/apps/slingshotchess.html",
-        "/apps/tuner.html"
+        "/apps/tuner.html",
     ]
     for link in links:
         yield link
@@ -195,6 +195,15 @@ def rss_feed():
             blog_posts=posts,
             pub_date=posts[0].meta["date_rssified"]),
         mimetype="application/rss+xml")
+
+# Really shouldn't need to have a separate function for each file, not
+# bothered to figure it out right now.
+@app.route("/camino-plan.txt")
+def camino_plan():
+    return send_from_directory(
+        os.path.join(app.root_path, "files"),
+        "camino-plan.txt",
+        mimetype="text")
 
 @app.route("/favicon.ico")
 def favicon():
