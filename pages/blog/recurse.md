@@ -17,7 +17,7 @@ There are three stages to the RC application process: a written application, a c
 
 The conversational interview is where I got rejected. They don't provide feedback after the interview, but I can guess what went wrong. My motivations for attending RC were not clear or well thought-out. I said I liked the structure provided by RC, and that I thought it would help me to stay motivated -- but the RC website specifically says that they're looking for self-guided and self-motivated people! I also thought the interviewer would appreciate my openness when I shared my one worry about attending RC and said that, in the aftermath of my PhD experience, I sometimes find difficult programming to be anxiety-inducing, which makes me procrastinate and avoid it. In retrospect, I shouldn't have been so self-deprecating. An empathetic interviewer might even have rejected me for the good of my mental health!
 
-Ultimately, I don't know why I got rejected, and I can only speculate. Needless to say, I was gutted, because I'd been fantasising about attending RC for many years. The RC website says that 6% of attendees get in on their 2nd (or later) attempt, which is supposed to be encouraging, but seems like a pretty small percentage to me??? Still, I was determined to try again, and self-reflection had at least given me an idea of how to improve.
+Ultimately, I don't know why I got rejected, and I can only speculate. Needless to say, I was gutted, because I'd been fantasising for many years about attending RC. The RC website says that 6% of attendees get in on their 2nd (or later) attempt, which is supposed to be encouraging, but seems like a pretty small percentage to me??? Still, I was determined to try again after the mandatory 3-month waiting period, and self-reflection had at least given me an idea of how to improve.
 
 ### Second Application
 I did a crapload of research for my second application. I combed through the RC website, and read upwards of 20 articles and blog posts by people who'd applied to RC. I used these sources for inspiration and to better prepare myself. I also seriously reflected on my motivations, and concluded that the reason I wanted to attend RC specifically was for the community it provides. Anyone can go into the mountains and do a programming retreat by themselves, but it wouldn't be half as fun or as beneficial as working with other people!
@@ -37,14 +37,14 @@ I managed not to self-deprecate this time. The interviewer was really friendly, 
 
 Next up was the pair programming interview. Beforehand, you're required to write a short program. During the interview, you then pair up with your interviewer to add a small feature to that program. I chose to write a toy version of Space Invaders, where the aliens were circles and the player was a rectangle. I also prepared by skimming [this](https://martinfowler.com/articles/on-pair-programming.html) article on pair programming. At the start of the interview, I spent a lot of time talking through my program from top to bottom. Maybe too much time, but the interviewer gave the go-ahead and could've interrupted me if I was taking too long. We then worked on adding the ability to shoot bullets, just about managing to complete the collision-detection logic before running out of time. The point of this interview isn't to complete the task, but to find out what you're like to work with, so I wasn't worried about how much progress I'd made. My approach was basically to talk through every single thing I was doing and to regularly prompt the interviewer for feedback. In practice, this meant I ended a lot of sentences by saying "if that makes sense" or "if that sounds good to you".
 
-I somehow ended up enjoying this interview a lot, despite being tired and sick with a headcold. The programming went smoothly, the interviewer was nice, and they were helpful in catching a bug or two. It is, in fact, fun to program with other people! Still, the pounding in my ears returned when I received the follow-up email today, and I once again felt a wave of relief and happiness when it turned out to be good news.
+I somehow ended up enjoying this interview a lot, despite being tired and sick with a headcold. The programming went smoothly, the interviewer was nice, and they were helpful in catching a bug or two. It is, in fact, fun to program with other people! Still, the pounding in my ears returned when I received the follow-up email today, and it was with relief and happiness that I read the good news.
 
 The whole process took 1 week. My batch starts on January 3rd. For accountability, I'm going to post a weekly update, so stay tuned! I'm looking forward to meeting cool programmers and to 12 weeks of (hopefully) anxiety-free programming!
 
 ### Project Ideas
 Below are all the project ideas I have, grouped by the following categories: networking, systems, graphics, languages, software, workflow, music, computer science fundamentals, hacking, and maths & machine learning. (Yes, I have too many interests). I've compiled them over many years, from many different sources -- including my brain.
 
-There's no way I'll complete even half of them, so my plan is to do whatever makes me feel most excited on any particular day. The projects I'm planning to start with are marked with a star emoji ⭐. If you have any suggestions or want to team up with me on any of these ideas, please let me know!
+There's no way I'll complete even half of them, so my plan is to do whatever makes me feel most excited on any particular day and see what happens. The projects I'm planning to start with are marked with a star emoji ⭐. If you have any suggestions or want to team up with me on any of these ideas, please let me know!
 
 ##### Networking
 * ⭐ Implement a BitTorrent client.
@@ -58,7 +58,7 @@ There's no way I'll complete even half of them, so my plan is to do whatever mak
 * Implement a command-line SMTP mailer.
 * Play around with DNS, maybe implement it? (and see: <https://www.dns.toys/>).
 * Implement a program to spy on local WiFi.
-* More project ideas: FTP-based file transfer program; a bandwidth monitor; a port scanner; a mail checker (enter POP or IMAP protocol, web server & IP, and application checks for mail); IP -> country; whois based on IP.
+* More ideas: FTP-based file transfer program; a bandwidth monitor; a port scanner; a mail checker (enter POP or IMAP protocol, web server & IP, and application checks for mail); IP -> country; whois based on IP.
 
 ##### Systems
 * Reroute microphone input to another computer across the network.
