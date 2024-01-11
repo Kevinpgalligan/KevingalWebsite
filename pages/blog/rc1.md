@@ -97,7 +97,7 @@ Testing:
 
 Pretty neat! [Here's the code so far](https://github.com/Kevinpgalligan/cl-torrent). Next week I'll come back to this and write unit tests to make sure I've covered all the edge cases. I haven't done unit testing in Common Lisp before, so it'll require some effort to set up. Seems like a good candidate for pair programming!
 
-I'm trying to reach out to people with similar interests, but it's hard to keep track of everyone. I'll start attending the daily check-ins next week, and also some of the meetings like "Creative Coding" and Emulators + VMs", which will hopefully lead to new connections.
+I'm trying to reach out to people with similar interests, but it's hard to keep track of everyone. I'll start attending the daily check-ins next week, and also some of the meetings like "Creative Coding" and "Emulators + VMs", which will hopefully lead to new connections.
 
 To finish the week, I made a 2-line [pull request](https://github.com/vydd/sketch/pull/133) to [sketch](https://github.com/vydd/sketch) (don't draw a border around images by default!) and described my proposal to the other developers about how to fix a tricky bug where the first render call gets lost due to the window getting resized.
 
