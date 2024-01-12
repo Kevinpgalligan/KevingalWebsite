@@ -1,5 +1,5 @@
 title: Recurse Center, week 2
-date: 2024-01-08
+date: 2024-01-12
 description: A weekly log of my activity at the Recurse Center, a 12-week programming retreat.
 requires: code
 publish: y
@@ -35,7 +35,7 @@ Here's what fiveam unit tests look like!
     (test zero-benteger (is-reencodable "i0e"))
     (test minus-zero (signals error (bencode:bdecode "i-0e")))
 
-Another tricky implementation detail. When I tried to parse an actual .torrent file, I ran into trouble with character encodings. I couldn't even read the .torrent file as a string, because my Common Lisp implementation, by default, tries to interpret the file as UTF-8, when in fact a bencoded file consists mostly of ASCII but also sequences of bytes (such as raw SHA1 hashes). Basically, there were sequences of bytes that didn't correspond to any Unicode codepoint as represented by UTF-8. I couldn't load the file as ASCII, either, because it contains bytes outside the ASCII range (0-127). Spent a while spinning my wheels on this, eventually turned to the wonderful folks at the #lisp IRC, who suggested to decode using the ISO-8859-1 character encoding, which assigns a character to each of the 256 possible values of a byte. And it's compatible with ASCII. This suggestion worked, and I was finally able to parse the file. Thanks #lisp!
+Another tricky implementation detail. When I tried to parse an actual .torrent file, I ran into trouble with character encodings. I couldn't even read the .torrent file as a string, because my Common Lisp implementation, by default, tries to interpret the file as UTF-8, when in fact a bencoded file consists mostly of ASCII but also sequences of raw bytes (such as raw SHA1 hashes). Basically, there were sequences of bytes that didn't correspond to any Unicode codepoint as represented by UTF-8. I couldn't load the file as ASCII, either, because it contains bytes outside the ASCII range (0-127). Spent a while spinning my wheels on this, eventually turned to the wonderful folks at the #lisp IRC, who suggested to decode using the ISO-8859-1 character encoding, which assigns a character to each of the 256 possible values of a byte. And it's compatible with ASCII. This suggestion worked, and I was finally able to parse the file. Thanks #lisp!
 
 ### Tuesday, January 9th
 The timezone difference is challenging. By the time I finish for the day at 10pm, my brain is frazzled and I find it hard to go to sleep.
@@ -46,22 +46,22 @@ Discovered that Emacs's `evil-mode` (vi bindings) comes with interactive replace
 
 Had a nice coffee chat with Neda, courtesy of the chat-bot. Yet another person with an interesting background -- she majored in mathematical physics (or maths and physics?) with a minor in software engineering, eventually got a job as a backend software developer. She worked through Crafting Interpreters for most of her batch (should've asked her more about that), now she's planning to grind Leetcode for job-hunting, which could be fun to pair on.
 
-Attended the SuperCollider workshop run by Zack, it made me really excited about music programming! Also attended the Emulators + VMs group, cool work being done there with WebAssembly and various CPU/console emulators. Finally, attended the Graphics Goblins group, where, as you might expect, there were cool graphics projects, including shadows in a terrain generation program, and a mosaic shader. Mostly a day of talking to people and seeing what other people are working on. Tomorrow I'll try to focus on programming.
+Attended the SuperCollider workshop run by Zack, it made me really excited about music programming! Also attended the Emulators + VMs group, cool work being done there with WebAssembly and various CPU/console emulators. Finally, attended the Graphics Goblins group, where, as you might expect, there were cool graphics projects, including shadows in a terrain generation program, and a mosaic shader. Mostly a day of talking to people and seeing what they're working on. Tomorrow I'll try to focus on programming.
 
 ### Wednesday, January 10th
-Skipping the daily check-in today. While it's nice to see people, and it provides the opportunity for serendipitous interactions, it feels too much like work. For accountability, I'll continue doing this weekly blog, and might post my written updates in the #checkins Zulip channel. Still experimenting with my routine, though.
+Skipping the daily check-in today. While it's nice to see people, and it provides the opportunity for serendipitous interactions, it feels too much like my old job!! Goodbye daily structure, hello chaos. For accountability, I'll continue doing this weekly blog, and might post my written updates in the #checkins Zulip channel. Still experimenting with my routine, though.
 
-I haven't done any actual network programming so far, despite it ostensibly being the entire reason behind implementing a BitTorrent client. That changes now!
+I haven't done any actual network programming so far, despite that ostensibly being the entire reason behind implementing a BitTorrent client. This changes today!
 
 Trackers are HTTP/HTTPS services, they provide information through HTTP GET requests about all the available peers. Those GET requests require various query parameters, e.g. "https://mytracker.com:1337/announce?info_hash=blah&uploaded=0".
 
-I coded up a function to send a GET request with all the appropriate parameters. This involved various libraries: [dexador](https://github.com/fukamachi/dexador) for HTTP requests `(dex:get "https://tracker.com")`, [quri](https://github.com/fukamachi/quri) for URL manipulation (it also handles the percent encoding of query parameters), and [sha1](https://github.com/clibs/sha1) for computing hashes. These libraries made my life very easy.
+I coded up a function to send a GET request with all the appropriate parameters. This involved various libraries: [dexador](https://github.com/fukamachi/dexador) for HTTP requests `(dex:get "https://tracker.com")`, [quri](https://github.com/fukamachi/quri) for URL manipulation (it also handles the percent encoding of query parameters), and [sha1](https://github.com/clibs/sha1) for computing hashes.
 
-I held my breath as I fired off a request to a tracker for a torrent file I had lying around on my machine, only to get back this bencoded message:
+I held my breath as I fired off a request to a tracker, only to get back this bencoded message:
 
     d14:failure reason25:provided invalid infohashe
 
-Outbreath. It was too much to expect everything to work on the first try. The hash seems to match the one reported in qBitTorrent. I'll debug this tomorrow.
+Outbreath. It was too much to expect everything to work on the first try. The hash seems to match the one reported in qBitTorrent, though! I'll debug it tomorrow.
 
 Attended the Creative Coding session, where we were given the prompt "Murphy's Law". My first thought was to make an animation of bouncing toast that only ever lands on the side with jam on it. Progress so far:
 
@@ -86,7 +86,7 @@ The toast now bounces, it doesn't stretch, and there's a mysterious force (somet
 
 Submitted a [pull request](https://github.com/LispCookbook/cl-cookbook/pull/519) to the Common Lisp Cookbook, adding a description of how to load arbitrary bytes into a string with the SBCL implementation. The Common Lisp community is relatively small, so I think it's important to contribute to documentation efforts like the Cookbook. I'm normally too lazy to do this, but trying to form good habits!
 
-Figured out that quri, the URL library, was inserting extra percent-encoded characters into the info hash, because it was re-encoding the strings as UTF-8. There's an option in quri to set the character encoding of the query string, but this is not exposed in the `make-uri` interface -- hence, [another pull request](https://github.com/fukamachi/quri/pull/85). Yay for yak-shaving!
+Figured out that quri, the URL library, was inserting extra percent-encoded characters into the info hash, because it was re-encoding the strings as UTF-8. There's an option in quri to set the character encoding of the query string, but this is not exposed in the `make-uri` interface -- hence, [another pull request](https://github.com/fukamachi/quri/pull/85). Yay for yak-shaving! (Also, ended up closing the pull request because there's another way to do it).
 
 After this was fixed, I started getting 400 Bad Request responses from the server. Yet, when I copied the URL (including query parameters) into my web browser, it returned the list of peers! Likewise, when I copied the URL into a 1-line Python script that made a GET request using the `requests` package...
 
@@ -98,4 +98,40 @@ After this was fixed, I started getting 400 Bad Request responses from the serve
 
 The final task was to parse the list of peers, since it's stored in a binary format. Common Lisp doesn't have great built-in support for parsing binary formats, so I had to spend a while playing around with various libraries. Actually, there's an older format for the peers list I still have to add support for, which uses the bencoding format rather than a bytestring. Besides that, I'm ready to start peer-to-peer communication!
 
-There was a 1-hour session today where people presented what they're working on. I'll have to think of something to share with the group.
+There was a 1-hour session today where people presented what they're working on. I'll have to think of something to share with the group. Maybe something about Lisp macros, or generative art stuff!
+
+### Friday, January 12th
+Started refactoring [sketch](https://github.com/vydd/sketch) to change how the SDL2 window is handled. Currently, the main class in sketch inherits from an SDL2 window class. When creating an instance, the window gets initialized first with default dimensions, then the attributes of the sketch class are initialized, and then those attributes (like width and height) are assigned to the window. This causes the window to resize, and anything that's drawn in the first round of rendering is consistently getting lost as a result. The plan is to switch from inheritance to composition: store the window as a slot in the sketch class so that it can be created with the right dimensions from the start. This also helps to loosen the dependency on SDL2 in case we want to add a different backend in the future. It's not the most exciting work, but this bug has been annoying me for a while now.
+
+Stuck on an error with this (partial) stack trace, pinged the other sketch developers for help.
+
+	The value
+	  -402557904
+	is not of type
+	  SB-INT:INDEX
+	   [Condition of type TYPE-ERROR]
+
+	Backtrace:
+	  0: (CL-OPENGL:GET-SHADER-INFO-LOG 0)
+	  1: (KIT.GL.SHADER:COMPILE-AND-LINK-PROGRAM NIL :VERTEX-SHADER " ..)
+	  2: (KIT.GL.SHADER::PROCESS-SOURCE #<KIT.GL.SHADER::SHADER-DICTIONARY-DEFINITION {1006829433}> #<KIT.GL.SHADER::PROGRAM-SOURCE :FILL-SHADER> #<KIT.GL.SHADER:PROGRAM {1003009FB3}>)
+	  3: ((:METHOD KIT.GL.SHADER:COMPILE-SHADER-DICTIONARY (KIT.GL.SHADER::SHADER-DICTIONARY-DEFINITION)) #<KIT.GL.SHADER::SHADER-DICTIONARY-DEFINITION {1006829433}>) [fast-method]
+	  4: (INITIALIZE-ENVIRONMENT #<TESTER {1002405A13}>)
+	  5: ((:METHOD INITIALIZE-INSTANCE :AFTER (SKETCH)) #<TES
+
+Spent a while thinking through the design of the peer-to-peer part of my BitTorrent client, and asked in the #networking channel on Zulip for feedback. Here's the preliminary design I came up with:
+
+* A master thread accepts requests to download a torrent, fetches the list of peers, and spins up threads to communicate with those peers.
+* Another thread monitors for attempts to connect from new peers and spins up threads to deal with them.
+* Once they're created, the threads that communicate with peers are completely independent, sending TCP messages back and forth. They hand off any data received to...
+* The final type of thread, which accepts data from peers in a queue data structure and writes it to disk.
+
+The only thing I'm unsure of is how to co-ordinate the threads. Don't want to download the same piece of a file from multiple peers! So maybe there needs to be another type of thread that maintains a list of which peers have which block of data, and peer-threads query it to decide which block they should request next. It's fun to think about this! I think I'll capture the design in a diagram when it's further along.
+
+Wesley suggested storing all the state in a data structure and access it using a lock/mutex, rather than passing everything through queues. The main bottleneck will be the network, so there wouldn't likely be much contention for a mutex. Julian and Wesley also suggested writing directly to disk in the peer-threads, possibly using an async I/O interface like io_uring (which I never heard of before). Network transfer is much slower than disk access, so maybe the peer-threads can handle the disk writes themselves.
+
+Attended the feelings check-in. Everyone there was so open and emotionally intelligent! ✨ I'm not sure what the protocl is for sharing what was discussed in the meeting, so... moving on.
+
+Later, I had a 2-/3-hour pairing session with Tristan, courtesy of the pairing bot. We worked on an animation of the [reaction diffusion](https://thecodingtrain.com/challenges/13-reaction-diffusion) model. We managed to finish it, but the animation is currently a bit slow, so I'm going to optimise the program before sharing a video. Tristan and I talked about Common Lisp, the multi-threading design of my BitTorrent client, and his Rust compression algorithm project. I really enjoyed the experience! I think pairing with someone else really helps me to stay focused, as it forces me to not get distracted by doing dopamine-rich activities like playing chess.
+
+Next week, my goals are: (1) pair on more things, (2) get peer-to-peer communication working, and (3) finish fixing that bug in sketch. I think I want to pivot to another topic after the BitTorrent project is finished, like computer graphics or programming languages. It would be nice to try learning as part of a group.
