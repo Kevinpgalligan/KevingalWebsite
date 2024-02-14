@@ -2,9 +2,9 @@ name: noisy
 link: https://github.com/Kevinpgalligan/noisy
 type: desktop
 date: 2024-01-02
-description: A Perlin noise library for Common Lisp.
+description: Perlin noise library for Common Lisp.
 
-A Perlin noise library for Common Lisp. Supports an arbitrary number of dimensions.
+Perlin noise library for Common Lisp. Supports an arbitrary number of dimensions.
 
 Here it is in 2 dimensions:
 

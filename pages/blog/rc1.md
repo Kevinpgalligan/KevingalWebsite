@@ -4,6 +4,7 @@ description: A weekly log of my activity at the Recurse Center, a 12-week progra
 requires: code
 publish: y
 tags: rc
+tagcount-exclude: y
 
 ### Day 1 (Wednesday, January 3rd)
 Started with some presentations about the philosophy of the Recurse Center and how to get the most out of the experience. There's lots to learn about how RC works, from Zulip (their messaging system) to Virtual RC (a "virtual space" where you can move around your avatar and interact with other RCers). We also did some Chat Roulette-style meet-and-greets. Met maybe 15 people from my batch, but there are many others! Keeping a list of people with shared interests and who I think would be interesting to pair with. 

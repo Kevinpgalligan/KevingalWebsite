@@ -95,8 +95,9 @@ def get_tags():
     posts = get_blog_posts()
     counts = collections.defaultdict(int)
     for post in posts:
-        for tag in post.meta["tags"]:
-            counts[tag] += 1
+        if "tagcount-exclude" not in post.meta:
+            for tag in post.meta["tags"]:
+                counts[tag] += 1
     return sorted([Tag(name, count) for name, count in counts.items()],
                    key=lambda t: t.count,
                    reverse=True)
@@ -187,7 +188,8 @@ def missing_links():
 
 @app.route("/feed.xml")
 def rss_feed():
-    posts = get_blog_posts()
+    posts = [post for post in get_blog_posts()
+             if "rss-exclude" not in post.meta]
     posts = posts[:MAX_NUM_POSTS_IN_FEED]
     return Response(
         render_template(

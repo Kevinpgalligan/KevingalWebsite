@@ -4,6 +4,7 @@ description: A weekly log of my activity at the Recurse Center, a 12-week progra
 requires: code
 publish: y
 tags: rc
+tagcount-exclude: y
 
 ### Monday, January 15th
 Had a nice chat with Julie, learned a lot about music and music programming! She's doing cool graphics stuff, and shared a bunch of cool links with me. She also remembered my EmojipastaBot that went viral on reddit, which was a blast from the past.

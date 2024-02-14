@@ -4,6 +4,7 @@ description: A weekly log of my activity at the Recurse Center, a 12-week progra
 requires: code
 publish: y
 tags: rc
+tagcount-exclude: y
 
 ### Monday, January 29th
 I was tweaking my code for the L-system tree, turns out the tree was MUCH bigger than the window I was drawing it in. Looks better when zoomed out!  The code now uses recursion & depth-first expansion instead of a loop & breadth-first expansion -- goodbye memory exhaustion!

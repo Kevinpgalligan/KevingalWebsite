@@ -4,6 +4,7 @@ description: A weekly log of my activity at the Recurse Center, a 12-week progra
 requires: code
 publish: y
 tags: rc
+tagcount-exclude: y
 
 ### Monday, January 8th
 Finally read the rest of the BitTorrent [specification](http://bittorrent.org/beps/bep_0003.html). Apparently, there's a better, [unofficial document](http://wiki.theory.org/BitTorrentSpecification), but I wanted to start from the original.

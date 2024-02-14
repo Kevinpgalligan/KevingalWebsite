@@ -4,6 +4,7 @@ description: A weekly log of my activity at the Recurse Center, a 12-week progra
 requires: code
 publish: y
 tags: rc
+tagcount-exclude: y
 
 ### Monday, January 22nd
 Did more work on my pull request for ~sketch~, feels like a disproportionate amount of effort to fix this bug.

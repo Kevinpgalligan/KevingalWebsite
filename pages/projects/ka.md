@@ -2,7 +2,7 @@ name: ka
 link: https://github.com/Kevinpgalligan/ka
 type: desktop
 date: 2022-03-28
-description: A calculator tool with a CLI and GUI.
+description: Calculator tool with a CLI and GUI.
 
 ka is a small calculator language. It supports various useful features for day-to-day calculations, such as:
 

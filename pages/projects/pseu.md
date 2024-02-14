@@ -2,7 +2,7 @@ name: pseu
 link: https://github.com/Kevinpgalligan/pseu
 type: desktop
 date: 2020-10-31
-description: A CLI tool with random number utilities.
+description: CLI tool with random number utilities.
 
 A Python CLI tool that randomly generates numbers, shuffles, picks, and rolls dice. Possible uses: picking someone to do a shitty job; relieving yourself of the agony of deciding which movie to watch; making life choices.
 
