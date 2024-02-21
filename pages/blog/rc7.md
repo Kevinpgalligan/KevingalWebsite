@@ -56,3 +56,26 @@ There's an interesting connection here with the J programming language! `f <*> g
 Last typeclass for today: monoids. I'm still learning about monoids, but they seem pretty similar to groups from group theory. You have a set of elements, a binary operator on those elements, and an identity element that, when combined with another element using the binary operator, just outputs the other element. Also, the operator must be associative: `x op y op z`= `(x op y) op z` = `x op (y op z)`. An example would be the non-negative integers (0, 1, 2, ...) and addition (+). Here, the identity element is 0, and `1+(2+3)` = `(1+2)+3`. From reviewing [Wikipedia](https://en.wikipedia.org/wiki/Algebraic_group), the only thing missing to make a monoid a group is that the elements don't have to have inverses (when you combine an element with its inverse, you get back the identity element, e.g. 1+(-1)=0 -- but for monoids you don't need 'em).
 
 The set of all lists, paired with the concatenation operator (`++`),  is a monoid! The identity is the empty list, `[]`: `[1,2] ++ [] = [] ++ [1,2] = [1,2]`. And concatenation is associative: `([1,2] ++ [3]) ++ [4,5]` = `[1,2] ++ ([3] ++ [4,5])` = `[1,2,3,4,5]`.
+
+#### Wednesday, February 14th
+Finished reading Chapter 11 of Learn You a Haskell, I think I kinda know what a monoid is now? Anyway, time to put that distraction aside and get back to BitTorrent.
+
+Attended Chris's Paxos talk while walking home in the rain and carrying a massive backpack + shopping bag, disrupted the talk when I joined because I was simultaneously trying to put on a raincoat and didn't realise my microphone was on. Woops, embarrassing. I don't know much about the theory of distributed systems, despite my old job centering around a distributed database, so it has been really cool to see this Paxos project unfold and learn a bit about it!
+
+I wrote about my experience at the Center for Computing History in Cambridge. May or may not convert that from a Zulip message to a blog post.
+
+#### Thursday, February 15th
+I was f-ing right! The bug in my BitTorrent test was due to character encoding. It's ALWAYS character encoding.
+
+Basically, the web server I was using as a dummy tracker was trying to parse all the parameters in the URL and convert them to UTF-8 strings. This URL:
+
+    http://127.0.0.1:4242/announce?field=%27%10%C5
+
+...causes an error because decoding the percent-encoded string "%27%10%C5" does not yield valid UTF-8. I've opened an [issue](https://github.com/edicl/hunchentoot/issues/226) in the repo of the web server. In the meantime, I've switched to a simple Python-based web server. This problem, and trying to work around it, ended up sapping a lot of time today.
+
+### Friday, February 16th
+The presentations were awesome yesterday! Literally all of them! From a Forth presentation that was itself a valid Forth program, to cool visualisations in Jupyter Notebook, to a homemade Digital Audio Workstation.
+
+It's surprisingly difficult to write unit tests for the Brain of the BitTorrent client. The client class contains a LOT of state, so I tried using a mocking library to stub out said state. I couldn't get the mocks to work, and on reflection, it actually wouldn't be too hard to create real test data for the tests, so that's probably what I'm gonna do instead.
+
+Next: after my testing failure, I wanted a quick win, so I tried writing a simple rasteriser to draw skyscrapers (a.k.a. boxes). However, the graphics library I'm using doesn't support 3D. I started looking at how to model a camera & do the projection-onto-2d and soon realised there would be no "quick" win. Everything is hard, ahhhh!
