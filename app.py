@@ -78,6 +78,7 @@ def get_blog_posts():
     posts = [pg for pg in pages if "blog/" in pg.path and "publish" in pg.meta]
     posts.sort(key=lambda post: post.meta["date"], reverse=True)
     for post in posts:
+        print(post.path) # DEBUG
         tweak_post_meta(post)
     return posts
 
@@ -154,15 +155,26 @@ def proj_with_metadata(page):
 def page(path):
     page = pages.get_or_404(path)
     tweak_post_meta(page)
+    is_blog = False
     if path.startswith("blog/"):
         template = 'blog-post.html'
+        is_blog = True
     else:
         template = "page.html"
     return render_template(
         template,
         page=page,
         requires_code="requires" in page.meta and "code" in page.meta["requires"],
-        requires_math="requires" in page.meta and "math" in page.meta["requires"])
+        requires_math="requires" in page.meta and "math" in page.meta["requires"],
+        **({} if not is_blog else get_surrounding_posts_for_blog_post(page)))
+
+def get_surrounding_posts_for_blog_post(post):
+    def htmlize_path(p):
+        return "/" + p + ".html"
+    posts = get_blog_posts()
+    i = posts.index(post)
+    return dict(**({} if i==len(posts)-1 else dict(prev_post=htmlize_path(posts[i+1].path))),
+                **({} if i==0 else dict(next_post=htmlize_path(posts[i-1].path))))
 
 @freezer.register_generator
 def missing_links():
