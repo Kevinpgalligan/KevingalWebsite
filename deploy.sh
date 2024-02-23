@@ -45,6 +45,12 @@ then
     exit 1
 fi
 
+if [[ $(git status -s) ]];
+then
+    echo -e "\e[91mPlease commit your changes (and remember to push them).\e[0m"
+    exit 1
+fi
+
 ./build.sh
 (deleteOldWebsiteFilesWithConfirmation "$1")
 if [[ $? -ne 0 ]];

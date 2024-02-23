@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/static/css/blog.css">
 {% endblock headerextras %}
 {% block content %}
-<h2 class="post-title">{{ page.title }} </h2>
+<h2 class="post-title">{{ page.title }}</h2>
 <h3 class="post-date">{{ page.date }}</h3>
 <h3 class="post-date">{{ page.description }}</h3>
 <p>Tags: {% for tag in page.tags %}<a href="{{url_for('tag', name=tag)}}">{{tag}}</a> {% endfor %}</p>

@@ -10,5 +10,5 @@
 {% if requires_math %}<link rel="stylesheet" href="/static/katex/katex.min.css">{% endif %}
 {% if page.description %}<meta property="description" content="{{ page.description }}">{% endif %}
 {% endblock headerextras %}
-{% block title %} {{ page.title }} {% endblock title %}
+{% block title %}{{ page.title }}{% endblock title %}
 {% block content %} {{ page.html|safe }} {% endblock content %}

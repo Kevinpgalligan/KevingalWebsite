@@ -39,9 +39,44 @@ def url_to_linkname(url):
         return DOMAIN
     return m.group(1)
 
-def should_regenerate(url, filename):
-    print(url, filename)
-    return True
+BLOG_POST_REGEX = re.compile(r"^/blog/([^/]+)\.html$")
+
+def make_should_skip():
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    repo = Repo(dir_path)
+    def is_blog_post(url):
+        return BLOG_POST_REGEX.match(url) is not None
+    def build_file_exists(filepath):
+        # Not sure if filepath can be None.
+        return filepath and os.path.exists(filepath)
+    def url_to_md_path(url):
+        # /blog/blah.html -> pages/blog/blah.md
+        m = BLOG_POST_REGEX.match(url)
+        return f"pages/blog/{m.group(1)}.md"
+    def blog_post_changed(url, filepath):
+        # Find last commit before this file was generated. That is
+        # presumably the commit it was generated from. Then check
+        # if the MarkDown file has changed since that commit.
+        file_mod_time = os.path.getmtime(filepath)
+        for commit in repo.iter_commits("master"):
+            if commit.committed_date < file_mod_time:
+                break
+        # Regenerate if the post itself has changed or any of
+        # the templates it depends on.
+        return any([diff.a_path in ["templates/blog-post.html",
+                             "templates/page.html",
+                             "templates/base.html",
+                             url_to_md_path(url)]
+                    for diff in repo.head.commit.diff(commit)])
+    def f(url, filepath):
+        # Don't regenerate blog posts if we can avoid it, they
+        # take up the bulk of the time.
+        result = (is_blog_post(url)
+                  and build_file_exists(filepath)
+                  and not blog_post_changed(url, filepath))
+        return result
+    return f
+should_skip = make_should_skip()
 
 app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = render_html
@@ -63,7 +98,7 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
         'insert_fonts_css': False
     }
 }
-app.config["FREEZER_SKIP_EXISTING"] = should_regenerate
+app.config["FREEZER_SKIP_EXISTING"] = should_skip
 app.jinja_env.globals.update(full_url=full_url)
 app.jinja_env.globals.update(proj_type_to_emoji=proj_type_to_emoji)
 app.jinja_env.globals.update(url_to_linkname=url_to_linkname)
@@ -177,9 +212,9 @@ def get_surrounding_posts_for_blog_post(post):
     def htmlize_path(p):
         return "/" + p + ".html"
     posts = get_blog_posts()
-    i = posts.index(post)
-    return dict(**({} if i==len(posts)-1 else dict(prev_post=htmlize_path(posts[i+1].path))),
-                **({} if i==0 else dict(next_post=htmlize_path(posts[i-1].path))))
+    i = posts.index(post) if post in posts else None
+    return dict(**({} if (not i) or i==len(posts)-1 else dict(prev_post=htmlize_path(posts[i+1].path))),
+                **({} if (not i) or i==0 else dict(next_post=htmlize_path(posts[i-1].path))))
 
 @freezer.register_generator
 def missing_links():
@@ -190,6 +225,8 @@ def missing_links():
     links = [
         "/blog/drafts.html",
         "/404.html",
+        "/apps/metronome.html",
+        "/apps/emojipasta.html",
         "/apps/pixelate.html",
         "/apps/collision.html",
         "/apps/slingshotchess.html",
@@ -231,17 +268,8 @@ def favicon():
         "favicon.ico",
         mimetype="image")
 
-def get_last_deployed_commit_hash(dir_path):
-    with open(os.path.join(dir_path, "lastcommit"), "r") as f:
-        return f.read().strip()
-
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
         freezer.freeze()
-        # Figure out which files have changed.
-        #dir_path = os.path.dirname(os.path.realpath(__file__))
-        #repo = Repo(dir_path)
-        #chash = get_last_deployed_commit_hash(dir_path)
-        #files_to_update = [diff.a_path for diff in repo.head.commit.diff(chash)]
     else:
         app.run(port=8000, debug=True)

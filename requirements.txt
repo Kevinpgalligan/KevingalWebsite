@@ -1,6 +1,6 @@
-Flask
-Frozen-Flask
-Flask-FlatPages==0.7.3
-Pygments
-markdown-katex
+Flask==1.1.*
+Frozen-Flask==0.17
+Flask-FlatPages==0.7.*
+Pygments==2.8.*
+markdown-katex==202103.1029
 GitPython
