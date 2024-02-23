@@ -9,6 +9,7 @@ from flask_frozen import Freezer
 import os.path
 import re
 import functools
+from git import Repo
 
 FLATPAGES_EXTENSION = '.md'
 # I hope I never have to change this.
@@ -38,6 +39,10 @@ def url_to_linkname(url):
         return DOMAIN
     return m.group(1)
 
+def should_regenerate(url, filename):
+    print(url, filename)
+    return True
+
 app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = render_html
 app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
@@ -58,6 +63,7 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
         'insert_fonts_css': False
     }
 }
+app.config["FREEZER_SKIP_EXISTING"] = should_regenerate
 app.jinja_env.globals.update(full_url=full_url)
 app.jinja_env.globals.update(proj_type_to_emoji=proj_type_to_emoji)
 app.jinja_env.globals.update(url_to_linkname=url_to_linkname)
@@ -78,7 +84,6 @@ def get_blog_posts():
     posts = [pg for pg in pages if "blog/" in pg.path and "publish" in pg.meta]
     posts.sort(key=lambda post: post.meta["date"], reverse=True)
     for post in posts:
-        print(post.path) # DEBUG
         tweak_post_meta(post)
     return posts
 
@@ -226,8 +231,17 @@ def favicon():
         "favicon.ico",
         mimetype="image")
 
+def get_last_deployed_commit_hash(dir_path):
+    with open(os.path.join(dir_path, "lastcommit"), "r") as f:
+        return f.read().strip()
+
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
         freezer.freeze()
+        # Figure out which files have changed.
+        #dir_path = os.path.dirname(os.path.realpath(__file__))
+        #repo = Repo(dir_path)
+        #chash = get_last_deployed_commit_hash(dir_path)
+        #files_to_update = [diff.a_path for diff in repo.head.commit.diff(chash)]
     else:
         app.run(port=8000, debug=True)
