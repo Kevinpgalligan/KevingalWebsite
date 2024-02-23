@@ -8,6 +8,7 @@
 <h3 class="post-date">{{ page.date }}</h3>
 <h3 class="post-date">{{ page.description }}</h3>
 <p>Tags: {% for tag in page.tags %}<a href="{{url_for('tag', name=tag)}}">{{tag}}</a> {% endfor %}</p>
+{% if prev_post is defined %}<a href="{{ prev_post }}">&lt;&lt; previous</a>{% endif %}{% if next_post is defined %}<a style="float: right;" href="{{ next_post }}">next &gt;&gt;</a>{% endif %}
 <hr>
 {{ page.html|safe }}
 <hr>

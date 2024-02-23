@@ -213,8 +213,8 @@ def get_surrounding_posts_for_blog_post(post):
         return "/" + p + ".html"
     posts = get_blog_posts()
     i = posts.index(post) if post in posts else None
-    return dict(**({} if (not i) or i==len(posts)-1 else dict(prev_post=htmlize_path(posts[i+1].path))),
-                **({} if (not i) or i==0 else dict(next_post=htmlize_path(posts[i-1].path))))
+    return dict(**({} if (i is None) or i==len(posts)-1 else dict(prev_post=htmlize_path(posts[i+1].path))),
+                **({} if (i is None) or i==0 else dict(next_post=htmlize_path(posts[i-1].path))))
 
 @freezer.register_generator
 def missing_links():
