@@ -129,7 +129,7 @@ The code:
 ### Thursday, February 22nd
 Paired with Raghav on reverse engineering the Lichess network protocol. This was an Impossible Project for me, something I've always wanted to do but that seemed mysterious and difficult. It turned out to be not so bad, though!
 
-The network tab of the browser dev tools allowed us to see what messages were being sent over websockets. The messages were simple JSON strings like `{"t":"move","d":{"u":"g8f6","b":1,"a":1}}` -- not the inscrutable binary blobs I'd been expecting. So we could grab the `WebSocket` object in question using `queryObjects(WebSocket)` in the Chrome JS console, and then run `socket.send("JSON_HERE")` to send a message to Lichess! Not sure how to do an equivalent thing to `queryObjects` in Firefox.
+The network tab of the browser dev tools allowed us to see what messages were being sent over websockets. The messages were simple JSON strings like `{"t":"move","d":{"u":"g8f6","b":1,"a":1}}` -- not the inscrutable binary blobs I'd been expecting. So we could grab the `WebSocket` object in question using `queryObjects(WebSocket)` in the Chrome JS console, and then run `socket.send("JSON_HERE")` to send a message to Lichess! Not sure how to replicate the effect of `queryObjects` in Firefox.
 
 We experimented with being able to input our moves through the chatbox. Step 1: Add a `MutationObserver` to check for new chat messages being inserted into the DOM, Step 2: Extract move from message using regex, Step 3: Send move to Lichess. As soon as this was ready, I sent a message that caused Raghav's queen to move into my bishop's line of fire, muahaha.
 

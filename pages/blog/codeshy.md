@@ -1,4 +1,4 @@
-title: Dear codeshy people, please share your damn code
+title: To the Codeshy, to Make Much of Time
 date: 2023-03-05
 description: On the sharing of code.
 imgthumbnail: img/thumbnail.jpg

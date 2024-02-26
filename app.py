@@ -41,43 +41,6 @@ def url_to_linkname(url):
 
 BLOG_POST_REGEX = re.compile(r"^/blog/([^/]+)\.html$")
 
-def make_should_skip():
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    repo = Repo(dir_path)
-    def is_blog_post(url):
-        return BLOG_POST_REGEX.match(url) is not None
-    def build_file_exists(filepath):
-        # Not sure if filepath can be None.
-        return filepath and os.path.exists(filepath)
-    def url_to_md_path(url):
-        # /blog/blah.html -> pages/blog/blah.md
-        m = BLOG_POST_REGEX.match(url)
-        return f"pages/blog/{m.group(1)}.md"
-    def blog_post_changed(url, filepath):
-        # Find last commit before this file was generated. That is
-        # presumably the commit it was generated from. Then check
-        # if the MarkDown file has changed since that commit.
-        file_mod_time = os.path.getmtime(filepath)
-        for commit in repo.iter_commits("master"):
-            if commit.committed_date < file_mod_time:
-                break
-        # Regenerate if the post itself has changed or any of
-        # the templates it depends on.
-        return any([diff.a_path in ["templates/blog-post.html",
-                             "templates/page.html",
-                             "templates/base.html",
-                             url_to_md_path(url)]
-                    for diff in repo.head.commit.diff(commit)])
-    def f(url, filepath):
-        # Don't regenerate blog posts if we can avoid it, they
-        # take up the bulk of the time.
-        result = (is_blog_post(url)
-                  and build_file_exists(filepath)
-                  and not blog_post_changed(url, filepath))
-        return result
-    return f
-should_skip = make_should_skip()
-
 app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = render_html
 app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
@@ -98,19 +61,10 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
         'insert_fonts_css': False
     }
 }
-app.config["FREEZER_SKIP_EXISTING"] = should_skip
 app.jinja_env.globals.update(full_url=full_url)
 app.jinja_env.globals.update(proj_type_to_emoji=proj_type_to_emoji)
 app.jinja_env.globals.update(url_to_linkname=url_to_linkname)
 pages = FlatPages(app)
-freezer = Freezer(app)
-
-MAX_NUM_POSTS_IN_FEED = 10
-
-class Tag:
-    def __init__(self, name, count):
-        self.name = name
-        self.count = count
 
 # Cache so it doesn't have to be recomputed
 # every time.
@@ -127,6 +81,61 @@ def tweak_post_meta(pg):
         pg.meta["date_rssified"] = pg.meta["date"].strftime('%a, %d %b %Y %T')
     if "tags" in pg.meta and not isinstance(pg.meta["tags"], list):
         pg.meta["tags"] = pg.meta["tags"].split(" ")
+
+def make_should_skip():
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    repo = Repo(dir_path)
+    posts = get_blog_posts()
+    def is_blog_post(url):
+        return BLOG_POST_REGEX.match(url) is not None
+    def url_to_md_path(url):
+        # /blog/blah.html -> pages/blog/blah.md
+        m = BLOG_POST_REGEX.match(url)
+        return f"pages/blog/{m.group(1)}.md"
+    def may_need_next_link_updated(url):
+        md_path = url_to_md_path(url)
+        # Assuming that new posts only come at the head of the blog...
+        return (any(md_path.endswith(post.path) for post in posts)
+            and 1 >= next(i for i, post in enumerate(posts)
+                            if md_path.endswith(post.path)))
+    def build_file_exists(filepath):
+        # Not sure if filepath can be None.
+        return filepath and os.path.exists(filepath)
+    def blog_post_changed(url, filepath):
+        # Find last commit before this file was generated. That is
+        # presumably the commit it was generated from. Then check
+        # if the MarkDown file has changed since that commit.
+        file_mod_time = os.path.getmtime(filepath)
+        for commit in repo.iter_commits("master"):
+            if commit.committed_date < file_mod_time:
+                break
+        # Regenerate if the post itself has changed or any of
+        # the templates it depends on.
+        return any([diff.a_path in ["templates/blog-post.html",
+                             "templates/page.html",
+                             "templates/base.html",
+                             url_to_md_path(url)]
+                    for diff in repo.head.commit.diff(commit)])
+    def f(url, filepath):
+        # Don't regenerate blog posts if we can avoid it, they
+        # take up the bulk of the time.
+        result = (is_blog_post(url)
+                  and not may_need_next_link_updated(url)
+                  and build_file_exists(filepath)
+                  and not blog_post_changed(url, filepath))
+        return result
+    return f
+should_skip = make_should_skip()
+
+freezer = Freezer(app)
+app.config["FREEZER_SKIP_EXISTING"] = should_skip
+
+MAX_NUM_POSTS_IN_FEED = 10
+
+class Tag:
+    def __init__(self, name, count):
+        self.name = name
+        self.count = count
 
 def get_posts_for_tag(tag):
     return [post for post in get_blog_posts()
