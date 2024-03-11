@@ -133,4 +133,4 @@ Impossible Stuff Day, Part 2: I've gotten as far as I want to in the tutorial on
 
 Spent an hour playing around with XMonad, a minimalist window manager. As I said to Reed, this was my first "how do I exit vim" moment in a while! I didn't configure it enough or get comfortable enough to be productive, so for now I'm back to the safety of Cinnamon.
 
-Paired with Sareena on her WebRTC implementation. It was cool to see TypeScript for the first time and to learn a bit about another network protocol. Interesting parallels with BitTorrent. The central server in WebRTC seems to play a bigger role.
+Paired with Sareena on her WebRTC implementation. It was cool to see TypeScript in action and to learn a bit about another network protocol. Interesting parallels with BitTorrent. The central server in WebRTC seems to play a bigger role.
