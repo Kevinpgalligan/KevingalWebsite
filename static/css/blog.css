@@ -17,6 +17,12 @@ figcaption {
     text-align: center;
 }
 
+.centerfloat {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .footnote {
     font-size: small;
 }
