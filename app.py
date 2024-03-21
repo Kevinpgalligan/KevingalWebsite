@@ -82,7 +82,7 @@ def tweak_post_meta(pg):
     if "tags" in pg.meta and not isinstance(pg.meta["tags"], list):
         pg.meta["tags"] = pg.meta["tags"].split(" ")
 
-def make_should_skip():
+def make_should_skip(rebuild_all):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     repo = Repo(dir_path)
     posts = get_blog_posts()
@@ -119,16 +119,14 @@ def make_should_skip():
     def f(url, filepath):
         # Don't regenerate blog posts if we can avoid it, they
         # take up the bulk of the time.
-        result = (is_blog_post(url)
+        result = (not rebuild_all
+                  and is_blog_post(url)
                   and not may_need_next_link_updated(url)
                   and build_file_exists(filepath)
                   and not blog_post_changed(url, filepath))
         return result
     return f
-should_skip = make_should_skip()
-
 freezer = Freezer(app)
-app.config["FREEZER_SKIP_EXISTING"] = should_skip
 
 MAX_NUM_POSTS_IN_FEED = 10
 
@@ -279,6 +277,14 @@ def favicon():
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
+        rebuild_all = False
+        if len(sys.argv) >= 3:
+            if sys.argv[2] != "rebuild-all":
+                print("!!! Unknown build arg," sys.argv[2])
+            else:
+                rebuild_all = True
+        should_skip = make_should_skip(rebuild_all)
+        app.config["FREEZER_SKIP_EXISTING"] = should_skip
         freezer.freeze()
     else:
         app.run(port=8000, debug=True)
