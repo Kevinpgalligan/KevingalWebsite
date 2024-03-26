@@ -280,7 +280,8 @@ if __name__ == '__main__':
         rebuild_all = False
         if len(sys.argv) >= 3:
             if sys.argv[2] != "rebuild-all":
-                print("!!! Unknown build arg,", sys.argv[2])
+                print(f"!!! Unknown build arg '{sys.argv[2]}'")
+                sys.exit(1)
             else:
                 rebuild_all = True
         should_skip = make_should_skip(rebuild_all)

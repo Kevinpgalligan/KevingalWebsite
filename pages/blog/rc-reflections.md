@@ -10,8 +10,10 @@ Possible sections:
 - Being remote, sense of connection.
 - Zulip.
 - Virtual RC.
+- Presentations.
 - Check-ins (my way of staying up-to-date).
 - Blog post vs check-ins.
 - Events (busy busy calendar).
 - Pairing, coffee chats.
 - Niceties.
+- Diversity (genders, countries, backgrounds (music, chemistry, physics, English)) & culture of kindness. Contrast with the tech mood I don't like.
