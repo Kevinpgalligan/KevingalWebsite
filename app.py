@@ -116,16 +116,15 @@ def make_should_skip(rebuild_all):
                              "templates/base.html",
                              url_to_md_path(url)]
                     for diff in repo.head.commit.diff(commit)])
-    def f(url, filepath):
+    def should_skip(url, filepath):
         # Don't regenerate blog posts if we can avoid it, they
         # take up the bulk of the time.
-        result = (not rebuild_all
-                  and is_blog_post(url)
-                  and not may_need_next_link_updated(url)
-                  and build_file_exists(filepath)
-                  and not blog_post_changed(url, filepath))
-        return result
-    return f
+        return (not rebuild_all
+                and is_blog_post(url)
+                and not may_need_next_link_updated(url)
+                and build_file_exists(filepath)
+                and not blog_post_changed(url, filepath))
+    return should_skip
 freezer = Freezer(app)
 
 MAX_NUM_POSTS_IN_FEED = 10
