@@ -1,14 +1,16 @@
 import sys
 import collections
 import datetime
+import os.path
+import re
+import functools
+import argparse
+
 from flask import (Flask, render_template, render_template_string,
     Markup, Response, send_from_directory)
 from flask_flatpages import (FlatPages, pygmented_markdown,
     pygments_style_defs)
 from flask_frozen import Freezer
-import os.path
-import re
-import functools
 from git import Repo
 
 FLATPAGES_EXTENSION = '.md'
@@ -82,7 +84,7 @@ def tweak_post_meta(pg):
     if "tags" in pg.meta and not isinstance(pg.meta["tags"], list):
         pg.meta["tags"] = pg.meta["tags"].split(" ")
 
-def make_should_skip(rebuild_all):
+def make_should_skip(rebuild_all, target=None):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     repo = Repo(dir_path)
     posts = get_blog_posts()
@@ -119,6 +121,8 @@ def make_should_skip(rebuild_all):
     def should_skip(url, filepath):
         # Don't regenerate blog posts if we can avoid it, they
         # take up the bulk of the time.
+        if target is not None:
+            return url!=target
         return (not rebuild_all
                 and is_blog_post(url)
                 and not may_need_next_link_updated(url)
@@ -274,17 +278,29 @@ def favicon():
         "favicon.ico",
         mimetype="image")
 
-if __name__ == '__main__':
-    if len(sys.argv) > 1 and sys.argv[1] == "build":
-        rebuild_all = False
-        if len(sys.argv) >= 3:
-            if sys.argv[2] != "rebuild-all":
-                print(f"!!! Unknown build arg '{sys.argv[2]}'")
-                sys.exit(1)
-            else:
-                rebuild_all = True
-        should_skip = make_should_skip(rebuild_all)
-        app.config["FREEZER_SKIP_EXISTING"] = should_skip
-        freezer.freeze()
+def make_should_skip_from_args(args):
+    if args.selective:
+        return make_should_skip(False)
+    elif args.all:
+        return make_should_skip(True)
+    elif args.file:
+        return make_should_skip(False, target=args.file)
     else:
+        sys.exit(1)
+
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
         app.run(port=8000, debug=True)
+    else:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--all", default=False, action="store_true")
+        parser.add_argument("--selective", default=False, action="store_true",
+                            help="skips certain files that don't need to be regenerated.")
+        parser.add_argument("--file", required=False)
+        args = parser.parse_args()
+        app.config["FREEZER_SKIP_EXISTING"] = make_should_skip_from_args(args) 
+        if args.file:
+            def gen():
+                yield args.file
+            freezer.register_generator(gen)
+        freezer.freeze()

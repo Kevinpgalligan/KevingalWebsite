@@ -51,7 +51,7 @@ then
     exit 1
 fi
 
-./build.sh "$2"
+./build.sh "${@:2}"
 (deleteOldWebsiteFilesWithConfirmation "$1")
 if [[ $? -ne 0 ]];
 then
