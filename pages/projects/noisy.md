@@ -8,7 +8,9 @@ Perlin noise library for Common Lisp. Supports an arbitrary number of dimensions
 
 Here it is in 2 dimensions:
 
-![A comparison of low-resolution (smoother) noise and higher-resolution (more detailed / chaotic) noise](/static/img/noisy/2d-noise.png)
+<img src="{{ url_for('static', filename='img/noisy/2d-noise.png') }}"
+     alt="A comparison of low-resolution (smoother) noise and higher-resolution (more detailed / chaotic) noise"
+     class="centered">
 
 Usage:
 

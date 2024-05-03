@@ -190,16 +190,30 @@ def draft_posts():
         'blog/drafts.html',
         draft_posts=[pg for pg in pages if "blog" in pg.path and "publish" not in pg.meta])
 
-@app.route('/software.html')
-def software():
+@app.route('/projects.html')
+def projects():
     return render_template(
-        "software.html",
+        "projects.html",
         projects=sorted([proj_with_metadata(pg) for pg in pages if "projects/" in pg.path],
                         key=lambda pg: pg.meta["date"]))
+
+@app.route('/dsml-portfolio.html')
+def dsml_portfolio():
+    return render_template(
+        "dsml-portfolio.html",
+        projects=[proj_with_metadata(pg) for pg in pages if "dsml/" in pg.path])
+
 
 def proj_with_metadata(page):
     page.meta["id"] = "-".join(page.meta["name"].lower().split(" "))
     return page
+
+@app.route('/notebooks/<name>.html')
+def notebook(name):
+    return send_from_directory(
+        os.path.join(app.root_path, f"templates/notebooks/"),
+        f"{name}.html",
+        mimetype="html")
 
 @app.route('/<path:path>.html')
 def page(path):

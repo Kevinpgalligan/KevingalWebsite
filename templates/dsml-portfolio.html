@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}DS/ML Portfolio{% endblock title %}
+{% block content %}
+<h2 id="title">Data Science & Machine Learning Portfolio</h2>
+<p>Here's a collection of data science and machine learning projects I've worked on in my spare time. Further description, and links to Jupyter Notebooks, can be found below.</p>
+<ul>
+{% for project in projects %}<li>{{project.name}} <a href="#{{project.id}}">v</a></li>{% endfor %}
+</ul>
+{% for project in projects %}<hr><h4 id="{{project.id}}">{{project.name}}</h3>
+{{project.html|safe}}{% endfor %}{% endblock content %}
