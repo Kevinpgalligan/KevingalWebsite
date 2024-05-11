@@ -7,7 +7,7 @@ publish: y
 
 The Circle is a reality competition show where the contestants communicate solely through text. This allows them to come into the show as a "catfish" and assume a new identity, though most people play as themselves. At the end of each round, they rank each other from first to last and the overall top-rated players become "influencers", which gives them the power to eliminate someone from the game. In the final round, the top-ranked player wins the prize money.
 
-As viewers, we are shown only a subset of the ratings (such as: Player A put Player B in 2nd place), and the final ranking. However, I'm always how exactly the players ranked each other. Who were the backstabbers, who were the game-players, who were the do-gooders? This can be figured out with a little bit of programming.
+As viewers, we are shown only a subset of the ratings (such as: Player A put Player B in 2nd place) and the final ranking. However, I'm always curious how exactly the players ranked each other. Who were the backstabbers, who were the game-players, who were the do-gooders? This can be figured out with a little bit of programming.
 
 First we need to encode the final results and the known rankings.
 
