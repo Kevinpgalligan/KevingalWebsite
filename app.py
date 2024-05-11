@@ -310,7 +310,8 @@ if __name__ == '__main__':
         parser.add_argument("--all", default=False, action="store_true")
         parser.add_argument("--selective", default=False, action="store_true",
                             help="skips certain files that don't need to be regenerated.")
-        parser.add_argument("--file", required=False)
+        parser.add_argument("--file", required=False,
+                            help="Path to single file to regenerate, like /index.html")
         args = parser.parse_args()
         app.config["FREEZER_SKIP_EXISTING"] = make_should_skip_from_args(args) 
         if args.file:

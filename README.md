@@ -15,9 +15,11 @@ Execute `./setup.sh` once. Installs dependencies, sets up Python venv, and so on
 
 Execute `./run.sh` to start Flask webserver. Allows local testing before pushing a change.
 
-Execute `./build.sh` to build static copy of site in `build` folder. Not so useful in itself.
+Execute `./build.sh --all` to build static copy of site in `build` folder. Not so useful in itself.
 
-Execute `./deploy.sh` to generate static files and push them to the kevinpgalligan.github.io repository. Shows a diff before pushing.
+Execute `./deploy.sh /path/to/kevinpgalligan.github.io/repo --all` to generate static files and push them to the kevinpgalligan.github.io repository. Shows a diff before pushing.
+
+The `--all` flag can be swapped out if you want to e.g. only regenerate files that have changed, or regenerate a single file! See `app.py` for how that works.
 
 ## Requirements
 python3, pip3, setuptools (install through pip3). Maybe some other stuff, the setup script isn't as bulletproof as I would like.
