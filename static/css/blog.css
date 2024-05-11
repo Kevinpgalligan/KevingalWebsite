@@ -36,7 +36,11 @@ figcaption {
 }
 
 .tags {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-style: dotted;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-style: dotted;
+}
+
+.incel {
+	background: #7FFF00;
 }

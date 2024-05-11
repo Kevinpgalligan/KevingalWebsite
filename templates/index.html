@@ -3,9 +3,7 @@
 {% block content %}
 <div data-nosnippet>
 <h2>About</h2>
-<p>Hi, I'm Kevin Galligan! This is where I keep my software and writing.</p>
-
-<p>I did a PhD on <a href="https://en.wikipedia.org/wiki/Error_correction_code">error correction decoding algorithms</a>. Before that, I was a software developer at Amazon Web Services for about 3 years.</p>
+<p>Hi, I'm Kevin Galligan! This place hosts my blog, an index of my projects, and some free web applications. On the blog, I like to write about programming, math, life experiences, and anything else that takes my fancy. In this life, I've been a software developer and a PhD student. My doctoral research was about <a href="https://en.wikipedia.org/wiki/Error_correction_code">error correction decoding algorithms</a>.</p>
 
 <p>Contact me at <a href="mailto:galligankevinp@gmail.com">galligankevinp@gmail.com</a>.</p>
 
@@ -15,12 +13,6 @@
 <p><b>Q: Does your stuff have a license?</b></p>
 
 <p>All of the content on this site is under a <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC BY-NC license</a>. Basically, do what you want, but give me credit and don't try to sell it.</p>
-
-<p><b>Q: What do you like to write about?</b></p>
-
-<p>It's kinda difficult to summarise, so here are the tags I've used on my blog.</p>
-
-<p>{% for tag in tags %}<a href="{{url_for('tag', name=tag.name)}}">{{tag.name}}</a> ({{tag.count}}) {% endfor %}</p>
 
 <p><b>Q: Why doesn't your blog have comments?</b></p>
 
@@ -37,7 +29,6 @@
 <li><a href="https://mastodon.ie/@kevingal">Mastodon</a> for updates on what I'm doing.</li>
 <li><a href="https://www.goodreads.com/user/show/20359763-kevin-galligan">Goodreads</a> for logging books.</li>
 <li><a href="https://letterboxd.com/kevingal/">letterboxd</a> for logging movies.</li>
-<li><a href="https://www.reddit.com/user/KpgIsKpg/">Reddit</a> for wasting time.</li>
 <li><a href="https://lichess.org/@/kpgiskpg">Lichess</a> for playing chess.</li>
 </ul>
 
