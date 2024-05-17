@@ -7,16 +7,6 @@ blockquote {
     padding-left: 8px;
 }
 
-figcaption {
-    color: grey;
-    font-size: 14px;
-    margin-top: 10px;
-    max-width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
 .centerfloat {
     display: inline-block;
 }

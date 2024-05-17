@@ -39,12 +39,12 @@ First we need to encode the final results and the known rankings.
 		[...]
 	}
 
-Then, for each player, we generate all the rankings they *could* have chosen. For example, based on what we know about Olivia, either of the following rankings are possible:
+Then, for each player, we generate all the rankings they *could* have chosen. For example, based on what we know about Olivia, she could have ranked the other players in either of the following orders:
 
 * QT, Kyle, Jordan, Lauren.
 * QT, Kyle, Lauren, Jordan.
 
-Here's some code for doing that. It basically makes a "template" of the possible rankings, like `["QT", "Kyle", None, None]`. Then, using `itertools.permutations(...)`, it fills the `None` spots in the template using all possible orderings of the unassigned players.
+Here's some Python code for doing that. It basically makes a "template" of the possible rankings, like `["QT", "Kyle", None, None]`. Then, using `itertools.permutations(...)`, it fills the `None` spots in the template using all possible orderings of the unassigned players.
 
 	:::python
 	possible_rankings_per_player = []

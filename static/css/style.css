@@ -192,3 +192,18 @@ video {
 .tags {
     font-size: 12px;
 }
+
+figcaption {
+    color: grey;
+    font-size: 14px;
+    margin-top: 10px;
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.notebooklink {
+	text-align: center;
+	font-size: 14px;
+}
