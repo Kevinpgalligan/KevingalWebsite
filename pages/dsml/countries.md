@@ -1,4 +1,4 @@
-name: Country clustering with k-means
+name: Country clustering with k-means and GMM
 notebook: countries.html
 
 <figure>
@@ -8,4 +8,4 @@ notebook: countries.html
 <figcaption>PCA visualisation of country clusters with k=4.</figcaption>
 </figure>
 
-Implementing the k-means algorithm to cluster countries based on [economic data](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/). The elbow and silhouette methods are used to pick an appropriate number of clusters.
+Implementing k-means and the gaussian mixture model to cluster countries based on [economic data](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/). The elbow and silhouette methods are used to pick an appropriate number of clusters.
