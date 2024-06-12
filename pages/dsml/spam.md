@@ -1,5 +1,6 @@
 name: Spam detection with Naive Bayes
 notebook: spam.html
+z: 10
 
 <figure>
 <img src="{{ url_for('static', filename='img/dsml/spam-confusion-matrix.png') }}"

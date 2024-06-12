@@ -201,7 +201,9 @@ def projects():
 def dsml_portfolio():
     return render_template(
         "dsml-portfolio.html",
-        projects=[proj_with_metadata(pg) for pg in pages if "dsml/" in pg.path])
+        projects=sorted([proj_with_metadata(pg) for pg in pages if "dsml/" in pg.path],
+                        key=lambda pg: int(pg.meta["z"]) if "z" in pg.meta else 0,
+                        reverse=True))
 
 
 def proj_with_metadata(page):
