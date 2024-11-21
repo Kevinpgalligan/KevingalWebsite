@@ -2,5 +2,8 @@ Flask==1.1.*
 Frozen-Flask==0.17
 Flask-FlatPages==0.7.*
 Pygments==2.8.*
-markdown-katex==202103.1029
+markdown-katex==202406.1035
+# Need to fix this to a particular version because it breaks
+# Flask due to a removed symbol.
+markupsafe==2.0.1
 GitPython
