@@ -1,0 +1,124 @@
+
+### Appendix A: Macros in Lisp
+Any Lisp program can be represented inside another Lisp program as a simple data structure, either an *atom* (like `1` or `hi`) or a *list* of atoms (like `(1 (2 x))`). Lisp macros are functions that accept other Lisp code as input (in the form of an atom or list), and generate new Lisp code as output. Macros can do everything that other Lisp functions can do, except they're executed when code is being loaded/compiled rather than when it's evaluated.
+
+To give a quick demonstration, here's a function to add 2 numbers together in Common Lisp.
+
+	:::lisp
+	(defun add (x y)
+      (+ x y))
+
+And here's the same code as a Lisp data structure.
+
+	:::lisp
+	'(defun add (x y)
+       (+ x y))
+
+Note that this looks almost exactly the same as before, except the apostrophe before the opening bracket tells the Lisp compiler not to evaluate the code (which would define the "add" function", but to instead just return the given list.
+
+The resulting list, whose first element is the symbol `defun`, contains: 1. atoms, like `defun` and `+`; and 2. nested lists, like `(x y)`. This data structure can be passed around to other functions, chopped up, and put back together again in any way imaginable. 
+
+Now, here's a macro that takes a list of Lisp forms and reverses them. If `defmacro` were swapped for `defun`, this would become a function that reverses the items in a list.
+
+	:::lisp
+	(defmacro rev (c)
+	  (reverse c))
+
+With this macro, we can generate our `add` function from before by writing it backwards:
+
+	:::lisp
+	(rev ((+ x y) (x y) add defun))
+
+And now we can call it in the REPL.
+
+	:::lisp
+	CL-USER> (add 1 2)
+    3
+
+This particular example isn't very useful, but it gives you a sense of what's possible with these programmable macros. Macros can be used to extend the language syntax, make domain-specific languages, AND MORE!
+
+### A rough sketch of Common Lisp
+Since we'll be exploring the livecoding concept using Common Lisp, this section provides a whirlwind tour of the language. If you're already a Common Lisp afficionado or just want to wing it, feel free to skip ahead.
+
+Common Lisp is the large, uncouth, pragmatic member of the Lisp family. It's often contrasted with its smaller, supposedly more elegant sibling, Scheme. Common Lisp's ANSI specification dates back to 1994. There are multiple implementations of this standard: SBCL compiles to machine code, ECL transpiles to C, Clasp compiles to LLVM IR, and ABCL targets the JVM, to name a few. SBCL is the most performant and widely-used implementation. It tends to be about as fast as Java in benchmarks.
+
+Here's a Common Lisp function to add together two numbers.
+
+	:::lisp
+	(defun add (x y)
+      (+ x y))
+
+And here's how you'd call that function in a REPL:
+
+	:::lisp
+	CL-USER> (add 1 2)
+    3
+
+Some notes to accompany our first function:
+
+* All Lisp code is in the form of *lists* and *atoms*.
+* The lists are delimited by `(` and `)`, hence why Lisp is known to some as "that parentheses language"[^pars].
+* A list is a chain of *cons cells*. Each cons cell contains a value, and a pointer to the next cons cell.
+* Atoms are all the things that aren't lists, like numbers and strings and symbols.
+* The simplicity of the syntax is what makes Lisp macros so powerful! But that's a topic for another day... or Appendix A, below.
+* `defun` is a *symbol*.
+* A symbol is a data structure for representing the names of things. The name "defun" stands for "define function".
+* `add` is another symbol, representing the name of our function.
+* `x` and `y` are the function parameters. Also symbols.
+* `(+ x y)` is a list consisting of the symbols `+`, `x` and `y`.
+* When a list is being evaluated, the first calls the function `+`, with `x` and `y` as arguments. There's no distinction between "operators" and "functions", as you might expect from other languages. Instead, when a list is evaluated in Lisp, it's treated as a function call where the first element of the list is the function, and the remaining elements are the arguments.
+
+Local variables are usually introduced using the `let` form. The last value in the body of the `let` is returned as its result.
+
+	:::lisp
+	(let ((x 1)
+          (y 2))
+      (+ x y)) ; returns 3
+
+Global variables, if needed, can be defined using `defvar` or `defparameter`. To avoid clashing with local variables, their names are, by convention, given "earmuffs" (surrounded by asterisks).
+
+	:::lisp
+	(defparameter *global-var-bad* 42)
+
+There's a fairly sophisticated object system, which we don't have to worry too much about today, but I'll just mention it for completeness.
+
+	:::lisp
+	(defclass foo (some-superclass)
+      ((x :initarg :x :initform 0 :accessor x)
+       (y :initarg :y :initform 3))
+    
+    ;; Make an instance of the class.
+    (let ((blah (make-instance 'foo :x 5)))
+      (+ (x blah) 1)) ; returns 6
+
+And there are generic functions that dispatch on the types of the arguments they receive.
+
+	:::lisp
+    (defgeneric flerb (x))
+    (defmethod flerb ((f foo))
+      (+ (x f) 1))
+    (flerb (make-instance 'foo :x 2)) ; returns 3
+
+Lastly, here are two ways to calculate the sum of a list, one using a loop and the other using a reduction. This demonstrates that Common Lisp is really a multi-paradigm language. It supports looping and mutating state and all the joys/horrors of imperative programming, and also a more functional style!
+
+	:::lisp
+    (let ((sum 0))
+	  (loop for x in (list 1 2 3)
+            do (setf sum (+ sum x)))
+      sum)
+
+    (reduce #'+ (list 1 2 3))
+
+A big selling-point of Lisp is its macros, but I've expelled any discussion of those to Appendix A below.
+
+### Graveyard
+Lisp programs are typically written alongside a REPL (Read-Eval-Print Loop), which can be used to test small pieces of the program as it's being written. Assuming the REPL isn't crap, it should be possible to redefine an individual function and immediately see the effects of its new definition in the running program.
+
+Another useful livecoding feature, specific to Common Lisp and enshrined in its 1994 ANSI standard, is the ability to define what happens to existing instances of a class when the definition of that class gets recompiled. So not only can the behaviour of a program be updated on the fly, but also its state.
+
+Common Lisp also does interactive debugging really well. Inevitably, 
+TODO: interactive debugging, stacktrace -> fix function -> recompile it -> resume execution.
+
+It's possible to emulate livecoding in languages that don't support it. For example, a scripting language can be embedded inside the application, or the application can be made to restart itself whenever it detects a change to its source code. However, these approaches have obvious limitations compared to having first-class support in the language itself.
+
+[^pars]: Many people are scared by the abundance of parentheses in Lisp code, but experienced Lispers barely even notice it. Indentation tells you what you need to know about the code structure, while code editors keep the parentheses balanced, so the parentheses are really only there for the compiler's sake. If you ever find yourself counting parentheses, you're probably doing something wrong... unless you enjoy that sort of thing.
