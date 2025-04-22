@@ -5,7 +5,7 @@ td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 
 /* NOTE: I modified this to highlight lines properly. */
-.codehilite .hll { display: block; background-color: rgb(170, 251, 170); }
+.codehilite .hll { display: block; background-color: rgb(190, 252, 190); }
 
 .codehilite { background: #f0f0f0; }
 .codehilite .c { color: #60a0b0; font-style: italic } /* Comment */
