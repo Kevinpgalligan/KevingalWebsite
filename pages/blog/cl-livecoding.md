@@ -6,7 +6,7 @@ tags: lisp programming artsy
 
 Some Lisps, like Common Lisp, have a powerful feature that tends to go underappreciated amidst all the talk about macros: the ability to recompile your program while it's running, without restarting it. For the purposes of this post, and because it sounds cool, let's call this ability *livecoding*[^livecod].
 
-Entering this strange land where the programs never stop, we'll first take a brief tour of Common Lisp and one of its graphics frameworks, Sketch, before ultimately walking through a livecoded implementation of the [Boids algorithm](https://en.wikipedia.org/wiki/Boids) for simulating animal flocking behaviour.
+Entering this strange land where the programs never stop, we'll first take a brief tour of Common Lisp and one of its graphics frameworks, Sketch, before walking through a livecoded implementation of the [Boids algorithm](https://en.wikipedia.org/wiki/Boids).
 
 <figure>
 <video loop autoplay muted class="centered">
@@ -16,7 +16,7 @@ Entering this strange land where the programs never stop, we'll first take a bri
 </figure>
 
 ### "Wait, what exactly is this livecoding thing?"
-Consider the typical workflow needed to modify a long-running application like a videogame.
+Consider the typical workflow needed to modify a long-running application, like a videogame.
 
 1. Stop the application.
 2. Change the code.
@@ -27,7 +27,7 @@ Consider the typical workflow needed to modify a long-running application like a
 
 In a livecoding environment, the application is never stopped, which immediately eliminates steps 1, 4 and 5. Instead, small code changes are immediately reflected in the running program. Step 3 is often instantaneous because only the changed parts of the program must be recompiled. In theory, then, you can develop an entire application while it continuously runs in the background, without ever waiting for code to recompile. This makes the development process more fluid and interactive, with minimal downtime.
 
-In Common Lisp, the workflow would look something like this:
+In Common Lisp, the workflow might look something like this:
 
 1. Make a small change to a single function.
 2. Recompile the function (instantaneous).
@@ -36,9 +36,9 @@ In Common Lisp, the workflow would look something like this:
 For an example of this workflow in action, check out Common Lisp and Emacs being used as an environment for [live musical performance](https://www.youtube.com/watch?v=EkYUU0UoB_0). You can hear about a Lisp program being debugged remotely while running in [deep space](https://corecursive.com/lisp-in-space-with-ron-garret/). Livecoding (or hot reloading, or whatever you like to call it) is also available in other languages, like Smalltalk and Erlang.
 
 ### A rough sketch of Sketch
-Before jumping into Boids, let's take a brief look at [Sketch](https://github.com/vydd/sketch), our Common Lisp graphics framework of choice. If you've ever used Processing or p5js, then the code should look familiar, but today we're more concerned with the big ideas than with understanding the minutiae of the code.
+Before jumping into Boids, let's take a brief look at [Sketch](https://github.com/vydd/sketch), our Common Lisp graphics framework of choice. We'll be more concerned with big ideas than with code minutiae, but if you're unfamiliar with Common Lisp and want to understand the code samples, then please take a detour through [Learn Common Lisp in Y Minutes](https://learnxinyminutes.com/common-lisp/).
 
-The main interface to Sketch is the `defsketch` macro. The code below defines a "sketch" called `my-sketch`.
+So, Sketch. The Sketch API is heavily based on that of [Processing](https://processing.org/). Its primary entry point is the `defsketch` macro. The code below defines a "sketch" called `my-sketch`.
 
 	:::lisp
 	(defsketch my-sketch
@@ -84,7 +84,7 @@ Finally, to run the sketch, we compile our code and execute `(run-sketch 'my-ske
 That's all we need to know about Sketch for now!
 
 ### Livecoding Boids
-[Boids](https://en.wikipedia.org/wiki/Boids) is an algorithm from 1986 for simulating flocks of birds. In its essence, it consists of applying 3 forces to the simulated birds. Quoting Wikipedia, these forces are:
+[Boids](https://en.wikipedia.org/wiki/Boids) is an algorithm from 1986 for simulating flocks of birds. In its essence, it consists of applying 3 forces to the simulated birds. Quoting Wikipedia[^boidsref], these forces are:
 
 > * separation: steer to avoid crowding local flockmates
 > * cohesion: steer to move towards the average position (center of mass) of local flockmates
@@ -182,12 +182,12 @@ As soon as we compile `draw-boids`, the error screen disappears and our lovely b
 
 There are two Common Lisp features that enable us to fix errors on-the-fly like we've done here:
 
-1. Newly compiled code, and recompiled code, is immediately loaded into the running program (sometimes called "hot reloading"). This opens up possibilities such as optimising your running program, tweaking parameters like gravitational force and background colour, and iteratively developing a GUI.
+1. Newly compiled code, and recompiled code, is immediately loaded (sometimes called "hot reloading") into the running program. This opens up possibilities such as optimising a program as it runs, tweaking parameters like gravitational force and background colour, and iteratively developing a GUI.
 2. The condition system! This is somewhat like exception handling in other languages, but more powerful. Not only can we signal exceptional situations ("conditions"), but we can also define "restarts" for recovering from those situations. When a running Common Lisp program encounters an unhandled condition, control passes to the debugger, and the user is presented with a selection of restarts. Perhaps they want to recompile the offending function and continue execution from the previous stack frame. Or perhaps the error was a division by zero, and the offending function provides a restart that swaps in a value of 1 for the divisor. Suddenly, there are a lot more possibilities than just crashing the program.
 
 Anyway, a worthy discussion of the condition system would take up a full blog post of its own. Back to Boids!
 
-Now that our boids are drawn correctly, we want them to move around and do boid things. First, we implement an `update-state` function, which basically adds the velocity of each boid to its position (so that the boid moves), and applies the 3 Boidian forces to update the velocity. For now, the functions implementing the forces are stubbed out -- they return all-zero vectors so that they have no effect on the velocity.
+Now that our boids are drawn correctly, we want them to move around and do boid things. First, we implement an `update-positions` function, which basically adds the velocity of each boid to its position (so that the boid moves), and applies the 3 Boidian forces to update the boid's velocity. For now, the functions implementing these forces are stubbed out.
 
     :::lisp
     (defun update-positions (boids)
@@ -217,7 +217,7 @@ Now that our boids are drawn correctly, we want them to move around and do boid 
     (defun rule3 (boid boids)
       (vec2 0 0))
 
-We then have to modify the drawing loop to call `update-state`.
+We then have to modify the drawing loop to call `update-positions`.
 
 	:::lisp hl_lines="10"
 	(defsketch boids
@@ -231,7 +231,7 @@ We then have to modify the drawing loop to call `update-state`.
 	  (draw-boids boids)
 	  (update-positions boids))
 
-So far, these changes won't affect the boid behaviour, because the force implementations are stubbed. Let's circle back and implement `rule-1`, which can be summarised as "stay away from other boids". When a boid is less than 10 pixels from another boid, we push them away from each other to avoid crowding.
+So far, these changes haven't affected the boid behaviour, so let's circle back and implement `rule-1`, which can be summarised as "stay away from other boids". When a boid is less than 10 pixels from another boid, we push them away from each other to avoid crowding.
 
     :::lisp hl_lines="2 3 4 5 6 7 8 9 10"
     (defun rule1 (boid boids)
@@ -243,7 +243,7 @@ So far, these changes won't affect the boid behaviour, because the force impleme
                do (v+! v-sum offset))
        v-sum))
 
-(Note: the vector functions ending in `!`, like `v+!`, follow the convention of overwriting the first argument with the result).
+(Note: the vector functions ending in `!`, like `v+!`, follow the convention of using the first argument to store the result).
 
 When we recompile this function...
 
@@ -251,9 +251,9 @@ When we recompile this function...
   <source src="{{ url_for('static', filename='video/cl-livecoding/boids-4-first-rule.mp4') }}" type="video/mp4">
 </video> 
 
-...two boids that happen to be too close are sent flying off into the void. There's no counterforce to bring them back, just yet.
+...a pair of boids that happen to be too close to each other are sent flying off into the void. There's no counterforce to bring them back, just yet.
 
-Next, we implement `rule-2`: boids should fly towards the average position of other boids. Our implementation could be more efficient by summing the boid positions just once, rather than doing it for every single boid, but no matter.
+Next, we implement `rule-2`: boids should fly towards the average position of other boids. Our implementation could be more efficient by summing the boid positions just once, rather than doing it for every single boid, but who the hell cares.
 
     :::lisp hl_lines="2 3 4 5 6 7 8 9 10 11"
     (defun rule2 (boid boids)
@@ -268,13 +268,13 @@ Next, we implement `rule-2`: boids should fly towards the average position of ot
         (v-scale! (/ 200) center)
         center))
 
-Recompiling `rule-2`, we immediately see...
+Recompiling `rule-2`, we get...
 
 <video loop autoplay muted class="centered">
   <source src="{{ url_for('static', filename='video/cl-livecoding/boids-5-second-rule.mp4') }}" type="video/mp4">
 </video> 
 
-Yes! This is starting to look vaguely Boids-like. Let's add the final rule, `rule-3`: match velocity with other boids. (Implementation note: we probably shouldn't update the velocities until all the new velocities have been calculated, but oh well).
+Yes! This is starting to look vaguely Boids-like. Let's add the final rule, `rule-3`: boids should match their velocity to all the other boids. Implementation note: we probably shouldn't update the velocities until all the new velocities have been calculated, but this doesn't seem to matter too much.
 
     :::lisp hl_lines="2 3 4 5 6 7 8 9 10 11"
     (defun rule3 (boid boids)
@@ -295,7 +295,7 @@ Recompiling, we see the Boids calm down a little bit.
   <source src="{{ url_for('static', filename='video/cl-livecoding/boids-6-third-rule.mp4') }}" type="video/mp4">
 </video> 
 
-Since it's not very bird-like to fly around in a vortex of death, we could also give the boids a purpose by making them follow the mouse position, with the following changes.
+Since it's not very bird-like to fly around in a vortex of death, we could also give the boids a purpose by making them follow the mouse position. The result of these changes can be seen at the top of the post.
 
     :::lisp hl_lines="8 11 13 14 29"
     (defsketch boids
@@ -328,18 +328,13 @@ Since it's not very bird-like to fly around in a vortex of death, we could also 
                                     (rule3 boid boids)
                                     (v-rescale 0.1 (v- mouse-pos (pos boid)))))))))
 
-
-
-
 And with that, we have a complete implementation of Boids! At the risk of beating a dead horse, I'll re-emphasise that we did the whole thing without once restarting our program or waiting for code to compile.
 
 ### Closing thoughts
-I hope, in this brief demonstration of livecoding, I've given you a taste of how useful and fun this feature can be. Like I said, it's not unique to Common Lisp, as at least Smalltalk and Erlang have similar capabilities. It's also possible to bridge the gap in less interactive languages by making applications automatically restart themselves when a code change is detected, or by bolting on a scripting language. Just do me a favour and ask yourself, the next time you're waiting the requisite time units for your code to recompile: *How can I make this workflow more interactive? How can I make it more... like Common Lisp?*
-
-TODO: 1. add link to Learn X in Y Mins, 2. tweak diff colour.
-
-<!-- Just in case, here's the command I used to cut the screen recordings:
-ffmpeg -i input.mp4 -ss 2 -to 4 -async 1 cut.mp4 -->
-
+I hope, in this brief demonstration of livecoding, I've given you a taste of how useful and fun this feature can be. Like I've said, it's not unique to Common Lisp, as at least Smalltalk and Erlang have similar capabilities. It's also possible to bridge the gap in less interactive languages by making applications automatically restart themselves when a code change is detected, or by bolting on a scripting language. Just do me a favour and ask yourself, the next time you're waiting the requisite time units for your code to recompile: *How can I make this workflow more interactive? How can I make it more... like Common Lisp?*
 
 [^livecod]: See the [Wiki page](https://en.wikipedia.org/wiki/Live_coding), and also [interactive programming](https://en.wikipedia.org/wiki/Interactive_programming).
+[^boidsref]: I also heavily leaned on [this webpage](https://vergenet.net/~conrad/boids/pseudocode.html) for my implementation. Thanks, Conrad!
+
+<!-- Just in case, here's the ffmpeg command I used to trim the screen recordings:
+ffmpeg -i input.mp4 -ss 2 -to 4 -async 1 cut.mp4 -->
