@@ -3,6 +3,7 @@ date: 2025-01-06
 description: Developing a Boids program from scratch without restarting it.
 requires: code
 tags: lisp programming artsy
+publish: y
 
 Some Lisps, like Common Lisp, have a powerful feature that tends to go underappreciated amidst all the talk about macros: the ability to recompile your program while it's running, without restarting it. For the purposes of this post, and because it sounds cool, let's call this ability *livecoding*[^livecod].
 
@@ -16,7 +17,7 @@ Entering this strange land where the programs never stop, we'll first take a bri
 </figure>
 
 ### "Wait, what exactly is this livecoding thing?"
-Consider the typical workflow needed to modify a long-running application, like a videogame.
+Consider the typical workflow needed to modify a running application, like a videogame.
 
 1. Stop the application.
 2. Change the code.
@@ -25,7 +26,7 @@ Consider the typical workflow needed to modify a long-running application, like 
 5. Fiddle with the application to get it back to its previous state.
 6. Carry on.
 
-In a livecoding environment, the application is never stopped, which immediately eliminates steps 1, 4 and 5. Instead, small code changes are immediately reflected in the running program. Step 3 is often instantaneous because only the changed parts of the program must be recompiled. In theory, then, you can develop an entire application while it continuously runs in the background, without ever waiting for code to recompile. This makes the development process more fluid and interactive, with minimal downtime.
+In a livecoding environment, the application is never stopped, which eliminates steps 1, 4 and 5. Instead, small code changes (which can be as granular as recompiling a single function) are immediately reflected in the running program. Step 3 is often instantaneous because only the changed parts of the program must be recompiled. In theory, then, you can develop an entire application while it continuously runs in the background, without ever waiting for code to recompile. This makes the development process more fluid and interactive, with minimal downtime.
 
 In Common Lisp, the workflow might look something like this:
 
@@ -48,7 +49,7 @@ So, Sketch. The Sketch API is heavily based on that of [Processing](https://proc
       ;; ...drawing code here...
 	  )
 
-After the name of the sketch comes a list of bindings that define its state and configuration. Here, the configuration parameters `width` and `height`, which determine the dimensions of the window, are set to `200`, while `n` is an attribute we've added for our own use.
+After the name of the sketch comes a list of bindings that define its state and configuration. Here, the window properties `width` and `height` are set to `200`, while `n` is an attribute we've added for our own use.
 
 Then comes the drawing code. This gets run in a loop while the sketch is running, once per frame. The following snippet draws 5 red circles on a black background, each of radius 10 and in random positions.
 
@@ -143,9 +144,12 @@ If we then recompile defsketch (with Ctrl-C Ctrl-C)...
 
 ...we get an error! Woops. 
 
+<figure>
 <video loop autoplay muted class="centered">
   <source src="{{ url_for('static', filename='video/cl-livecoding/boids-2-missing-draw.mp4') }}" type="video/mp4">
 </video> 
+<figcaption>Before: gray canvas. After: red error screen.</figcaption>
+</figure>
 
 But of course! We forgot to define `draw-boids`. The program doesn't crash, however, and we'll soon be able to recover from this setback.
 
@@ -176,9 +180,12 @@ Here's an implementation of `draw-boids`. We don't need to get into the weeds of
 
 As soon as we compile `draw-boids`, the error screen disappears and our lovely boids are drawn into place. And we didn't have to restart the program to fix it!
 
+<figure>
 <video loop autoplay muted class="centered">
   <source src="{{ url_for('static', filename='video/cl-livecoding/boids-3-define-draw.mp4') }}" type="video/mp4">
 </video> 
+<figcaption>Before: red error screen. After: boids are drawn.</figcaption>
+</figure>
 
 There are two Common Lisp features that enable us to fix errors on-the-fly like we've done here:
 
@@ -243,7 +250,7 @@ So far, these changes haven't affected the boid behaviour, so let's circle back 
                do (v+! v-sum offset))
        v-sum))
 
-(Note: the vector functions ending in `!`, like `v+!`, follow the convention of using the first argument to store the result).
+(Note: the vector functions ending in `!`, like `v+!`, follow the convention of storing the result in the vector passed as the first argument).
 
 When we recompile this function...
 
@@ -253,7 +260,7 @@ When we recompile this function...
 
 ...a pair of boids that happen to be too close to each other are sent flying off into the void. There's no counterforce to bring them back, just yet.
 
-Next, we implement `rule-2`: boids should fly towards the average position of other boids. Our implementation could be more efficient by summing the boid positions just once, rather than doing it for every single boid, but who the hell cares.
+Next, we implement `rule-2`: boids should fly towards the average position of other boids. Our implementation could be more efficient by summing the boid positions just once, rather than doing it for every single boid, but I can't be bothered.
 
     :::lisp hl_lines="2 3 4 5 6 7 8 9 10 11"
     (defun rule2 (boid boids)
@@ -274,7 +281,7 @@ Recompiling `rule-2`, we get...
   <source src="{{ url_for('static', filename='video/cl-livecoding/boids-5-second-rule.mp4') }}" type="video/mp4">
 </video> 
 
-Yes! This is starting to look vaguely Boids-like. Let's add the final rule, `rule-3`: boids should match their velocity to all the other boids. Implementation note: we probably shouldn't update the velocities until all the new velocities have been calculated, but this doesn't seem to matter too much.
+Yes! This is starting to look vaguely like Boids. Let's add the final rule, `rule-3`: boids should match their velocity to all the other boids. Implementation note: we probably shouldn't update the velocities until all the new velocities have been calculated, but this doesn't seem to matter too much.
 
     :::lisp hl_lines="2 3 4 5 6 7 8 9 10 11"
     (defun rule3 (boid boids)
@@ -328,10 +335,10 @@ Since it's not very bird-like to fly around in a vortex of death, we could also 
                                     (rule3 boid boids)
                                     (v-rescale 0.1 (v- mouse-pos (pos boid)))))))))
 
-And with that, we have a complete implementation of Boids! At the risk of beating a dead horse, I'll re-emphasise that we did the whole thing without once restarting our program or waiting for code to compile.
+And with that, we have a complete implementation of Boids! At the risk of beating a dead horse, I'll re-emphasise that we did the whole thing without once restarting our program or waiting a perceivable amount of time for code to compile.
 
 ### Closing thoughts
-I hope, in this brief demonstration of livecoding, I've given you a taste of how useful and fun this feature can be. Like I've said, it's not unique to Common Lisp, as at least Smalltalk and Erlang have similar capabilities. It's also possible to bridge the gap in less interactive languages by making applications automatically restart themselves when a code change is detected, or by bolting on a scripting language. Just do me a favour and ask yourself, the next time you're waiting the requisite time units for your code to recompile: *How can I make this workflow more interactive? How can I make it more... like Common Lisp?*
+I hope, in this brief demonstration of livecoding, I've given you a taste of how useful and fun this feature can be, whether you're developing a graphics application or mundane accounting software. Like I've said, it's not unique to Common Lisp, as at least Smalltalk and Erlang have similar capabilities. It's also possible to bridge the gap in less interactive languages by making applications automatically restart themselves when a code change is detected, or by bolting on a scripting language. Just do me a favour and ask yourself, the next time you're waiting the requisite time units for your code to recompile: *How can I make this workflow more interactive? How can I make it more... like Common Lisp?*
 
 [^livecod]: See the [Wiki page](https://en.wikipedia.org/wiki/Live_coding), and also [interactive programming](https://en.wikipedia.org/wiki/Interactive_programming).
 [^boidsref]: I also heavily leaned on [this webpage](https://vergenet.net/~conrad/boids/pseudocode.html) for my implementation. Thanks, Conrad!
