@@ -1,5 +1,5 @@
 title: Graphics livecoding in Common Lisp
-date: 2025-01-06
+date: 2025-04-23
 description: Developing a Boids program from scratch without restarting it.
 requires: code
 tags: lisp programming artsy
@@ -85,7 +85,7 @@ Finally, to run the sketch, we compile our code and execute `(run-sketch 'my-ske
 That's all we need to know about Sketch for now!
 
 ### Livecoding Boids
-[Boids](https://en.wikipedia.org/wiki/Boids) is an algorithm from 1986 for simulating flocks of birds. In its essence, it consists of applying 3 forces to the simulated birds. Quoting Wikipedia[^boidsref], these forces are:
+[Boids](https://en.wikipedia.org/wiki/Boids) is an algorithm from 1986 for simulating flocks of birds. In essence, it consists of applying 3 forces to the simulated birds. Quoting Wikipedia[^boidsref], these forces are:
 
 > * separation: steer to avoid crowding local flockmates
 > * cohesion: steer to move towards the average position (center of mass) of local flockmates
@@ -339,6 +339,10 @@ And with that, we have a complete implementation of Boids! At the risk of beatin
 
 ### Closing thoughts
 I hope, in this brief demonstration of livecoding, I've given you a taste of how useful and fun this feature can be, whether you're developing a graphics application or mundane accounting software. Like I've said, it's not unique to Common Lisp, as at least Smalltalk and Erlang have similar capabilities. It's also possible to bridge the gap in less interactive languages by making applications automatically restart themselves when a code change is detected, or by bolting on a scripting language. Just do me a favour and ask yourself, the next time you're waiting the requisite time units for your code to recompile: *How can I make this workflow more interactive? How can I make it more... like Common Lisp?*
+
+<small>Thanks to vindarel, fstamour, June, Gideon and Julia for their feedback on this post.</small>
+
+<small>[Discussion](https://news.ycombinator.com/item?id=43774726) on Hacker News.</small>
 
 [^livecod]: See the [Wiki page](https://en.wikipedia.org/wiki/Live_coding), and also [interactive programming](https://en.wikipedia.org/wiki/Interactive_programming).
 [^boidsref]: I also heavily leaned on [this webpage](https://vergenet.net/~conrad/boids/pseudocode.html) for my implementation. Thanks, Conrad!
