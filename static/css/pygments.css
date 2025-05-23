@@ -9,7 +9,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 .codehilite { background: #f0f0f0; }
 .codehilite .c { color: #60a0b0; font-style: italic } /* Comment */
-.codehilite .err { border: 1px solid #FF0000 } /* Error */
+/*.codehilite .err { border: 1px solid #FF0000 } */
 .codehilite .k { color: #007020; font-weight: bold } /* Keyword */
 .codehilite .o { color: #666666 } /* Operator */
 .codehilite .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
