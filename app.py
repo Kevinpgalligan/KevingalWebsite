@@ -48,8 +48,8 @@ app.config['FLATPAGES_HTML_RENDERER'] = render_html
 app.config['FLATPAGES_MARKDOWN_EXTENSIONS'] = [
     "codehilite",
     "footnotes",
-    "markdown_katex",
     "toc",
+    "markdown_katex",
     "tables"
 ]
 app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
@@ -57,7 +57,7 @@ app.config['FLATPAGES_EXTENSION_CONFIGS'] = {
         'guess_lang': 'False'
     },
     'toc': {
-        'toc_depth': '3-5'
+        'toc_depth': '2-5'
     },
     'markdown_katex': {
         'insert_fonts_css': False
