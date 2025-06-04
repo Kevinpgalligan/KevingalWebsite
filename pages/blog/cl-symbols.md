@@ -33,7 +33,7 @@ When it comes to definitions, it's helpful to consult Common Lisp's ANSI specifi
 In other words, a symbol is a data structure for identifying things. It's important to emphasise that **symbols are not strings**. Each symbol has an associated name, which is represented as a string, but the symbol itself is not a string. I point this out because strings are the closest primitive data type to symbols in most other programming languages.
 
 ## What is to be done... with symbols?
-If we enter just `x` at the REPL, the symbol of that name will be evaluated, with the result being the **value** referred to by the symbol `x`.
+If we enter just `x` at the REPL, the symbol of that name will be evaluated, with the result being the **value** referred to by that symbol.
 
 	:::lisp
 	>>> (defparameter x 1)
@@ -51,13 +51,13 @@ To get at the symbol itself, we need to `quote` it so that it doesn't get evalua
 	>>> (symbol-name 'x)
     "X"
 
-	>>> (equalp 'x (symbol-name 'x))
+	>>> (equal 'x (symbol-name 'x))
 	NIL     ; not equal!
 
 At read time, when the raw Lisp code is slurped in and parsed, all occurrences of a particular name are mapped to a single, unique symbol. And so, in the next example, we're comparing the same symbol to itself.
 
 	:::lisp
-	>>> (equalp 'x 'x)
+	>>> (equal 'x 'x)
     T    ; equal
 
 Common Lisp follows the [Lisp-2 model](https://stackoverflow.com/questions/4578574/what-is-the-difference-between-lisp-1-and-lisp-2), so functions and variables have separate namespaces. As such, a symbol can simultaneously identify both a function, which we fetch with `symbol-function`, and a variable, which we fetch with `symbol-value`. In the following example, the symbol `porridge` refers to both a function and a variable.
@@ -122,6 +122,30 @@ That said, there's another way to preserve case in symbol names. Wrap the name i
     >>> (eq 'hi '|hi|)
 	NIL   ; they have different names
 
+## &lt;_%&? is a symbol
+The rules for symbol names are somewhat unusual, compared to other programming languages. Case in point: `<_%&?` is a valid symbol name.
+
+	:::lisp
+	>>> (symbol-name '<_%&?)
+	"<_%&?"
+
+What are these rules? They're described in [Section 2.1](https://www.lispworks.com/documentation/HyperSpec/Body/02_a.htm) of the spec, and were admirably summarised by [ScottBurson](https://www.reddit.com/r/Common_Lisp/comments/1l3apg1/comment/mw1srxb/) on Reddit -- now reproduced here with their permission.
+
+Any consecutive sequence of characters will be parsed as a symbol, except:
+
+* whitespace.
+* parentheses/braces/brackets.
+* those that can be parsed as numbers.
+* those starting with certain special characters, including `'`, `` ` ``, `,`, and `#`.
+* a single period by itself (called "dot").
+
+As exceptions to these exceptions:
+
+* any sequence of characters surrounded by `|` is parsed as a symbol.
+* the non-symbol meaning of any character (including `|`) can be suppressed by preceding it with `\`.
+
+So here are some valid symbols: `foo`, `foo-bar`, `=`, `<_%&?`, `23-and-me`, `|(|`, and `\(`.
+
 ## The secrets of the defun
 Y'know how symbols have a `symbol-function` property? We can overwrite the value of this property with `setf`. That's essentially what `defun` is doing behind the scenes.
 
@@ -140,7 +164,7 @@ This enables us to reimplement `defun` as a macro, a somewhat cool fact that was
 	  `(setf (symbol-function ',name)
 			 (lambda ,parameters ,@body)))
 
-## Lexical binding and symbols
+## Bindings and symbols
 Based on what we've covered already, it'd be reasonable to expect the following code to work.
 
 	:::lisp
@@ -149,17 +173,24 @@ Based on what we've covered already, it'd be reasonable to expect the following 
 
 But instead this raises an error about `x` being unbound.
 
-Here's why: `let` creates a [*lexical binding*](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_l.htm#lexical_binding) for the symbol `x`, which is kinda like a local variable in other languages. Within the body of the `let`, `x` is lexically bound to the value `1`, but that doesn't affect the *global* value of `x`, which is what `symbol-value` tries to retrieve.
+Here's why: the `let` form creates a [lexical binding](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_b.htm#binding) between the symbol `x` and the value `1`, which persists throughout the body of the `let`. This is comparable to declaring a local variable in other languages. It doesn't affect the *global* value of `x`, which is what `symbol-value` attempts to retrieve, and hence the error.
 
-During evaluation, lexical bindings take precedence over global ones, so just evaluate the symbol to get its lexically bound value.
+If `x` has already been declared a dynamic (a.k.a. global) variable, however, then the binding created by `let` will shadow whatever global value `x` has. Other binding constructs within the language work the same way, e.g. a function parameter called `x` would also shadow the global variable.
 
 	:::lisp
 	>>> (defparameter x 1)
+    [...]
+
 	>>> (let ((x 5))
-		  x)
+		  (symbol-value 'x))
     5
 
-"Wow," you might be thinking, "Doesn't this make it easy to accidentally shadow a global variable with a local variable?". Well, yes. That's why, similar to most other programming languages, Common Lisp has a naming convention for global variables. They're given "earmuffs": `x` becomes `*x*`.
+	>>> (symbol-value 'x)
+    1
+
+(The exact details around variables, bindings, lexical scope, dynamic scope, etc. are beyond the scope of this article).
+
+"Wow," you might be thinking, "Doesn't this make it easy to accidentally mutate a global variable?". Well, yes. That's why, similar to most other programming languages, Common Lisp has a naming convention for global variables. They're given "earmuffs", so that `x` becomes `*x*`.
 
 ## What is a package?
 It's impossible to get a full picture of how symbols work without also understanding the related concept of **packages**. These are somewhat like namespaces or "packages" in other languages, except they're an actual data structure that we can directly query and manipulate.
@@ -186,7 +217,7 @@ When the Lisp Reader inhales some Lisp code, it has to map each symbol name to a
 
 ("CL-USER>" is the command prompt from the SLIME REPL, indicating that CL-USER is the currently active package).
 
-Programs always start in the COMMON-LISP-USER package, which also goes by the nickname CL-USER. This package has all the symbols you know and love from the ANSI spec: `car`, `cdr`, `loop`, `defun`, etc. We'll explore CL-USER in more detail later on. The macro `(in-package <package-name>)` changes the currently active package.
+Programs always start in the COMMON-LISP-USER package, which also goes by the nickname CL-USER. This package gives access to all the symbols you know and love from the ANSI spec: `car`, `cdr`, `loop`, `defun`, etc. We'll explore CL-USER in more detail later on. The macro `(in-package <package-name>)` changes the currently active package.
 
 	:::lisp
 	CL-USER> *package*
@@ -372,11 +403,11 @@ BEATLES and STONES share a single symbol by the name of "PLAY", since it was int
 	NIL
 
 ## Package designators
-We've seen that macros/functions like `defpackage` and `find-package` accept various data types as references to package, including symbols, keywords and strings. These are collectively referred to as [package designators](https://novaspec.org/cl/26_1_Glossary#package_designator), defined in the standard as:
+We've seen that macros/functions like `defpackage` and `find-package` accept various data types as references to package, including symbols, keywords and strings. These are collectively referred to as [package designators](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_p.htm#package_designator), defined in the standard as:
 
 > a designator for a package; that is, an object that denotes a package and that is one of: a string designator (denoting the package that has the string that it designates as its name or as one of its nicknames), or a package (denoting itself).
 
-A [string designator](https://novaspec.org/cl/26_1_Glossary#string_designator), in turn, is defined as:
+A [string designator](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_s.htm#string_designator), in turn, is defined as:
 
 > a designator for a string; that is, an object that denotes a string and that is one of: a character (denoting a singleton string that has the character as its only element), a symbol (denoting the string that is its name), or a string (denoting itself). The intent is that this term be consistent with the behavior of string; implementations that extend string must extend the meaning of this term in a compatible way.
 
@@ -541,3 +572,7 @@ For curiosity's sake, here's the Elisp function used to search for IN-PACKAGE.
 		  (when (or (re-search-backward regexp nil t)
 					(re-search-forward regexp nil t))
 			(match-string-no-properties 2)))))
+
+<hr />
+
+<small>With thanks to ScottBurson, stassats, vindarel, zacque0 and kagevf for their helpful feedback on this post.</small>
