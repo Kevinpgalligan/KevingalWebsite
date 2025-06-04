@@ -4,7 +4,7 @@ description: How to make Python CLI tools.
 requires: code
 imgthumbnail: img/cli-tools/thumbnail.jpg
 publish: y
-tags: python tutorial
+tags: python
 
 Let's make our own version of grep, nicknamed dumbgrep. Along the way, we'll learn about 19th-century Russian literature and how to make command line interface (CLI) tools in Python.
 

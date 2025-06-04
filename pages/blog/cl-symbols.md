@@ -1,8 +1,9 @@
 title: An Earnest Guide to Symbols in Common Lisp
-date: 2025-06-03
+date: 2025-06-04
 description: ...with an emphasis on exploratory programming and examples.
 requires: code
 tags: lisp programming
+publish: y
 
 Lisp programming languages have an extremely simple syntax, where everything is either a list or an atom. The most common type of atom is the **symbol**, which is used to name things like variables and functions. In the Common Lisp code below, `defun`, `pie`, `let`, `+`, `x` and `y` are all symbols.
 
@@ -32,19 +33,28 @@ When it comes to definitions, it's helpful to consult Common Lisp's ANSI specifi
 In other words, a symbol is a data structure for identifying things. It's important to emphasise that **symbols are not strings**. Each symbol has an associated name, which is represented as a string, but the symbol itself is not a string. I point this out because strings are the closest primitive data type to symbols in most other programming languages.
 
 ## What is to be done... with symbols?
-If we enter just `x` at the REPL, it will be evaluated and the variable value associated with the symbol `x` (if such a value exists) will be the result. To get at the symbol itself, we need to `quote` it to avoid evaluating it, like `(quote x)`, or `'x` for short.
+If we enter just `x` at the REPL, the symbol of that name will be evaluated, with the result being the **value** referred to by the symbol `x`.
 
-With this knowledge, let's test the statement above, that a symbol is NOT the same as its name. We need the `symbol-name` function to fetch the name from a symbol data structure.
+	:::lisp
+	>>> (defparameter x 1)
+	[...]
+
+	>>> x
+	1
+
+To get at the symbol itself, we need to `quote` it so that it doesn't get evaluated, like `(quote x)`, or `'x` for short. Let's use this knowledge to test the statement above, that a symbol is NOT the same as its name. We need the `symbol-name` function to fetch the name from a symbol data structure.
 
 	:::lisp
     >>> (type-of 'x)
 	SYMBOL
+
 	>>> (symbol-name 'x)
     "X"
+
 	>>> (equalp 'x (symbol-name 'x))
 	NIL     ; not equal!
 
-At read time, when the raw Lisp code is slurped in and parsed, all occurrences of a particular name are mapped to a single, unique symbol. And so, in this example, we're comparing the same symbol to itself.
+At read time, when the raw Lisp code is slurped in and parsed, all occurrences of a particular name are mapped to a single, unique symbol. And so, in the next example, we're comparing the same symbol to itself.
 
 	:::lisp
 	>>> (equalp 'x 'x)
@@ -56,18 +66,45 @@ Common Lisp follows the [Lisp-2 model](https://stackoverflow.com/questions/45785
     ;; Define function.
 	>>> (defun porridge ()
           (+ 1 1))
+	[...]
 
     ;; Define variable.
 	>>> (defparameter porridge 10)
+	[...]
 
 	;; Symbol now refers to both a function and a variable.
-	;; We try getting the value, getting the function, evaluating
-	;; the symbol, and using it in a function call.
-    >>> (list (symbol-value 'porridge)
-              (symbol-function 'porridge)
-              porridge
-              (porridge)))
-    (10 #<FUNCTION PORRIDGE> 10 2) ; <--- result
+    >>> (symbol-value 'porridge)
+    10
+    
+	>>> (symbol-function 'porridge)
+	#<FUNCTION PORRIDGE>
+   	
+	;; Compare the above to evaluating the symbol...
+    >>> porridge
+    10
+    
+	;; ...or invoking the function it identifies.
+	>>> (porridge)
+    2
+
+`(boundp 's)` and `(fboundp 's)` identify whether the symbol `s` is currently bound to a value or function, respectively. `(makunbound 's)` and `(fmakunbound 's)` remove the binding.
+
+	:::lisp
+	>>> (defparameter x 3)
+	X
+
+	>>> (boundp 'x)
+	T
+
+	>>> (fboundp 'x)
+	NIL
+
+	>>> (makunbound 'x)
+	[...]
+
+	>>> (boundp 'x)
+	NIL
+
 
 Each symbol also has an associated [property list](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_p.htm#property_list), accessed with `symbol-plist`, but that doesn't rear its head very often. There's also `symbol-package`, which we'll discuss later.
 
@@ -81,6 +118,7 @@ That said, there's another way to preserve case in symbol names. Wrap the name i
 	:::lisp
 	>>> (symbol-name '|hi|)
 	"hi"
+
     >>> (eq 'hi '|hi|)
 	NIL   ; they have different names
 
@@ -90,15 +128,17 @@ Y'know how symbols have a `symbol-function` property? We can overwrite the value
 	:::lisp
 	>>> (setf (symbol-function 'porridge)
               (lambda (x) (+ x 1)))
-	...
+	[...]
+
 	>>> (porridge 1)
 	2
 
-This enables us to reimplement `defun` as a 2-line macro, a somewhat cool fact that was first demonstrated to me in the book *On Lisp*.
+This enables us to reimplement `defun` as a macro, a somewhat cool fact that was first demonstrated to me in the book *On Lisp*.
 
 	:::lisp
 	(defmacro mydefun (name parameters &body body)
-	  `(setf (symbol-function ',name) (lambda ,parameters ,@body)))
+	  `(setf (symbol-function ',name)
+			 (lambda ,parameters ,@body)))
 
 ## Lexical binding and symbols
 Based on what we've covered already, it'd be reasonable to expect the following code to work.
@@ -109,7 +149,7 @@ Based on what we've covered already, it'd be reasonable to expect the following 
 
 But instead this raises an error about `x` being unbound.
 
-Here's why: `let` creates a [*lexical binding*](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_l.htm#lexical_binding) for the symbol `x`, which is kinda like a local variable in other languages. Within the body of the `let`, `x` is lexically bound to the value `1`, but that doesn't affect the *global* value of `x`, which is what `symbol-value` refers to.
+Here's why: `let` creates a [*lexical binding*](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_l.htm#lexical_binding) for the symbol `x`, which is kinda like a local variable in other languages. Within the body of the `let`, `x` is lexically bound to the value `1`, but that doesn't affect the *global* value of `x`, which is what `symbol-value` tries to retrieve.
 
 During evaluation, lexical bindings take precedence over global ones, so just evaluate the symbol to get its lexically bound value.
 
@@ -119,7 +159,7 @@ During evaluation, lexical bindings take precedence over global ones, so just ev
 		  x)
     5
 
-"Wow," you might be thinking, "Doesn't this make it easy to accidentally shadow a global variable with a local variable?". Well, yes. That's why, similar to most other programming languages, Common Lisp has a naming convention for global variables. They're given "earmuffs", so `x` becomes `*x*`.
+"Wow," you might be thinking, "Doesn't this make it easy to accidentally shadow a global variable with a local variable?". Well, yes. That's why, similar to most other programming languages, Common Lisp has a naming convention for global variables. They're given "earmuffs": `x` becomes `*x*`.
 
 ## What is a package?
 It's impossible to get a full picture of how symbols work without also understanding the related concept of **packages**. These are somewhat like namespaces or "packages" in other languages, except they're an actual data structure that we can directly query and manipulate.
@@ -130,17 +170,19 @@ Again [quoting](https://www.lispworks.com/documentation/HyperSpec/Body/t_pkg.htm
 
 The main use case of packages is that they allow *your* implementation of `fizzbuzz` to live alongside *my* `fizzbuzz`. If our packages are named `apple` and `banana`, and they both export a symbol called `fizzbuzz` for external use, then those symbols are referenced using `apple:fizzbuzz` and `banana:fizzbuzz`.
 
-Once a package has been created inside a running Lisp process, it's visible everywhere. We can reference that package and its symbols from anywhere else in the codebase.
+Note that packages don't have any notion of variables or functions, only symbols. That's why they're sometimes described as a "bag of symbols".
+
+Once a package has been created inside a running Lisp process, it's visible everywhere. If there's a package called `scooby`, and it exports the symbol `doo`, then that symbol can be referenced anywhere via `scooby:doo`, with no restrictions.
 
 ## How do symbols get added to a package?
-When the Lisp Reader inhales some Lisp code, it has to map each symbol name to a symbol data structure. It does this by "interning" each name into the currently active package, designated by a global variable called [\*package\*](https://www.lispworks.com/documentation/HyperSpec/Body/v_pkg.htm#STpackageST). `(intern "HI")` returns the existing symbol called "hi" if it already exists in `*package*`; otherwise, it adds a new symbol named "hi" to `*package*` and returns it.
+When the Lisp Reader inhales some Lisp code, it has to map each symbol name to a symbol data structure. It does this by "interning" each name into the currently active package, which is designated by a global variable called [\*package\*](https://www.lispworks.com/documentation/HyperSpec/Body/v_pkg.htm#STpackageST). `(intern "HI")` returns the existing symbol called "hi" if it already exists in `*package*`; otherwise, it adds a new symbol named "hi" to `*package*` and returns it. This behaviour ensures that each occurrence of a symbol name will map to the same symbol data structure.
 
 	:::lisp
 	CL-USER> (intern "hi")
-	|hi|
+	|hi|   ; note: intern doesn't capitalise names
 
 	CL-USER> (eq '|hi| (intern "hi"))
-	T
+	T      ; they're the same symbol
 
 ("CL-USER>" is the command prompt from the SLIME REPL, indicating that CL-USER is the currently active package).
 
@@ -171,7 +213,7 @@ By default, `intern` adds the symbol to the currently active package, but we can
 	BEANS> (find-symbol "TOAST")
 	TOAST
 
-(We've used `find-package` and `find-symbol` here, which are hopefully self-explanatory. We can't evaluate `(quote toast)` to verify that the symbol has been created, because "TOAST" will be interned by the Lisp Reader in the process).
+We've used `find-package` and `find-symbol` here, which are hopefully self-explanatory. We couldn't just evaluate `(quote toast)` to verify that the symbol exists, because in the process of reading that form, the `toast` symbol would be created and added to the active package by the Lisp Reader.
 
 ## Print-read consistency
 If you're confused by the printed representation of symbols, it might be due to print-read consistency, described by The Complete Idiot's Guide as follows:
@@ -211,7 +253,7 @@ We see the package's name, its nicknames, and its documentation. Then there's th
 	(symbol-package 'car)
 	#<PACKAGE "COMMON-LISP">
 
-(`symbol-package` tells us the "home package" of a symbol; that is, where it was initially intern'd).
+(`symbol-package` tells us the "home package" of a symbol; that is, where it was initially interned).
 
 Next in the inspector output, we see that CL-USER has 4 "present" symbols, which are symbols whose home package is CL-USER. We can check which symbols those are as follows:
 
@@ -225,7 +267,7 @@ Next in the inspector output, we see that CL-USER has 4 "present" symbols, which
 	QUICKLISP-INIT
 	HI
 
-(In the course of evaluating this, the Lisp Reader intern'd another symbol, `S`, into CL-USER, and so now there are 5 present symbols).
+(In the course of evaluating this, the Lisp Reader interned another symbol, `S`, into CL-USER, and so now there are 5 present symbols).
 
 Back to the inspector output. CL-USER doesn't export any symbols, so all 4 (now 5) of the present symbols are "internal symbols". Then there are 1329 inherited symbols from COMMON-LISP and the SBCL packages. We don't shadow any of those symbols. Shadowing allows you, for example, to define your own implementation of `car` or `+`, but it's usually considered a bad idea, since it subverts people's expectations of what those symbols refer to.
 
@@ -240,9 +282,9 @@ Let's define a package called `beatles`. The most common way to do this is via t
 The options we've used here:
 
 * `(:use :cl)` -- This makes BEATLES inherit all the exported symbols from the COMMON-LISP package (nicknamed CL). You'll almost always want to do this, because otherwise you'll have to prefix all the spec-defined symbols with `cl:`.
-* `(:export :play)` -- Exporting a symbol makes it visible outside the package. We're going to define a `play` function inside the BEATLES package and export it.
+* `(:export :play)` -- Exporting a symbol makes it visible outside the package. We're going to define a `play` function inside the BEATLES package and export the symbol.
 
-Why do many of these symbols have a colon as a prefix? This is a special syntax for referencing "keyword symbols", which are symbols in the [KEYWORD package](https://www.lispworks.com/documentation/HyperSpec/Body/11_abc.htm). A common use of keyword symbols is to avoid flooding a package namespace with symbols that will never be used again. If we wrote this defpackage form without keyword symbols, then symbols called `cl` and `play` would be pointlessy intern'd into the CL-USER package (or whichever package is active). In fact, as it stands, we're pointlessly interning the `beatles` symbol. We could avoid this by writing `(defpackage :beatles ...)` instead. The same applies for calls to `find-package`, as `(find-package :beatles)` works just as well as `(find-package 'beatles)` or `(find-package "BEATLES")`.
+Why do many of these symbols have a colon as a prefix? This is a special syntax for referencing "keywords", which are symbols in the [KEYWORD package](https://www.lispworks.com/documentation/HyperSpec/Body/11_abc.htm). A common use of keyword symbols is to avoid flooding a package namespace with symbols that will never be used again. If we wrote this defpackage form without keyword symbols, then symbols called `cl` and `play` would be pointlessy interned into the CL-USER package (or whichever package is active). In fact, as it stands, we're pointlessly interning the `beatles` symbol. We could avoid this by writing `(defpackage :beatles ...)` instead. The same applies for calls to `find-package`, as `(find-package :beatles)` works just as well as `(find-package 'beatles)` or `(find-package "BEATLES")`.
 
 Anyway, let's now define some functions in the BEATLES package. Since the `play` symbol is exported, the function it identifies will be available outside the package.
 
@@ -272,7 +314,7 @@ This diagram represents how I think about packages. I will be gravely insulted i
      alt="3 boxes labelled 'common-lisp-user', 'beatles' and 'stones'. The first contains a stick figure and a few symbols: 'car, 'cdr, etc. The 'beatles' box contains 'play, 'sing, 'car (from CL), etc. The 'stones box contains 'play (from 'beatles'), 'sing, 'car (from CL), etc."
      class="centered">
 
-We start off in CL-USER. The BEATLES package exports the `play` symbol, so we can call the function it identifies, but not `sing`.
+We start off in CL-USER. The BEATLES package exports the `play` symbol, so we can call the function it identifies, but we don't have access to the `sing` symbol.
 
 	:::lisp
 	CL-USER> (beatles:play)
@@ -282,7 +324,7 @@ We start off in CL-USER. The BEATLES package exports the `play` symbol, so we ca
 	CL-USER> (beatles:sing)
 	; (Error: The symbol SING is not external in the BEATLES package.)
 
-Of course, if we REALLY want to access an internal symbol from a package, we can use the double colon syntax. However, it's usually a bad idea to circumvent the interface of a package like that.
+If we REALLY want to access an internal symbol from a package, we can use double colon syntax. However, it's usually a bad idea to circumvent the interface of a package like that.
 
 	:::lisp
 	CL-USER> (beatles::sing)
@@ -329,14 +371,25 @@ BEATLES and STONES share a single symbol by the name of "PLAY", since it was int
 				(find-symbol "SING" (find-package :beatles)))
 	NIL
 
+## Package designators
+We've seen that macros/functions like `defpackage` and `find-package` accept various data types as references to package, including symbols, keywords and strings. These are collectively referred to as [package designators](https://novaspec.org/cl/26_1_Glossary#package_designator), defined in the standard as:
+
+> a designator for a package; that is, an object that denotes a package and that is one of: a string designator (denoting the package that has the string that it designates as its name or as one of its nicknames), or a package (denoting itself).
+
+A [string designator](https://novaspec.org/cl/26_1_Glossary#string_designator), in turn, is defined as:
+
+> a designator for a string; that is, an object that denotes a string and that is one of: a character (denoting a singleton string that has the character as its only element), a symbol (denoting the string that is its name), or a string (denoting itself). The intent is that this term be consistent with the behavior of string; implementations that extend string must extend the meaning of this term in a compatible way.
+
+Here's a potential gotcha. You might think that `(defpackage 'apple [...])` is a valid call to `defpackage`, because `'apple` is a symbol, which is a package designator! But actually, `'apple` is short for `(quote apple)`, which is a list and decidedly NOT a package designator. When we *evaluate* `(quote apple)`, it returns the symbol called "APPLE", which would be a valid package designator, but when we pass `(quote apple)` to a macro then the macro just sees a list.
+
 ## What's the deal with the KEYWORD package?
-We've already touched briefly on the KEYWORD package, and have seen that `:blah` is syntax sugar for `keyword:blah`. But besides avoiding namespace pollution, what's it good for?
+We've already touched briefly on the KEYWORD package. In brief: keywords are symbols in the KEYWORD package, and `:blah` is syntax sugar for `keyword:blah`. But besides avoiding namespace pollution, what are keywords good for?
 
 [Quoting the spec](https://www.lispworks.com/documentation/HyperSpec/Body/11_abc.htm):
 
 > The KEYWORD package contains symbols, called keywords, that are typically used as special markers in programs and their associated data expressions. 
 
-The core language has a few examples of keywords being used as "special markers", one of which is the use of keyword parameters for functions.
+There are a few examples of keywords being used as "special markers", one of which is the use of keyword parameters in functions.
 
 	:::lisp
 	;; Defining a function with a keyword parameter.
@@ -385,7 +438,7 @@ We've seen how symbols have a home package, which is the package into which they
 	CL-USER> (symbol-package (make-symbol "jinkies"))
 	NIL
 
-2) Syntax sugar to create a new symbol without interning it: `'#:name-here`. Note that `(eq '#:hi '#:hi)` returns `NIL`, since they're different symbols that just happen to share the same name. It's only within packages that each name is mapped to a unique symbol. If you want to be miserly about the number of junk symbols you're creating, then you can use these orphan symbols to denote package and symbol names in `defpackage`, `find-package`, `in-package` and elsewhere. I find it a bit verbose, though...
+2) Syntax sugar for homeless symbols: `'#:name-here`. Note that `(eq '#:hi '#:hi)` returns `NIL`, since they're different symbols that just happen to share the same name. It's only within packages that each name is mapped to a unique symbol. If you want to be miserly about the number of junk symbols you're creating, then you can use these orphan symbols to denote package and symbol names in `defpackage`, `find-package`, `in-package` and elsewhere. I find it a bit verbose, though...
 
 	:::lisp
 	(defpackage #:beatles
@@ -399,14 +452,14 @@ We've seen how symbols have a home package, which is the package into which they
 
     :::lisp
     CL-USER> (find-symbol "S")
-	S
-	:INTERNAL ; the second value returned by FIND-SYMBOL -- S is not exported
+	S         ; it exists!
+	:INTERNAL ; and is not exported
 
 	CL-USER> (unintern 's)
 	T
 
 	CL-USER> (find-symbol "S")
-	NIL
+	NIL       ; it does not exist anymore!
 	NIL
 
 ## Symbols and macros
@@ -434,18 +487,18 @@ Now, the above code should expand to something like...
   	  (play)
       (setf *package* #:g690))
 
-...where `#:g690` is a unique symbol produced for us by `gensym`.
+...where `#:g690` is a unique, homeless symbol produced for us by `gensym`.
 
-The problem with this idea is that it represents a misunderstanding of how code execution works in Common Lisp. For the sake of simplification, let's say that code execution consists of two stages: Reading and Evaluation. First, raw text is guzzled up by the Lisp Reader and converted to Lisp data structures. It's in this stage that symbols are created, and it's here that their home package is determined, based on the value of `*package*` when Reading occurs. Next comes Evaluation, which begins with the expansion of all macros in the code. Macros are functions that operate on Lisp data structures and return Lisp data structures. By the time our `with-package` macro sees the body of the code -- `(play)` -- it's already too late. The `play` symbol has already been interned in whatever package was active when the Lisp Reader did its job, probably CL-USER. It doesn't matter if, when our expanded code is being evaluated, we set `*package*` before calling `(play)`, because the `play` has already been interned somewhere else.
+The problem with this idea is that it represents a misunderstanding of how code execution works in Common Lisp. For the sake of simplification, let's say that code execution consists of two stages: Reading and Evaluation. First, raw text is guzzled up by the Lisp Reader and converted to Lisp data structures. It's in this stage that symbols are created, and it's here that their home package is determined, based on the value of `*package*` when Reading occurs. Next comes Evaluation, which begins with the expansion of all macros in the code. Macros are functions that operate on Lisp data structures and return Lisp data structures. By the time our `with-package` macro is passed the list `((play))` as its `body` parameter, it's already too late. The `play` symbol has been interned in whatever package was active when the Lisp Reader did its job, probably CL-USER. It doesn't matter if, when our expanded code is being evaluated, we set `*package*` before calling `(play)`, because the `play` has already been interned somewhere else.
 
 All that to say: the Evaluation of a form can't affect how it is read by the Lisp Reader, since Reading happens before Evaluation. We could implement something like `with-package` using *reader macros*, but that's a topic for another day.
 
 ## Special symbols: T and NIL
-There are two special symbols that evaluate to themselves: `t` and `nil`. When we evaluate `(symbol-value t)`, we get back... `t` again. These "special symbols" represent various things, including the boolean values true & false.
+There are two special symbols that evaluate to themselves: `t` and `nil`. When we evaluate `(symbol-value t)`, we get back... `t` again. These "special symbols" represent various things, including the boolean values true & false. `nil` also represents the empty list, hence why `(listp nil)` returns `t`.
 
 	:::lisp
 	CL-USER> (symbolp t)
-	T   ; yes, it's a symbol!
+	T   ; it's a symbol!
 
 	CL-USER> (symbol-name t)
 	"T" ; I'm not joking, it really is a symbol
@@ -459,8 +512,8 @@ There are two special symbols that evaluate to themselves: `t` and `nil`. When w
 	CL-USER> nil
 	NIL
 
-## When I compile a single function, how does SLIME know which package it's in?
-If you're an Emacs user and you've compiled a single Common Lisp form, like a function, using the `C-c C-c` shortcut, then you may have wondered how SLIME knows which package should be active when the Lisp Reader slurps in that form. For example, you might have the following code in one buffer:
+## When I compile a function, how does SLIME know which package it's in?
+If you're an Emacs user and you've compiled a single Common Lisp form, like a function, using the `C-c C-c` shortcut, then you may have wondered how SLIME knows which package should be active when the Lisp Reader slurps in that form. For example, you might have the following code in a buffer:
 
 	:::lisp
 	(in-package foo)
@@ -469,15 +522,15 @@ If you're an Emacs user and you've compiled a single Common Lisp form, like a fu
 
 In your REPL, the currently active package is CL-USER. So when you compile the `bar` function, why does it get added to the FOO package rather than CL-USER?
 
-This is an implementation detail of SLIME more than anything, but I remember being confused by it, so let's indulge ourselves with this brief tangent. First, let's see which ELisp function the `C-c C-c` shortcut (Ctrl-C Ctrl-C) is bound to. Entering the help command for keyboard shortcuts, `C-h k`, and then `C-c C-c`, we're told that this shortcut is bound to the function `slime-compile-defun`.
+This is an implementation detail of SLIME more than anything, but I remember being confused by it, so let's indulge ourselves with this brief tangent. First, let's see which Elisp function the `C-c C-c` shortcut (Ctrl-C Ctrl-C) is bound to. Entering the help command for keyboard shortcuts, `C-h k`, and then `C-c C-c`, we're told that this shortcut is bound to the function `slime-compile-defun`.
 
-This function is defined in `slime.el`; following the link there and searching for "in-package", we find the following comment:
+This function is defined in `slime.el`. Following the link there and searching for "in-package", we find the following comment:
 
 > We have the concept of the "current Lisp package". RPC requests always say what package the user is making them from and the Lisp side binds that package to \*BUFFER-PACKAGE\* to use as it sees fit. The current package is defined as the buffer-local value of 'slime-buffer-package' if set, and otherwise the package named by the nearest IN-PACKAGE as found by text search (cl-first backwards, then forwards).
 
 And there's our answer: unless `slime-buffer-package` is set, SLIME first searches backwards and then forwards for the nearest IN-PACKAGE form. Not mentioned is that if no IN-PACKAGE form is found, then the code is compiled in the currently active package, whether that's CL-USER or something else.
 
-For curiosity's sake, here's the ELisp function used to search for IN-PACKAGE.
+For curiosity's sake, here's the Elisp function used to search for IN-PACKAGE.
 
 	:::lisp
 	(defun slime-search-buffer-package ()
@@ -488,22 +541,3 @@ For curiosity's sake, here's the ELisp function used to search for IN-PACKAGE.
 		  (when (or (re-search-backward regexp nil t)
 					(re-search-forward regexp nil t))
 			(match-string-no-properties 2)))))
-
-## String designators
-We've seen that macros/functions like `defpackage` and `find-package` accept various data types as package references, including symbols, keywords and strings. These are collectively referred to as [package designators](https://novaspec.org/cl/26_1_Glossary#package_designator), defined in the standard as:
-
-> a designator for a package; that is, an object that denotes a package and that is one of: a string designator (denoting the package that has the string that it designates as its name or as one of its nicknames), or a package (denoting itself).
-
-A [string designator](https://novaspec.org/cl/26_1_Glossary#string_designator), in turn, is defined as:
-
-> a designator for a string; that is, an object that denotes a string and that is one of: a character (denoting a singleton string that has the character as its only element), a symbol (denoting the string that is its name), or a string (denoting itself). The intent is that this term be consistent with the behavior of string; implementations that extend string must extend the meaning of this term in a compatible way.
-
-Here's a potential gotcha. You might think that `(defpackage 'apple [...])` is a valid call to `defpackage`, because `'apple` is a symbol, which is a package designator! But actually, `'apple` is short for `(quote apple)`, which is a list and decidedly NOT a package designator. When we *evaluate* `(quote apple)`, it returns the symbol called "APPLE", which would be a valid package designator, but when we pass `(quote apple)` to a macro then the macro just sees a list.
-
-## Miscellanea (I don't know how to spell this)
-Here are a few minor symbol- and package-related functions that we didn't get around to discussing:
-
-* [boundp](https://novaspec.org/cl/f_boundp): returns `t` if a symbol has a value, otherwise `nil`.
-* [fboundp](https://novaspec.org/cl/f_fboundp): same, but for functions.
-* [makunbound](https://novaspec.org/cl/f_makunbound) and [fmakunbound](https://novaspec.org/cl/f_fmakunbound): remove the value binding and function binding, respectively, of a symbol.
-* [with-package-iterator](https://novaspec.org/cl/f_with-package-iterator): seems to be an alternative way of iterating over the symbols in a package.
