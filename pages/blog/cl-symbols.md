@@ -5,7 +5,7 @@ requires: code
 tags: lisp programming
 publish: y
 
-Lisp programming languages have an extremely simple syntax, where everything is either a list or an atom. The most common type of atom is the **symbol**, which is used to name things like variables and functions. In the Common Lisp code below, `defun`, `pie`, `let`, `+`, `x` and `y` are all symbols.
+Lisp programs have an extremely simple syntax, where everything is either a list or an atom. The most common type of atom is the **symbol**, which is used to give names to things like variables and functions. In the Common Lisp code below, `defun`, `pie`, `let`, `+`, `x` and `y` are all symbols.
 
 	:::lisp
 	(defun pie (x)
@@ -33,7 +33,7 @@ When it comes to definitions, it's helpful to consult Common Lisp's ANSI specifi
 In other words, a symbol is a data structure for identifying things. It's important to emphasise that **symbols are not strings**. Each symbol has an associated name, which is represented as a string, but the symbol itself is not a string. I point this out because strings are the closest primitive data type to symbols in most other programming languages.
 
 ## What is to be done... with symbols?
-If we enter just `x` at the REPL, the symbol of that name will be evaluated, with the result being the **value** referred to by that symbol.
+If we enter just "x" at the REPL, the symbol of that name will be evaluated, with the result being the **value** referred to by that symbol.
 
 	:::lisp
 	>>> (defparameter x 1)
@@ -111,9 +111,9 @@ Each symbol also has an associated [property list](https://www.lispworks.com/doc
 ## Why is the symbol name in all-caps?
 Good catch: we entered the symbol `'x`, but the printed symbol name was `"X"`. By default, all symbol names are converted to upper case by the so-called Lisp Reader. This can be controlled with a parameter called [readtable-case](https://www.lispworks.com/documentation/HyperSpec/Body/23_ab.htm), which, if you really want to preserve your precious little capitalisation, can be set to `:preserve`.
 
-Honestly, I think this is one of the language's biggest warts. Under the default behaviour, if you're trying to implement a formula that contains - *gasp* - both `n` AND `N`, you're reduced to mutating one of the names, as if you were a wretched internet user trying to meet password requirements by going from "password" to "Password1!".
+Honestly, I think this is one of the language's biggest warts. Under the default behaviour, if you're trying to implement a formula that contains - *gasp* - both `n` AND `N`, you're reduced to mutating one of the names, as if you were a wretched internet user trying to meet password requirements by going from "password" to "Password1!". I'm not sure why this behaviour was chosen as the default, but usually such things can be blamed on the ANSI standard having to maintain backward compatibility with pre-existing Lisp dialects.
 
-That said, there's another way to preserve case in symbol names. Wrap the name in `|`s, like `'|x|`.
+That said, there's a way to preserve case in symbol names regardless of `readtable-case`. Wrap the name in `|`s, like `'|x|`.
 
 	:::lisp
 	>>> (symbol-name '|hi|)
@@ -129,7 +129,7 @@ The rules for symbol names are somewhat unusual, compared to other programming l
 	>>> (symbol-name '<_%&?)
 	"<_%&?"
 
-What are these rules? They're described in [Section 2.1](https://www.lispworks.com/documentation/HyperSpec/Body/02_a.htm) of the spec, and were admirably summarised by [ScottBurson](https://www.reddit.com/r/Common_Lisp/comments/1l3apg1/comment/mw1srxb/) on Reddit -- now reproduced here with their permission.
+What are these rules? They're described in [Section 2.1](https://www.lispworks.com/documentation/HyperSpec/Body/02_a.htm) of the spec, and were admirably summarised by ScottBurson on Reddit -- now reproduced here with their permission.
 
 Any consecutive sequence of characters will be parsed as a symbol, except:
 
@@ -144,7 +144,7 @@ As exceptions to these exceptions:
 * any sequence of characters surrounded by `|` is parsed as a symbol.
 * the non-symbol meaning of any character (including `|`) can be suppressed by preceding it with `\`.
 
-So here are some valid symbols: `foo`, `foo-bar`, `=`, `<_%&?`, `23-and-me`, `|(|`, and `\(`.
+Following the rules above, here are some valid symbols: `foo`, `foo-bar`, `=`, `<_%&?`, `23-and-me`, `|(|`, and `\(`.
 
 ## The secrets of the defun
 Y'know how symbols have a `symbol-function` property? We can overwrite the value of this property with `setf`. That's essentially what `defun` is doing behind the scenes.
@@ -191,6 +191,14 @@ If `x` has already been declared a dynamic (a.k.a. global) variable, however, th
 (The exact details around variables, bindings, lexical scope, dynamic scope, etc. are beyond the scope of this article).
 
 "Wow," you might be thinking, "Doesn't this make it easy to accidentally mutate a global variable?". Well, yes. That's why, similar to most other programming languages, Common Lisp has a naming convention for global variables. They're given "earmuffs", so that `x` becomes `*x*`.
+
+## Did you say naming conventions?
+Yes, the Common Lisp community has adopted a number of [naming conventions](https://www.cliki.net/Naming+conventions). Some that I'll highlight here:
+
+* `*x*` is a global variable.
+* `+x+` is a constant.
+* `funcp` or `func-p` is a *predicate* function, i.e. it returns a truthy or falsey value. I much prefer the Scheme convention, `func?`.
+* Check out that cliki page for more!
 
 ## What is a package?
 It's impossible to get a full picture of how symbols work without also understanding the related concept of **packages**. These are somewhat like namespaces or "packages" in other languages, except they're an actual data structure that we can directly query and manipulate.
@@ -403,7 +411,7 @@ BEATLES and STONES share a single symbol by the name of "PLAY", since it was int
 	NIL
 
 ## Package designators
-We've seen that macros/functions like `defpackage` and `find-package` accept various data types as references to package, including symbols, keywords and strings. These are collectively referred to as [package designators](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_p.htm#package_designator), defined in the standard as:
+We've seen that macros/functions like `defpackage` and `find-package` accept various data types as references to a package, including symbols, keywords and strings. These are collectively referred to as [package designators](https://www.lispworks.com/documentation/HyperSpec/Body/26_glo_p.htm#package_designator), defined in the standard as:
 
 > a designator for a package; that is, an object that denotes a package and that is one of: a string designator (denoting the package that has the string that it designates as its name or as one of its nicknames), or a package (denoting itself).
 
@@ -461,7 +469,7 @@ In an act of unashamed plagiarism, here's a lazy quote of more usage advice from
 >  In situations where the set of names is not finitely enumerable (i.e., where name conflicts might arise) it is frequently best to use symbols in some package other than KEYWORD so that conflicts will be naturally avoided. For example, it is generally not wise for a program to use a keyword as a property indicator, since if there were ever another program that did the same thing, each would clobber the other's data. 
 
 ## Can a symbol be homeless?
-We've seen how symbols have a home package, which is the package into which they were originally interned. `(symbol-package 'sym)` yields this package. Here are some ways for a symbol to be orphaned, such that `(symbol-package 'sym)` returns `NIL`.
+We've seen how symbols have a home package, which is the package into which they were originally interned. `(symbol-package 'sym)` yields this package. Here are some ways in which a symbol can become orphaned, such that `(symbol-package 'sym)` returns `NIL`.
 
 1) Manually create a symbol data structure: `(make-symbol "NAME-HERE")`.
 
@@ -520,7 +528,7 @@ Now, the above code should expand to something like...
 
 ...where `#:g690` is a unique, homeless symbol produced for us by `gensym`.
 
-The problem with this idea is that it represents a misunderstanding of how code execution works in Common Lisp. For the sake of simplification, let's say that code execution consists of two stages: Reading and Evaluation. First, raw text is guzzled up by the Lisp Reader and converted to Lisp data structures. It's in this stage that symbols are created, and it's here that their home package is determined, based on the value of `*package*` when Reading occurs. Next comes Evaluation, which begins with the expansion of all macros in the code. Macros are functions that operate on Lisp data structures and return Lisp data structures. By the time our `with-package` macro is passed the list `((play))` as its `body` parameter, it's already too late. The `play` symbol has been interned in whatever package was active when the Lisp Reader did its job, probably CL-USER. It doesn't matter if, when our expanded code is being evaluated, we set `*package*` before calling `(play)`, because the `play` has already been interned somewhere else.
+The problem with this idea is that it represents a misunderstanding of how code execution works in Common Lisp. For the sake of simplification, let's say that code execution consists of two stages: Reading and Evaluation. First, raw text is guzzled up by the Lisp Reader and converted to Lisp data structures. It's in this stage that symbols are created, and it's here that their home package is determined, based on the value of `*package*` when Reading occurs. Next comes Evaluation, which begins with the expansion of all macros in the code. Macros are functions that operate on Lisp data structures and return Lisp data structures. By the time our `with-package` macro is passed the list `((play))` as its `body` parameter, it's already too late. The `play` symbol has been interned in whatever package was active when the Lisp Reader did its job, probably CL-USER. It doesn't matter if, when our expanded code is being evaluated, we set `*package*` before calling `(play)`, because `play` has already been interned somewhere else.
 
 All that to say: the Evaluation of a form can't affect how it is read by the Lisp Reader, since Reading happens before Evaluation. We could implement something like `with-package` using *reader macros*, but that's a topic for another day.
 
@@ -553,7 +561,7 @@ If you're an Emacs user and you've compiled a single Common Lisp form, like a fu
 
 In your REPL, the currently active package is CL-USER. So when you compile the `bar` function, why does it get added to the FOO package rather than CL-USER?
 
-This is an implementation detail of SLIME more than anything, but I remember being confused by it, so let's indulge ourselves with this brief tangent. First, let's see which Elisp function the `C-c C-c` shortcut (Ctrl-C Ctrl-C) is bound to. Entering the help command for keyboard shortcuts, `C-h k`, and then `C-c C-c`, we're told that this shortcut is bound to the function `slime-compile-defun`.
+This is an implementation detail of SLIME more than anything, but I remember being confused by it, so let's indulge ourselves with this brief tangent. First, let's see which Elisp function the `C-c C-c` shortcut is bound to. Entering the help command for keyboard shortcuts, `C-h k`, and then `C-c C-c`, we're told that this shortcut is bound to the function `slime-compile-defun`.
 
 This function is defined in `slime.el`. Following the link there and searching for "in-package", we find the following comment:
 
@@ -575,4 +583,4 @@ For curiosity's sake, here's the Elisp function used to search for IN-PACKAGE.
 
 <hr />
 
-<small>With thanks to ScottBurson, stassats, vindarel, zacque0 and kagevf for their helpful feedback on this post.</small>
+<small>With thanks to ScottBurson, stassats, vindarel, zacque0, kagevf, Jamie and Ordy for their feedback on this post.</small>
