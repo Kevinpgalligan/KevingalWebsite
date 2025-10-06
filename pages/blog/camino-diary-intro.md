@@ -1,8 +1,7 @@
 title: "Camino diary: an introduction"
-date: 2025-10-01
+date: 2025-10-05
 description: The what, why, where and how of my Camino experience.
 tags: travel
-publish: y
 
 In October of 2023, I flew to Spain and walked over 600km along the [Camino de Santiago](https://en.wikipedia.org/wiki/Camino_de_Santiago). I kept a diary throughout this journey, writing in broken Spanish. Here, I'll give a brief introduction to the series of diary entries, which I have now transcribed and translated to less-broken English.
 
@@ -37,7 +36,7 @@ Here are the stops I *planned* to make along the way, with particularly difficul
 4. Laredo (25.8km)
 5. Guemes (29km)
 6. Santander (15.2km)
-7. Santillan del Mar (X 37km)
+7. Santillana del Mar (X 37km)
 8. Comillas (22km)
 9. Colombres (28.8km)
 10. Llanes (23.2km)
@@ -68,10 +67,10 @@ In reality, this isn't the precise route I ended up following, and I actually go
 * I used the Buen Camino app for navigation (among other things). I didn't realise that the stages in the app were different to the stages I'd copied from pilgrim.es, and so I accidentally ended up following the app's much more ambitious schedule for the first few days.
 * There were a few branching paths that I hadn't anticipated. Sometimes I took a more scenic route, sometimes I took a shortcut.
 
-I had a few days to spare at the end, which I used to explore Santiago and visit Fisterra / Finisterre. For the closing moments of the trip, I envisioned myself reading Sylvia Plath's poem *Finisterre* while standing next to the Finisterre lighthouse. [Editor's note: well aren't you a pretentious little sod?]
+I had a few days to spare at the end, which I used to explore Santiago and visit Fisterra / Finisterre. For the closing moments of the trip, I envisioned myself reading Sylvia Plath's poem of the same name - *Finisterre*. [Editor's note: well aren't you a pretentious little sod?]
 
 ## What did you pack?
-I had a relatively small backpack, with a capacity of 22L. It weighed 4-6kg, depending on whether my water bottle was full and whether I was carrying food. Many other pilgrims commented on how small and light my bag was. It was a conscious choice, because all the guides said to be minimalist and reduce weight as much as possible.
+I had a relatively small backpack, with a capacity of 22L. It weighed 4-6kg, depending on whether my water bottle was full and whether I was carrying food. Many other pilgrims commented on how small and light my bag was. It was a conscious choice - all the guides said to be minimalist and reduce weight as much as possible.
 
 Here's the full list:
 
@@ -114,10 +113,10 @@ My main resource was [r/CaminoDeSantiago](https://www.reddit.com/r/CaminoDeSanti
 ## You kept a diary? Wow, loser.
 Yep. Almost every day. And I always went back to fill in the days I missed. It was a lot of work, but I didn't have much else to do in the evenings, and I'm glad to now have a record of my trip.
 
-I wrote in Spanish, for the sake of practice. This somewhat limited what I could express, but I usually managed to capture the day's events with the generous use of a dictionary. I wrote in a mixture of present and past tense, but for the transcription I'm converting everything to the past tense. I've also done some editing, moved some non-chronological bits around, and added some details that I neglected to write down at the time.
+I wrote in Spanish, for the sake of practice. This somewhat limited what I could express, but I usually managed to capture the day's events with the generous use of a dictionary. I wrote in a mixture of present and past tense, but for the transcription I'm converting everything to the past tense. I've also done extensive editing, moved some non-chronological bits around, and added details that I neglected to write down at the time.
 
 ## What did you eat?
-At the time I did the Camino, I was vegetarian. Sometimes I had to settle for subpar or expensive veggie food, especially in small villages, but for the most part it was fine. I ate a LOT of tortilla de patatas (Spanish omelette), as they're available in all the cafeterías. I'm now vegan, which would make it a lot harder. I would've had to cook for myself a lot more and carry food supplies with me.
+At the time I did the Camino, I was vegetarian. Sometimes I had to settle for subpar or expensive veggie food, especially in small villages, but for the most part it was fine. I ate a LOT of tortilla de patatas (Spanish omelette), as they're available in all the cafeterías. It would've been much harder as a vegan; I suspect I would've had to cook for myself a lot more and carry more food supplies with me.
 
 ## Why are you writing this?
 Seems a shame to write so much and then not share it with anyone. Also, it's fun.
