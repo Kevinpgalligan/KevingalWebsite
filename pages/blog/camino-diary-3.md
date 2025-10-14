@@ -59,16 +59,37 @@ The kittens kept me company during breakfast. I decided to break with the Buen C
 ...and I would then have 5 days to spare, as my flight wasn't until November 6th. This was a relief, because I'd thought I was *behind* schedule, if anything, due to taking a day to be a tourist in Bilbao and due to my early stop in Priesca. I decided to roughly follow the Buen Camino plan, but maybe shortening some of the longer stages and lengthening some of the shorter ones.
 
 <figure>
-<img src="{{ url_for('static', filename='img/camino/IMG_20231017_104146.jpg') }}"
+<img src="{{ url_for('static', filename='img/camino/IMG_20231018_083412_1.jpg') }}"
      class="centered">
 <figcaption>The momma cat giving me a baleful look.</figcaption>
 </figure>
 
 After a day of monotonous walking through the countryside, the other pilgrims and I had to scale a steep hill. It was challenging, especially since I was trying to keep weight off my left leg (what with the blister and the mild ankle injury). While climbing the hill I encountered a few pilgrims who'd been at the albergue: Lee, Jana, and the 4 Spanish guys. I also encountered... Marty, the *estadounidense* (American) I'd shared a room with back in the first convent I stayed at. He'd fallen behind and I hadn't seen him in a while, but he told me he'd caught up by taking a bus. There was something delightful about running into people I hadn't expected to see again.
 
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231018_093608.jpg') }}"
+     alt="A poorly framed picture of Spanish countryside with the sea and towns in the background and overgrown ruins in the foreground."
+     class="centered">
+<figcaption>As you can see, I'm not a photographer.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231018_094939.jpg') }}"
+     alt="Some bamboo (?) with a Spanish language sign in front of it."
+     class="centered">
+<figcaption>"These canes have an owner! We're still not a communist country."</figcaption>
+</figure>
+
 Lee kept me company for a good deal of the ascent. We talked about the political situation in Taiwan and the history of Ireland, and he told me that Taiwan has the best vegetarian food in the world. (To be confirmed). Lee was carrying enormous backpacks that seemed to contain the equipment for every possible eventuality on the Camino. If my appendix burst, Lee would be able to set up an operating theatre on the side of a mountain and extract it. If we were attacked by a military helicopter, Lee would have the ground-to-air missiles to take it down. His bags were so heavy that all his toenails had turned black from weeks of walking under the pressure. A useful pilgrim to know, for sure.
 
+
 It was a relief to finally make it over the hill. I met Lee and Jana at the top, and we made our way to the collection point from where a van would bring us to the albergue, which was somewhat far from the Camino.
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231018_150116.jpg') }}"
+     class="centered">
+<figcaption>A view from the top of the hill.</figcaption>
+</figure>
 
 The albergue was relatively big, with capacity for ~60 pilgrims, but that night there were only about 12 of us. The hosts provided a tasty meal that included soup, roasted vegetables, and stewed apples. I sat at a table with Marty, Jana, Lee, Stefan (a nice German guy suffering from terrible blisters), and Hannah (another Taiwanese person). The 2 French women from the albergue at Priesca were at the other table. I told my companions the tragicomic story of Max, the guy I'd met at the start of the trip who thought he was being poisoned by the Georgian government. I felt a twinge of shame afterwards - was it wrong to use Max as a topic of dinner conversation? Stefan then told us about a friend of his who'd been in a psychiatric hospital for 16 years, suffering from schizophrenia after a weed-induced psychotic episode. And Marty shared that he'd lost his brother recently. The topics might sound a bit depressing, but I had a good time and enjoyed their company.
 
@@ -96,6 +117,12 @@ I said goodbye to my companions. Jana was returning to Germany, while Lee and Ha
 
 Before departing, I bought an icepack to put on my ankle, and some ibuprofen to reduce the inflammation. The bus brought me to Avilés by around 1pm. I went straight to the albergue Pablo Solís. It was sparsely furnished, but functional. I was joined there by Aurora, Wesley, Nico the Frenchman, and Mira the Ukrainian. I was also introduced to some new pilgrims: Tony, an English guy who gave me a compression bandage to put on my ankle; Kobi, a young Dutch lad who was suffering terribly from blisters; and a Russian woman who told me she'd decided on that very day to end her Camino early due to all the rain. She had nothing to prove, she said, because she'd done it before. But would someone with nothing to prove feel the need to say they have nothing to prove?
 
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231020_174449.jpg') }}"
+     class="centered">
+<figcaption>The bunks in the hostel.</figcaption>
+</figure>
+
 Aurora & Wesley cooked pasta and shared it with me. I felt like a Camino beggar, since I kept taking people's food and not giving any back. Since I didn't feel like walking on my dodgy ankle, I stayed in the hostel for the rest of the evening and spent the time chatting, reading and watching brainrot videos on my phone.
 
 ### Day 14, Saturday, October 21st, Cudillero (28km, 357.4km total)
@@ -103,29 +130,42 @@ I left Avilés around 8am, after a humble breakfast of 1 banana. As I was prepar
 
 Aurora caught up with me before long and we walked together for a while. Without Wesley's language skills, it was hard for us to communicate with each other, but I still enjoyed her company. We managed to get by on a combination of basic French, basic English, hand gestures, and translation apps.
 
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231021_143649.jpg') }}"
+     class="centered">
+<figcaption>Started seeing a lot of these bad boys. I think they were a traditional Asturian structure for storing grain.</figcaption>
+</figure>
+
 Later, I saw Aurora and Wesley again (and Matias, the Argentinian dude) in a café. I stopped for tea and a snack, and talked to an old Spanish lady with had a cute dog. Since I'd been walking pretty slowly and wouldn't be able to keep up with them, I let Aurora and Wesley (henceforth A&W) go on without me.
 
 My ankle was sore at the beginning of the day, but I didn't notice it after a while, possibly due to the ibuprofen I'd taken. I encountered two loose dogs: one was friendly, the other (a mastiff) wasn't. Mastiffs were a common breed in those parts, employed to protect farm animals from wolves. This particular mastiff was guarding some goats. I also saw a few lizards. I followed the route through a wood, stepping over and ducking under fallen trees.
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231021_090140.jpg') }}"
+     class="centered">
+<figcaption>One of said fallen trees.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231021_140951.jpg') }}"
+     class="centered">
+<figcaption>Pablo Picasso's house. (Not).</figcaption>
+</figure>
 
 Then I had to make a decision: take a detour to Cudillero, a coastal town about 1km away, where A&W were staying; or continue the remaining 10km until Soto de Luiñas, the designated stopping point on Buen Camino. I'd already walked 27km, so I chose the shorter option. In the albergue there was myself, A&W, Sergio (a Spanish man who'd retired in the recent past; he lived in London for many years and spoke English with a London accent), Tony, and Kobi. Kobi was only 17, and Tony seemed to have taken on the role of his Camino Dad, which was cute to see.
 
 All of us, except A&W, went for food and drinks. I ate padrón peppers and patatas bravas, typical Spanish tapas. Some of the peppers were VERY spicy. Sergio slagged me for ordering a caña instead of a pint. We discussed various topics, political and otherwise. Tony spoke with eloquence, but also showed his ignorance on certain topics, including Northern Ireland. He referred to Ireland as Southern Ireland - a common trigger for Irish people. He didn't seem to acknowledge the distinct identities of the component countries of the United Kingdom, and was strongly in favour of maintaining the union, for reasons of diversity, economics, etc. Sergio agreed with him - countries should remain unified! Good thing there weren't any Catalans around...
 
-Anyway, despite their somewhat nationalistic opinions, we got along fine. Tony was a man of faith, and seemed to be doing the Camino for spiritual reasons. Kobi, on the other hand, was skeptical of religion. Seemed to be a bright kid.
-
-<!--
-
 <figure>
-<img src="{{ url_for('static', filename='img/camino/IMG_20231013_081634.jpg') }}"
-     alt="A very red sky, looks like a painting, lots of grey-blue clouds. A church in the background, a house in the foreground."
+<img src="{{ url_for('static', filename='img/camino/IMG_20231021_181649.jpg') }}"
      class="centered">
-<figcaption>Red sky as I left Santander.</figcaption>
+<figcaption>Cudillero. Worth the detour!</figcaption>
 </figure>
 
 <figure>
-<video controls class="centered">
-  <source src="{{ url_for('static', filename='img/camino/VID_20231014_071358.mp4') }}" type="video/mp4">
-</video> 
-<figcaption>Playing with the slidey mattress as chaos surrounded me.</figcaption>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231021_181818_1.jpg') }}"
+     class="centered">
+<figcaption>Cudillero #2.</figcaption>
 </figure>
--->
+
+Anyway, despite their somewhat nationalistic opinions, we got along fine. Tony was a man of faith, and seemed to be doing the Camino for spiritual reasons. Kobi, on the other hand, was skeptical of religion. Seemed to be a bright kid.

@@ -3,8 +3,14 @@ date: 2025-10-09
 description: A transcription of my diary from the Camino de Santiago.
 tags: travel
 
-### Day 15, Sunday, October 22nd, Cadavedo (...)
+### Day 15, Sunday, October 22nd, Cadavedo (30.5km, 387.9km total)
 We left the albergue when it was still mostly dark out. Sergio and I happened to leave at the same time, but we separated when I took an Aurora-endorsed shortcut back to the main trail. I stopped in at a café, where other pilgrims I knew gradually filtered in: A&W, Mira the Ukrainian, Tony, Kobi and Sergio. In passing, I thought I heard a local Spaniard mutter "puto blanco" under his breath, which I think would translate to "white bastard"? If he was indeed referring to me, then the meaning was pretty clear. A refreshing change from hearing "Buen Camino" every day, anyway.
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG-20231102-WA0005.jpg') }}"
+     class="centered">
+<figcaption>The albergue host snapped this picture as Sergio and I left the albergue. I grabbed it from their Facebook page.</figcaption>
+</figure>
 
 Aurora left her walking stick (a literal stick) behind in the café. I caught up with her to return it and we walked together once again. It was a challenging segment, with hard surfaces and lots of hills, but the scenery was worth it. We walked through forests and crossed over streams. Out of boredom, I picked up some fallen branches and hurled them like javelins. We all laughed when a bird made an indignant squawk just as one of these branches landed among the trees. The coastal landscapes of this segment were among the most beautiful I'd seen on the Camino up to that point.
 
@@ -85,20 +91,3 @@ Freddy showed me around the property. They had a barn for their animals, and the
 Freddy shared a line that was part of their philosophy for the farm: *cada uno en su casa haz lo que quiera*, or "each person in their home do what they want". I guess that's not an unusual idea for people who move to the middle of nowhere to escape city life.
 
 That night, I didn't feel comfortable in the bed. The room was dusty and creepy. The main entrance to the house was drafty, and it was very cold. I forgot to ask Freddy and Nicole for a blanket before they went to bed, so I thought I was going to be awake freezing the whole night, but thankfully Freddy came back downstairs for something and a blanket was bestowed upon me, and I managed to get to sleep.
-
-<!--
-
-<figure>
-<img src="{{ url_for('static', filename='img/camino/IMG_20231013_081634.jpg') }}"
-     alt="A very red sky, looks like a painting, lots of grey-blue clouds. A church in the background, a house in the foreground."
-     class="centered">
-<figcaption>Red sky as I left Santander.</figcaption>
-</figure>
-
-<figure>
-<video controls class="centered">
-  <source src="{{ url_for('static', filename='img/camino/VID_20231014_071358.mp4') }}" type="video/mp4">
-</video> 
-<figcaption>Playing with the slidey mattress as chaos surrounded me.</figcaption>
-</figure>
--->
