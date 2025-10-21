@@ -4,7 +4,7 @@ description: A transcription of my diary from the Camino de Santiago.
 tags: travel
 
 ### Day 10, Tuesday, October 17th 2023, Priesca (28.6km, 291.7km total)
-I left Ribadesella around 9am/10am. This turned out to be a difficult segment, with lots of ups and downs. While walking down one of the hills, I went over on my left ankle and hurt it. Another annoying injury, joining the blister on that same foot. I didn't see many pilgrims, besides an *estandounidense* whom I recognised as the volunteer translator from Padre Ernesto's albergue. She was there with her partner and her dog, Coco. They were walking with another American and didn't seem interested in talking to me, so I overtook them.
+I left Ribadesella around 9am/10am. This turned out to be a difficult segment, with lots of ups and downs. While descending one of the hills, I went over on my left ankle and hurt it. Another annoying injury, joining the blister on that same foot. I didn't see many pilgrims, besides an *estandounidense* whom I recognised as the volunteer translator from Padre Ernesto's albergue. She was there with her partner and her dog, Coco. They were walking with another American and didn't seem interested in talking to me, so I overtook them.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231017_104146.jpg') }}"
@@ -120,7 +120,7 @@ Before departing, I bought an icepack to put on my ankle, and some ibuprofen to 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231020_174449.jpg') }}"
      class="centered">
-<figcaption>The bunks in the hostel.</figcaption>
+<figcaption>The bunks in the albergue. Fascinating.</figcaption>
 </figure>
 
 Aurora & Wesley cooked pasta and shared it with me. I felt like a Camino beggar, since I kept taking people's food and not giving any back. Since I didn't feel like walking on my dodgy ankle, I stayed in the hostel for the rest of the evening and spent the time chatting, reading and watching brainrot videos on my phone.
@@ -133,7 +133,7 @@ Aurora caught up with me before long and we walked together for a while. Without
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231021_143649.jpg') }}"
      class="centered">
-<figcaption>Started seeing a lot of these bad boys. I think they were a traditional Asturian structure for storing grain.</figcaption>
+<figcaption>Started seeing a lot of these bad boys in Asturias. I think they were traditionally used to store crops.</figcaption>
 </figure>
 
 Later, I saw Aurora and Wesley again (and Matias, the Argentinian dude) in a café. I stopped for tea and a snack, and talked to an old Spanish lady with had a cute dog. Since I'd been walking pretty slowly and wouldn't be able to keep up with them, I let Aurora and Wesley (henceforth A&W) go on without me.
@@ -149,18 +149,21 @@ My ankle was sore at the beginning of the day, but I didn't notice it after a wh
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231021_140951.jpg') }}"
      class="centered">
-<figcaption>Pablo Picasso's house. (Not).</figcaption>
+<figcaption>The world-renowned Nondescript White House.</figcaption>
 </figure>
 
-Then I had to make a decision: take a detour to Cudillero, a coastal town about 1km away, where A&W were staying; or continue the remaining 10km until Soto de Luiñas, the designated stopping point on Buen Camino. I'd already walked 27km, so I chose the shorter option. In the albergue there was myself, A&W, Sergio (a Spanish man who'd retired in the recent past; he lived in London for many years and spoke English with a London accent), Tony, and Kobi. Kobi was only 17, and Tony seemed to have taken on the role of his Camino Dad, which was cute to see.
 
-All of us, except A&W, went for food and drinks. I ate padrón peppers and patatas bravas, typical Spanish tapas. Some of the peppers were VERY spicy. Sergio slagged me for ordering a caña instead of a pint. We discussed various topics, political and otherwise. Tony spoke with eloquence, but also showed his ignorance on certain topics, including Northern Ireland. He referred to Ireland as Southern Ireland - a common trigger for Irish people. He didn't seem to acknowledge the distinct identities of the component countries of the United Kingdom, and was strongly in favour of maintaining the union, for reasons of diversity, economics, etc. Sergio agreed with him - countries should remain unified! Good thing there weren't any Catalans around...
+Then I had to make a decision: take a detour to Cudillero, a coastal town about 1km away, where A&W were staying; or continue the remaining 10km until Soto de Luiñas, the designated stopping point on Buen Camino. I'd already walked 27km, so I chose the shorter option. Cudillero was pretty. It had a circular port filled with boats; a strong tide; a grey sea; and colourful buildings laid out in concentric rings around the port.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231021_181649.jpg') }}"
      class="centered">
 <figcaption>Cudillero. Worth the detour!</figcaption>
 </figure>
+
+In the albergue there was myself, A&W, Sergio (a Spanish man who'd retired in the recent past; he lived in London for many years and spoke English with a London accent), Tony, and Kobi. Kobi was only 17, and Tony seemed to have taken on the role of his Camino Dad, which was cute to see.
+
+All of us, except A&W, went for food and drinks. I ate padrón peppers and patatas bravas, typical Spanish tapas. Some of the peppers were VERY spicy. Sergio slagged me for ordering a caña instead of a pint. We discussed various topics, political and otherwise. Tony spoke with eloquence, but also showed his ignorance on certain topics, including Northern Ireland. He referred to Ireland as Southern Ireland - a common trigger for Irish people. He didn't seem to acknowledge the distinct identities of the component countries of the United Kingdom, and was strongly in favour of maintaining the union, for reasons of diversity, economics, etc. Sergio agreed with him - countries should remain unified! Good thing there weren't any Catalans around...
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231021_181818_1.jpg') }}"

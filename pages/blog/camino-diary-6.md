@@ -3,7 +3,7 @@ date: 2025-10-14
 description: A transcription of my diary from the Camino de Santiago.
 tags: travel
 
-### Day 25, Wednesday, November 1st
+### Day 25, Wednesday, November 1st, A Salceda (33.5km, 629.9km total)
 There was an early check-out, so we left the monastery around 7am. Rob and I found a bar that was open and had breakfast there, accompanied by Chris, Monica and Nico. I didn't see Ivano or Jean after leaving the monastery, and I didn't get the chance to say goodbye to them.
 
 I ended up walking with Chris and Monica, and had a nice time chatting with them. We talked about history, Switzerland, Ireland, their lives, hiking, other pilgrims we'd met along the way, their kids, etc. We arrived at a village and stopped for tea, then I continued on while they stayed in the village to buy groceries and make their breakfast.
@@ -16,7 +16,7 @@ I walked quickly, hoping to avoid the storm, passing through forests and terrain
 
 In the albergue, the pilgrims seemed younger and more party-hungry than before. Getting drunk, smoking joints and laughing about nothing. I didn't begrudge them that, but it was interesting to note the contrast. I observed a game of chess between some Spanish pilgrims, ate some instant noodles that were on sale in the albergue, and read the edition of El País that I'd taken from the monastery.
 
-### Day 26, Thursday, November 2nd
+### Day 26, Thursday, November 2nd, Santiago (27km, 656.9km total)
 The final day. I walked at full speed, eager to arrive at Santiago de Compostela. I took a brief break after 2km to have breakfast and avoid a downpour. Eventually, though, I decided to venture out, because the rain showed no sign of easing up. Besides being wet, it was also cold. I accidentally stepped in a puddle and my right foot got wet. Fortunately, the weather did clear up eventually.
 
 This time the trail was packed with pilgrims, perhaps more than I'd seen on all the previous days combined. In my haste, I passed out many of them, and overheard an *estadounidense* telling a story about how she once pissed into a bottle in a car. Another novelty was seeing groups of schoolchildren doing the Camino.
@@ -81,7 +81,7 @@ I attended the pilgrim mass in Santiago cathedral. An annoying child was screami
 
 At a bus station (can't remember if I was going to Finisterre or the airport), I encountered Jean, the French man with good vibes who had walked with myself and Ivano. He told me that Barry, an Irish Camino veteran from Sligo whom I met back in Sobrado, was a priest, and had done a reading at the pilgrim mass. I then happened to run into Barry at the airport! He turned out to be a funny character, and told me about a posh, boastful English woman who had been humbled by the caustic irony of Laurence the monk at Sobrado.
 
-So ends the story of my first and only Camino. I met a lot of people, some of them weird and some of them lovely. I got fitter. I got bitten by insects, buffeted by wind, and barked at by dogs. I saved some chickens and an old Spanish lady. I saw a lot of farm animals and a lot of fields. I walked hundreds of kilometres (N km, to be exact), and climbed many hills. I got rained on and stood in puddles. I got 2 blisters, an ankle injury, and my hip almost gave out after the first few days. I ate many a tortilla de patatas, and drank many a caña and black tea. I spoke a bunch of Spanish and wrote thousands of words in my diary. I met Ukrainians who'd fled from war, and I followed the grim events in Gaza.
+So ends the story of my first and only Camino. I met a lot of people, some of them weird and some of them lovely. I got fitter. I got bitten by insects, buffeted by wind, and barked at by dogs. I saved some chickens and an old Spanish lady. I saw a lot of farm animals and a lot of fields. I walked over 650km, and climbed many hills. I got rained on and stood in puddles. I got 2 blisters, an ankle injury, and my hip almost gave out after the first few days. I ate many a tortilla de patatas, and drank many a caña and black tea. I spoke a bunch of Spanish and wrote thousands of words in my diary. I met Ukrainians who'd fled from war, and I followed the grim events in Gaza.
 
 <!--
 
