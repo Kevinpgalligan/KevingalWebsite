@@ -134,7 +134,7 @@ I noticed that my mind tended to wander while I was walking, and I wasn't attent
 <figcaption>Looking back at Navia.</figcaption>
 </figure>
 
-I arrived at La Caridad without any other occurrences of note. The pilgrim hostel I chose was A Caridá. Basic but clean. I spoke with 3 different Spanish people there. Lots of Spanish practice that day.
+I arrived at La Caridad without any other occurrences of note, and went to the albergue A Caridá. Basic but clean. I spoke with 3 different Spanish people there. Lots of Spanish practice that day.
 
 Sketch of the typical bar or cafetería along the Camino. A sleepy place. Tiled floor, wooden counter, overly bright lights. Tortilla de patatas and meat sandwiches on display. One type of beer on tap, if any. Usually Estrella. Otherwise, it's 330ml bottles. You just ask for *cerveza* or *vino* - no fussing over options here, thank you very much! Old men sitting at the counter, just like you'd see in an Irish pub. They speak in the local language, or they speak Spanish so quickly and with such a strong accent that it may as well be a different language. Sometimes they still wear their work clothes, trousers stained with mud from the fields of the surrounding countryside. Trash TV in the background, and a gambling machine in the corner. Relatively cheap - that day I paid €3.30 for black tea and pain au chocolate. In Ireland it'd probably cost at least €6. In the bathroom, the hand dryer is always broken.
 
@@ -182,7 +182,7 @@ A day of heavy rain. I had breakfast with a Czech person, a French woman (who'd 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231026_092931.jpg') }}"
      class="centered">
-<figcaption>The melancholy of Ribadeo</figcaption>
+<figcaption>The melancholy of Ribadeo.</figcaption>
 </figure>
 
 Before even making it out of the city, the rain got so bad that I sought refuge under a café terrace. I ordered 6 churros with chocolate, and yet another black tea, and spent a couple of hours reading my book and enjoying the moody atmosphere and rain sounds.
@@ -190,7 +190,7 @@ Before even making it out of the city, the rain got so bad that I sought refuge 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231026_094705.jpg') }}"
      class="centered">
-<figcaption>Churros and tea.</figcaption>
+<figcaption>Churros and chocolate.</figcaption>
 </figure>
 
 <figure>
@@ -207,7 +207,7 @@ I left at around 11am, bidding farewell to Ribadeo and the sea. We'd be walking 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231026_140559.jpg') }}"
      class="centered">
-<figcaption>These waymarkers had started to appear, showing the remaining distance to Santiago. Just 186.535km to go!</figcaption>
+<figcaption>These waymarkers started to appear, showing the remaining distance to Santiago. Just 186.535km to go!</figcaption>
 </figure>
 
 Eventually, I resigned myself to getting wet, because I'd been there for ages and there wasn't even a small patch of blue in the sky. Fortunately, it actually did stop raining a short while after I set off again.

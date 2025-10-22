@@ -12,7 +12,13 @@ I left Ribadesella around 9am/10am. This turned out to be a difficult segment, w
 <figcaption>Crossing a bridge.</figcaption>
 </figure>
 
-While absorbed in a map on my phone, I got a fright from a flash of orange and black stripes in the corner of my eye. It was a writhing, snake-like creature, but it disappeared before I could get a proper look at it. I don't think there are snakes like that in Spain, so it was probably a salamander.
+While absorbed in a map on my phone, I got a fright from a flash of orange and black stripes in the corner of my eye. It seemed to be a writhing, snake-like creature, but it disappeared before I could get a proper look at it. I don't think there are snakes like that in Spain, so it was probably a salamander.
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231029_095226.jpg') }}"
+     class="centered">
+<figcaption>Maybe it was one of these critters. I saw this one on a later date, and wasn't sure if it was giving birth or mortally wounded.</figcaption>
+</figure>
 
 In another scary encounter, an angry German Shepherd lunged at me from the back of a passing pickup truck. It was held back by a chain, but for a second I thought I was screwed. Well, it wouldn't be a day on the Camino if I didn't get a jumpscare from an aggressive dog. It actually seemed to be normal on Spanish farms for dogs to be tied up with a chain around their neck. I don't think that'd be allowed in Ireland or the UK? Meanwhile, the cats were free to roam, and I often saw them crouched in fields, probably waiting for rodents.
 
