@@ -37,6 +37,8 @@ An ascent of 700m, and the wind was very strong and annoying. Wind turbines ever
 <figcaption>Walking among the wind turbines.</figcaption>
 </figure>
 
+On a typical day, when walking alone, I whistled and sang to entertain myself. I also learned a Spanish rhyme to practice the double R sound: "Erre con erre cigarro, erre con erre barril, rápido ruedan los carros cargados de azúcar del ferrocarril". (Or: "R with R cigarre, R with R barrel, the cars of the train roll quickly loaded with sugar"). It was a conscious decision not to bring earphones, since listening to music or podcasts might distract me from my surroundings. That said, even without earphones I often daydreamed my way through much of the day.
+
 I encountered Nico, the giant bearded Frenchman who could often be found talking and laughing to himself. We always exchanged a friendly greeting, despite the language barrier. He had made efforts to speak to me in French, but I was only ever able to pick up a word or two. French would probably be the most useful language to know on the Camino after Spanish and English, since French people seemed to be the largest group of monolinguals to walk it.
 
 <figure>
@@ -52,7 +54,7 @@ I encountered Nico, the giant bearded Frenchman who could often be found talking
 <figcaption>The annoying wind.</figcaption>
 </figure>
 
-It was a short segment, ending in Gontán, and yet, due to my lack of motivation, I was relieved to be finished for the day. I was lucky to miss a downpour that started shortly after I arrived. Among the people in my albergue were Nico, Sonia and Mira (the Ukrainians), Contain (my best attempt to transcribe his French name), and a Spanish man who humblebragged about how far he was walking each day. I ate a tortilla sandwich at a typical Spanish bar, and spent the rest of the evening talking to the other pilgrims. I finally learned a bit more about the life situation of Sonia and Mira. Sonia had fled Ukraine at the beginning of the war and was now living in Berlin. Mira had also fled and was somehow involved in acting or the arts.
+It was a short segment, ending in Gontán, and yet, due to my lack of motivation, I was relieved to be finished for the day. I was lucky to miss a downpour that started shortly after I arrived. Among the people in my albergue were: Nico; Sonia and Mira (the Ukrainians); Contain (my best attempt to transcribe his French name); and a Spanish man who humblebragged about how far he was walking each day. I ate a tortilla sandwich at a typical Spanish bar, and spent the rest of the evening talking to the other pilgrims. I finally learned a bit more about the life situation of Sonia and Mira. Sonia had fled Ukraine at the beginning of the war and was now living in Berlin. Mira had also fled and was somehow involved in acting or the arts.
 
 ### Day 22, Sunday, October 29th, Vilalba (21.6km, 529.11km total)
 Flat terrain, a little muddy but nothing unpassable. My ankle wasn't hurting so much anymore, but even so it still felt fragile and I was hesitant to walk on it too fast or for too long. I met some new people: Robert (from Canada), Mary (from Las Vegas), and Chris and Monica (a Swiss couple I remembered seeing earlier in the trip, perhaps at Padre Ernesto's albergue). Robert and I went for tea on arriving at Vilalba. He was a 70-year-old carpenter from Vancouver. Since my sister was living there and I'd gone to visit her a few times, I knew a bit about the place. He said he'd grown up in Vancouver before it had blown up in size, population, and expensiveness. His brother had been a victim of the opioid crisis in North America, like many others.
@@ -102,9 +104,9 @@ I left Vilalba fairly late, after having breakfast in a cafetería. It was a col
 
 It was an intense day, emotionally speaking. I was walking past some houses in the countryside when I heard a panicked cry for help from someone's garden. I looked around and caught a glimpse of bright red. It was an old lady lying on the ground with blood on her face. I ran over to her. She'd fallen down the stairs at the side of her house. I couldn't lift her up; she said her head was sore, and it hurt her to move, so I didn't want to apply too much force in moving her in case it did more damage. There was blood dripping from a gash above her mouth. I couldn't tell if she had broken a bone. She also seemed confused, as when I asked if she lived with anyone and where her family was her answers seemed to vary between her family living with her, in Bilbao, or in Vilalba. (Or maybe I was failing to understand her with my crappy Spanish).
 
-I wasn't sure what to do. I tried to support her back so she wasn't just lying there on the ground. She didn't want me to call the emergency services, for some reason - maybe in denial of how serious the situation was? Or worried that they'd take her away from her home? She kept trying to give me money, even though I'd been pretty useless up to that point. I asked her if she had neighbours and went in the direction she pointed to find them.
+I wasn't sure what to do. I tried to support her back so she wasn't just lying there on the ground. She didn't want me to call the emergency services, for some reason - maybe in denial of how serious the situation was? Or worried that they'd take her away from her home? She kept trying to give me money, even though I'd been pretty useless up to that point. I asked her if she had neighbours and went to find them in the direction she pointed.
 
-By this point, I was full of adrenaline and my mind was completely focused on resolving the situation. Next door, I found an elderly couple who seemed to be farmers. Their dog let it be known that my presence wasn't appreciated. The neighbours themselves, when I told them what had happened, said that they didn't want to get involved. They seemed to have fallen out with the injured woman. I at least managed to extract from them the street address and the woman's name. The wife let out a stream of curse words - not directed at me, she just seemed really stressed.
+By this point, I was full of adrenaline and my mind was completely focused on resolving the situation. Next door, I found an elderly couple who seemed to be farmers. Their dog let it be known that my presence wasn't appreciated. The neighbours themselves, when I told them what had happened, said that they didn't want to get involved. Something about how the woman had burned all her bridges. I at least managed to extract from them the street address and the woman's name. The wife let out a stream of curse words - not directed at me, she just seemed really stressed.
 
 Disgusted by their unwillingness to help, I returned to the injured woman, and after another attempt to convince her that we should call the emergency services, I just went ahead and did it. I knew the European-wide emergency number was 112. This was my first time calling it. I was passed from person to person as they narrowed down where I was and what the problem was. It took me a while to explain what had happened and exactly where the house was located. It didn't help that my phone's GPS was imprecise in that area.
 
@@ -114,7 +116,9 @@ Eventually, three female paramedics arrived in an ambulance and attended to the 
 
 When the paramedics assured me that everything was okay, I left. I was so frazzled that I neglected to say goodbye to the woman. Later, I also regretted that I hadn't told off the neighbours for their ugly behaviour.
 
-I walked quickly, still feeling emotional. I passed the French couple, who had left a minute or so before me. They shared a sympathetic look and asked if I was okay. For the second time on the Camino, I saw a dead badger on the side of the road. As I walked, I reflected on what had happened and on some associated coincidences. I was reminded of the painting in Padre Ernesto's albergue, which depicted pilgrims helping a person in need - the injured woman and I had been in the same pose, with her lying on the ground and me crouched at her side supporting her back! I'd also wondered to myself, while walking through the remote countryside, what would happen if I encountered an injured person. And a week or so previously, I'd seen a dog wandering about with a leash trailing behind it, and I'd had the morbid thought that maybe its owner had collapsed somewhere while bringing it for a walk.
+I walked quickly, still feeling emotional. I passed the French couple, who had left a minute or so before me. They shared a sympathetic look and checked that I was okay. For the second time on the Camino, I saw a dead badger on the side of the road.
+
+As I walked, I reflected on what had happened and on some associated coincidences. I was reminded of the painting in Padre Ernesto's albergue, which depicted pilgrims helping a person in need - the injured woman and I had been in the same pose, with her lying on the ground and me crouched at her side supporting her back! I'd also wondered to myself, while walking through the remote countryside, what would happen if I encountered an injured person. And a week or so previously, I'd seen a dog wandering about with a leash trailing behind it, and I'd had the morbid thought that maybe its owner had collapsed somewhere while bringing it for a walk.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231030_143329.jpg') }}"
@@ -124,21 +128,95 @@ I walked quickly, still feeling emotional. I passed the French couple, who had l
 
 I arrived at Baamonde, where I found Ivano and Jean (a French guy from the albergue in Vilalba). I told them about my dramatic experience, then bought some provisions at a shop there, before setting out with them towards an albergue called A Lagoa, which was about 13km ahead. I'd wanted to do a shorter segment (31km vs 40km), but the nearer albergue was closed, A&W had recommended A Lagoa to me (they'd stayed there 2 days previously), and Ivano and Jean turned out to be good company. We walked through deciduous forests, and passed by a church from the 16th century. I got a blister on one of my toes, but it barely hurt and it was a while before I even noticed it.
 
-We arrived at A Lagoa and met the kind host that A&W had told me about. Many pilgrims I'd recently encountered were already there: Nico, Robert (the Canadian), Mary (the *estadounidense*), and Monica and Chris (the Swiss couple). We ate well: the host's mother made us soup, pasta, and *tarta de Santiago* (I think it's an almond cake?). I had a few glasses of a local wine, and they gave us some slices of leftover birthday cake, which A&W had also gotten to experience. I told my new pals the story of the emergency situation. Monica in particular showed me a lot of empathy, and seemed to understand how difficult it had been for me, and from that point I felt very fond of her. The accommodation was comfortable.
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231030_151526_1.jpg') }}"
+     class="centered">
+<figcaption>A random, really old church I passed with Ivano and Jean.</figcaption>
+</figure>
+
+Towards the end of the day, we walked by the house of an old sculpture artist. Ivano seemed to have heard of this guy before. The man himself was at home and he invited us inside to look around.
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231030_173001.jpg') }}"
+     class="centered">
+<figcaption>The entrance to the sculptor's house.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231030_172951.jpg') }}"
+     class="centered">
+<figcaption>A note he left outside, inviting passersby to visit him. Attempted translation of the first bit: "The Greeks and Romans sculpted stone, my profession is truly ancient; but it pleases me to take the chisel and apply myself to the task of translating my fantasy to each new work. [...]"</figcaption>
+</figure>
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231030_173027.jpg') }}"
+     class="centered">
+<figcaption>Statue in the garden.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231030_173435.jpg') }}"
+     class="centered">
+<figcaption>Engraved pillar inside, and some small sculptures.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231030_173631.jpg') }}"
+     class="centered">
+<figcaption>Books, guitar and a message engraved in stone. Among the books were <i>Dune</i> by Frank Herbert, and <i>El amante japonés</i> by Isabel Allende. An extract from the message: "[...]between the noise and the hurry remember that there can be peace in silence. Live on good terms with all people, as much as is possible without surrendering oneself. Say your truth calmly and clearly, and listen to others, including the boring and ignorant, they too have their story. [...]</figcaption>
+</figure>
+
+We arrived at A Lagoa and met the kind host that A&W had told me about. Many pilgrims I'd recently encountered were already there: Nico, Robert (the Canadian), Mary (the *estadounidense*), and Monica and Chris (the Swiss couple). We ate well: the host's mother made us soup, pasta, and *tarta de Santiago* (a type of almond cake). I had a few glasses of a local wine, and they gave us some slices of leftover birthday cake, which A&W had also gotten to experience. I told my new pals the story of the emergency situation. Monica in particular showed me a lot of empathy, and seemed to understand how difficult it had been for me, and from that point I felt very fond of her. The accommodation was comfortable.
 
 ### Day 24, Tuesday, October 31st, Sobrado dos Monxes (27.29km, 596.4km total)
 I left the albergue around 8am. My destination for the day was Sobrado dos Monxes, and the monastery there that offered accommodation for pilgrims. I walked alone at first, but encountered other pilgrims along the way. I stopped to chat with Mary, Monica, Chris and Robert in a café. This segment wasn't challenging, but I did have to cross a giant muddy puddle, in the process of which my shoes and socks got soaked. I just hoped there wasn't any *caca de vaca* (cow shit) in there. Afterwards, I took off my socks to squeeze the brown water out of them. Yuck.
 
-Industrial farms. Grey buildings with no windows - if light couldn't enter, then the day-and-night cycle of the animals could be controlled, and in that way, chickens, for example, could be manipulated to produce more eggs. Grain silos for feeding them. I didn't want to imagine what was inside the grey buildings. Thousands and thousands of suffering animals. Stressed, crowded together, never seeing the sun, sleeping on their own faeces. Selectively bred for farming, at the expense of their physical health. Spain was famous for its pig meat, but I never saw a single pig on the entire Camino.
+Industrial farms. Grey buildings with no windows - if light couldn't enter, then the day-and-night cycle of the animals could be controlled, and in that way, chickens, for example, could be manipulated to produce more eggs. Grain silos for feeding them. I didn't want to imagine what was inside the grey buildings. Thousands and thousands of suffering animals. Stressed, crowded together, never seeing the sun, sleeping on their own faeces. Selectively bred for farming, at the expense of their physical health. Spain was famous for its pig meat, but I hadn't seen a single pig on the entire Camino.
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231031_144325.jpg') }}"
+     class="centered">
+<figcaption>The lake outside Sobrado.</figcaption>
+</figure>
 
 Sobrado. It was situated beside an artificial lake that was 100s of years old. Very pretty, but I didn't spend too long admiring it because a storm was about to break out. I arrived at the monastery and was greeted by an English monk called Laurence. He checked in me and the other pilgrims who'd arrived around the same time - Monica, Chris and Robert. Laurence was a funny character, his remarks dripped with irony and he didn't seem to suffer fools. He'd adopted an affectionate orphan cat that he called Maximilian.
 
-More about Monica and Chris. Monica was a kindergarten teacher, Chris was an electrician. Now they were working half-time, at their pleasure. They'd been vegetarians for 30 years, and for 20 of those years they'd owned an organic food shop. Their son had done the Northern Way when he was only 18, though he did find it rough at the start.
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231031_145258.jpg') }}"
+     class="centered">
+<figcaption>Approaching the monastery.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231031_145748_1.jpg') }}"
+     class="centered">
+<figcaption>Some of the stonework outside. And my terrible camerawork on display.</figcaption>
+</figure>
+
+More about Monica and Chris. Monica was a kindergarten teacher, Chris was an electrician. Now they were working half-time, at their pleasure. They'd been vegetarians for 30 years, and for 20 of those years they'd owned an organic food shop. Their son walked the Northern Way when he was only 18, though he did suffer some mishaps along the way.
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231031_151304_1.jpg') }}"
+     class="centered">
+<figcaption>Maximilian the cat.</figcaption>
+</figure>
 
 In the evening, I went for some cañas with Robert. We saw a man playing a slot machine in the corner, it was making him very angry. I struck up conversation with some Spanish people who were playing cards at another table. They were playing [chinchón](https://en.wikipedia.org/wiki/Chinch%C3%B3n_(card_game)), a matching game that seemed to be similar to gin rummy and mahjong. Two of them turned out to be from Bilbao and were visiting their friends in Sobrado. Later, Robert and I got dinner at a bar.
 
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231031_164718.jpg') }}"
+     class="centered">
+<figcaption>From inside the monastery.</figcaption>
+</figure>
+
 I had to explain to Ivano that Irish people aren't British. I couldn't complain, though, since I'd accidentally called Robert an *estadounidense*.
 
-That night, I went to bed around 11pm and followed the usual procedure of filling out my diary with the day's events, surrounded by the sound of snoring and pattering rain. I was conscious that the words I was writing were unable to transmit even one-hundredth of the experience of being there. I couldn't truly capture the sights, the sounds, the smells, the feelings, and countless forgotten anecdotes. I would have to accept the limitations of my words, and allow my reader's imagination to fill in the rest.
+That night, I went to bed around 11pm and followed the usual procedure of filling out my diary with the day's events, surrounded by the sound of snoring and pattering rain. I was conscious that my words were unable to transmit even one-hundredth of the experience of being there. I couldn't truly capture the sights, the sounds, the smells, the feelings, and countless forgotten anecdotes.
 
-More about the monk, Laurence. During the check-in, he complained to us good-humouredly, and I enjoyed his wit. Apparently, on receiving his assignment to Sobrado, his superiors had told him "you're English, so we're sending you there". He'd been at the Sobrado monastery since 2009, so 14 years. Before that, he'd spent many years in Italy. He spoke French and was able to communicate with Nico. An interesting character indeed. He'd left us old newspapers to dry out our shoes, among which I found a recent edition of El País that I decided to bring with me.
+More about the monk, Laurence. During the check-in, he complained to us good-humouredly, and I enjoyed his wit. Apparently, on receiving his assignment to Sobrado, his superiors had told him "you're English, so we're sending you there" (I guess because he could speak English to the pilgrims). He'd been at the Sobrado monastery for 14 years, since 2009. Before that, he'd spent many years in Italy. He spoke French and was able to communicate with Nico. He left us old newspapers to dry out our shoes, among which I found a recent edition of El País that I decided to bring with me.
+
+<figure>
+<img src="{{ url_for('static', filename='img/camino/IMG_20231031_161204.jpg') }}"
+     class="centered">
+<figcaption>A passive-aggressive note left in the bathroom by Laurence the monk. "OUT OF ORDER because of the disgusting behaviour of male pilgrims". I think he'd mentioned pilgrims blocking the toilets because they used so much toilet paper to create a cushion for their bottoms.</figcaption>
+</figure>

@@ -4,7 +4,7 @@ description: A transcription of my diary from the Camino de Santiago.
 tags: travel
 
 ### Day 5, Thursday, October 12th, Santander (10.5km, 120.1km total)
-We departed early, after a short breakfast. I didn't sleep well due to the heat in the dorm. Aurora and Wesley left just before me, but I caught up with them after a while. I passed out 3 Spanish men on the way, more old faces from the first albergue. When they found out I was Irish, they mentioned James Joyce. I asked them who they thought was the Spanish language equivalent of Joyce. One of them said Miguel Cervantes. I thought to myself: isn't he more the equivalent of Shakespeare? I haven't read Don Quijote, though, so I don't know.
+We departed early, after a short breakfast. I didn't sleep well due to the heat in the dorm. Aurora and Wesley left just before me, but I caught up with them after a while. I passed out 3 Spanish men on the way, more old faces from the first albergue. When they found out I was Irish, they mentioned James Joyce. I asked them who they thought was the Spanish language equivalent of Joyce. One of them said Miguel Cervantes. I thought to myself: isn't he more the equivalent of Shakespeare? Anyway, moral of the story is to not talk to strangers about literature, because it's a conversational dead end.
 
 More walking along the coast, passing by many fields of animals. Aurora and Wesley liked to imitate animal noises, which never failed to make me laugh. Wesley took a detour at some point. In his place, we were accompanied by a Chinese guy called Wei Tee (probably a poor transcription) who was working in Barcelona. After traversing more cliffs, we came to another beach. This one was extremely long. We followed it all the way to the end, until we arrived at a town where a boat took us to Santander.
 
@@ -43,7 +43,7 @@ I shared the room with a blunt but nice Belgian man called Stein, who described 
 On my way back to the albergue, I ran into Ana, an Italian pilgrim who was in my dorm at Padre Ernesto's. We chatted about our lives for a while. She'd just finished studying medicine at college. Having gotten a taste of the unglamorous work that is done at hospitals, and facing several more years of training at a hospital in a provincial town, she was questioning whether that was what she wanted to do anymore.
 
 ### Day 6, Friday, October 13th 2023, Santillana del Mar (37km, 157.1km total)
-That day's journey would be from Santander to Santillana del Mar. It was the longest segment thus far, about 37km. Despite the long distance, and despite the heavy use of asphalt roads, and despite my concerns about my dodgy hip, it all went fine. My hip seemed to have fixed itself overnight.
+The day's journey would be from Santander to Santillana del Mar. It was the longest segment thus far, about 37km. Despite the long distance, and despite the prevalence of asphalt roads, and despite my concerns about my dodgy hip, everything went fine. My hip seemed to have fixed itself overnight.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231013_081634.jpg') }}"
@@ -93,13 +93,13 @@ After that, it was dinner time. I ate a tortilla, soup, and custard dessert. I t
 <figcaption>One of many stone buildings in the town.</figcaption>
 </figure>
 
-By the time we arrived at the convent earlier, it was already late in the day and all the beds were taken, so Johann and I (and Maika, who arrived after us) were given mattresses on the floor to sleep on. From chatting to Felipe and Stein, I discovered that Felipe was the head of the Spanish subsidiary of a media company called Rosco (or something like that), while Stein owned a company that employed 200 engineers. I didn't realise I'd been walking among such high-powered individuals.
+By the time we had arrived at the convent, it was already late in the day and all the beds were taken, so Johann and I (and Maika, who arrived after us) were given mattresses on the floor to sleep on. From chatting to Felipe and Stein, I discovered that Felipe was the head of the Spanish subsidiary of a media company called Rosco (or something like that), while Stein owned a company that employed 200 engineers. I didn't realise I'd been walking among such high-powered individuals.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231013_195112.jpg') }}"
      alt="Quote: 'El Camino es como la vida. Hay un punto de partida y una meta. Y, por el medio, ocurre de todo: [...]'"
      class="centered">
-<figcaption>A snippet from the booklet they gave us at the pilgrim meeting. "The Camino is like life" - where had I heard that before? Also, from the mention of "Dios", I guess the religious themes were more explicit than I remembered.</figcaption>
+<figcaption>A snippet from the booklet they gave us at the pilgrim meeting. "The Camino is like life" - where had I heard that before? Also, from the mention of "Dios", I guess the religious themes were more explicit than I remember.</figcaption>
 </figure>
 
 
@@ -113,7 +113,7 @@ Disaster! There was a flood in our room. Maika woke us all up at 7am, to widespr
 <figcaption>Playing with the slidey mattress as the chaos played out around me.</figcaption>
 </figure>
 
-The cause of the flood was a massive outbreak of rain (and a broken drainpipe). It continued raining for most of the day. My feet and legs got soaked, including parts of my shorts and underwear. This was when I discovered that my poncho didn't cover the backs of my legs properly, and also that it could only do so much to keep heavy rain off my upper body. I was physically tired from the long trek the day before, and the segment had lots of hills.
+The cause of the flood was a massive outbreak of rain (and a broken drainpipe). It continued raining for most of the day. After heading out, my feet and legs got soaked, including parts of my shorts and underwear. This was when I discovered that my poncho didn't cover the backs of my legs properly, and also that it could only do so much to keep heavy rain off my upper body. I was physically tired from the long trek the day before, and the segment had lots of hills.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231014_080858.jpg') }}"
@@ -145,10 +145,10 @@ At various points I walked with Johann, Stein, Maika, Wesley and Aurora. Eventua
 <figcaption>Spanish Shrek lives here.</figcaption>
 </figure>
 
-We checked in at Albergue Nómada. I paid for the clothes washing/drying service, and later went for food (pizza) at the nearest restaurant I could find. It was a lively town, but between my tiredness and my shoes feeling like wet sponges, I wasn't motivated to explore it any further. The albergue didn't have any newspaper left for me to dry out my shoes, so instead I used tissue paper. I wasn't sure that I'd have the energy to complete the 40.6km segment the next day - the longest segment of the entire trip.
+We checked in at Albergue Nómada. I paid for the clothes washing/drying service, and later went for food (pizza) at the nearest restaurant I could find. It was a lively town, but between my tiredness and my shoes feeling like wet sponges, I wasn't motivated to explore it any further. The albergue didn't have any newspaper left for me to dry out my shoes, so instead I used tissue paper. I wasn't sure that I'd have the energy to complete the 40.6km segment the next day - the longest segment I'd planned to walk on the entire trip.
 
 ### Day 8, Sunday, October 15th, Llanes  (40.6km, 231.7km total)
-I set out early after bidding farewell to Wesley and Aurora, but I got a bit lost in the maze-like streets of the town and ran into them again. We never agreed to team up, but we always seemed to end up walking together anyway, and by this point I felt very fond of them. I discovered that they were older than they appeared - Aurora was 38 and Wesley was 37. And Aurora had a 20-year-old daughter, which I would NEVER have guessed!
+I set out early after bidding farewell to Wesley and Aurora, but I got a bit lost in the maze-like streets of the town and bumped into them before finding my way out. We never agreed to team up, but we always seemed to end up walking together anyway, and by this point I felt very fond of them. I discovered that they were older than they appeared - Aurora was 38 and Wesley was 37. And Aurora had a 20-year-old daughter, which I would NEVER have guessed!
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231015_081518.jpg') }}"
@@ -184,7 +184,7 @@ We met lots of animals, like always. I loved seeing them, but I also felt sadly 
 <figcaption>Cows? Cows.</figcaption>
 </figure>
 
-After about 30km, I left Aurora and Wesley behind, because I still wanted to reach Llanes, the next stop on Buen Camino. My left foot had started to get sore, but I foolishly pressed on, eager to arrive before dark. Unfortunately, this resulted in the emergence of my first blister of the trip. I had to ascend a mountain trail, passing through a village. Due to FOMO, I also took a brief detour to visit a cliffside viewing point.
+After about 30km, I left Aurora and Wesley behind, because I still wanted to reach Llanes, the next stop on Buen Camino. My left foot was sore, but I foolishly pressed on, eager to arrive before dark. Unfortunately, this resulted in the emergence of my first blister of the trip. I had to ascend a mountain trail, passing through a village. Due to FOMO, I also took a brief detour to visit a cliffside viewing point.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231015_172928.jpg') }}"
@@ -248,7 +248,7 @@ I was mostly by myself for the day, which was fine. I passed out Jana and the Fr
 <figcaption>Some ruins.</figcaption>
 </figure>
 
-I got lost twice: the first time, I was walking along a road and missed a marker for a turn-off. The second time was more painful. There was a fork in the trail, and I took the branch closer to the sea in order to catch some nice views. I was vaguely conscious from the information in the Buen Camino app that this path would be longer and not as well signposted, but I didn't anticipate just how hilly it'd be. As I struggled up and down a series of steep hills, my phone died, and I started to doubt whether I was even on the right path anymore. In the end, I cut across a field and made my way back to the road. I was able to follow the road the rest of the way to Ribadesella, and the relief when I arrived was sublime. The upside of the misadventure was that there were indeed some nice cliff views, and I spotted an eagle while crossing the field.
+I got lost twice: the first time, I was walking along a road and missed a marker for a turn-off. The second time was more painful. There was a fork in the trail, and I took the branch closer to the sea in order to catch some nice views. I was vaguely conscious from the information in the Buen Camino app that this path would be longer and not as well signposted, but I didn't anticipate just how hilly it'd be. As I struggled up and down a series of steep hills, my phone died, and I started to doubt whether I was even on the right path anymore. In the end, I cut across a field and made my way back to the road. I was able to follow the road the rest of the way to Ribadesella, and the relief when I arrived was sublime. The upside of the misadventure was that there were indeed some nice cliff views, and I spotted an eagle while crossing the field. I also passed near some *bufones*, rock formations that launch water into the air at high pressure. The sound of the water being launched was so explosive that I initially thought it was thunder.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231016_152124.jpg') }}"
@@ -273,7 +273,6 @@ I got lost twice: the first time, I was walking along a road and missed a marker
      class="centered">
 <figcaption>Cliffs #4.</figcaption>
 </figure>
-
 
 I went to a bar to charge my phone, reserved a room at the hotel Covadonga, and after showering there and resting for a while, went in search of food. It was late, and the one place that my map said was open - with decent veggie options - turned out to be closed permanently. I had to resort to another restaurant nearby. It ended up costing me €18 for a low-effort salad: a few leaves of lettuce, tomatoes, and some measly bits of veg. I also had the strong suspicion that the waiter was talking shit about me with one of the other patrons. Needless to say, I did not leave a 5-star review for this establishment.
 

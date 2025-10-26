@@ -17,12 +17,12 @@ While absorbed in a map on my phone, I got a fright from a flash of orange and b
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231029_095226.jpg') }}"
      class="centered">
-<figcaption>Maybe it was one of these critters. I saw this one on a later date, and wasn't sure if it was giving birth or mortally wounded.</figcaption>
+<figcaption>Maybe it was a salamander like this one, which I saw on a later date. I wasn't sure if it was giving birth or mortally wounded.</figcaption>
 </figure>
 
-In another scary encounter, an angry German Shepherd lunged at me from the back of a passing pickup truck. It was held back by a chain, but for a second I thought I was screwed. Well, it wouldn't be a day on the Camino if I didn't get a jumpscare from an aggressive dog. It actually seemed to be normal on Spanish farms for dogs to be tied up with a chain around their neck. I don't think that'd be allowed in Ireland or the UK? Meanwhile, the cats were free to roam, and I often saw them crouched in fields, probably waiting for rodents.
+In another scary encounter, an angry German Shepherd lunged at me from the back of a passing pickup truck. It was held back by a chain, but for a second I thought I was screwed. Well, it wouldn't be a day on the Camino if I didn't get a jumpscare from an aggressive dog. It actually seemed to be normal on Spanish farms for dogs to be tied up with a chain around their neck. I don't think that'd be allowed in Ireland or the UK? Meanwhile, the cats were free to roam, and I often saw them crouched in fields, probably looking for mice.
 
-I stopped for the day at Priesca, about 3km from Sebrayo, my intended destination. The albergue, La Rectoral, turned out to be really nice, with a friendly host called Susana. Also present at the albergue were Jana; the two French ladies; 4 Spanish guys I'd seen in passing; Lee, from Taiwan; and a momma cat and her kittens <3 Lee shared his pasta with me - there were no supermarkets or restaurants nearby, as this part of the route was more rural than before. From my own supplies I also ate an apple, a pear, a banana, and an Alpro yoghurt (which I now know is on the BDS boycott list, woops). After dinner I spent a long time hanging out with the kittens.
+I stopped for the day at Priesca, about 3km from Sebrayo, my intended destination. The albergue, La Rectoral, turned out to be really nice, with a friendly host called Susana. Also present at the albergue were: Jana; the two French ladies; 4 Spanish guys I'd seen in passing; Lee, from Taiwan; and a momma cat and her kittens <3 Lee shared his pasta with me - there were no supermarkets or restaurants nearby, as this part of the route was more rural than before. From my own supplies I also ate an apple, a pear, a banana, and an Alpro yoghurt (which I now know is on the BDS boycott list, woops). After dinner I spent a long time hanging out with the kittens.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231018_083524.jpg') }}"
@@ -89,7 +89,7 @@ After a day of monotonous walking through the countryside, the other pilgrims an
 Lee kept me company for a good deal of the ascent. We talked about the political situation in Taiwan and the history of Ireland, and he told me that Taiwan has the best vegetarian food in the world. (To be confirmed). Lee was carrying enormous backpacks that seemed to contain the equipment for every possible eventuality on the Camino. If my appendix burst, Lee would be able to set up an operating theatre on the side of a mountain and extract it. If we were attacked by a military helicopter, Lee would have the ground-to-air missiles to take it down. His bags were so heavy that all his toenails had turned black from weeks of walking under the pressure. A useful pilgrim to know, for sure.
 
 
-It was a relief to finally make it over the hill. I met Lee and Jana at the top, and we made our way to the collection point from where a van would bring us to the albergue, which was somewhat far from the Camino.
+It was a relief to finally make it over the hill. I met Lee and Jana at the top, and we made our way to the collection point from where a van would bring us to the albergue, which was somewhat far from the Camino route.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231018_150116.jpg') }}"
@@ -159,7 +159,7 @@ My ankle was sore at the beginning of the day, but I didn't notice it after a wh
 </figure>
 
 
-Then I had to make a decision: take a detour to Cudillero, a coastal town about 1km away, where A&W were staying; or continue the remaining 10km until Soto de Luiñas, the designated stopping point on Buen Camino. I'd already walked 27km, so I chose the shorter option. Cudillero was pretty. It had a circular port filled with boats; a strong tide; a grey sea; and colourful buildings laid out in concentric rings around the port.
+Then I had to make a decision: take a detour to Cudillero, a coastal town about 1km away, where A&W were staying; or continue the remaining 10km until Soto de Luiñas, the designated stopping point on Buen Camino. I'd already walked 27km, so I chose the shorter option. Cudillero was pretty. Its circular port was filled with boats, and colourful buildings were laid out around it in concentric rings. The sea was grey and the tide was strong.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231021_181649.jpg') }}"

@@ -23,7 +23,7 @@ Arrived in Bilbao. It was roughly 30°C outside. Decided to stay the night rathe
 <figcaption>Weird tentacles by Yayoi Kasuma.</figcaption>
 </figure>
 
-Next, I went to a vegan restaurant called Veggira, which was excellent. Patatas bravas, stuffed mushrooms, red wine and a brownie with ice-cream. I left them a 5-star review on Google Maps :)
+Next, I went to a vegan restaurant called Veggira, which was excellent. Patatas bravas, stuffed mushrooms, red wine and a brownie with ice-cream. I happily left them a 5-star review on Google Maps.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231007_201259.jpg') }}"
@@ -50,7 +50,7 @@ While walking the streets of Bilbao I came across some people playing a game. Th
 <figcaption>Some very drunk people playing the game.</figcaption>
 </figure>
 
-My Spanish was rusty, but I managed to survive all of the day's interactions without anyone switching to English - woohoo! The bad news: all the reasonably-priced accommodation was booked out, so after a desperate and stressful search I had to pay €130 for a private room in a hotel called BYPILLOW Irala. The room wasn't even particularly nice. Should've booked in advance.
+My Spanish was rusty, but I managed to survive all the day's interactions without anyone switching to English - woohoo! The bad news: all the reasonably-priced accommodation was booked out, so after a desperate and stressful search I had to pay €130 for a private room in a hotel called BYPILLOW Irala. The room wasn't even particularly nice. Should've booked in advance.
 
 ### Day 1, Sunday, October 8th, Portugalete (20.1km)
 My first day of walking. I used the map in the Buen Camino app to find my way to the route, which was only 2 blocks from my hotel. Saw my first blue and yellow camino marker! The marker depicted a scallop shell instead of an arrow. Confusingly, it wasn't clear which direction the shell was pointing.
@@ -111,7 +111,7 @@ Didn't sleep well, there were sick people coughing and I was woken up twice by a
 
 I left the albergue at 8am, accompanying two fellow pilgrims who had invited me to join them. Before leaving, I also met Max, who, in the words of Simon and Garfunkel, was a most peculiar man. He asked me where I was from, and I returned the question. Little did I know, I was setting myself up to be bombarded with his sad life story for the whole day. It was a long story, he said. His parents were British-American, but he grew up in a series of Eastern European countries. He somehow moved on to talking about the toxicity of the Orthodox church and about how an Orthodox priest had once hit him on the head.
 
-The two pilgrims I set out with: Mari, a business psychologist from Germany; and Iria (not sure about the spelling), a Galician who had a job in Santiago! She said that 1000s of pilgrims arrive in Santiago every day. As we walked, several groups of passing cyclists sent a "Buen Camino!" our way. We came across a colony of stray cats. They were being fed by an overly-protective woman who warned us not to go near them, when all we were doing was quietly watching from a distance. Booooo!
+The two pilgrims I set out with: Mari, a business psychologist from Germany; and Iria (not sure about the spelling), a Galician who had a job in Santiago! She said that 1000s of pilgrims arrive in Santiago every day. As we walked, several groups of passing cyclists sent a "Buen Camino!" our way. We came across a colony of stray cats. They were being fed by an overly-protective woman who warned us not to go near them, when all we were doing was watching quietly from a distance. Booooo!
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231009_091631_1.jpg') }}"
@@ -131,7 +131,7 @@ There was a diversion because fallen rocks had blocked the cliffside path ahead.
 <figcaption>Approaching the cliffs after taking my leave of Iria and Mari.</figcaption>
 </figure>
 
-Max thought the Georgian government was out to get him. He'd worked for the Georgian police for 7 years, developing tracking software, until one day, he refused his orders and got fired. Since then, the'd had him poisoned several times. They'd also sabotaged him by ripping tiny holes in his bag and wearing down the rubber on the soles of his shoes.
+Max thought the Georgian government was out to get him. He'd worked for the Georgian police for 7 years, developing tracking software, until one day, he refused his orders and got fired. Since then, they'd had him poisoned several times. They'd also sabotaged him by ripping tiny holes in his bag and wearing down the rubber on the soles of his shoes.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231009_141225.jpg') }}"
