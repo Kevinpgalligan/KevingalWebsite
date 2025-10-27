@@ -1,10 +1,11 @@
 title: Camino diary, days 0-4
-date: 2025-10-06
+date: 2025-10-27
 description: A transcription of my diary from the Camino de Santiago.
 tags: travel
+publish: y
 
 ### Introduction
-[See here](/blog/camino-diary-intro.html) for the packing list, planning, and so on.
+[See here](/blog/camino-diary-intro.html) for the packing list, route planning, and so on.
 
 ### Day 0, Saturday, October 7th 2023, Bilbao (0km)
 Arrived in Bilbao. It was roughly 30°C outside. Decided to stay the night rather than launching straight into the journey, so I had time to visit the Guggenheim museum. There happened to be a cool Yayoi Kusama exhibition on.
@@ -23,22 +24,32 @@ Arrived in Bilbao. It was roughly 30°C outside. Decided to stay the night rathe
 <figcaption>Weird tentacles by Yayoi Kasuma.</figcaption>
 </figure>
 
-Next, I went to a vegan restaurant called Veggira, which was most excellent. Patatas bravas ("bravas potatoes"), stuffed mushrooms, red wine and a brownie with ice-cream. I happily left them a 5-star review on Google Maps.
+Next, I went to a vegan restaurant called Veggira, which was excellent. Patatas bravas ("bravas potatoes"), stuffed mushrooms, red wine and a brownie with ice-cream. I happily left them a 5-star review on Google Maps.
+
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231007_201259.jpg') }}"
-     alt="Patatas bravas and a glass of wine."
-     class="centerfloat">
+     class="centered">
+<figcaption>Patatas bravas and wine.</figcaption>
+</figure>
+
+<figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231007_201945.jpg') }}"
-     alt="Stuffed mushrooms."
-     class="centerfloat">
+     class="centered">
+<figcaption>Stuffed mushrooms.</figcaption>
+</figure>
+
+<figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231007_204045.jpg') }}"
-     alt="Chocolate brownie and vanilla ice-cream."
-     class="centerfloat">
+     class="centered">
+<figcaption>Chocolate brownie and vanilla ice-cream.</figcaption>
+</figure>
+
+<figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231007_191326.jpg') }}"
      alt="An LGBTQ+ sticker, an animal liberation sticker, and a painting on the wall of two ninja-like activists holding a happy lamb and a happy pig."
-     class="centerfloat">
-<figcaption>Food from Veggira, and their activism-themed stickers and wall art.</figcaption>
+     class="centered">
+<figcaption>Some thematic stickers and wall art.</figcaption>
 </figure>
 
 While walking the streets of Bilbao I came across some people playing a game. The players wore stockings over their heads, obscuring their vision, with a ball in the foot of the stocking. The goal was to knock over a bottle of water by swinging their heads. Local tradition, maybe? One of the players almost fell on me. Gave me a laugh, anyway.
@@ -59,7 +70,7 @@ My first day of walking. I used the map in the Buen Camino app to find my way to
 <img src="{{ url_for('static', filename='img/camino/IMG_20231008_112643_1.jpg') }}"
      alt="The blue and yellow camino marker. It says 'Camino de Santiago' on it."
      class="centered">
-<figcaption>Is it pointing right, or left? I think it was left. Actually, I don't think the shell was supposed to be an arrow. The blue thing was.</figcaption>
+<figcaption>Is it pointing right, or left? I think it was left. Actually, I think the blue part was supposed to be the arrow, not the shell, but I never figured that out.</figcaption>
 </figure>
 
 After making my way out of the city, I had to climb a tall hill. My arse was thoroughly sore afterwards. Nice views of Bilbao, though.
@@ -95,7 +106,7 @@ At the top of the hill, there was a small monastery. Two cats lived there, and t
 <figcaption>"Fall in love, we die either way". The first of many roadside graffitis I photographed.</figcaption>
 </figure>
 
-Arrived at my first *albergue de peregrinos* (pilgrim hostel? pilgrim refuge? I'm just gonna call them albergues), met plenty of pilgrims but didn't talk to anyone at length. Washed my clothes in a sink using my bar of soap, then hung them up to dry. Went for food, had to cross a river via a "hanging bridge" / cable car thing. It was cool, but also I'm not sure why they didn't just build a regular bridge?
+Arrived at my first *albergue de peregrinos* (pilgrim hostel? pilgrim refuge? I'm just gonna call them albergues), where I met plenty of pilgrims but didn't talk to anyone at length. Washed my clothes in a sink using my bar of soap, then hung them up to dry. Went for food, had to cross a river via a "hanging bridge" / cable car thing. It was cool, but also I'm not sure why they didn't just build a regular bridge?
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231008_152649.jpg') }}"
@@ -104,7 +115,7 @@ Arrived at my first *albergue de peregrinos* (pilgrim hostel? pilgrim refuge? I'
 <figcaption>The so-called hanging bridge, from a distance.</figcaption>
 </figure>
 
-I ate outside, observing the Spanish street scenes in what was a fairly residential area, and drank 2 cañas of Radler. 1 caña = slightly less than half a pint.
+I ate outside, observing the Spanish street scenes in what was a fairly residential area, and drank 2 cañas of Radler. A caña is slightly less than half a pint.
 
 ### Day 2, Monday, October 9th, Castro-Urdiales (35.1km, 55.2km total)
 Didn't sleep well, there were sick people coughing and I was woken up twice by a mosquito buzzing in my ear. I also had to pee several times during the night thanks to those damn cañas. Then I woke up at 5am from the noise of departing pilgrims. So, I was very tired. My feelings varied between happiness and anxiety. I was still adapting to the routine, and was worried that I might get stuck paying for an overpriced hotel again.
@@ -122,7 +133,7 @@ The two pilgrims I set out with: Mari, a business psychologist from Germany; and
 
 Shortly afterwards, Max came walking from the opposite direction. We informed him that he was going the wrong way, so he turned around and joined us. I was the one left talking to him, as my companions seemed reluctant to do so. We arrived at a beach town where we bought supplies in a shop and rested for a bit, while Max went on ahead. Then I left my companions because, while I appreciated their company, I was planning to walk a lot that day, and I didn't want to stall for too long.
 
-There was a diversion because fallen rocks had blocked the cliffside path ahead. When the paths rejoined, I ran into Max yet again and got stuck walking with him for another couple of hours. He told me he was in a car crash at the age of 3. Both his parents died in the crash, but Vladimir Putin pulled him from the wreck and administered a life-saving dose of morphine to save his life. Then he was brought by helicopter to a Soviet military base, where he was adopted and went on to live in various Soviet states, including Armenia and Georgia.
+There was a diversion because fallen rocks had blocked the cliffside path ahead. When the paths rejoined, I ran into Max yet again (he had naughtily taken the blocked route) and got stuck walking with him for another couple of hours. He told me he was in a car crash at the age of 3. Both his parents died in the crash, but Vladimir Putin pulled him from the wreck and administered a life-saving dose of morphine to save his life. Then he was brought by helicopter to a Soviet military base, where he was adopted and went on to live in various Soviet states, including Armenia and Georgia.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231009_120905.jpg') }}"
@@ -131,7 +142,7 @@ There was a diversion because fallen rocks had blocked the cliffside path ahead.
 <figcaption>Approaching the cliffs after taking my leave of Iria and Mari.</figcaption>
 </figure>
 
-Max thought the Georgian government was out to get him. He'd worked for the Georgian police for 7 years, developing tracking software, until one day, he refused his orders and got fired. Since then, they'd had him poisoned several times. They'd also sabotaged him by ripping tiny holes in his bag and wearing down the rubber on the soles of his shoes.
+There was more. Max thought the Georgian government was out to get him. He'd worked for the Georgian police for 7 years, developing tracking software, until one day, he refused his orders and got fired. Since then, they'd had him poisoned several times. They'd also sabotaged him by ripping tiny holes in his bag and wearing down the rubber on the soles of his shoes.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231009_141225.jpg') }}"
@@ -152,7 +163,7 @@ I felt sorry for Max. He'd clearly had a difficult life, regardless of how true 
 I eventually arrived at a cheap, 1-star hotel in Castro-Urdiales that I'd booked earlier, having walked for 8 hours that day. My feet were sore. I hoped I wouldn't get blisters.
 
 ### Day 3, Tuesday, October 10th, Laredo (25.7km, 80.9km total)
-A day of steep slopes, sore feet, and conversations. I started at 7:30am. The scenery was eye-catching, but the route involved a lot of walking on concrete, which I felt in my feet and legs. Before this experience, I hadn't really understood why walking on hard surfaces is tough on the body.
+A day of steep slopes, sore feet, and conversations. I started at 7:30am. The scenery was eye-catching, but the route involved a lot of walking on concrete, which I felt in my feet and legs. Before this experience, I hadn't understood why walking on hard surfaces is tough on the body.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231010_081009_1.jpg') }}"
@@ -165,7 +176,7 @@ An encounter with a predator. I was walking past someone's yard when I heard the
 
 The clucking died down a few seconds later and I stepped out to see what was going on, only to catch the culprit, a fox, trotting back into the yard. It spotted me and we made eye contact. After a moment I clapped my hands and it ran away. I took a brief look around to make sure there were no mortally wounded chickens lying about, then decided it would be a good idea to inform the owner in case the fox came back for another attempt. I tried knocking on several doors in the area, and when nobody answered, I stood up on a wall in order to get a better look around. At that point, I spotted a man jog-walking towards me with 4-5 dogs. I tried to explain what had happened. He probably thought I was a lunatic, and seemed more interested in getting back to his house to make sure I hadn't messed with anything. He eventually heard me out, but seemed to think the culprit was an orange cat from the neighbourhood. I was 99% certain it was a fox (*zorro*), though. I didn't know the Spanish for "clapped my hands" (*dar una palmada*), so I had to mime that part of the story. Yay for new vocabulary!
 
-After leaving the scene, without receiving any thanks for saving the chickens, I had to climb another hill, which was tough on my now continuously-sore glutes. At the top, I met a man from Barcelona who was resting on the ground. We chatted about our respective countries and about other people we'd met so far. I got some Catalan movie recommendations from him. He spoke Spanish slowly enough that I could understand him, which was nice. Later, I met an Italian woman and her mother who were doing the Camino together. The mother was suffering from all the walking and could barely muster the breath to say anything. The daughter had done the Camino several times before. She gave me a plastic yellow arrow to tie onto my bag. I didn't want to take it, but it would've felt rude to say no, so I was compelled to tie the plastic junk to my backpack, where it remains to this day.
+After leaving the scene, without receiving any thanks for saving the chickens, I had to climb another hill, which was rough on my now continuously-sore glutes. At the top, I met a man from Barcelona who was resting on the ground. We chatted about our respective countries and about other people we'd met so far. I got some Catalan movie recommendations from him. He spoke Spanish slowly enough that I could understand him, which was nice. Later, I met an Italian woman and her mother who were doing the Camino together. The mother was suffering from all the walking and could barely muster the breath to say anything. The daughter had done the Camino several times before. She gave me a plastic yellow arrow to tie onto my bag. I didn't want to take any plastic junk, but it would've felt rude to say no, so I was compelled to tie it to my backpack, where it remains to this day.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231010_133012.jpg') }}"
@@ -181,18 +192,18 @@ After leaving the scene, without receiving any thanks for saving the chickens, I
 <figcaption>Looking back at a seaside landscape I'd just traversed.</figcaption>
 </figure>
 
-I eventually made it to Laredo, where I was hosted at an old convent by an order of nuns. It only cost €10 to stay there, and it came with breakfast. Luxurious compared to the last albergue. The nuns doing the check-ins had an air of kindness about them, and I wished I could talk to them more. I was sharing a room with a nice old American man called Marty. (There needs to be an English equivalent of *estadounidense*, instead of having to say "person from the USA"). I wandered the town searching for a place with veggie food, but the only option I could find was a vegetarian burger. The following day we would leave Laredo by boat.
+I eventually made it to Laredo, where I was hosted at an old convent by an order of nuns. It only cost €10 to stay there, and it came with breakfast. Luxurious compared to the last albergue. The nuns doing the check-ins had an air of kindness about them, and I wished I could talk to them more. I was sharing a room with a nice old American man called Marty. (There needs to be an English equivalent of *estadounidense*, instead of having to say "person from the USA"). I wandered the town searching for a place with veggie food, and eventually found a bar with vegetarian burgers. The following day we would leave Laredo by boat.
 
-It's from this day that I have my first memory of the October 7th attack on Israel. I'm not sure if I'd heard the news before this point, absorbed as I was in the trip. I remember walking past a bar and seeing footage of Hamas militants attacking a kibbutz. I was mostly ignorant about the history of Palestine and the 80+ years of occupation it had been under prior to October 7th. I also had no idea of the genocide (as classified by Amnesty, a UN commission, and other international bodies) that was about to be committed in Gaza. I know this is a frivolous travel diary and maybe not an appropriate platform for such a topic, but it'd be weird not to mention it given that I arrived in Spain on October 7th, and that it was on my mind a lot throughout the trip.
+It's from this day that I have my first memory of the October 7th attack on Israel. I'm not sure if I'd heard much about it before this point, absorbed as I was in the trip. I remember walking past a bar and seeing footage of Hamas militants attacking a kibbutz. I was mostly ignorant about the history of Palestine and the 80+ years of occupation it had been under prior to October 7th. I also had no idea of the genocide (as classified by Amnesty, a UN commission, and other international bodies) that was about to be committed in Gaza.
 
 ### Day 4, Wednesday, October 11th, Güemes (28.7km, 109.6km total)
-All the pilgrims gathered for breakfast. We were given sponge cake and tea/coffee. My first communal meal of the Camino! Everyone filtered out of the convent and started walking towards the boat departure point, hoping to make it in time for the first crossing of the day. The walk took about 1 hour.
+All the pilgrims gathered for breakfast. We were given sponge cake, tea and coffee. My first communal meal of the Camino! Everyone filtered out of the convent and started walking towards the boat departure point, hoping to make it in time for the first crossing of the day. The walk took about 1 hour.
 
 Along the way, I introduced myself to Wesley and Aurora, a couple I recognised from the albergue in Portugalete. Wesley had actually been sleeping above me in the bunk bed there, and I had sent mental daggers his way for the (probably reasonable) amount of noise he had made in the morning. Neither of them could speak much English, and Aurora couldn't speak Spanish. Wesley fluently spoke Portuguese, Italian and French. He made heavy use of vocabulary from these languages when speaking Spanish, but somehow we were able to understand each other and got along well. Wesley was Brazilian, living in Switzerland. Aurora was French, living in Brittany. They were a Camino couple, having gotten together while doing the Camino Francés the previous year.
 
-We arrived at the beach where the boat was supposed to pick us up. Other pilgrims joined us as we waited and wrote on the sand. There was Felipe, a 70-something-year-old Spanish man from Sevilla who had also stayed at the albergue in Portugalete. He was dressed sportily and seemed fit for his age. Also reappearing from Portugalete was Niko, a giant, grey-bearded, monolingual French man who had the habit of speaking and laughing to himself. There were 2 young Ukrainian women from the convent - I was curious about their life situation, given that the Russian invasion of Ukraine had been launched the year before, but I wasn't sure if it would be intrusive to ask them about that.
+We arrived at the beach where the boat was supposed to pick us up. Other pilgrims joined us as we waited and wrote messages in the sand. There was Felipe, a 70-something-year-old Spanish man from Sevilla who had also stayed at the albergue in Portugalete. He was dressed sportily and seemed fit for his age. Also reappearing from Portugalete was Niko, a giant, grey-bearded, monolingual French man who could often be seen speaking and laughing to himself. There were 2 young Ukrainian women from the convent - I was curious about their life situation, given that the Russian invasion of Ukraine had been launched the year before, but I wasn't sure if it would be intrusive to ask them about that.
 
-The boat came and brought us the short distance to Santoña. During the crossing, I once again felt the buzz of pilgrim solidarity: music playing from a radio, laughter, and shared anticipation of the day's adventure. When the boat landed, however, I felt minor social anxiety due to the uncertainty of whether people expected to walk together or not. To avoid the discomfort, I slipped away and walked ahead while the other pilgrims wandered around the landing point.
+The boat came and brought us the short distance to Santoña. During the crossing, I enjoyed once again the buzz of pilgrim solidarity: music playing from a radio, laughter, and shared anticipation of the day's adventure. When the boat landed, however, I felt minor social anxiety due to the uncertainty of whether people expected to walk together or not. To avoid the discomfort, I awkwardly slipped away and walked ahead while the other pilgrims wandered around the landing point.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231011_091420.jpg') }}"
@@ -219,7 +230,7 @@ I followed the route along a road until I had to leave it and climb up onto some
 
 An Argentinian guy from the boat, Matias, caught up with me. I joined him for the next part of the trek, walking barefoot along the beach. Matias came north to do the Camino after wrapping up a seasonal job as a waiter in Andalucia. Naturally, he knew about the Argentinian director Damián Szifron, although neither of us could remember his name and referred to him as the creator of *Hermanos y detectives* (which I've watched) and *Los simuladores* (which I have not). Matias normally earned a living by doing 3D modelling, along with odd jobs like food delivery, but he was re-evaluating his career and wanted to do something involving the outdoors or interacting with people. He didn't seem particularly engaged in our conversation. We left each other at the end of the beach and I walked on.
 
-At some point I ran into Aurora and Wesley again. I discovered that Aurora was a farm manager. Wesley was living his life in 1-year cycles: 6 months of work, then 6 months of travel. I think he mostly worked as a chef? He left his home in Brazil at a relatively young age. His travels brought him to the US, where he spent 2 months in immigration detention. Eventually, he made his way to Italy, where I think his mother and siblings had relocated, and he was able to get citizenship due to an Italian connection in the family. He was renting a room in a houseshare in Switzerland, the perfect place for his outdoorsy hobbies like paragliding. For this trip, he drove to France on his motorbike, which he deposited at Aurora's house before setting off for Spain.
+At some point I ran into Aurora and Wesley again. I discovered that Aurora was a farm manager. Wesley was living his life in 1-year cycles: 6 months of work, then 6 months of travel. I think he mostly worked as a chef? He left his home in Brazil at a relatively young age. His travels brought him to the US, where he spent 2 months in immigration detention. Eventually, he made his way to Italy, where his mother and siblings had relocated, and he was able to get citizenship due to an Italian connection in the family. Currently he was living in Switzerland, where he enjoyed the outdoorsy activities like paragliding. For this trip, he drove to France on his motorbike, which he deposited at Aurora's house before setting off for Spain.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231011_140453_1.jpg') }}"
@@ -228,7 +239,7 @@ At some point I ran into Aurora and Wesley again. I discovered that Aurora was a
 <figcaption>Typical landscape from this part of the trip. The sun was verrry hot.</figcaption>
 </figure>
 
-Finally, after several hours of walking in the heat on hard asphalt roads, we arrived at Cabaña del Padre Peuto, a *donativo* albergue (donation hostel) founded by a priest called Padre Ernesto. At these donativo albergues, you pay whatever you want for food and accommodation. Ernesto set this one up on the site of his old family home. There, with the help of volunteers, he wanted to share his life philosophy with passing pilgrims. The philosophy can be summarised as "life is the real Camino". The whole place had the vibe of a hippy forest retreat. I was registered by a friendly Mexican volunteer called Antonio. Then I made my bed (using disposable pillow covers & sheets, as usual), washed my clothes, and explored the property.
+Finally, after several hours of walking in the heat on hard asphalt roads, we arrived at Cabaña del Padre Peuto, a *donativo* albergue (donation hostel) founded by a priest called Padre Ernesto. At these donativo albergues, you pay whatever you want for food and accommodation. Ernesto set this one up on the site of his old family home. There, with the help of volunteers, he wanted to share his life philosophy with passing pilgrims. That philosophy can be summarised as "life is the real Camino". The whole place had the vibe of a hippy forest retreat. I was checked in by a friendly Mexican priest called Antonio, who was volunteering there. Then I made my bed (using disposable pillow covers & sheets, as usual), washed my clothes, and explored the property.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231011_190522.jpg') }}"
