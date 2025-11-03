@@ -1,10 +1,11 @@
 title: Camino diary, days 5-9
-date: 2025-10-07
+date: 2025-11-03
 description: A transcription of my diary from the Camino de Santiago.
 tags: travel
+publish: y
 
 ### Day 5, Thursday, October 12th, Santander (10.5km, 120.1km total)
-We departed early, after a short breakfast. I didn't sleep well due to the heat in the dorm. Aurora and Wesley left just before me, but I caught up with them after a while. I passed out 3 Spanish men on the way, more old faces from the first albergue. When they found out I was Irish, they mentioned James Joyce. I asked them who they thought was the Spanish language equivalent of Joyce. One of them said Miguel Cervantes. I thought to myself: isn't he more the equivalent of Shakespeare? Anyway, moral of the story is to not talk to strangers about literature, because it's a conversational dead end.
+We departed early, after a short breakfast. I didn't sleep well due to the heat in the dorm. Aurora and Wesley left just before me, but I caught up with them after a while. I passed out 3 Spanish men on the way, more old faces from the first albergue. When they found out I was Irish, they mentioned James Joyce. I asked them who they thought was the Spanish language equivalent of Joyce. One of them said Miguel Cervantes. "Isn't he more the equivalent of Shakespeare?" I thought to myself, pretentiously.
 
 More walking along the coast, passing by many fields of animals. Aurora and Wesley liked to imitate animal noises, which never failed to make me laugh. Wesley took a detour at some point. In his place, we were accompanied by a Chinese guy called Wei Tee (probably a poor transcription) who was working in Barcelona. After traversing more cliffs, we came to another beach. This one was extremely long. We followed it all the way to the end, until we arrived at a town where a boat took us to Santander.
 
@@ -52,7 +53,7 @@ The day's journey would be from Santander to Santillana del Mar. It was the long
 <figcaption>Red sky as I left Santander.</figcaption>
 </figure>
 
-Like on every other day, I saw a lot of farms and farm animals. There was also usually at least one friendly Spaniard who'd shout out "Buen Camino!" to me and other pilgrims as we walked by. I met a German woman called Maika who had started her Camino that day in Santander. I also met another Johann from the Netherlands (not Johann of Johann and Joepke fame). Johann and I walked the last part of the segment together, finally arriving in Santillana, a popular tourist town with aesthetic cobblestone streets. We went straight to the convent where we were planning to stay, and once again I found familiar faces: Wesley and Aurora; Felipe from Sevilla; Marty the American; Nikola the monolingual Frenchman; and Stein the blunt Belgian guy.
+Like on every other day, I saw a lot of farms and farm animals. There was also usually at least one friendly Spaniard who'd shout "Buen Camino!" to me and other pilgrims as we walked by. I met a German woman called Maika who had started her Camino that day in Santander. I also met another Johann from the Netherlands (not Johann of Johann and Joepke fame). Johann and I walked the last part of the segment together, finally arriving in Santillana, a popular tourist town with aesthetic cobblestone streets. We went straight to the convent where we were planning to stay. It was already late in the day and all the beds were taken, so Johann and I (and Maika, who arrived shortly after us) were given mattresses on the floor to sleep on. Also staying at the convent were: Wesley and Aurora; Felipe from Sevilla; Marty the American; Nikola the monolingual Frenchman; and Stein the blunt Belgian guy.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231013_094724.jpg') }}"
@@ -68,7 +69,7 @@ Like on every other day, I saw a lot of farms and farm animals. There was also u
 <figcaption>A landscape shot from the day. It was foggy in parts.</figcaption>
 </figure>
 
-After exploring the town for a bit, I returned to the convent to attend a so-called pilgrim meeting they were hosting. The other pilgrims and I were joined by 3 nuns. We introduced ourselves, and the nuns explained the purpose of the convent-albergue. The convent was founded in the 17th century, and in ~2016 began offering services as a pilgrim hostel. They were currently employing 8 immigrant workers (asylum seekers?) at the albergue, to help them integrate in the community. We took turns doing readings from a booklet and did a bit of singing. I'm not religious, but it was an interesting experience nonetheless.
+After exploring the town for a bit, I returned to the convent to attend a so-called pilgrim meeting, hosted by 3 nuns. We introduced ourselves, and the nuns explained the purpose of the convent-albergue. The convent was founded in the 17th century, and in ~2016 began offering accommodation to pilgrims. They were currently employing 8 immigrant workers (asylum seekers?) at the albergue, to help them integrate into the community. We took turns doing readings from a booklet, and did a bit of singing. I'm not religious, but it was an interesting experience nonetheless.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231013_153048.jpg') }}"
@@ -93,7 +94,7 @@ After that, it was dinner time. I ate a tortilla, soup, and custard dessert. I t
 <figcaption>One of many stone buildings in the town.</figcaption>
 </figure>
 
-By the time we had arrived at the convent, it was already late in the day and all the beds were taken, so Johann and I (and Maika, who arrived after us) were given mattresses on the floor to sleep on. From chatting to Felipe and Stein, I discovered that Felipe was the head of the Spanish subsidiary of a media company called Rosco (or something like that), while Stein owned a company that employed 200 engineers. I didn't realise I'd been walking among such high-powered individuals.
+From chatting to Felipe and Stein, I discovered that Felipe was the head of the Spanish subsidiary of a media company called Rosco (or something like that), while Stein owned a company that employed 200 engineers. I didn't realise I'd been walking among such high-powered individuals.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231013_195112.jpg') }}"
@@ -104,16 +105,16 @@ By the time we had arrived at the convent, it was already late in the day and al
 
 
 ### Day 7, Saturday, October 14th, San Vicente de la Barquera (34km, 191.1 total)
-Disaster! There was a flood in our room. Maika woke us all up at 7am, to widespread confusion and chaos. The water didn't soak through the mattresses, but we were completely surrounded. Fortunately, I'd left my bag on a table, and as far as I know, nobody else had their possessions badly damaged either. I was able to slide my mattress along the floor like a raft, and got to dry ground.
+Disaster! There was a flood in our room. Maika woke us all up at 7am, to widespread confusion and chaos. Our mattresses hadn't soaked through, but we were completely surrounded by water. Fortunately, I'd left my bag on a table, and as far as I know, nobody else had their possessions badly damaged either. I was able to slide my mattress along the floor like a raft, and got to dry ground.
 
 <figure>
 <video controls class="centered">
   <source src="{{ url_for('static', filename='img/camino/VID_20231014_071358.mp4') }}" type="video/mp4">
 </video> 
-<figcaption>Playing with the slidey mattress as the chaos played out around me.</figcaption>
+<figcaption>Playing with my slidey mattress as the chaos played out around me.</figcaption>
 </figure>
 
-The cause of the flood was a massive outbreak of rain (and a broken drainpipe). It continued raining for most of the day. After heading out, my feet and legs got soaked, including parts of my shorts and underwear. This was when I discovered that my poncho didn't cover the backs of my legs properly, and also that it could only do so much to keep heavy rain off my upper body. I was physically tired from the long trek the day before, and the segment had lots of hills.
+The cause of the flood was a massive outbreak of rain (and a broken drainpipe). It continued raining for most of the day. After heading out, my feet and legs got soaked, including parts of my shorts and underwear. This was when I discovered that my poncho didn't cover the backs of my legs properly, and also that it could only do so much to keep heavy rain off my upper body. I was physically tired from the long trek the day before, and the segment had lots of hills, so it was hard going.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231014_080858.jpg') }}"
@@ -129,7 +130,7 @@ The cause of the flood was a massive outbreak of rain (and a broken drainpipe). 
 <figcaption>A friend we met along the way.</figcaption>
 </figure>
 
-At various points I walked with Johann, Stein, Maika, Wesley and Aurora. Eventually, I stumbled into San Vicente de la Barquera together with Wesley and Aurora. It seemed to be a surfing town, as we walked past surfers and a beach-side surf shop on the outskirts. I was exhausted and thoroughly wet.
+At various points I walked with Johann, Stein, Maika, Wesley and Aurora. Eventually, I stumbled into San Vicente de la Barquera together with Wesley and Aurora. We walked past surfers and a beach-side surf shop on the outskirts. I was exhausted and thoroughly wet.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231014_134903.jpg') }}"
@@ -189,7 +190,7 @@ After about 30km, I left Aurora and Wesley behind, because I still wanted to rea
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231015_172928.jpg') }}"
      class="centered">
-<figcaption>The mountain village.</figcaption>
+<figcaption>Mountain village.</figcaption>
 </figure>
 
 <figure>
@@ -220,12 +221,12 @@ I managed to reach Llanes, blister be damned. I went to La Casona del Peregrino 
 </figure>
 
 ### Day 9, Monday, October 16th, Ribadesella (31.4km, 263.1km total)
-I slept, or at least stayed in bed, until 8am. My roommates, two older French women and a friendly German woman called Jana, had already left by then. I delayed my departure in order to wash my clothes, take care of the blister (I put a blister plaster on it), and rest up a bit more. I went to the supermarket at 9am to buy tape and gauze - extra cushioning for the blister, since it was painful when I walked.
+I slept, or at least stayed in bed, until 8am. My roommates, two older French women and a friendly German woman called Jana, had already left by then. I delayed my departure in order to wash my clothes, put a blister plaster on my blister, and rest up a bit more. I went to the supermarket at 9am to buy tape and gauze - extra cushioning for the blister, since it was painful to walk on it.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231016_093216_1.jpg') }}"
      class="centered">
-<figcaption>A cool tree. And more mountains in the background.</figcaption>
+<figcaption>A cool tree. And more mountains.</figcaption>
 </figure>
 
 I was mostly by myself for the day, which was fine. I passed out Jana and the Frenchies. Also got a baby goat to eat grass out of my hand!
@@ -233,7 +234,7 @@ I was mostly by myself for the day, which was fine. I passed out Jana and the Fr
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231016_105832.jpg') }}"
      class="centered">
-<figcaption>Baby goats observing a cat with curiosity.</figcaption>
+<figcaption>Baby goats observing a cat.</figcaption>
 </figure>
 
 <figure>
@@ -248,7 +249,7 @@ I was mostly by myself for the day, which was fine. I passed out Jana and the Fr
 <figcaption>Some ruins.</figcaption>
 </figure>
 
-I got lost twice: the first time, I was walking along a road and missed a marker for a turn-off. The second time was more painful. There was a fork in the trail, and I took the branch closer to the sea in order to catch some nice views. I was vaguely conscious from the information in the Buen Camino app that this path would be longer and not as well signposted, but I didn't anticipate just how hilly it'd be. As I struggled up and down a series of steep hills, my phone died, and I started to doubt whether I was even on the right path anymore. In the end, I cut across a field and made my way back to the road. I was able to follow the road the rest of the way to Ribadesella, and the relief when I arrived was sublime. The upside of the misadventure was that there were indeed some nice cliff views, and I spotted an eagle while crossing the field. I also passed near some *bufones*, rock formations that launch water into the air at high pressure. The sound of the water being launched was so explosive that I initially thought it was thunder.
+I got lost twice: the first time, I was walking along a road and missed the marker for a turn-off. The second time was more painful. I came to a fork in the route and took the branch closer to the sea, in order to catch better views. I was vaguely conscious from the Buen Camino app that this path would be longer and not as well signposted, but I didn't anticipate just how hilly it'd be. As I struggled up and down a series of steep hills, my phone died, and I started to doubt whether I was even on the right path anymore. In the end, I cut across a field and made my way back to the road. I was able to follow the road the rest of the way to Ribadesella, and the relief when I arrived was sublime. The upside of the misadventure was that there were some nice cliff views, and I spotted an eagle while crossing the field. I also passed near so-called *bufones* ("fools"), rock formations that launch water into the air at high pressure. The sound of the water being launched was so explosive that I initially thought it was thunder.
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231016_152124.jpg') }}"
