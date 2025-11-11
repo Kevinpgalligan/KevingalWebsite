@@ -84,7 +84,7 @@ def tweak_post_meta(pg):
     if "tags" in pg.meta and not isinstance(pg.meta["tags"], list):
         pg.meta["tags"] = pg.meta["tags"].split(" ")
 
-def make_should_skip(rebuild_all, target=None):
+def make_should_skip_func(rebuild_all, target=None):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     repo = Repo(dir_path)
     posts = get_blog_posts()
@@ -98,8 +98,8 @@ def make_should_skip(rebuild_all, target=None):
         md_path = url_to_md_path(url)
         # Assuming that new posts only come at the head of the blog...
         return (any(md_path.endswith(post.path) for post in posts)
-            and 1 >= next(i for i, post in enumerate(posts)
-                            if md_path.endswith(post.path)))
+            and 1 < next(i for i, post in enumerate(posts)
+                         if md_path.endswith(post.path)))
     def build_file_exists(filepath):
         # Not sure if filepath can be None.
         return filepath and os.path.exists(filepath)
@@ -294,13 +294,13 @@ def favicon():
         "favicon.ico",
         mimetype="image")
 
-def make_should_skip_from_args(args):
+def make_should_skip_func_from_args(args):
     if args.selective:
-        return make_should_skip(False)
+        return make_should_skip_func(False)
     elif args.all:
-        return make_should_skip(True)
+        return make_should_skip_func(True)
     elif args.file:
-        return make_should_skip(False, target=args.file)
+        return make_should_skip_func(False, target=args.file)
     else:
         sys.exit(1)
 
@@ -315,7 +315,14 @@ if __name__ == '__main__':
         parser.add_argument("--file", required=False,
                             help="Path to single file to regenerate, like /index.html")
         args = parser.parse_args()
-        app.config["FREEZER_SKIP_EXISTING"] = make_should_skip_from_args(args) 
+        app.config["FREEZER_SKIP_EXISTING"] = make_should_skip_func_from_args(args) 
+        # Don't remove files that were generated previously. This allows
+        # us to regenerate a single file without having to later generate
+        # the whole website from scratch.
+        # This does make it a bit awkward to remove files from the website,
+        # but I can either do that manually or add a CLI flag to change
+        # this config.
+        app.config["FREEZER_REMOVE_EXTRA_FILES"] = False
         if args.file:
             def gen():
                 yield args.file

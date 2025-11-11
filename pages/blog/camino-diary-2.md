@@ -149,7 +149,7 @@ At various points I walked with Johann, Stein, Maika, Wesley and Aurora. Eventua
 We checked in at Albergue Nómada. I paid for the clothes washing/drying service, and later went for food (pizza) at the nearest restaurant I could find. It was a lively town, but between my tiredness and my shoes feeling like wet sponges, I wasn't motivated to explore it any further. The albergue didn't have any newspaper left for me to dry out my shoes, so instead I used tissue paper. I wasn't sure that I'd have the energy to complete the 40.6km segment the next day - the longest segment I'd planned to walk on the entire trip.
 
 ### Day 8, Sunday, October 15th, Llanes  (40.6km, 231.7km total)
-I set out early after bidding farewell to Wesley and Aurora, but I got a bit lost in the maze-like streets of the town and bumped into them before finding my way out. We never agreed to team up, but we always seemed to end up walking together anyway, and by this point I felt very fond of them. I discovered that they were older than they appeared - Aurora was 38 and Wesley was 37. And Aurora had a 20-year-old daughter, which I would NEVER have guessed!
+I set out early after bidding farewell to Wesley and Aurora, but I got a bit lost in the maze-like streets of the town and bumped into them before finding my way out. We never agreed to team up, but we always seemed to end up walking together anyway, and by this point I felt very fond of them. I discovered that they looked a lot younger than they actually were, and that Aurora had a daughter, which I would NEVER have guessed!
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231015_081518.jpg') }}"
