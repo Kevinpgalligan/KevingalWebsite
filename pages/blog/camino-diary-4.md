@@ -92,9 +92,9 @@ My ankle didn't seem to hurt so much when I was standing or walking, but it was 
 <figcaption>Leaving Luarca.</figcaption>
 </figure>
 
-In Villapedre I checked into the hotel El Pinar. I felt conscious of the privilege I had, being able to stay in hotels whenever I wanted more comfort and privacy. Of course, this was all inconsequential compared to the plight of people in Gaza, who were being murdered every day while I was preoccupied by trivialities like insect bites and a swollen ankle.
+In Villapedre I checked into the hotel El Pinar. I spent the evening in bed, keeping my ankle elevated, watching trashy TV, and eating pizza. One of the shows was *El Cazador* (The Hunter), the Spanish equivalent of The Chase. I was humbled by a Spanish comedy show where I couldn't understand a single word the comedians were saying.
 
-I spent the evening in bed, keeping my ankle elevated, watching trashy TV, and eating pizza. One of the shows was *El Cazador* (The Hunter), the Spanish equivalent of The Chase. I was humbled by a Spanish comedy show where I couldn't understand a single word the comedians were saying.
+I felt conscious of the privilege I had, being able to stay in hotels whenever I wanted more comfort and privacy. Of course, this was all inconsequential compared to the plight of people in Gaza, who were being murdered every day while I was preoccupied by trivialities like insect bites and a swollen ankle.
 
 ### Day 17, Tuesday, October 24th, La Caridad (17.99km, 434.11km total)
 I waited until it stopped raining before leaving the hotel, but the wind was still so strong that it nearly knocked me over a few times. I was saddened to see some dairy cows in a barn, separated from their calves by metal fencing and a distance of 100-200m.
