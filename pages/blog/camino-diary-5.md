@@ -1,7 +1,8 @@
 title: Camino diary, days 20-24
-date: 2025-10-09
+date: 2025-11-19
 description: A transcription of my diary from the Camino de Santiago.
 tags: travel
+publish: y
 
 ### Day 20, Friday, October 27th 2023, Mondoñedo (19.37km, 492.08km total)
 As I left, Nicole pointedly reminded me where to find the donation box. More like "coercion" box, amirite? I'd already left some money, anyway. Reading reviews for Granja de Calor, there seemed to be a lot of people complaining about how shabby the place was. I guess that's why they made it a donativo albergue. They couldn't be held to the same standards as other albergues if people got to stay there for free and donate whatever they wanted... right??? Regardless, I'd enjoyed hearing their story and the food had been tasty.
