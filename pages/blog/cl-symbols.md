@@ -214,7 +214,7 @@ Note that packages don't have any notion of variables or functions, only symbols
 Once a package has been created inside a running Lisp process, it's visible everywhere. If there's a package called `scooby`, and it exports the symbol `doo`, then that symbol can be referenced anywhere via `scooby:doo`, with no restrictions.
 
 ## How do symbols get added to a package?
-When the Lisp Reader inhales some Lisp code, it has to map each symbol name to a symbol data structure. It does this by "interning" each name into the currently active package, which is designated by a global variable called [\*package\*](https://www.lispworks.com/documentation/HyperSpec/Body/v_pkg.htm#STpackageST). `(intern "HI")` returns the existing symbol called "hi" if it already exists in `*package*`; otherwise, it adds a new symbol named "hi" to `*package*` and returns it. This behaviour ensures that each occurrence of a symbol name will map to the same symbol data structure.
+When the Lisp Reader inhales some Lisp code, it has to map each symbol name to a symbol data structure. It does this by "interning" each name into the currently active package, which is designated by a global variable called [\*package\*](https://www.lispworks.com/documentation/HyperSpec/Body/v_pkg.htm#STpackageST). `(intern "hi")` returns the existing symbol called "hi" if it already exists in `*package*`; otherwise, it adds a new symbol named "hi" to `*package*` and returns it. This behaviour ensures that each occurrence of a symbol name will map to the same symbol data structure.
 
 	:::lisp
 	CL-USER> (intern "hi")
@@ -462,7 +462,7 @@ If we now call this macro from the STONES package...
 
 ...it behaves as we'd expect. If we'd instead implemented `favourite` using the comparison `(eq beatle 'john)`, then `(beatles:favourite 'john)` and `(beatles:favourite 'ringo)` would, perhaps surprisingly, *both* print "wrong", because the `john` symbol we'd be interning into the STONES package would be different to the `john` symbol in the BEATLES package.
 
-In an act of unashamed plagiarism, here's a lazy quote of more usage advice from the spec that I thought was interesting:
+In an act of unashamed copying, here's a quote of yet more usage advice from the spec that I thought was interesting:
 
 >  It is generally best to confine the use of keywords to situations in which there are a finitely enumerable set of names to be selected between. For example, if there were two states of a light switch, they might be called :on and :off. 
 >
@@ -561,11 +561,11 @@ If you're an Emacs user and you've compiled a single Common Lisp form, like a fu
 
 In your REPL, the currently active package is CL-USER. So when you compile the `bar` function, why does it get added to the FOO package rather than CL-USER?
 
-This is an implementation detail of SLIME more than anything, but I remember being confused by it, so let's indulge ourselves with this brief tangent. First, let's see which Elisp function the `C-c C-c` shortcut is bound to. Entering the help command for keyboard shortcuts, `C-h k`, and then `C-c C-c`, we're told that this shortcut is bound to the function `slime-compile-defun`.
+This is an implementation detail of SLIME more than anything, but I remember being confused by it, so let's indulge ourselves with a final tangent. First, let's see which Elisp function the `C-c C-c` shortcut is bound to. Entering the help command for keyboard shortcuts, `C-h k`, and then `C-c C-c`, we're told that this shortcut is bound to the function `slime-compile-defun`.
 
 This function is defined in `slime.el`. Following the link there and searching for "in-package", we find the following comment:
 
-> We have the concept of the "current Lisp package". RPC requests always say what package the user is making them from and the Lisp side binds that package to \*BUFFER-PACKAGE\* to use as it sees fit. The current package is defined as the buffer-local value of 'slime-buffer-package' if set, and otherwise the package named by the nearest IN-PACKAGE as found by text search (cl-first backwards, then forwards).
+> We have the concept of the "current Lisp package". RPC requests always say what package the user is making them from and the Lisp side binds that package to \*BUFFER-PACKAGE\* to use as it sees fit. The current package is defined as the buffer-local value of 'slime-buffer-package' if set, and otherwise the package named by the nearest IN-PACKAGE as found by text search (first backwards, then forwards).
 
 And there's our answer: unless `slime-buffer-package` is set, SLIME first searches backwards and then forwards for the nearest IN-PACKAGE form. Not mentioned is that if no IN-PACKAGE form is found, then the code is compiled in the currently active package, whether that's CL-USER or something else.
 

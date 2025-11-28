@@ -22,13 +22,7 @@ Here's the build process and how markdown-katex now fits into it:
 
 Oh, I also needed to start serving the KaTeX CSS files and fonts, which was just a copy-and-paste job. The whole thing seems baroque when I write it out fully, but I'm happy that JavaScript is no longer required to read the blog.
 
-Now for some vim trivia. I had to go back and change the LaTeX delimiters in all the blog posts. MathJax uses $ as a delimiter for inline math mode, and $$ for display math mode. markdown-katex uses $\` and \`$ for inline math mode, and...
-
-    ```math
-    {insert maths here}
-    ```
-
-...for display math mode. I used a vim macro to replace the inline delimiters, with the following key presses: ``qa/\$RETa`ESCni`ESCwq``. It finds the next pair of LaTeX delimiters (e.g. `$x^2+1$`) and converts them to the new format (``$`x^2+1`$``).
+Now for some vim trivia. I had to go back and change the LaTeX delimiters in all the blog posts. MathJax uses $ as a delimiter for inline math mode, and $$ for display math mode. markdown-katex uses $\` and \`$ for inline math mode. For display math mode, as the opening delimiter it uses three backticks directly followed by "math", and as the closing delimiter it uses three backticks. I used a vim macro to replace the inline delimiters, with the following key presses: ``qa/\$RETa`ESCni`ESCwq``. It finds the next pair of LaTeX delimiters (e.g. `$x^2+1$`) and converts them to the new format (``$`x^2+1`$``).
 
 Here's a breakdown of how that works.
 
