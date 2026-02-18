@@ -113,7 +113,7 @@ We'd agreed to share rooms at the GoodHouse Hotel with Lee and Hannah: me with L
 2. a new baseball cap (I'd left my old one behind somewhere).
 3. a new water bottle (my old one had started leaking in my bag).
 
-Overwhelmed by my multiple objectives, by the multitude of shops, and by the abundance of options in each of those shops, I only managed to buy a water bottle before the shops closed.
+Overwhelmed by multiple objectives, a multitude of shops, and an abundance of options in each of those shops, I only managed to buy a water bottle before the shops closed.
 
 In the evening, we (the GoodHouse Hotel Gang) went for dinner to celebrate Jana's last day on the Camino. The restaurant was called Puzzle ("Why is it called Puzzle? That's the puzzle..." - How I Met Your Mother). I had patatas bravas, and stewed vegetables with soup and seitan. We talked about our favourite experiences from the Camino, and Hannah recommended me *Ghost Town*, a book by the Taiwanese author Kevin Chen. Hannah was humbled by a spicy enchilada that she assumed couldn't possibly be too much for her Asian spice tolerance. I think it was a Mexican place, though, which was not to be underestimated.
 
@@ -170,7 +170,7 @@ Then I had to make a decision: take a detour to Cudillero, a coastal town about 
 
 In the albergue there was myself, A&W, Sergio (a Spanish man who'd retired in the recent past; he lived in London for many years and spoke English with a London accent), Tony, and Kobi. Kobi was only 17, and Tony seemed to have taken on the role of his Camino Dad, which was cute to see.
 
-All of us, except A&W, went for food and drinks. I ate padrón peppers and patatas bravas, typical Spanish tapas. Some of the peppers were VERY spicy. Sergio slagged me for ordering a caña instead of a pint - can't say I've ever understood the supposed correlation between masculinity and quantity of liquid. We discussed various topics, political and otherwise. Tony spoke a refined English, but was mostly ignorant on certain subjects, like Northern Ireland. He referred to the Republic of Ireland as Southern Ireland, instead of just Ireland - a common peeve of Irish people. He didn't seem to acknowledge the distinct identities of the component countries of the United Kingdom, and was strongly in favour of maintaining the union, for reasons of diversity, economics, etc. Sergio agreed with him - countries should remain unified! Good thing there weren't any Catalans around...
+All of us, except A&W, went for food and drinks. I ate padrón peppers and patatas bravas, typical Spanish tapas. Some of the peppers were VERY spicy. Sergio slagged me for ordering a caña instead of a pint - can't say I've ever understood the supposed correlation between masculinity and quantity of liquid. We discussed various topics, political and otherwise. Tony spoke a refined English, but was ignorant about many subjects, such as Northern Ireland. He referred to the Republic of Ireland as Southern Ireland, instead of just Ireland - a pet peeve of Irish people. He didn't seem to acknowledge the distinct identities of the component countries of the United Kingdom, and was strongly in favour of maintaining the union, for reasons of diversity, economics, etc. Sergio agreed with him - countries should remain unified! Good thing there weren't any Catalans around...
 
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231021_181818_1.jpg') }}"

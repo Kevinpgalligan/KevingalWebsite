@@ -75,7 +75,7 @@ I decided to be a tourist until my departure on the 6th, since I didn't feel lik
 <figure>
 <img src="{{ url_for('static', filename='img/camino/IMG_20231102_132045_1.jpg') }}"
      class="centered">
-<figcaption>From my exploration of Santiago. The bin in the foreground is 1000s of years old, a priceless artifact.</figcaption>
+<figcaption>From my exploration of Santiago. The bin in the foreground is actually world-famous, and is the main tourist attraction in the city.</figcaption>
 </figure>
 
 <figure>

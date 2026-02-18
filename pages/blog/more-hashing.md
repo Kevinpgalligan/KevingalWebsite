@@ -66,7 +66,7 @@ There's certainly an element of validation-seeking in my writing and in sharing 
 
 I remember being fascinated by a post on Richard Stallman's website in which he casually mentioned that he was driven by the desire for appreciation from fellow programmers. "You can just say that?" I thought, "Reveal your very human weakness and your craving for approval? And nobody will laugh at you?" Given past events, Stallman obviously isn't a model of correct or ethical behaviour, but I enjoy when people are viscerally honest like this, whether it comes from bravery or shamelessness or obliviousness. 
 
-Another of my motivations for creating things and releasing them into the world is that it's an opportunity to connect with others. I've received emails from people I never would've connected with otherwise, which thus far has always been a pleasant and enriching experience. Ya never know what opportunities might arise from that.
+Another of my motivations for creating things and releasing them into the world is that it's an opportunity to connect with others. I've received emails from people I never would've connected with otherwise, which thus far has always been a pleasant and enriching experience.
 
 Not every programmer needs to have a blog or an open source project to work on. Some people hate writing, or prefer not to program outside their job - and that's okay. This just happens to be one of the ways I find meaning and fulfillment in life, and in my opinion it has created more value for society than anything I've done as part of a paid job, minuscule as that value may be.
 

@@ -111,7 +111,7 @@ Each symbol also has an associated [property list](https://www.lispworks.com/doc
 ## Why is the symbol name in all-caps?
 Good catch: we entered the symbol `'x`, but the printed symbol name was `"X"`. By default, all symbol names are converted to upper case by the so-called Lisp Reader. This can be controlled with a parameter called [readtable-case](https://www.lispworks.com/documentation/HyperSpec/Body/23_ab.htm), which, if you really want to preserve your precious little capitalisation, can be set to `:preserve`.
 
-Honestly, I think this is one of the language's biggest warts. Under the default behaviour, if you're trying to implement a formula that contains - *gasp* - both `n` AND `N`, you're reduced to mutating one of the names, as if you were a wretched internet user trying to meet password requirements by going from "password" to "Password1!". I'm not sure why this behaviour was chosen as the default, but usually such things can be blamed on the ANSI standard having to maintain backward compatibility with pre-existing Lisp dialects.
+Honestly, I think this is one of the language's biggest warts. Under the default behaviour, if you're trying to implement a formula that contains - *gasp* - both `n` AND `N`, you're reduced to mutating one of the names, as if you were trying to circumvent archaic password requirements by going from "password" to "Password1!". I'm not sure why this behaviour was chosen as the default, but usually such things can be blamed on the ANSI standard having to maintain backward compatibility with pre-existing Lisp dialects.
 
 That said, there's a way to preserve case in symbol names regardless of `readtable-case`. Wrap the name in `|`s, like `'|x|`.
 
@@ -188,7 +188,7 @@ If `x` has already been declared a dynamic (a.k.a. global) variable, however, th
 	>>> (symbol-value 'x)
     1
 
-(The exact details around variables, bindings, lexical scope, dynamic scope, etc. are beyond the scope of this article).
+(The exact details around variables, bindings, lexical scope, dynamic scope, etc. will not be covered by this article).
 
 "Wow," you might be thinking, "Doesn't this make it easy to accidentally mutate a global variable?". Well, yes. That's why, similar to most other programming languages, Common Lisp has a naming convention for global variables. They're given "earmuffs", so that `x` becomes `*x*`.
 
@@ -197,7 +197,7 @@ Yes, the Common Lisp community has adopted a number of [naming conventions](http
 
 * `*x*` is a global variable.
 * `+x+` is a constant.
-* `funcp` or `func-p` is a *predicate* function, i.e. it returns a truthy or falsey value. I much prefer the Scheme convention, `func?`.
+* `funcp` or `func-p` is a *predicate* function, i.e. it returns a truthy or falsey value. Personally, I prefer the Scheme convention, `func?`.
 * Check out that cliki page for more!
 
 ## What is a package?
