@@ -1,25 +1,25 @@
-## Description
+## KevingalWebsite
 This package is used to generate the static files for kevingal.com, which are then served by GitHub Pages from the GitHub repository [kevinpgalligan.github.io](https://github.com/Kevinpgalligan/kevinpgalligan.github.io).
 
 It comes with a number of scripts to automate the whole process:
 
-* generating the static files.
-* moving them to the local copy of the kevinpgalligan.github.io repository.
-* displaying a diff to the user.
-* pushing to the remote repository, where the files are served by GitHub Pages.
+## Setup
+* Create virtual environment: `python3 -m venv venv`.
+* Activate it: `source venv/bin/activate`.
+* Install dependencies: `pip3 install -r requirements.txt`.
 
-## Instructions
-All scripts executed from the base directory. Requires Python3.
+## Usage
+First, make sure the virtual environment is activated: `source venv/bin/activate`.
 
-Execute `./setup.sh` once. Installs dependencies, sets up Python venv, and so on.
+Run debug server with: `python3 -m app`.
 
-Execute `./run.sh` to start Flask webserver. Allows local testing before pushing a change.
+Various options to generate/dump a static copy of the website:
 
-Execute `./build.sh --all` to build static copy of site in `build` folder. Not so useful in itself.
+* All website files... `python3 app.py --all`.
+* Just one file, at the given path... `python3 app.py /file.html`.
+* Files that have changed since the last build... `python3 app.py --selective`.
 
-Execute `./deploy.sh /path/to/kevinpgalligan.github.io/repo --all` to generate static files and push them to the kevinpgalligan.github.io repository. Shows a diff before pushing.
-
-The `--all` flag can be swapped out if you want to e.g. only regenerate files that have changed, or regenerate a single file! See `app.py` for how that works.
+Finally! Copy files to kevinpgalligan.github.io repository: `cp -r build/* /path/to/kevinpgalligan.github.io/`.
 
 ## Requirements
 python3, pip3, setuptools (install through pip3). Maybe some other stuff, the setup script isn't as bulletproof as I would like.

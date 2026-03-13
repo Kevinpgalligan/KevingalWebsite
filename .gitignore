@@ -6,3 +6,4 @@ build/*
 *.fasl
 *.swp
 experiments/.ipynb_checkpoints/
+.venv/

@@ -294,6 +294,14 @@ def favicon():
         "favicon.ico",
         mimetype="image")
 
+@app.route("/CNAME")
+def cname():
+    return send_from_directory("templates", "CNAME")
+
+@app.route("/404.md")
+def four_oh_four():
+    return send_from_directory("templates", "404.md")
+
 def make_should_skip_func_from_args(args):
     if args.selective:
         return make_should_skip_func(False)
@@ -311,7 +319,7 @@ if __name__ == '__main__':
         parser = argparse.ArgumentParser()
         parser.add_argument("--all", default=False, action="store_true")
         parser.add_argument("--selective", default=False, action="store_true",
-                            help="skips certain files that don't need to be regenerated.")
+                            help="skips files that don't need to be regenerated.")
         parser.add_argument("--file", required=False,
                             help="Path to single file to regenerate, like /index.html")
         args = parser.parse_args()

@@ -2,7 +2,6 @@ title: Two years of veganism
 date: 2026-02-04
 description: How I became vegan, what it's like, and answering frequently asked questions.
 tags: vegan
-publish: y
 
 I became vegan on January 1st, 2024. Now that my 2-year Veganiversary has passed, I'd like to write a little about how I became vegan, how it's going, what my diet looks like, and a number of common talking points that are often raised in discussions of veganism.
 

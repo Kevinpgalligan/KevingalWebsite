@@ -20,7 +20,7 @@ The Camino de Santiago ("Way of St. James") is a network of pilgrimages or walki
 </figure>
 
 ### Why did you do it?
-I can't remember how I discovered the Camino. A lot of people, especially from North America, first hear of it through a Martin Sheen movie called *The Way*, but I haven't watched it. Someone probably mentioned it to me during the 3-month Spanish course I did in Valencia. Wherever I got the idea, I'd been excited by it for a long time (adventure! introspection! nature! Spanish!), and after submitting my thesis in September of 2025 it seemed like the perfect time to go.
+I can't remember how I discovered the Camino. A lot of people, especially from North America, first hear of it through a Martin Sheen movie called *The Way*, but I haven't watched it. Someone probably mentioned it to me during the Spanish course I did in Valencia. Wherever I got the idea, I'd been excited by it for a long time (adventure! introspection! nature! Spanish!), and after submitting my thesis in September of 2025 it seemed like the perfect time to go.
 
 ### Which route did you take?
 The Camino del Norte, or "Northern Way", is a route along the coast of northern Spain. I picked it because it's less crowded than the the most popular route, the Camino Francés ("French Way"). I thought the pilgrims taking that route might be more interesting, and it'd be less touristy.
