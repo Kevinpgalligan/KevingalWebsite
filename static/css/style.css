@@ -180,6 +180,10 @@ div.codehilite {
     border: 1px solid black;
 }
 
+.borderforwhitepic {
+    border-style: solid;
+}
+
 /* Scale images & videos so they're not too big. */
 img {
     max-width: 100%;
