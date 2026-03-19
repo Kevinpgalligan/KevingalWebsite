@@ -11,7 +11,7 @@ It comes with a number of scripts to automate the whole process:
 ## Usage
 First, make sure the virtual environment is activated: `source venv/bin/activate`.
 
-Run debug server with: `python3 -m app`.
+Run debug server with: `python3 app.py`.
 
 Various options to generate/dump a static copy of the website:
 
