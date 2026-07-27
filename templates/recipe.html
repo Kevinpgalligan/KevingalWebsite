@@ -1,0 +1,10 @@
+{% extends "page.html" %}
+{% block title %}{{ page.name }}{% endblock title %}
+{% block content %}
+<h2>{{ page.name }}</h2>
+<p>source: {{ page.source }}</p>
+<hr>
+{{ page.html|safe }}
+<hr>
+<a href="/recipes.html">&lt;&lt; back to recipes</a>
+{% endblock content %}

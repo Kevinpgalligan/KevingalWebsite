@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Vegan Recipes{% endblock title %}
+{% block content %}
+<h2>Vegan Recipes</h2>
+<p>Some recipes I've written down for myself, all of which are vegan-friendly. Mostly copied from cooking websites, but with the instructions written more concisely and sometimes with slight modifications.</p>
+
+<ul>
+{% for recipe in recipes %}<li><a href="{{ url_for('page', path=recipe.path) }}">{{recipe.name}}</a></li>{% endfor %}
+</ul>
+{% endblock content %}

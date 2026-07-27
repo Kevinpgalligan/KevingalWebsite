@@ -32,7 +32,8 @@ def full_url(path):
 def proj_type_to_emoji(t):
     return {
         "web": "web",
-        "desktop": "desktop"
+        "desktop": "desktop",
+        "text": "text",
     }.get(t, "BLAH")
 
 def url_to_linkname(url):
@@ -197,6 +198,12 @@ def projects():
         projects=sorted([proj_with_metadata(pg) for pg in pages if "projects/" in pg.path],
                         key=lambda pg: pg.meta["date"]))
 
+@app.route('/recipes.html')
+def recipes():
+    return render_template(
+        "recipes.html",
+        recipes=[pg for pg in pages if "recipe/" in pg.path])
+
 @app.route('/dsml-portfolio.html')
 def dsml_portfolio():
     return render_template(
@@ -225,6 +232,8 @@ def page(path):
     if path.startswith("blog/"):
         template = 'blog-post.html'
         is_blog = True
+    elif path.startswith("recipe/"):
+        template = 'recipe.html'
     else:
         template = "page.html"
     return render_template(
