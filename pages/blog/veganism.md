@@ -2,7 +2,6 @@ title: A vegan FAQ
 date: 2026-07-29
 description: An FAQ to mark 2 years of veganism.
 tags: veganism
-publish: y
 
 I began identifying as vegan on January 1st, 2024. Now that my 2-year Veganiversary has passed, I'd like to mark the occasion by answering some questions & talking points that regularly come up whenever I discuss this somewhat uncommon "lifestyle" that I've adopted.
 
