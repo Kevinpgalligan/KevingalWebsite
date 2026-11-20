@@ -2,7 +2,7 @@ title: Graphics livecoding in Common Lisp
 date: 2025-04-23
 description: Developing a Boids program from scratch without restarting it.
 requires: code
-tags: lisp programming artsy
+tags: lisp programming graphics
 publish: y
 
 Some Lisps, like Common Lisp, have a powerful feature that tends to go underappreciated amidst all the talk about macros: the ability to recompile your program while it's running, without restarting it. For the purposes of this post, and because it sounds cool, let's call this ability *livecoding*[^livecod].
