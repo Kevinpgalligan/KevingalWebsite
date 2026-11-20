@@ -1,5 +1,5 @@
 title: Linear interpolation in the marching squares algorithm
-date: 2026-11-15
+date: 2026-11-21
 description: An explainer on how linear interpolation can be applied to the marching squares algorithm.
 tags: graphics
 requires: math
